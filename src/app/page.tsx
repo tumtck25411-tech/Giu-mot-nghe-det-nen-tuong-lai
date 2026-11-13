@@ -13,157 +13,646 @@ import {
   MapPin,
   QrCode,
   ArrowRight,
-  Award,
-  BookOpen
+  ShoppingBag,
+  Heart,
+  Star,
+  CheckCircle2,
+  Compass,
+  Bookmark,
+  Layers,
+  X,
+  CreditCard,
+  Truck,
+  Plus,
+  Minus,
+  Trash2,
+  Download,
+  Printer,
+  Copy,
+  Check,
+  Filter,
 } from 'lucide-react';
-import { getProducts, getMotifs, getArtisans, getPageContent, syncWithServer } from '@/lib/data-store';
-import { Product, Motif, Artisan } from '@/types';
+import {
+  getProducts,
+  getMotifs,
+  getArtisans,
+  getReviews,
+  getWeavingSteps,
+  addToCart,
+  getCart,
+  updateCartQuantity,
+  removeFromCart,
+  getCartTotal,
+  toggleWishlist,
+  isInWishlist,
+  syncWithServer,
+  createOrder,
+  getCustomerSession,
+} from '@/lib/data-store';
+import { Product, Motif, Artisan, Review, WeavingStep, CartItem, CustomerUser } from '@/types';
+import QRCodeGenerator from '@/components/QRCodeGenerator';
+import CustomerAuthModal from '@/components/CustomerAuthModal';
+
+const CATEGORIES_METADATA = [
+  { id: 'all', name: 'Tất cả (57)', filterKey: 'all' },
+  { id: 'scarf', name: 'Khăn quàng cổ (28)', filterKey: 'scarf' },
+  { id: 'crossbag', name: 'Túi đeo chéo (9)', filterKey: 'crossbag' },
+  { id: 'wallet', name: 'Ví cầm tay (7)', filterKey: 'wallet' },
+  { id: 'apron', name: 'Tạp dề (5)', filterKey: 'apron' },
+  { id: 'tote', name: 'Túi tote (3)', filterKey: 'tote' },
+  { id: 'dress', name: 'Váy nữ (2)', filterKey: 'dress' },
+  { id: 'shirt', name: 'Áo nam (2)', filterKey: 'shirt' },
+  { id: 'gourd', name: 'Bầu nước (1)', filterKey: 'gourd' },
+];
+
+const FOUNDING_TEAM = [
+  {
+    name: 'Mai Thị Cẩm Tú',
+    role: 'Lead / Trưởng Nhóm Dự Án',
+    badge: 'LEAD',
+    image: '/images/team/MaiThiCamTu_user.png',
+    desc: 'Điều phối tổng thể, nghiên cứu mô hình kinh doanh xã hội & kết nối hợp tác buôn làng.',
+  },
+  {
+    name: 'Huỳnh Gia Bảo',
+    role: 'Tech Lead / Chuyển Đổi Số',
+    badge: 'TECH',
+    image: '/images/team/HuynhGiaBao_user.png',
+    desc: 'Kiến trúc sư hệ thống website thương mại điện tử, số hóa ngân hàng hoa văn & định danh QR.',
+  },
+  {
+    name: 'Trần Thị Thảo Vy',
+    role: 'Trưởng Ban Du Lịch Sinh Thái',
+    badge: 'TOURISM',
+    image: '/images/team/TranThiThaoVy_user.png',
+    desc: 'Phụ trách trải nghiệm bản địa, kết nối làng du lịch cộng đồng Ia Mơ Nông & lan tỏa văn hóa.',
+  },
+  {
+    name: 'Đỗ Dương Khang',
+    role: 'Marketing Lead / Truyền Thông',
+    badge: 'MARKETING',
+    image: '/images/team/DoDuongKhang_user.png',
+    desc: 'Xây dựng chiến lược tiếp thị đa kênh, kể câu chuyện di sản và tiếp cận khách hàng trẻ.',
+  },
+  {
+    name: 'Trần Vũ Trọng Hiếu',
+    role: 'Phụ Trách Pháp Lý & SHTT',
+    badge: 'LEGAL',
+    image: '/images/team/TranVuTrongHieu_user.png',
+    desc: 'Bảo vệ quyền sở hữu trí tuệ hoa văn truyền thống, hợp đồng thương mại công bằng cho nghệ nhân.',
+  },
+  {
+    name: 'Đinh Cát Tường',
+    role: 'Ban Cố Vấn & Hỗ Trợ Dự Án',
+    badge: 'ADVISOR',
+    image: '/images/team/DinhCatTuong_user.png',
+    desc: 'Tư vấn chiến lược phát triển, phân tích dữ liệu thị trường và kết nối các nguồn lực xã hội.',
+  },
+];
+
+const WEAVING_STAGES_FULL = [
+  {
+    step: '01',
+    stage: 'CHẶNG 01 • BÌA RỪNG CHƯ PĂH',
+    title: 'Thu Hái Bông Kơpăh Tự Nhiên',
+    image: '/images/weaving/step-1.jpg',
+    pills: ['⏱️ Tháng 11 - 12', '📍 Rừng Kơpăh Ia Mơ Nông', '🌿 100% Tự nhiên'],
+    desc: 'Thu hái những quả bông tự nhiên vừa bung nở trắng muốt, giữ trọn vẹn độ tơi xốp và tinh khiết của đất trời đại ngàn.',
+  },
+  {
+    step: '02',
+    stage: 'CHẶNG 02 • BÊN HIÊN NHÀ SÀN',
+    title: 'Cán Bông & Kéo Sợi Mộc',
+    image: '/images/weaving/step-2.jpg',
+    pills: ['⏱️ 2 - 3 ngày', '📍 Hiên nhà sàn', '🪵 Trục cán gỗ & Xa quay'],
+    desc: 'Tách sạch hạt bằng trục cán gỗ mộc mạc, vò bông thành từng búp mịn rồi kéo thành những cuộn sợi dai chắc, bền bỉ.',
+  },
+  {
+    step: '03',
+    stage: 'CHẶNG 03 • NỒI NHUỘM BẢN ĐỊA',
+    title: 'Nhuộm Thảo Mộc Rừng Tự Nhiên',
+    image: '/images/weaving/step-5.jpg',
+    pills: ['⏱️ 5 - 7 ngày ngâm ủ', '📍 Làng Kép', '🍃 0% Hóa chất'],
+    desc: "Lá chàm mun T'râm đen tuyền, vỏ cây Klét đỏ bazan, rễ cây Knung vàng ấm. 100% thảo mộc tự nhiên ngâm ủ thủ công.",
+  },
+  {
+    step: '04',
+    stage: 'CHẶNG 04 • CỬI HÔNG TRUYỀN THỐNG',
+    title: 'Mắc Khung Cửi Hông (Backstrap Loom)',
+    image: '/images/weaving/step-7.jpg',
+    pills: ['⏱️ 1 ngày mắc cửi', '📍 Đai lưng nghệ nhân', '🧵 Căng sợi tự nhiên'],
+    desc: 'Cố định bằng đai da áp sát lưng. Độ ngả người và lực đẩy đôi chân tạo nên độ căng tự nhiên hoàn hảo cho từng sợi dọc.',
+  },
+  {
+    step: '05',
+    stage: 'CHẶNG 05 • TRUYỀN KHẨU KÝ ỨC',
+    title: 'Dệt Hoa Văn Độc Bản Theo Ký Ức',
+    image: '/images/weaving/step-9.jpg',
+    pills: ['⏱️ 10 - 20 ngày', '📍 Làng Phung & Kép', '✨ Ký ức mẫu hệ'],
+    desc: 'Nghệ nhân nhặt đếm từng sợi chỉ theo bài ca truyền khẩu. Hoa văn cánh bướm Kơkơh, Chiêng cồng, Răng cưa bảo vệ hiện lên sắc sảo.',
+  },
+  {
+    step: '06',
+    stage: 'CHẶNG 06 • MINH BẠCH SỐ HÓA',
+    title: 'Cấp Tem Mã QR Định Danh Di Sản',
+    image: '/images/background/image5.jpg',
+    pills: ['⏱️ Định danh độc bản', '📍 CLB Dệt Ia Mơ Nông', '📱 Quét QR xem nghệ nhân'],
+    desc: 'Cấp tem mác QR độc bản tra cứu chân dung nghệ nhân, làng nghề Ia Mơ Nông và công sức dệt nên sản phẩm.',
+  },
+];
+
+// 5 Hero Background Slides inherited directly from detnentuonglai.vercel.app
+const HERO_SLIDES = [
+  {
+    image: '/images/background/image4.jpg',
+    caption: '✦ Không gian dệt cửi hông trong nhà dài Jrai',
+    alt: 'Dệt cửi hông truyền thống trong nhà sàn Jrai',
+  },
+  {
+    image: '/images/background/image3.jpg',
+    caption: '✦ Nghệ nhân dệt bên dàn chiêng di sản',
+    alt: 'Các nghệ nhân nữ Jrai dệt thổ cẩm bên dàn cồng chiêng',
+  },
+  {
+    image: '/images/background/image_1.jpg',
+    caption: '✦ Bếp lửa nhà sàn truyền thống Ia Mơ Nông',
+    alt: 'Không gian bếp lửa nhà sàn Jrai',
+  },
+  {
+    image: '/images/banners/hero_stilt_house_weaving.jpg',
+    caption: '✦ Nghề dệt mẫu hệ lưu truyền qua nhiều thế hệ',
+    alt: 'Nghệ nhân dệt bên hiên nhà sàn',
+  },
+  {
+    image: '/images/background/image6.jpg',
+    caption: '✦ Sinh viên UEL thực địa tại làng Kép, Gia Lai',
+    alt: 'Sinh viên UEL khảo sát thực tế tại làng nghề',
+  },
+];
 
 export default function HomePage() {
-  const [products, setProducts] = useState<Product[]>([]);
+  const [allProducts, setAllProducts] = useState<Product[]>([]);
   const [motifs, setMotifs] = useState<Motif[]>([]);
   const [artisans, setArtisans] = useState<Artisan[]>([]);
-  const [content, setContent] = useState<any>(null);
+  const [steps, setSteps] = useState<WeavingStep[]>([]);
+  const [reviews, setReviews] = useState<Review[]>([]);
+
+  // Hero carousel slide state
+  const [currentHeroSlide, setCurrentHeroSlide] = useState(0);
+
+  // Filter States for 57 Products
+  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [priceRange, setPriceRange] = useState('all');
+  const [selectedArtisanFilter, setSelectedArtisanFilter] = useState('all');
+
+  // Interactive Modals
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [selectedMotif, setSelectedMotif] = useState<Motif | null>(null);
+  const [selectedArtisanModal, setSelectedArtisanModal] = useState<Artisan | null>(null);
+
+  // Traceability Interactive State
+  const [passportCode, setPassportCode] = useState('K001');
+  const [passportProduct, setPassportProduct] = useState<Product | null>(null);
+
+  // Cart Drawer State
+  const [cartOpen, setCartOpen] = useState(false);
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [addedNotice, setAddedNotice] = useState<string | null>(null);
+
+  // Checkout modal
+  const [checkoutOpen, setCheckoutOpen] = useState(false);
+  const [customerName, setCustomerName] = useState('');
+  const [customerPhone, setCustomerPhone] = useState('');
+  const [shippingAddress, setShippingAddress] = useState('');
+  const [paymentMethod, setPaymentMethod] = useState<'cod' | 'banking'>('banking');
+  const [orderCreatedId, setOrderCreatedId] = useState<string | null>(null);
+
+  // Customer Auth state
+  const [customerUser, setCustomerUser] = useState<CustomerUser | null>(null);
+  const [customerAuthOpen, setCustomerAuthOpen] = useState(false);
+
+  const refreshStoreData = () => {
+    const prods = getProducts(true);
+    setAllProducts(prods);
+    setMotifs(getMotifs(true));
+    setArtisans(getArtisans());
+    setSteps(getWeavingSteps());
+    setReviews(getReviews());
+    setCartItems(getCart());
+
+    const sess = getCustomerSession();
+    setCustomerUser(sess);
+    if (sess) {
+      if (!customerName) setCustomerName(sess.name);
+      if (!customerPhone) setCustomerPhone(sess.phone);
+    }
+
+    if (prods.length > 0 && !passportProduct) {
+      const found = prods.find((p) => p.product_code.toLowerCase() === passportCode.toLowerCase()) || prods[0];
+      setPassportProduct(found);
+    }
+  };
+
+  const handleProceedToCheckout = () => {
+    const session = getCustomerSession();
+    setCartOpen(false);
+    if (!session) {
+      setCustomerAuthOpen(true);
+    } else {
+      setCustomerUser(session);
+      if (!customerName) setCustomerName(session.name);
+      if (!customerPhone) setCustomerPhone(session.phone);
+      setCheckoutOpen(true);
+    }
+  };
+
 
   useEffect(() => {
-    const loadData = () => {
-      setProducts(getProducts(true).slice(0, 4));
-      setMotifs(getMotifs(true).slice(0, 4));
-      setArtisans(getArtisans().slice(0, 3));
-      setContent(getPageContent('home'));
+    refreshStoreData();
+    syncWithServer().then(() => refreshStoreData());
+
+    window.addEventListener('jrai_store_updated', refreshStoreData);
+    window.addEventListener('jrai_cart_updated', () => setCartItems(getCart()));
+    return () => {
+      window.removeEventListener('jrai_store_updated', refreshStoreData);
     };
-
-    loadData();
-    syncWithServer().then(() => loadData());
-
-    if (typeof window !== 'undefined') {
-      window.addEventListener('jrai_store_updated', loadData);
-      return () => window.removeEventListener('jrai_store_updated', loadData);
-    }
   }, []);
 
-  return (
-    <div className="space-y-16 pb-20">
-      {/* HERO SECTION */}
-      <section className="relative min-h-[580px] bg-stone-950 text-white overflow-hidden flex items-center">
-        {/* Background Overlay */}
-        <div
-          className="absolute inset-0 bg-cover bg-center opacity-25 mix-blend-luminosity scale-105"
-          style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1606744837616-56c9a5c6a6eb?auto=format&fit=crop&w=1920&q=80')`,
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/80 to-transparent" />
-        <div className="absolute top-0 left-0 right-0 h-1 brocade-pattern-border" />
+  // Auto-advance hero carousel slides every 5s
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentHeroSlide((prev) => (prev + 1) % HERO_SLIDES.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-          <div className="max-w-3xl space-y-6">
-            <div className="inline-flex items-center gap-2 bg-amber-950/80 border border-amber-700/60 px-4 py-1.5 rounded-full text-xs font-bold text-amber-300 shadow-lg">
-              <Sparkles className="w-4 h-4 text-amber-400" />
-              <span>DỆT NÊN TƯƠNG LAI — NGÂN HÀNG SỐ HOA VĂN JRAI</span>
+  const nextHeroSlide = () => setCurrentHeroSlide((prev) => (prev + 1) % HERO_SLIDES.length);
+  const prevHeroSlide = () => setCurrentHeroSlide((prev) => (prev - 1 + HERO_SLIDES.length) % HERO_SLIDES.length);
+
+  // Update passport product when passportCode changes
+  useEffect(() => {
+    if (!passportCode || allProducts.length === 0) return;
+    const found = allProducts.find(
+      (p) =>
+        p.product_code.toLowerCase() === passportCode.trim().toLowerCase() ||
+        p.id.toLowerCase() === passportCode.trim().toLowerCase()
+    );
+    setPassportProduct(found || null);
+  }, [passportCode, allProducts]);
+
+  // Handle Add To Cart
+  const handleAddToCart = (p: Product, e?: React.MouseEvent) => {
+    if (e) e.stopPropagation();
+    addToCart(p, 1);
+    setCartItems(getCart());
+    setAddedNotice(`Đã thêm "${p.name}" vào giỏ hàng!`);
+    setTimeout(() => setAddedNotice(null), 3500);
+  };
+
+  // Filter 57 Products
+  const filteredProducts = allProducts.filter((p) => {
+    if (selectedCategory !== 'all') {
+      const catLower = (p.category || '').toLowerCase();
+      const nameLower = (p.name || '').toLowerCase();
+      if (selectedCategory === 'scarf' && !catLower.includes('scarf') && !nameLower.includes('khăn')) return false;
+      if (selectedCategory === 'crossbag' && !catLower.includes('crossbag') && !nameLower.includes('đeo chéo')) return false;
+      if (selectedCategory === 'wallet' && !catLower.includes('wallet') && !nameLower.includes('ví')) return false;
+      if (selectedCategory === 'apron' && !catLower.includes('apron') && !nameLower.includes('tạp dề')) return false;
+      if (selectedCategory === 'tote' && !catLower.includes('tote') && !nameLower.includes('tote')) return false;
+      if (selectedCategory === 'dress' && !catLower.includes('dress') && !nameLower.includes('váy')) return false;
+      if (selectedCategory === 'shirt' && !catLower.includes('shirt') && !nameLower.includes('áo')) return false;
+      if (selectedCategory === 'gourd' && !catLower.includes('gourd') && !nameLower.includes('bầu')) return false;
+    }
+
+    if (searchQuery.trim()) {
+      const q = searchQuery.toLowerCase().trim();
+      const matchName = p.name.toLowerCase().includes(q);
+      const matchCode = p.product_code.toLowerCase().includes(q);
+      const matchDesc = p.description.toLowerCase().includes(q);
+      if (!matchName && !matchCode && !matchDesc) return false;
+    }
+
+    if (priceRange !== 'all') {
+      if (priceRange === 'under-300' && p.price >= 300000) return false;
+      if (priceRange === '300-600' && (p.price < 300000 || p.price > 600000)) return false;
+      if (priceRange === 'over-600' && p.price <= 600000) return false;
+    }
+
+    if (selectedArtisanFilter !== 'all' && p.artisan_id !== selectedArtisanFilter) {
+      return false;
+    }
+
+    return true;
+  });
+
+  const cartTotal = getCartTotal();
+  const freeShipThreshold = 500000;
+  const isFreeShip = cartTotal.subtotal >= freeShipThreshold;
+
+  // Handle Checkout Submit
+  const handleCheckoutSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!customerName || !customerPhone || !shippingAddress) {
+      alert('Vui lòng điền đầy đủ họ tên, số điện thoại và địa chỉ giao hàng!');
+      return;
+    }
+
+    const order = createOrder({
+      customerName,
+      customerPhone,
+      shippingAddress,
+      paymentMethod,
+      orderNotes: 'Đặt hàng qua Cổng Tất-Cả-Trong-Một JRAI ƠI',
+    });
+
+    if (order) {
+      setOrderCreatedId(order.id);
+      setCartItems([]);
+    }
+  };
+
+  return (
+    <div className="space-y-24 pb-24 overflow-hidden relative">
+      {/* Toast Notification */}
+      {addedNotice && (
+        <div className="fixed bottom-6 right-6 z-50 bg-[#B9383A] text-white px-5 py-3.5 rounded-2xl shadow-2xl border border-amber-400/40 flex items-center gap-3 animate-in slide-in-from-bottom duration-300">
+          <CheckCircle2 className="w-5 h-5 text-amber-300 shrink-0" />
+          <span className="text-xs font-bold">{addedNotice}</span>
+          <button
+            onClick={() => setCartOpen(true)}
+            className="text-xs underline font-bold ml-2 text-amber-200 hover:text-white"
+          >
+            Mở giỏ hàng &rarr;
+          </button>
+        </div>
+      )}
+
+      {/* Floating Cart Button */}
+      <button
+        onClick={() => setCartOpen(true)}
+        className="fixed bottom-6 left-6 z-40 bg-gradient-to-r from-[#B9383A] to-[#8B2522] hover:from-[#A83232] hover:to-[#7A1F1C] text-white px-4 py-3 rounded-full shadow-2xl border border-amber-400/40 flex items-center gap-2.5 transition-transform hover:scale-105"
+        title="Mở giỏ hàng"
+      >
+        <ShoppingBag className="w-5 h-5 text-amber-300" />
+        <span className="text-xs font-bold font-mono bg-stone-900/80 px-2 py-0.5 rounded-full text-amber-400 border border-amber-500/30">
+          {cartTotal.count}
+        </span>
+        <span className="text-xs font-bold hidden sm:inline">{cartTotal.subtotal.toLocaleString('vi-VN')}₫</span>
+      </button>
+
+      {/* ========================================================
+          1. MỤC 1: TRANG CHỦ (#home) - HERO CAROUSEL SLIDER KẾ THỪA DETNENTUONGLAI
+      ======================================================== */}
+      <section id="home" className="relative min-h-[680px] lg:min-h-[760px] bg-[#120F0D] text-white overflow-hidden flex items-center border-b border-[#3D2C1F] scroll-mt-20">
+        {/* Background Slider with 5 Authentic Slides */}
+        {HERO_SLIDES.map((slide, idx) => (
+          <div
+            key={idx}
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+              idx === currentHeroSlide ? 'opacity-100 scale-100' : 'opacity-0 scale-105 pointer-events-none'
+            }`}
+            style={{ transitionProperty: 'opacity, transform', transitionDuration: '1000ms' }}
+          >
+            <img
+              src={slide.image}
+              alt={slide.alt}
+              className="w-full h-full object-cover object-center"
+            />
+          </div>
+        ))}
+
+        {/* Ambient Overlays to Guarantee Text Legibility */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#120F0D] via-[#120F0D]/90 to-transparent lg:w-3/4" />
+        <div className="absolute inset-0 bg-[#120F0D]/40" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#120F0D] via-transparent to-black/30" />
+
+        {/* Hero Slider Caption Badge */}
+        <div className="absolute bottom-6 right-6 z-20 hidden md:block">
+          <div className="bg-[#1A1412]/85 backdrop-blur-md border border-amber-600/40 text-amber-200 text-xs px-4 py-2 rounded-full shadow-xl font-medium flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+            <span>{HERO_SLIDES[currentHeroSlide].caption}</span>
+          </div>
+        </div>
+
+        {/* Hero Slider Controls: Prev/Next & Dots */}
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 lg:left-auto lg:right-6 lg:translate-x-0 z-30 flex items-center gap-3">
+          <button
+            onClick={prevHeroSlide}
+            aria-label="Slide trước"
+            className="w-9 h-9 rounded-full bg-[#181310]/80 hover:bg-[#8B2522] text-white border border-amber-500/40 flex items-center justify-center transition shadow-lg text-lg"
+          >
+            ‹
+          </button>
+          <div className="flex items-center gap-1.5 px-3 py-1.5 bg-[#181310]/80 rounded-full border border-stone-800">
+            {HERO_SLIDES.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrentHeroSlide(i)}
+                aria-label={`Slide ${i + 1}`}
+                className={`h-2 rounded-full transition-all ${
+                  i === currentHeroSlide ? 'w-6 bg-amber-400' : 'w-2 bg-stone-500 hover:bg-stone-300'
+                }`}
+              />
+            ))}
+          </div>
+          <button
+            onClick={nextHeroSlide}
+            aria-label="Slide tiếp theo"
+            className="w-9 h-9 rounded-full bg-[#181310]/80 hover:bg-[#8B2522] text-white border border-amber-500/40 flex items-center justify-center transition shadow-lg text-lg"
+          >
+            ›
+          </button>
+        </div>
+
+        {/* Hero Content matching detnentuonglai.vercel.app */}
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 z-20">
+          <div className="max-w-2xl space-y-6">
+            <div className="inline-flex items-center gap-2 bg-[#8B2522]/80 border border-amber-400/50 px-4 py-1.5 rounded-full text-xs font-bold text-amber-200 shadow-xl backdrop-blur-sm">
+              <Sparkles className="w-4 h-4 text-amber-300 animate-pulse" />
+              <span>ĐỀ TÀI NCKH & KHỞI NGHIỆP • UEL - ĐHQG-HCM</span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-black tracking-tight text-amber-100 leading-none">
-              “Giữ một nghề, <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-200 to-amber-500">
-                dệt nên tương lai.”
-              </span>
-            </h1>
+            <div className="space-y-2">
+              <div className="text-xs sm:text-sm font-sans font-black uppercase tracking-widest text-[#E58A1F] flex items-center gap-2">
+                <span>DỆT NÊN TƯƠNG LAI</span>
+                <span className="text-[10px] bg-[#8B2522] px-2 py-0.5 rounded text-white border border-amber-500/40">
+                  JRAI ƠI
+                </span>
+              </div>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-black tracking-tight text-[#FFFDF9] leading-[1.1]">
+                “Giữ một nghề, <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F59E0B] via-[#FDE68A] to-[#E58A1F]">
+                  dệt nên tương lai.”
+                </span>
+              </h1>
+            </div>
 
-            <p className="text-base sm:text-lg text-stone-300 font-normal leading-relaxed">
-              Thổ cẩm không chỉ là một sản phẩm thủ công. Đó là kỹ thuật, thời gian, câu chuyện và tri thức văn hóa được truyền qua nhiều thế hệ người Jrai Tây Nguyên.
+            <p className="text-base sm:text-lg text-stone-200 font-normal leading-relaxed">
+              Không thay đổi cái gốc của nghề, thay đổi cách giá trị của nghề được nhìn thấy. Chúng tôi kết hợp di sản thổ cẩm Jrai tại Ia Mơ Nông (Gia Lai) với công nghệ số và mã QR định danh để tạo sinh kế bền vững cho buôn làng.
             </p>
 
-            {/* Quick Action Buttons */}
-            <div className="flex flex-wrap items-center gap-4 pt-4">
-              <Link
-                href="/products"
-                className="inline-flex items-center gap-2.5 bg-gradient-to-r from-amber-700 to-amber-900 hover:from-amber-600 hover:to-amber-800 text-white font-bold text-sm px-6 py-3.5 rounded-2xl shadow-lg hover:shadow-amber-900/30 transition-all hover:-translate-y-0.5"
+            {/* Quick Action CTAs matching detnentuonglai & E-commerce */}
+            <div className="flex flex-wrap items-center gap-3 pt-2">
+              <a
+                href="#products"
+                className="inline-flex items-center gap-2 bg-gradient-to-r from-[#B9383A] to-[#8B2522] hover:from-[#A83232] hover:to-[#7A1F1C] text-white font-bold text-xs sm:text-sm px-6 py-3.5 rounded-2xl shadow-xl border border-amber-500/30 transition hover:-translate-y-0.5"
               >
-                <Search className="w-4 h-4" />
-                <span>TRA CỨU SẢN PHẨM</span>
-              </Link>
+                <ShoppingBag className="w-4 h-4 text-amber-300" />
+                <span>KHÁM PHÁ 57 SẢN PHẨM</span>
+              </a>
 
-              <Link
-                href="/motifs"
-                className="inline-flex items-center gap-2.5 bg-stone-900 hover:bg-stone-800 text-amber-300 hover:text-amber-200 font-bold text-sm px-6 py-3.5 rounded-2xl border border-amber-800/60 transition-all hover:-translate-y-0.5"
+              <a
+                href="#artisans"
+                className="inline-flex items-center gap-2 bg-[#231C18] hover:bg-[#32261E] text-amber-300 hover:text-white font-bold text-xs sm:text-sm px-5 py-3.5 rounded-2xl border border-amber-900/50 transition hover:-translate-y-0.5"
               >
-                <Grid className="w-4 h-4" />
-                <span>KHÁM PHÁ HOA VĂN CENTRAL</span>
-              </Link>
+                <Users className="w-4 h-4 text-amber-400" />
+                <span>NGHỆ NHÂN LÀNG KÉP</span>
+              </a>
+
+              <a
+                href="#motifs"
+                className="inline-flex items-center gap-2 bg-[#231C18] hover:bg-[#32261E] text-stone-300 hover:text-white font-bold text-xs sm:text-sm px-5 py-3.5 rounded-2xl border border-stone-800 transition hover:-translate-y-0.5"
+              >
+                <Grid className="w-4 h-4 text-amber-400" />
+                <span>NGÂN HÀNG HOA VĂN</span>
+              </a>
+
+              <a
+                href="#traceability"
+                className="inline-flex items-center gap-2 bg-[#1C1613] hover:bg-[#2A201A] text-amber-400 hover:text-white font-bold text-xs sm:text-sm px-4 py-3.5 rounded-2xl border border-amber-600/40 transition hover:-translate-y-0.5"
+              >
+                <QrCode className="w-4 h-4 text-amber-400" />
+                <span>TRA CỨU QR</span>
+              </a>
             </div>
 
-            {/* Highlights Grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-8 border-t border-stone-800/80">
-              <div className="space-y-1">
-                <div className="text-2xl font-serif font-bold text-amber-400">100%</div>
-                <div className="text-xs text-stone-400">Số Hóa Mã QR SP</div>
+            {/* Heritage Stats Grid matching detnentuonglai.vercel.app exactly */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-stone-800/80">
+              <div className="space-y-0.5">
+                <div className="text-2xl lg:text-3xl font-serif font-black text-amber-400">100%</div>
+                <div className="text-xs text-stone-300 font-medium">Định danh QR độc bản</div>
               </div>
-              <div className="space-y-1">
-                <div className="text-2xl font-serif font-bold text-amber-400">Central</div>
-                <div className="text-xs text-stone-400">Ngân Hàng Hoa Văn</div>
+              <div className="space-y-0.5">
+                <div className="text-2xl lg:text-3xl font-serif font-black text-amber-400">40+ H</div>
+                <div className="text-xs text-stone-300 font-medium">Giờ dệt tay mỗi tác phẩm</div>
               </div>
-              <div className="space-y-1">
-                <div className="text-2xl font-serif font-bold text-amber-400">Gia Lai</div>
-                <div className="text-xs text-stone-400">Xuất Xứ Địa Phương</div>
+              <div className="space-y-0.5">
+                <div className="text-2xl lg:text-3xl font-serif font-black text-amber-400">30+</div>
+                <div className="text-xs text-stone-300 font-medium">Nghệ nhân Ia Mơ Nông</div>
               </div>
-              <div className="space-y-1">
-                <div className="text-2xl font-serif font-bold text-amber-400">Minh Bạch</div>
-                <div className="text-xs text-stone-400">Nguồn Xác Minh</div>
+              <div className="space-y-0.5">
+                <div className="text-2xl lg:text-3xl font-serif font-black text-amber-400">65%</div>
+                <div className="text-xs text-stone-300 font-medium">Doanh thu tới tay người dệt</div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* BROCADE INTRODUCTION */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white rounded-3xl p-8 sm:p-12 shadow-sm border border-stone-200/80 relative overflow-hidden">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-            <div className="space-y-5">
-              <div className="inline-flex items-center gap-2 text-xs font-bold text-amber-800 tracking-widest uppercase bg-amber-100 px-3 py-1 rounded-lg">
-                <BookOpen className="w-3.5 h-3.5" />
-                <span>Giá Trị Di Sản Văn Hóa</span>
+      {/* MARQUEE CHẠY CHỮ VÔ TẬN: KẾ THỪA NGUYÊN BẢN DETNENTUONGLAI */}
+      <div className="bg-[#1C1714] border-y border-[#3D2C1F] py-3.5 overflow-hidden text-xs font-bold uppercase tracking-wider text-[#E58A1F] shadow-inner">
+        <div className="flex items-center gap-8 whitespace-nowrap animate-marquee">
+          <span className="text-amber-400 font-black">“GIỮ MỘT NGHỀ, DỆT NÊN TƯƠNG LAI”</span>
+          <span className="text-amber-400">✦</span>
+          <span className="text-white">DI SẢN THỔ CẨM JRAI</span>
+          <span className="text-amber-400">✦</span>
+          <span>XÃ IA MƠ NÔNG, HUYỆN CHƯ PĂH, GIA LAI</span>
+          <span className="text-amber-400">✦</span>
+          <span className="text-amber-300 font-bold">TRƯỜNG ĐẠI HỌC KINH TẾ - LUẬT, ĐHQG-HCM</span>
+          <span className="text-amber-400">✦</span>
+          <span>ĐỀ TÀI SVTHM 2026</span>
+          <span className="text-amber-400">✦</span>
+          <span className="text-white">100% ĐỊNH DANH QR ĐỘC BẢN</span>
+          <span className="text-amber-400">✦</span>
+          <span>BẢO TỒN NGUYÊN BẢN CỬI HÔNG</span>
+          <span className="text-amber-400">✦</span>
+          <span className="text-amber-400 font-black">“GIỮ MỘT NGHỀ, DỆT NÊN TƯƠNG LAI”</span>
+          <span className="text-amber-400">✦</span>
+          <span className="text-white">DI SẢN THỔ CẨM JRAI</span>
+          <span className="text-amber-400">✦</span>
+          <span>XÃ IA MƠ NÔNG, HUYỆN CHƯ PĂH, GIA LAI</span>
+        </div>
+      </div>
+
+      {/* ========================================================
+          BÀI TOÁN & LỜI GIẢI ĐỔI MỚI (TÍNH MỚI TRONG SVTHM 2026)
+      ======================================================== */}
+      <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 scroll-mt-24">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          <div className="lg:col-span-6 space-y-6">
+            <div className="inline-flex items-center gap-2 bg-[#8B2522]/40 border border-[#B9383A]/60 px-3.5 py-1.5 rounded-full text-xs font-bold text-amber-300">
+              <Sparkles className="w-4 h-4 text-amber-400" />
+              <span>Bài toán & Lời giải đổi mới</span>
+            </div>
+
+            <h2 className="text-3xl sm:text-4xl font-serif font-black text-[#FFFDF9] leading-snug">
+              Làm sao để một nghề truyền thống có thể tự nuôi sống chính mình?
+            </h2>
+
+            <p className="text-sm sm:text-base text-stone-300 leading-relaxed font-normal">
+              Tại Gia Lai, nghề dệt thổ cẩm Jrai đối mặt thách thức lớn: sản phẩm thủ công tốn hàng chục giờ đếm sợi, khó cạnh tranh về giá với hàng dệt máy công nghiệp giá rẻ. Khi nghề không tạo ra đủ sinh kế, thế hệ trẻ dần rời xa khung cửi.
+            </p>
+
+            <p className="text-sm sm:text-base text-stone-300 leading-relaxed font-normal">
+              Dự án không chọn cách làm thổ cẩm rẻ hơn để cạnh tranh, mà chọn con đường <strong className="text-amber-400 font-semibold">nâng tầm giá trị</strong>: biến thời gian, kỹ thuật độc bản và chiều sâu văn hóa thành lý do để khách hàng trân trọng và lựa chọn thông qua nền tảng số hóa và mã định danh QR.
+            </p>
+
+            <div className="pt-2 flex flex-wrap gap-4 text-xs font-semibold text-stone-400">
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
+                <span>Thực địa tại làng Kép & làng Phung</span>
               </div>
-              <h2 className="text-2xl sm:text-3xl font-serif font-bold text-slate-900 leading-tight">
-                Mỗi Nếp Dệt Là Một Câu Chuyện Truyền Thế
-              </h2>
-              <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-                Website ra đời với sứ mệnh xây dựng Ngân hàng số hoa văn Jrai trung tâm, lưu giữ giá trị của từng hoa văn truyền thống, đồng thời giúp người dùng quét mã QR mở trực tiếp trang thông tin sản phẩm mà không cần đăng nhập.
-              </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-                <div className="flex items-start gap-3 bg-amber-50/60 p-3.5 rounded-xl border border-amber-200/60">
-                  <ShieldCheck className="w-5 h-5 text-amber-800 shrink-0 mt-0.5" />
-                  <div>
-                    <h4 className="font-bold text-xs text-slate-900">Xác Minh Văn Hóa</h4>
-                    <p className="text-[11px] text-slate-600">Không tự bịa đặt ý nghĩa, xác minh từ nghệ nhân địa phương.</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3 bg-amber-50/60 p-3.5 rounded-xl border border-amber-200/60">
-                  <QrCode className="w-5 h-5 text-amber-800 shrink-0 mt-0.5" />
-                  <div>
-                    <h4 className="font-bold text-xs text-slate-900">Mã QR Động</h4>
-                    <p className="text-[11px] text-slate-600">Admin cập nhật thông tin, mã QR in trên sản phẩm giữ nguyên.</p>
-                  </div>
-                </div>
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-amber-400"></span>
+                <span>Mã hóa 20 hoa văn bản địa</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="lg:col-span-6 bg-gradient-to-br from-[#1C1613] via-[#241A14] to-[#181310] p-6 sm:p-8 rounded-3xl border border-amber-900/40 shadow-2xl space-y-5">
+            <div className="border-b border-stone-800/80 pb-4">
+              <span className="text-[11px] font-bold uppercase tracking-wider text-amber-500">Mô hình sinh kế bền vững</span>
+              <h3 className="text-xl sm:text-2xl font-serif font-bold text-white mt-1">
+                Mô hình “Bảo Tồn — Kết Nối — Thí Điểm”
+              </h3>
+            </div>
+
+            {/* Pillar 01 */}
+            <div className="flex items-start gap-4 p-4 rounded-2xl bg-[#17120F]/80 border border-stone-800 hover:border-amber-700/50 transition">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#8B2522] to-[#B9383A] text-white font-serif font-black text-lg flex items-center justify-center shrink-0 shadow-md">
+                01
+              </div>
+              <div className="space-y-1">
+                <h4 className="font-serif font-bold text-base text-amber-200">Bảo Tồn Nguyên Bản</h4>
+                <p className="text-xs text-stone-300 leading-relaxed">
+                  Giữ nguyên kỹ thuật dệt khung cửi hông, màu nhuộm thảo mộc tự nhiên từ vỏ cây rừng và sợi bông thô Kơpăh.
+                </p>
               </div>
             </div>
 
-            <div className="relative">
-              <div className="aspect-4/3 rounded-2xl overflow-hidden shadow-lg border-2 border-amber-900/20">
-                <img
-                  src="/images/khung-canh-det-cau-lac-bo.png"
-                  alt="Khung cảnh dệt thổ cẩm ở câu lạc bộ Jrai"
-                  className="w-full h-full object-cover"
-                />
+            {/* Pillar 02 */}
+            <div className="flex items-start gap-4 p-4 rounded-2xl bg-[#17120F]/80 border border-amber-900/40 hover:border-amber-500/50 transition">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-600 to-amber-500 text-stone-950 font-serif font-black text-lg flex items-center justify-center shrink-0 shadow-md">
+                02
               </div>
-              <div className="absolute -bottom-4 -left-4 bg-stone-900 text-amber-100 p-4 rounded-2xl shadow-xl max-w-xs border border-amber-800/40">
-                <div className="flex items-center gap-2 text-xs font-bold text-amber-400">
-                  <Award className="w-4 h-4" />
-                  <span>Câu Lạc Bộ Dệt Thổ Cẩm Jrai</span>
-                </div>
-                <p className="text-xs text-stone-300 mt-1">
-                  Khung cảnh dệt thổ cẩm truyền thống tại câu lạc bộ nghệ nhân.
+              <div className="space-y-1">
+                <h4 className="font-serif font-bold text-base text-amber-300">Kết Nối Công Nghệ Số & Du Lịch</h4>
+                <p className="text-xs text-stone-300 leading-relaxed">
+                  Số hóa hoa văn thành Ngân hàng di sản và gắn mã QR định danh độc bản; liên kết chuỗi homestay, resort tại Gia Lai.
+                </p>
+              </div>
+            </div>
+
+            {/* Pillar 03 */}
+            <div className="flex items-start gap-4 p-4 rounded-2xl bg-[#17120F]/80 border border-emerald-950/60 hover:border-emerald-700/50 transition">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-700 to-emerald-600 text-white font-serif font-black text-lg flex items-center justify-center shrink-0 shadow-md">
+                03
+              </div>
+              <div className="space-y-1">
+                <h4 className="font-serif font-bold text-base text-emerald-200">Thí Điểm Sinh Kế Thực Tế</h4>
+                <p className="text-xs text-stone-300 leading-relaxed">
+                  Triển khai thực địa tại Xã Ia Mơ Nông với nghệ nhân thật, sản phẩm thật, đo lường thu nhập cải thiện rõ rệt cho phụ nữ Jrai.
                 </p>
               </div>
             </div>
@@ -171,182 +660,1230 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* FEATURED PRODUCTS */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between mb-8 gap-4">
+      {/* ========================================================
+          2. MỤC 2: SẢN PHẨM (#products) - TOÀN BỘ 57 SẢN PHẨM
+      ======================================================== */}
+      <section id="products" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 scroll-mt-24">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[#3D2C1F] pb-6">
           <div>
-            <div className="text-xs font-bold text-amber-800 uppercase tracking-widest mb-1">
-              Ứng Dụng Đời Sống
-            </div>
-            <h2 className="text-2xl sm:text-3xl font-serif font-bold text-slate-900">
-              Sản Phẩm Thổ Cẩm Tiêu Biểu
+            <span className="section-tag">
+              Bộ sưu tập tiêu biểu
+            </span>
+            <h2 className="section-title">
+              Sản Phẩm Thổ Cẩm Ứng Dụng Đời Sống
             </h2>
-          </div>
-          <Link
-            href="/products"
-            className="inline-flex items-center gap-1.5 text-amber-900 hover:text-amber-700 font-bold text-xs uppercase tracking-wider group"
-          >
-            <span>Xem tất cả sản phẩm</span>
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </Link>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {products.map((prod) => (
-            <div
-              key={prod.id}
-              className="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-xs hover:shadow-md transition-all group flex flex-col"
-            >
-              <div className="relative aspect-4/3 overflow-hidden bg-slate-100">
-                <img
-                  src={prod.image_url}
-                  alt={prod.name}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-                <div className="absolute top-3 left-3 bg-stone-900/90 text-amber-300 font-mono text-[10px] font-bold px-2.5 py-1 rounded-md border border-amber-800/40">
-                  {prod.product_code}
-                </div>
-              </div>
-
-              <div className="p-5 flex-1 flex flex-col justify-between space-y-3">
-                <div>
-                  <span className="text-[11px] font-bold text-amber-800 uppercase tracking-wider">
-                    {prod.category}
-                  </span>
-                  <h3 className="font-bold text-slate-900 text-base line-clamp-1 group-hover:text-amber-800 transition-colors mt-0.5">
-                    {prod.name}
-                  </h3>
-                  <p className="text-xs text-slate-500 line-clamp-2 mt-1.5 leading-relaxed">
-                    {prod.description}
-                  </p>
-                </div>
-
-                <div className="pt-3 border-t border-slate-100 space-y-2 text-xs">
-                  <div className="flex items-center gap-1.5 text-slate-600">
-                    <Clock className="w-3.5 h-3.5 text-amber-700 shrink-0" />
-                    <span>Dệt: {prod.production_time}</span>
-                  </div>
-                  <div className="flex items-center gap-1.5 text-slate-600">
-                    <MapPin className="w-3.5 h-3.5 text-amber-700 shrink-0" />
-                    <span className="truncate">{prod.location}</span>
-                  </div>
-
-                  <Link
-                    href={`/product/${prod.id}`}
-                    className="flex items-center justify-center gap-1.5 w-full bg-stone-900 hover:bg-amber-900 text-white font-bold py-2.5 rounded-xl transition text-xs mt-2"
-                  >
-                    <span>Xem Chi Tiết & Hoa Văn</span>
-                    <ChevronRight className="w-3.5 h-3.5" />
-                  </Link>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* CENTRAL MOTIF BANK HIGHLIGHT */}
-      <section className="bg-stone-900 text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between mb-10 gap-4">
-            <div>
-              <div className="inline-flex items-center gap-2 text-xs font-bold text-amber-400 uppercase tracking-widest bg-amber-950 px-3 py-1 rounded-md border border-amber-800/40 mb-2">
-                <Grid className="w-3.5 h-3.5" />
-                <span>Kho Tri Thức Số</span>
-              </div>
-              <h2 className="text-2xl sm:text-3xl font-serif font-bold text-amber-100">
-                Ngân Hàng Số Hoa Văn Jrai Central
-              </h2>
-            </div>
-            <Link
-              href="/motifs"
-              className="inline-flex items-center gap-1.5 text-amber-400 hover:text-amber-300 font-bold text-xs uppercase tracking-wider group"
-            >
-              <span>Tra cứu kho hoa văn ({motifs.length}+)</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Link>
+            <p className="section-desc">
+              100% sản phẩm dệt cửi hông thủ công bởi bàn tay của các nghệ nhân làng Kép và làng Phung. Khi mua sản phẩm, bạn nhận kèm một mã định danh số QR giúp tra cứu tên thợ dệt, thời gian hoàn thành và ý nghĩa hoa văn.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {motifs.map((motif) => (
-              <Link
-                key={motif.id}
-                href={`/motif/${motif.id}`}
-                className="bg-stone-950 rounded-2xl overflow-hidden border border-amber-900/40 hover:border-amber-500/60 p-5 space-y-4 group transition-all"
+          <div className="flex items-center gap-3">
+            <span className="text-xs font-bold text-amber-700 bg-amber-100/80 px-4 py-2 rounded-xl border border-amber-300">
+              Hiển thị {filteredProducts.length} / 57 sản phẩm
+            </span>
+          </div>
+        </div>
+
+        {/* Filter Controls: Search & Category Pills */}
+        <div className="space-y-4 bg-[#1E1713] p-5 rounded-3xl border border-amber-900/40 shadow-lg">
+          <div className="flex flex-col sm:flex-row gap-3">
+            <div className="relative flex-1">
+              <Search className="w-4 h-4 absolute left-3.5 top-3.5 text-stone-400" />
+              <input
+                type="text"
+                placeholder="Tìm theo tên sản phẩm hoặc mã (K001, B001, C001, VI001...)"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-[#14110F] border border-stone-800 text-xs text-stone-200 placeholder-stone-500 focus:outline-none focus:border-amber-500"
+              />
+            </div>
+
+            <div className="flex gap-2">
+              <select
+                value={priceRange}
+                onChange={(e) => setPriceRange(e.target.value)}
+                className="px-3 py-2.5 rounded-xl bg-[#14110F] border border-stone-800 text-xs text-stone-300 focus:outline-none focus:border-amber-500"
               >
-                <div className="aspect-4/3 rounded-xl overflow-hidden bg-stone-900 relative">
-                  <img
-                    src={motif.image_url}
-                    alt={motif.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute top-2 left-2 bg-amber-800 text-white text-xs font-mono font-bold px-2.5 py-1 rounded-md">
-                    {motif.motif_code}
-                  </div>
-                </div>
+                <option value="all">Mọi mức giá</option>
+                <option value="under-300">Dưới 300.000₫</option>
+                <option value="300-600">300.000₫ - 600.000₫</option>
+                <option value="over-600">Trên 600.000₫</option>
+              </select>
 
-                <div className="space-y-2">
-                  <h3 className="font-serif font-bold text-amber-100 text-base group-hover:text-amber-400 transition-colors line-clamp-1">
-                    {motif.name}
-                  </h3>
-                  <p className="text-xs text-stone-400 line-clamp-2 leading-relaxed">
-                    {motif.meaning}
-                  </p>
-                </div>
+              <select
+                value={selectedArtisanFilter}
+                onChange={(e) => setSelectedArtisanFilter(e.target.value)}
+                className="px-3 py-2.5 rounded-xl bg-[#14110F] border border-stone-800 text-xs text-stone-300 focus:outline-none focus:border-amber-500"
+              >
+                <option value="all">Tất cả nghệ nhân</option>
+                {artisans.map((a) => (
+                  <option key={a.id} value={a.id}>
+                    {a.name} ({a.village})
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
 
-                <div className="flex items-center justify-between text-[11px] text-amber-300/80 pt-2 border-t border-stone-800">
-                  <span>Nguồn: {motif.origin}</span>
-                  <ChevronRight className="w-4 h-4 text-amber-400 group-hover:translate-x-1 transition-transform" />
-                </div>
-              </Link>
+          {/* 8 Category Filter Pills */}
+          <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
+            {CATEGORIES_METADATA.map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => setSelectedCategory(cat.id)}
+                className={`px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all flex items-center gap-1.5 ${
+                  selectedCategory === cat.id
+                    ? 'bg-[#B9383A] text-white shadow-md border border-amber-400/50'
+                    : 'bg-[#14110F] text-stone-400 hover:text-stone-200 border border-stone-800/80'
+                }`}
+              >
+                <span>{cat.name}</span>
+              </button>
             ))}
           </div>
         </div>
+
+        {/* 57 Products Grid - Authentic detnentuonglai styling + tuquygarden e-commerce */}
+        <div className="products-grid">
+          {filteredProducts.map((p) => {
+            const inWish = isInWishlist(p.id);
+            return (
+              <div key={p.id} className="product-card group">
+                <div
+                  className="product-img-wrap cursor-pointer"
+                  onClick={() => setSelectedProduct(p)}
+                >
+                  <img
+                    src={p.image_url}
+                    alt={p.name}
+                    className="product-img"
+                    loading="lazy"
+                  />
+                  <span className="product-hours-badge">
+                    ⏱️ {p.production_time || '40h dệt tay'}
+                  </span>
+                  <span
+                    className="product-qr-badge"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setPassportCode(p.product_code);
+                      const el = document.getElementById('traceability');
+                      if (el) el.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                    title="Xem mã QR độc bản"
+                  >
+                    QR CODE
+                  </span>
+
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleWishlist(p.id);
+                    }}
+                    className="absolute top-3 left-3 p-1.5 rounded-full bg-white/80 hover:bg-white text-stone-700 hover:text-red-500 shadow-sm transition"
+                    title={inWish ? 'Bỏ yêu thích' : 'Thêm vào yêu thích'}
+                  >
+                    <Heart className={`w-3.5 h-3.5 ${inWish ? 'fill-red-500 text-red-500' : ''}`} />
+                  </button>
+                </div>
+
+                <div className="product-body">
+                  <span className="product-category">
+                    {p.category_name} • MÃ: {p.product_code}
+                  </span>
+                  <h3
+                    className="product-title cursor-pointer"
+                    onClick={() => setSelectedProduct(p)}
+                  >
+                    <a>{p.name}</a>
+                  </h3>
+
+                  {p.story && (
+                    <div className="text-[12px] font-semibold text-amber-800 line-clamp-1 mb-1">
+                      📖 {p.story}
+                    </div>
+                  )}
+
+                  <a
+                    href="#artisans"
+                    className="product-artisan-link"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const el = document.getElementById('artisans');
+                      if (el) el.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                  >
+                    👤 {p.artisan_name || 'Nghệ nhân Ia Mơ Nông'} • Làng Kép
+                  </a>
+
+                  <div className="product-footer">
+                    <div className="product-price-row">
+                      <div>
+                        <span className="product-price">
+                          {p.price.toLocaleString('vi-VN')}₫
+                        </span>
+                        {p.original_price && p.original_price > p.price && (
+                          <span className="text-[11px] text-stone-400 line-through ml-2">
+                            {p.original_price.toLocaleString('vi-VN')}₫
+                          </span>
+                        )}
+                      </div>
+                      <button
+                        className="btn-detail"
+                        onClick={() => {
+                          setPassportCode(p.product_code);
+                          const el = document.getElementById('traceability');
+                          if (el) el.scrollIntoView({ behavior: 'smooth' });
+                        }}
+                        title="Mở mã QR tem mác"
+                      >
+                        Mã QR
+                      </button>
+                    </div>
+
+                    <div className="product-actions-row flex gap-2">
+                      <button
+                        onClick={() => setSelectedProduct(p)}
+                        className="btn btn-sm btn-outline-dark flex-1 text-center justify-center font-bold"
+                      >
+                        Chi tiết
+                      </button>
+                      <button
+                        onClick={(e) => handleAddToCart(p, e)}
+                        className="btn btn-sm btn-primary flex-1 text-center justify-center font-bold flex items-center gap-1.5"
+                      >
+                        <ShoppingBag className="w-3.5 h-3.5" />
+                        <span>Thêm giỏ</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </section>
 
-      {/* ARTISANS */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between mb-8 gap-4">
+      {/* ========================================================
+          3. MỤC 3: NGÂN HÀNG HOA VĂN (#motifs) - ĐẦY ĐỦ 20 HOA VĂN
+      ======================================================== */}
+      <section id="motifs" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 scroll-mt-24">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[#3D2C1F] pb-6">
           <div>
-            <div className="text-xs font-bold text-amber-800 uppercase tracking-widest mb-1">
-              Con Người & Bàn Tay Vàng
-            </div>
-            <h2 className="text-2xl sm:text-3xl font-serif font-bold text-slate-900">
-              Nghệ Nhân Giữ Nghề Thổ Cẩm
+            <span className="section-tag gold">
+              Kho tri thức văn hoá số
+            </span>
+            <h2 className="section-title">
+              Ngân Hàng Số Hoa Văn Jrai Central
             </h2>
+            <p className="section-desc">
+              Không tự bịa đặt ý nghĩa — mỗi hoa văn lưu trữ tại đây đều được xác minh minh bạch từ nghệ nhân và già làng tại Ia Mơ Nông, Chư Păh.
+            </p>
           </div>
-          <Link
-            href="/artisans"
-            className="inline-flex items-center gap-1.5 text-amber-900 hover:text-amber-700 font-bold text-xs uppercase tracking-wider group"
-          >
-            <span>Danh sách nghệ nhân</span>
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </Link>
+          <span className="text-xs font-bold text-amber-700 bg-amber-100/80 px-4 py-2 rounded-xl border border-amber-300">
+            20 / 20 biểu tượng số hóa
+          </span>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {artisans.map((artisan) => (
-            <Link
-              key={artisan.id}
-              href={`/artisan/${artisan.id}`}
-              className="bg-white rounded-2xl p-5 border border-slate-200 shadow-xs hover:shadow-md transition-all flex items-center gap-4 group"
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {motifs.map((m) => (
+            <div
+              key={m.id}
+              onClick={() => setSelectedMotif(m)}
+              className="motif-card cursor-pointer group"
             >
-              <img
-                src={artisan.image_url}
-                alt={artisan.name}
-                className="w-20 h-20 rounded-2xl object-cover shrink-0 border-2 border-amber-900/20 group-hover:scale-105 transition-transform"
-              />
-              <div className="flex-1 space-y-1">
-                <h3 className="font-bold text-slate-900 text-base group-hover:text-amber-800 transition-colors">
-                  {artisan.name}
-                </h3>
-                <p className="text-xs text-amber-800 font-semibold">{artisan.experience}</p>
-                <p className="text-xs text-slate-500 line-clamp-1">{artisan.location}</p>
+              <div className="motif-header">
+                <img
+                  src={m.image_url}
+                  alt={m.name}
+                  loading="lazy"
+                  className="group-hover:scale-105 transition-transform"
+                />
+                <div className="motif-jrai-name">{m.name_jrai || m.name}</div>
               </div>
-            </Link>
+              <div className="motif-body">
+                <span className="motif-theme-tag">
+                  {m.theme_name} • MÃ: {m.motif_code}
+                </span>
+                <h3 className="motif-title">{m.name}</h3>
+                <p className="motif-meaning">{m.meaning || m.philosophy}</p>
+                <div className="motif-verified">
+                  <span>✓ Xác minh: Nghệ nhân làng Kép</span>
+                </div>
+                <div style={{ marginTop: '14px', display: 'flex', gap: '8px' }}>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedMotif(m);
+                    }}
+                    className="btn btn-sm btn-outline-dark"
+                    style={{ flex: 1, textAlign: 'center', justifyContent: 'center' }}
+                  >
+                    Khám phá ý nghĩa
+                  </button>
+                </div>
+              </div>
+            </div>
           ))}
         </div>
       </section>
+
+      {/* ========================================================
+          4. MỤC 4: NGHỆ NHÂN (#artisans) - ĐẦY ĐỦ 9 NGHỆ NHÂN
+      ======================================================== */}
+      <section id="artisans" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 scroll-mt-24">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[#3D2C1F] pb-6">
+          <div>
+            <span className="section-tag">
+              Con người & Bàn tay vàng
+            </span>
+            <h2 className="section-title">
+              Nghệ Nhân Giữ Nghề Xã Ia Mơ Nông
+            </h2>
+            <p className="section-desc">
+              Gặp gỡ 9 nghệ nhân dệt cửi hông tiêu biểu tại làng Kép và làng Phung, những người phụ nữ Jrai gìn giữ linh hồn thổ cẩm qua nhiều thế hệ.
+            </p>
+          </div>
+          <span className="text-xs font-bold text-amber-700 bg-amber-100/80 px-4 py-2 rounded-xl border border-amber-300">
+            09 / 09 nghệ nhân giữ nghề
+          </span>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {artisans.map((a) => (
+            <div
+              key={a.id}
+              className="artisan-card cursor-pointer group"
+              onClick={() => setSelectedArtisanModal(a)}
+            >
+              <div className="artisan-img-wrap">
+                <img
+                  src={a.avatar}
+                  alt={a.name}
+                  loading="lazy"
+                  className="group-hover:scale-105 transition-transform"
+                />
+                <span className="artisan-exp-badge">{a.experience_years} Năm Giữ Nghề</span>
+              </div>
+              <div className="artisan-body">
+                <h3 className="artisan-name">{a.name}</h3>
+                <div className="artisan-village">📍 {a.village}</div>
+                <p className="artisan-quote">&ldquo;{a.quote}&rdquo;</p>
+                <p style={{ fontSize: '0.85rem', color: '#5D554D', marginBottom: '14px' }}>
+                  <strong style={{ color: '#1F1D1B' }}>Chuyên môn:</strong> {a.specialty}
+                </p>
+                <div style={{ marginTop: 'auto', display: 'flex', gap: '8px' }}>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedArtisanModal(a);
+                    }}
+                    className="btn btn-sm btn-primary"
+                    style={{ flex: 1, textAlign: 'center', justifyContent: 'center' }}
+                  >
+                    Xem câu chuyện & tác phẩm
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ========================================================
+          5. MỤC 5: TRA CỨU QR (#traceability) - TƯƠNG TÁC NGAY TẠI CHỖ
+      ======================================================== */}
+      <section id="traceability" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 scroll-mt-24">
+        <div className="border-b border-[#3D2C1F] pb-6">
+          <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#E58A1F] mb-1">
+            <QrCode className="w-4 h-4 text-amber-400" />
+            <span>HỆ THỐNG ĐỊNH DANH SỐ (DIGITAL PRODUCT PASSPORT)</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-serif font-black text-[#FFFDF9]">
+            Tra Cứu Minh Bạch Nguồn Gốc Từng Mũi Dệt
+          </h2>
+          <p className="text-xs sm:text-sm text-stone-400 mt-1 max-w-2xl">
+            Nhập mã sản phẩm hoặc bấm chọn các mã mẫu dưới đây để xem ngay Hộ Chiếu Số bao gồm: Nghệ nhân thực hiện, Ý nghĩa hoa văn và Bản đồ tọa độ Gia Lai.
+          </p>
+        </div>
+
+        {/* Input & Sample Buttons */}
+        <div className="bg-[#1E1713] p-6 rounded-3xl border border-amber-900/40 shadow-xl space-y-4">
+          <div className="flex flex-col sm:flex-row gap-3">
+            <input
+              type="text"
+              value={passportCode}
+              onChange={(e) => setPassportCode(e.target.value.toUpperCase())}
+              placeholder="Nhập mã sản phẩm: K001, B001, C001, VI001, TT001..."
+              className="flex-1 bg-[#14110F] border border-amber-700/60 rounded-xl px-4 py-3 text-sm text-white placeholder-stone-500 focus:outline-none focus:border-amber-400 font-mono"
+            />
+            <button
+              onClick={() => {
+                if (passportCode.trim()) {
+                  const found = allProducts.find(
+                    (p) => p.product_code.toLowerCase() === passportCode.trim().toLowerCase()
+                  );
+                  setPassportProduct(found || null);
+                }
+              }}
+              className="bg-[#B9383A] hover:bg-[#A83232] text-white text-xs font-bold px-6 py-3 rounded-xl border border-amber-400/40 shadow transition whitespace-nowrap"
+            >
+              TRA CỨU HỘ CHIẾU
+            </button>
+          </div>
+
+          <div className="flex items-center gap-2 overflow-x-auto pb-1 text-xs">
+            <span className="text-stone-400 whitespace-nowrap">Bấm thử mẫu:</span>
+            {['K001', 'B001', 'VI001', 'C001', 'TT001', 'TD001', 'V001', 'A001'].map((c) => (
+              <button
+                key={c}
+                onClick={() => setPassportCode(c)}
+                className={`px-3 py-1.5 rounded-lg font-mono font-bold transition ${
+                  passportCode.toUpperCase() === c
+                    ? 'bg-amber-600 text-white'
+                    : 'bg-[#14110F] text-stone-300 hover:text-white border border-stone-800'
+                }`}
+              >
+                {c}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Passport Result Box */}
+        {passportProduct ? (
+          <div className="bg-[#231C18] rounded-3xl border border-amber-900/40 overflow-hidden shadow-2xl p-6 sm:p-8 space-y-6">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-stone-800 pb-5">
+              <div>
+                <span className="text-xs font-mono text-amber-400 uppercase tracking-widest font-bold">
+                  HỘ CHIẾU SỐ: JRAI-IMN-{passportProduct.product_code}
+                </span>
+                <h3 className="text-2xl font-serif font-black text-white mt-1">
+                  {passportProduct.name}
+                </h3>
+              </div>
+              <div className="text-right">
+                <span className="text-xl font-bold font-mono text-amber-400">
+                  {passportProduct.price.toLocaleString('vi-VN')}₫
+                </span>
+                <p className="text-[11px] text-emerald-400 font-semibold flex items-center gap-1 justify-end">
+                  <CheckCircle2 className="w-3.5 h-3.5" />
+                  <span>Xác thực di sản bản địa</span>
+                </p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              {/* Product Image & Info */}
+              <div className="space-y-4">
+                <div className="aspect-[4/3] rounded-2xl overflow-hidden border border-stone-800 bg-stone-950">
+                  <img
+                    src={passportProduct.image_url}
+                    alt={passportProduct.name}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="p-4 bg-[#1C1714] rounded-2xl border border-stone-800 space-y-2 text-xs">
+                  <div className="flex justify-between">
+                    <span className="text-stone-400">Phân loại:</span>
+                    <span className="font-bold text-white">{passportProduct.category_name}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-stone-400">Thời gian dệt:</span>
+                    <span className="font-bold text-amber-300">{passportProduct.production_time}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-stone-400">Chất liệu:</span>
+                    <span className="font-bold text-white">{passportProduct.material}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-stone-400">Tọa độ:</span>
+                    <span className="font-bold text-white truncate max-w-[160px]">{passportProduct.location}</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Story & Cultural Context */}
+              <div className="space-y-4">
+                <h4 className="text-sm font-serif font-bold text-amber-300 uppercase tracking-wider border-b border-stone-800 pb-2">
+                  Ý Nghĩa Văn Hóa & Câu Chuyện
+                </h4>
+                <p className="text-xs text-stone-300 leading-relaxed">
+                  {passportProduct.story || passportProduct.description}
+                </p>
+
+                <div className="p-4 bg-[#1C1714] rounded-2xl border border-stone-800 space-y-2 text-xs">
+                  <span className="text-xs font-bold text-amber-400 block">Nghệ nhân thực hiện:</span>
+                  <p className="text-stone-300">
+                    Sản phẩm được dệt hoàn toàn bằng cửi hông bởi các nghệ nhân giàu kinh nghiệm tại xã Ia Mơ Nông, huyện Chư Păh, Gia Lai.
+                  </p>
+                </div>
+              </div>
+
+              {/* QR Tag Downloader Tool */}
+              <div className="space-y-4 flex flex-col justify-between">
+                <div className="p-5 bg-[#1C1714] rounded-2xl border border-amber-900/40 text-center space-y-3">
+                  <span className="text-xs font-bold text-amber-400 uppercase tracking-wider block">
+                    Tem Nhãn QR Định Danh
+                  </span>
+                  <QRCodeGenerator
+                    productUrl={typeof window !== 'undefined' ? `${window.location.origin}/traceability?code=${passportProduct.product_code}` : `https://detnentuonglai.vercel.app/traceability?code=${passportProduct.product_code}`}
+                    productName={passportProduct.name}
+                    productCode={passportProduct.product_code}
+                    category={passportProduct.category_name}
+                    location={passportProduct.location}
+                  />
+                </div>
+
+                <button
+                  onClick={() => handleAddToCart(passportProduct)}
+                  className="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#B9383A] to-[#8B2522] hover:from-[#A83232] text-white font-bold text-xs shadow-lg flex items-center justify-center gap-2"
+                >
+                  <ShoppingBag className="w-4 h-4 text-amber-300" />
+                  <span>THÊM SẢN PHẨM NÀY VÀO GIỎ HÀNG</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div className="p-8 bg-[#1C1714] rounded-3xl border border-stone-800 text-center text-stone-400 text-xs">
+            Không tìm thấy thông tin cho mã &ldquo;{passportCode}&rdquo;. Vui lòng thử các mã mẫu như K001, B001, VI001...
+          </div>
+        )}
+      </section>
+
+      {/* ========================================================
+          6. MỤC 6: VỀ CHÚNG TÔI (#about) - CÂU CHUYỆN & ĐỘI NGŨ KẾ THỪA
+      ======================================================== */}
+      <section id="about" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16 scroll-mt-24">
+        {/* A. Hero Origin Story Banner */}
+        <div className="bg-gradient-to-r from-[#231C18] via-[#1E1713] to-[#231C18] text-white p-8 sm:p-12 rounded-3xl border border-amber-900/40 relative overflow-hidden shadow-2xl">
+          <div
+            className="absolute inset-0 bg-cover bg-center opacity-20 mix-blend-luminosity"
+            style={{ backgroundImage: `url('/images/background/image6.jpg')` }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#181411] via-[#181411]/90 to-transparent" />
+
+          <div className="max-w-3xl space-y-4 relative z-10">
+            <div className="inline-flex items-center gap-2 bg-[#8B2522] text-amber-200 text-xs font-bold px-4 py-1.5 rounded-full border border-amber-500/40 uppercase tracking-wider">
+              <Compass className="w-4 h-4 text-amber-300" />
+              <span>CÂU CHUYỆN KHỞI NGUỒN • DỰ ÁN DỆT NÊN TƯƠNG LAI</span>
+            </div>
+
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-black text-[#FFFDF9] leading-tight">
+              Từ Câu Hỏi Về Sinh Kế Đến Khát Vọng Giữ Lửa Nghề
+            </h2>
+
+            <p className="text-stone-300 text-xs sm:text-sm leading-relaxed italic border-l-4 border-[#B9383A] pl-4">
+              &ldquo;Nếu một nghề truyền thống có giá trị nhưng người làm nghề không thể sống được từ nghề, thì làm thế nào để nghề ấy tiếp tục tồn tại?&rdquo; — Câu hỏi trăn trở ấy đã đưa nhóm chúng tôi đặt chân đến buôn làng Ia Mơ Nông.
+            </p>
+          </div>
+        </div>
+
+        {/* B. Fieldwork Story: 2 Columns */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+          <div className="space-y-4 text-stone-300 text-xs sm:text-sm leading-relaxed">
+            <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#E58A1F]">
+              <Sparkles className="w-4 h-4 text-amber-400" />
+              <span>HÀNH TRÌNH THỰC ĐỊA IA MƠ NÔNG</span>
+            </div>
+
+            <h3 className="text-2xl sm:text-3xl font-serif font-black text-white leading-tight">
+              Không chỉ là bảo tồn, mà là làm cho giá trị của nghề được nhìn thấy
+            </h3>
+
+            <p>
+              Từ vòng casting đến vòng đấu chính thức của cuộc thi SVTHM, dự án đã chuyển mình mạnh mẽ: từ một ý tưởng trên trang giấy thành một dự án có <strong>địa bàn thật, người làm nghề thật, sản phẩm thật</strong> và bước đầu được kiểm chứng trong thực tế.
+            </p>
+
+            <p>
+              Tại xã Ia Mơ Nông, huyện Chư Păh, chúng tôi ngồi cùng những người phụ nữ Jrai bên hiên nhà sàn, lắng nghe tiếng lách cách của thoi đưa và nhận ra: công nghệ số không phải để thay thế đôi bàn tay nghệ nhân, mà là chiếc cầu nối để đưa câu chuyện, công sức và tri thức văn hóa phía sau từng nếp dệt đến với những khách hàng trân quý.
+            </p>
+
+            <div className="bg-[#231C18] border-l-4 border-[#B9383A] p-4 rounded-r-2xl border-y border-r border-amber-900/30">
+              <p className="font-serif italic font-bold text-amber-200 text-sm">
+                &ldquo;Không thay đổi cái gốc của nghề, thay đổi cách giá trị của nghề được nhìn thấy.&rdquo;
+              </p>
+            </div>
+          </div>
+
+          <div className="relative">
+            <div className="rounded-3xl overflow-hidden border-2 border-amber-500/30 shadow-2xl aspect-[4/3]">
+              <img
+                src="/images/background/image6.jpg"
+                alt="Sinh viên UEL và nghệ nhân gìn giữ nghề dệt tại Ia Mơ Nông"
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+            <div className="absolute -bottom-4 -right-3 bg-[#1C1714] border border-amber-500/40 p-3.5 rounded-2xl shadow-xl max-w-xs text-xs text-stone-300">
+              <span className="text-[10px] font-extrabold uppercase text-[#E58A1F] block mb-0.5">
+                ĐỊA BÀN THÍ ĐIỂM
+              </span>
+              <p className="font-serif font-bold text-white text-xs">
+                CLB Dệt Thổ Cẩm Ia Mơ Nông, Chư Păh, Gia Lai
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* C. 6 Weaving Stages with Actual Photos */}
+        <div className="space-y-6">
+          <div className="text-center max-w-2xl mx-auto space-y-1">
+            <span className="text-xs font-bold uppercase tracking-widest text-[#E58A1F]">
+              QUY TRÌNH THỦ CÔNG TRUYỀN THỐNG
+            </span>
+            <h3 className="text-2xl sm:text-3xl font-serif font-black text-white">
+              Hành Trình 6 Chặng Dệt Nên Một Tác Phẩm
+            </h3>
+            <p className="text-xs text-stone-400">
+              Mỗi tấm thổ cẩm Jrai là kết tinh của hàng chục giờ đếm từng sợi chỉ trên khung cửi hông, trải qua 6 công đoạn khắt khe từ cây bông rừng đến mác định danh số QR.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {WEAVING_STAGES_FULL.map((stage) => (
+              <div
+                key={stage.step}
+                className="bg-[#1E1713] rounded-3xl border border-amber-900/40 overflow-hidden shadow-xl flex flex-col justify-between group hover:border-amber-500/60 transition-all"
+              >
+                <div>
+                  <div className="aspect-[16/10] overflow-hidden relative">
+                    <img
+                      src={stage.image}
+                      alt={stage.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute top-3 left-3 bg-[#1C1714]/90 backdrop-blur-sm border border-amber-500/40 px-2.5 py-1 rounded-xl text-[10px] font-bold text-amber-300">
+                      {stage.stage}
+                    </div>
+                    <div className="absolute top-3 right-3 w-8 h-8 rounded-xl bg-[#8B2522] text-white font-serif font-black text-xs flex items-center justify-center border border-amber-400/50 shadow">
+                      {stage.step}
+                    </div>
+                  </div>
+
+                  <div className="p-5 space-y-2.5">
+                    <h4 className="font-serif font-bold text-sm text-white group-hover:text-amber-300 transition-colors">
+                      {stage.title}
+                    </h4>
+
+                    <div className="flex flex-wrap gap-1">
+                      {stage.pills.map((pill, i) => (
+                        <span
+                          key={i}
+                          className="text-[9px] bg-[#14110F] text-stone-300 px-2 py-0.5 rounded-lg border border-stone-800"
+                        >
+                          {pill}
+                        </span>
+                      ))}
+                    </div>
+
+                    <p className="text-xs text-stone-400 leading-relaxed pt-1">{stage.desc}</p>
+                  </div>
+                </div>
+
+                <div className="p-3.5 bg-[#181411] border-t border-stone-800/80 flex items-center justify-between text-xs text-amber-400 font-bold">
+                  <span>Chặng {stage.step}</span>
+                  <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* D. Mentor & Founding Team ("The People Behind The Weave") */}
+        <div className="space-y-10 bg-gradient-to-b from-[#1E1713] to-[#14110F] p-8 sm:p-12 rounded-3xl border border-amber-900/40 shadow-2xl">
+          <div className="text-center max-w-2xl mx-auto space-y-1">
+            <span className="text-xs font-bold uppercase tracking-widest text-[#E58A1F]">
+              CỐ VẤN KHOA HỌC & ĐỘI NGŨ DỰ ÁN
+            </span>
+            <h3 className="text-2xl sm:text-3xl font-serif font-black text-white">
+              The People Behind The Weave
+            </h3>
+            <p className="text-xs text-stone-400">
+              Những người gieo khát vọng số hóa và kết nối sinh kế bền vững cho buôn làng Jrai tại cuộc thi SVTHM 2026.
+            </p>
+          </div>
+
+          {/* Mentor Card */}
+          <div className="max-w-md mx-auto">
+            <div className="text-center mb-2">
+              <span className="text-[11px] font-extrabold uppercase tracking-widest text-amber-400">
+                ★ GIẢNG VIÊN HƯỚNG DẪN KHOA HỌC (MENTOR) ★
+              </span>
+            </div>
+            <div className="bg-[#231C18] border-2 border-amber-500/50 rounded-3xl p-6 text-center shadow-2xl relative overflow-hidden group">
+              <div className="w-28 h-28 mx-auto rounded-2xl overflow-hidden border-2 border-amber-400/60 shadow-xl mb-3 bg-stone-900">
+                <img
+                  src="/images/team/TongGiaTuong_user.png"
+                  alt="Thầy Tống Gia Tường"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+              <h4 className="font-serif font-bold text-lg text-white">Thầy Tống Gia Tường</h4>
+              <p className="text-xs font-bold text-[#E58A1F] uppercase tracking-wider mt-0.5">
+                Mentor / Giảng Viên Hướng Dẫn
+              </p>
+              <p className="text-xs text-stone-400 mt-2 leading-relaxed">
+                Trường Đại học Kinh tế - Luật, ĐHQG-HCM • Đồng hành định hướng chiến lược nghiên cứu khoa học và phát triển sinh kế cộng đồng bền vững.
+              </p>
+            </div>
+          </div>
+
+          {/* 6 Founding Team Members */}
+          <div className="space-y-4">
+            <div className="text-center">
+              <span className="text-xs font-extrabold uppercase tracking-wider text-[#FFA726]">
+                BAN ĐIỀU HÀNH & PHÁT TRIỂN DỰ ÁN (6 THÀNH VIÊN)
+              </span>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {FOUNDING_TEAM.map((mem) => (
+                <div
+                  key={mem.name}
+                  className="bg-[#231C18] rounded-2xl border border-amber-900/40 p-5 flex flex-col justify-between space-y-4 shadow-lg hover:border-amber-500/50 transition-all group"
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="w-16 h-16 rounded-2xl overflow-hidden border border-amber-500/40 bg-stone-950 shrink-0 shadow-md">
+                      <img
+                        src={mem.image}
+                        alt={mem.name}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                      />
+                    </div>
+                    <div>
+                      <span className="text-[10px] font-extrabold font-mono uppercase px-2 py-0.5 rounded bg-[#8B2522] text-[#FDE68A]">
+                        {mem.badge}
+                      </span>
+                      <h4 className="font-serif font-bold text-sm sm:text-base text-white mt-1">
+                        {mem.name}
+                      </h4>
+                      <p className="text-[11px] text-[#E58A1F] font-medium leading-tight">
+                        {mem.role}
+                      </p>
+                    </div>
+                  </div>
+
+                  <p className="text-xs text-stone-400 leading-relaxed border-t border-stone-800/80 pt-3">
+                    {mem.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* E. 5 Commitments & Reviews */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="bg-[#231C18] p-8 rounded-3xl border border-amber-900/40 space-y-4">
+            <h3 className="text-xl font-serif font-bold text-white flex items-center gap-2">
+              <ShieldCheck className="w-5 h-5 text-amber-400" />
+              <span>5 Cam Kết Vàng Của JRAI ƠI</span>
+            </h3>
+            <ul className="space-y-3 text-xs text-stone-300">
+              <li className="flex items-start gap-2.5">
+                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                <span><strong>100% Thủ công bản địa:</strong> Dệt cửi hông bởi các nghệ nhân làng Kép & làng Phung, Ia Mơ Nông.</span>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                <span><strong>Minh bạch tuyệt đối:</strong> Mỗi sản phẩm đi kèm một mã số định danh QR tra cứu độc bản.</span>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                <span><strong>Thương mại công bằng:</strong> 100% thù lao dệt công bằng và trích quỹ hỗ trợ nghệ nhân cao tuổi.</span>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                <span><strong>Bảo tồn tri thức mẫu hệ:</strong> Ghi chép và số hóa các bài ca, hoa văn truyền khẩu Jrai.</span>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                <span><strong>Giao hàng toàn quốc:</strong> Kiểm tra hàng trước khi thanh toán (COD).</span>
+              </li>
+            </ul>
+          </div>
+
+          <div className="bg-[#231C18] p-8 rounded-3xl border border-amber-900/40 space-y-4">
+            <h3 className="text-xl font-serif font-bold text-white flex items-center gap-2">
+              <Star className="w-5 h-5 text-amber-400 fill-amber-400" />
+              <span>Đánh Giá Thực Tế Từ Khách Hàng</span>
+            </h3>
+            <div className="space-y-3">
+              {reviews.map((r) => (
+                <div key={r.id} className="p-3 bg-[#1C1714] rounded-xl border border-stone-800 text-xs space-y-1">
+                  <div className="flex items-center justify-between">
+                    <span className="font-bold text-amber-300">{r.customerName}</span>
+                    <div className="flex gap-0.5">
+                      {[...Array(r.rating)].map((_, i) => (
+                        <Star key={i} className="w-3 h-3 text-amber-400 fill-amber-400" />
+                      ))}
+                    </div>
+                  </div>
+                  <p className="text-stone-300 italic">&ldquo;{r.comment}&rdquo;</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      {/* ========================================================
+          MODAL: PRODUCT QUICK VIEW
+      ======================================================== */}
+      {selectedProduct && (
+        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-[#1C1714] border border-amber-900/60 rounded-3xl max-w-2xl w-full p-6 sm:p-8 space-y-6 max-h-[90vh] overflow-y-auto relative animate-in fade-in zoom-in-95 duration-200 shadow-2xl">
+            <button
+              onClick={() => setSelectedProduct(null)}
+              className="absolute top-4 right-4 p-2 rounded-full bg-stone-900 hover:bg-stone-800 text-stone-400 hover:text-white"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div className="aspect-[4/3] rounded-2xl overflow-hidden border border-stone-800 bg-stone-950">
+                <img
+                  src={selectedProduct.image_url}
+                  alt={selectedProduct.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+
+              <div className="space-y-3">
+                <span className="text-[10px] font-mono text-amber-400 uppercase font-bold bg-[#8B2522] px-2 py-0.5 rounded">
+                  {selectedProduct.product_code} • {selectedProduct.category_name}
+                </span>
+                <h3 className="font-serif font-bold text-xl text-white">
+                  {selectedProduct.name}
+                </h3>
+                <div className="text-xl font-bold font-mono text-amber-400">
+                  {selectedProduct.price.toLocaleString('vi-VN')}₫
+                </div>
+                <p className="text-xs text-stone-300 leading-relaxed">
+                  {selectedProduct.description}
+                </p>
+                <div className="text-xs text-stone-400 space-y-1 pt-1">
+                  <div><strong>Thời gian dệt:</strong> {selectedProduct.production_time}</div>
+                  <div><strong>Chất liệu:</strong> {selectedProduct.material}</div>
+                  <div><strong>Xuất xứ:</strong> {selectedProduct.location}</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="pt-4 border-t border-stone-800 flex gap-3">
+              <button
+                onClick={() => {
+                  handleAddToCart(selectedProduct);
+                  setSelectedProduct(null);
+                  setCartOpen(true);
+                }}
+                className="flex-1 py-3 rounded-xl bg-[#B9383A] hover:bg-[#A83232] text-white font-bold text-xs shadow-lg flex items-center justify-center gap-2"
+              >
+                <ShoppingBag className="w-4 h-4" />
+                <span>MUA NGAY / THÊM GIỎ HÀNG</span>
+              </button>
+
+              <button
+                onClick={() => {
+                  setPassportCode(selectedProduct.product_code);
+                  setSelectedProduct(null);
+                  const el = document.getElementById('traceability');
+                  if (el) el.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="px-4 py-3 rounded-xl bg-[#231C18] hover:bg-[#32261E] text-amber-400 text-xs font-bold border border-amber-900/50 flex items-center gap-1.5"
+              >
+                <QrCode className="w-4 h-4" />
+                <span>Xem mã QR</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ========================================================
+          MODAL: MOTIF DETAILS
+      ======================================================== */}
+      {selectedMotif && (
+        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-[#1C1714] border border-amber-900/60 rounded-3xl max-w-lg w-full p-6 sm:p-8 space-y-5 max-h-[90vh] overflow-y-auto relative animate-in fade-in zoom-in-95 duration-200 shadow-2xl">
+            <button
+              onClick={() => setSelectedMotif(null)}
+              className="absolute top-4 right-4 p-2 rounded-full bg-stone-900 hover:bg-stone-800 text-stone-400 hover:text-white"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            <div className="aspect-[4/3] bg-stone-950 rounded-2xl overflow-hidden p-4 flex items-center justify-center border border-stone-800">
+              <img src={selectedMotif.image_url} alt={selectedMotif.name} className="max-h-full object-contain" />
+            </div>
+
+            <div>
+              <span className="text-[10px] font-mono text-amber-400 uppercase font-bold">
+                {selectedMotif.motif_code} • {selectedMotif.theme_name}
+              </span>
+              <h3 className="font-serif font-bold text-xl text-white mt-1">
+                {selectedMotif.name}
+              </h3>
+            </div>
+
+            <div className="space-y-3 text-xs text-stone-300 leading-relaxed">
+              <div>
+                <strong className="text-amber-400 block mb-1">Ý nghĩa biểu tượng:</strong>
+                <p>{selectedMotif.meaning}</p>
+              </div>
+              {selectedMotif.philosophy && (
+                <div>
+                  <strong className="text-amber-400 block mb-1">Triết lý văn hóa Jrai:</strong>
+                  <p>{selectedMotif.philosophy}</p>
+                </div>
+              )}
+              {selectedMotif.informant_name && (
+                <div className="p-3 bg-stone-900 rounded-xl text-[11px] text-stone-400">
+                  <strong>Nguồn xác minh điền dã:</strong> {selectedMotif.informant_name} ({selectedMotif.verification_source})
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ========================================================
+          MODAL: ARTISAN DETAILS
+      ======================================================== */}
+      {selectedArtisanModal && (
+        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-[#1C1714] border border-amber-900/60 rounded-3xl max-w-lg w-full p-6 sm:p-8 space-y-5 max-h-[90vh] overflow-y-auto relative animate-in fade-in zoom-in-95 duration-200 shadow-2xl">
+            <button
+              onClick={() => setSelectedArtisanModal(null)}
+              className="absolute top-4 right-4 p-2 rounded-full bg-stone-900 hover:bg-stone-800 text-stone-400 hover:text-white"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            <div className="aspect-[4/3] rounded-2xl overflow-hidden border border-stone-800 bg-stone-950">
+              <img
+                src={selectedArtisanModal.avatar || selectedArtisanModal.image_url}
+                alt={selectedArtisanModal.name}
+                className="w-full h-full object-cover"
+              />
+            </div>
+
+            <div>
+              <span className="text-[10px] font-mono text-amber-400 uppercase font-bold">
+                {selectedArtisanModal.experience} • {selectedArtisanModal.village}
+              </span>
+              <h3 className="font-serif font-bold text-xl text-white mt-1">
+                {selectedArtisanModal.name}
+              </h3>
+            </div>
+
+            <p className="text-xs text-amber-200 italic p-3 bg-stone-900 rounded-xl border border-stone-800">
+              &ldquo;{selectedArtisanModal.quote}&rdquo;
+            </p>
+
+            <p className="text-xs text-stone-300 leading-relaxed">
+              {selectedArtisanModal.bio || `${selectedArtisanModal.name} là nghệ nhân kỳ cựu gìn giữ nghề dệt thổ cẩm cửi hông tại ${selectedArtisanModal.village}.`}
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* ========================================================
+          SLIDE-OVER CART DRAWER & INLINE CHECKOUT
+      ======================================================== */}
+      {cartOpen && (
+        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex justify-end">
+          <div className="bg-[#1C1714] w-full max-w-md h-full p-6 flex flex-col justify-between border-l border-amber-900/60 shadow-2xl animate-in slide-in-from-right duration-300">
+            <div className="space-y-4 flex-1 overflow-y-auto pr-1">
+              <div className="flex items-center justify-between border-b border-stone-800 pb-4">
+                <div className="flex items-center gap-2">
+                  <ShoppingBag className="w-5 h-5 text-amber-400" />
+                  <h3 className="font-serif font-bold text-lg text-white">Giỏ Hàng Của Bạn</h3>
+                </div>
+                <button
+                  onClick={() => setCartOpen(false)}
+                  className="p-2 rounded-full bg-stone-900 text-stone-400 hover:text-white"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+
+              {/* Free ship progress */}
+              <div className="p-3 bg-[#231C18] rounded-xl border border-amber-900/40 text-xs">
+                {isFreeShip ? (
+                  <span className="text-emerald-400 font-bold flex items-center gap-1.5">
+                    <CheckCircle2 className="w-4 h-4" />
+                    Đơn hàng đủ điều kiện MIỄN PHÍ VẬN CHUYỂN TOÀN QUỐC!
+                  </span>
+                ) : (
+                  <span className="text-stone-300">
+                    Mua thêm <strong>{(freeShipThreshold - cartTotal.subtotal).toLocaleString('vi-VN')}₫</strong> để được FreeShip!
+                  </span>
+                )}
+              </div>
+
+              {/* Items List */}
+              {cartItems.length === 0 ? (
+                <div className="py-12 text-center text-stone-400 text-xs space-y-3">
+                  <ShoppingBag className="w-10 h-10 text-stone-600 mx-auto" />
+                  <p>Giỏ hàng đang trống.</p>
+                </div>
+              ) : (
+                <div className="space-y-3">
+                  {cartItems.map((item) => (
+                    <div
+                      key={item.productId}
+                      className="p-3 bg-[#231C18] rounded-2xl border border-stone-800 flex items-center gap-3"
+                    >
+                      <img
+                        src={item.product?.image_url || '/images/products/k001.jpg'}
+                        alt={item.product?.name || 'Sản phẩm'}
+                        className="w-14 h-14 object-cover rounded-xl border border-stone-700 shrink-0"
+                      />
+                      <div className="flex-1 min-w-0">
+                        <h4 className="text-xs font-bold text-white truncate">{item.product?.name}</h4>
+                        <span className="text-[10px] font-mono text-amber-400">{item.product?.product_code}</span>
+                        <div className="text-xs font-bold text-amber-400 mt-1">
+                          {((item.product?.price || 0) * item.quantity).toLocaleString('vi-VN')}₫
+                        </div>
+                      </div>
+
+                      <div className="flex items-center gap-1 bg-[#14110F] px-2 py-1 rounded-xl border border-stone-800">
+                        <button
+                          onClick={() => updateCartQuantity(item.productId, item.quantity - 1)}
+                          className="text-stone-400 hover:text-white p-0.5"
+                        >
+                          <Minus className="w-3 h-3" />
+                        </button>
+                        <span className="text-xs font-bold px-1.5 text-white">{item.quantity}</span>
+                        <button
+                          onClick={() => updateCartQuantity(item.productId, item.quantity + 1)}
+                          className="text-stone-400 hover:text-white p-0.5"
+                        >
+                          <Plus className="w-3 h-3" />
+                        </button>
+                      </div>
+
+                      <button
+                        onClick={() => removeFromCart(item.productId)}
+                        className="text-stone-500 hover:text-red-400 p-1"
+                      >
+                        <Trash2 className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Cart Footer */}
+            {cartItems.length > 0 && (
+              <div className="pt-4 border-t border-stone-800 space-y-3">
+                <div className="flex justify-between items-center text-sm font-bold text-white">
+                  <span>Tổng tiền thanh toán:</span>
+                  <span className="text-lg font-mono text-amber-400">{cartTotal.subtotal.toLocaleString('vi-VN')}₫</span>
+                </div>
+
+                <button
+                  onClick={handleProceedToCheckout}
+                  className="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#B9383A] to-[#8B2522] hover:from-[#A83232] text-white font-bold text-xs shadow-xl flex items-center justify-center gap-2"
+                >
+                  <CreditCard className="w-4 h-4 text-amber-300" />
+                  <span>TIẾN HÀNH THANH TOÁN (3 BƯỚC)</span>
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* ========================================================
+          MODAL: INLINE CHECKOUT & ORDER SUCCESS
+      ======================================================== */}
+      {checkoutOpen && (
+        <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-[#1C1714] border border-amber-900/60 rounded-3xl max-w-lg w-full p-6 sm:p-8 space-y-6 max-h-[90vh] overflow-y-auto relative animate-in fade-in zoom-in-95 duration-200 shadow-2xl">
+            <button
+              onClick={() => {
+                setCheckoutOpen(false);
+                setOrderCreatedId(null);
+              }}
+              className="absolute top-4 right-4 p-2 rounded-full bg-stone-900 hover:bg-stone-800 text-stone-400 hover:text-white"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            {orderCreatedId ? (
+              <div className="text-center space-y-4 py-4">
+                <div className="w-16 h-16 rounded-full bg-emerald-950/80 border border-emerald-500 text-emerald-400 flex items-center justify-center mx-auto shadow-xl">
+                  <CheckCircle2 className="w-8 h-8" />
+                </div>
+                <h3 className="font-serif font-black text-2xl text-white">Đặt Hàng Thành Công!</h3>
+                <p className="text-xs text-stone-300">
+                  Mã đơn hàng của bạn là: <strong className="text-amber-400 font-mono text-sm">{orderCreatedId}</strong>
+                </p>
+
+                {paymentMethod === 'banking' && (
+                  <div className="p-4 bg-stone-900 rounded-2xl border border-amber-900/50 space-y-3">
+                    <span className="text-xs font-bold text-amber-400 block">Mã VietQR Chuyển Khoản Tự Động:</span>
+                    <img
+                      src={`https://img.vietqr.io/image/970422-0383451929-compact2.png?amount=${cartTotal.subtotal}&addInfo=${encodeURIComponent(orderCreatedId)}&accountName=${encodeURIComponent('NGUYEN VAN THANG')}`}
+                      alt="VietQR MB Bank"
+                      className="w-48 h-48 mx-auto rounded-xl border border-stone-700 shadow"
+                    />
+                    <div className="text-[11px] text-stone-300 space-y-0.5">
+                      <p>Ngân hàng: <strong>MB Bank</strong></p>
+                      <p>Số tài khoản: <strong>0383451929</strong></p>
+                      <p>Chủ tài khoản: <strong>NGUYEN VAN THANG</strong></p>
+                      <p>Nội dung: <strong>{orderCreatedId}</strong></p>
+                    </div>
+                  </div>
+                )}
+
+                <p className="text-[11px] text-stone-400">
+                  Cảm ơn bạn đã đồng hành bảo tồn nghề dệt thổ cẩm Jrai!
+                </p>
+
+                <button
+                  onClick={() => {
+                    setCheckoutOpen(false);
+                    setOrderCreatedId(null);
+                  }}
+                  className="w-full py-3 rounded-xl bg-amber-800 hover:bg-amber-700 text-white font-bold text-xs"
+                >
+                  HOÀN TẤT & TIẾP TỤC KHÁM PHÁ
+                </button>
+              </div>
+            ) : (
+              <form onSubmit={handleCheckoutSubmit} className="space-y-4">
+                <div className="border-b border-stone-800 pb-3">
+                  <h3 className="font-serif font-bold text-xl text-white">Thanh Toán Đơn Hàng</h3>
+                  <p className="text-xs text-stone-400">
+                    Tổng giá trị đơn ({cartTotal.count} món): <strong className="text-amber-400 font-mono">{cartTotal.subtotal.toLocaleString('vi-VN')}₫</strong>
+                  </p>
+                </div>
+
+                {customerUser && (
+                  <div className="bg-[#231C18] border border-amber-900/60 rounded-2xl p-3 flex items-center justify-between text-xs">
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-8 h-8 rounded-full overflow-hidden border border-amber-500/50 bg-stone-900 shrink-0">
+                        <img
+                          src={customerUser.avatar || '/images/team/MaiThiCamTu_user.png'}
+                          alt={customerUser.name}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div>
+                        <span className="font-bold text-white block">{customerUser.name}</span>
+                        <span className="text-[10px] text-amber-400">
+                          {customerUser.provider ? `Đã xác thực qua ${customerUser.provider.toUpperCase()}` : customerUser.email}
+                        </span>
+                      </div>
+                    </div>
+                    <span className="text-[10px] bg-emerald-950 text-emerald-300 font-bold px-2 py-0.5 rounded-full border border-emerald-800">
+                      Đã đăng nhập
+                    </span>
+                  </div>
+                )}
+
+                <div className="space-y-3 text-xs">
+                  <div>
+                    <label className="text-stone-300 font-bold block mb-1">Họ và tên người nhận *</label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="Ví dụ: Nguyễn Văn A"
+                      value={customerName}
+                      onChange={(e) => setCustomerName(e.target.value)}
+                      className="w-full bg-stone-900 border border-stone-800 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-amber-500"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="text-stone-300 font-bold block mb-1">Số điện thoại *</label>
+                    <input
+                      type="tel"
+                      required
+                      placeholder="Ví dụ: 0987654321"
+                      value={customerPhone}
+                      onChange={(e) => setCustomerPhone(e.target.value)}
+                      className="w-full bg-stone-900 border border-stone-800 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-amber-500"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="text-stone-300 font-bold block mb-1">Địa chỉ giao hàng chi tiết *</label>
+                    <textarea
+                      required
+                      rows={2}
+                      placeholder="Số nhà, đường, phường/xã, quận/huyện, tỉnh/thành..."
+                      value={shippingAddress}
+                      onChange={(e) => setShippingAddress(e.target.value)}
+                      className="w-full bg-stone-900 border border-stone-800 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-amber-500"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="text-stone-300 font-bold block mb-1">Phương thức thanh toán</label>
+                    <div className="grid grid-cols-2 gap-2">
+                      <button
+                        type="button"
+                        onClick={() => setPaymentMethod('banking')}
+                        className={`p-3 rounded-xl border text-left transition ${
+                          paymentMethod === 'banking'
+                            ? 'bg-amber-950/60 border-amber-500 text-white'
+                            : 'bg-stone-900 border-stone-800 text-stone-400'
+                        }`}
+                      >
+                        <div className="font-bold text-amber-400">VietQR Tự Động</div>
+                        <div className="text-[10px] mt-0.5">Quét mã ngân hàng</div>
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={() => setPaymentMethod('cod')}
+                        className={`p-3 rounded-xl border text-left transition ${
+                          paymentMethod === 'cod'
+                            ? 'bg-amber-950/60 border-amber-500 text-white'
+                            : 'bg-stone-900 border-stone-800 text-stone-400'
+                        }`}
+                      >
+                        <div className="font-bold text-amber-400">Thanh toán COD</div>
+                        <div className="text-[10px] mt-0.5">Nhận hàng trả tiền</div>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <button
+                  type="submit"
+                  className="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#B9383A] to-[#8B2522] hover:from-[#A83232] text-white font-bold text-xs shadow-xl transition"
+                >
+                  XÁC NHẬN ĐẶT HÀNG ({cartTotal.subtotal.toLocaleString('vi-VN')}₫)
+                </button>
+              </form>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* ========================================================
+          MODAL: CUSTOMER AUTH (GOOGLE / FACEBOOK LOGIN FOR CHECKOUT)
+      ======================================================== */}
+      <CustomerAuthModal
+        isOpen={customerAuthOpen}
+        onClose={() => setCustomerAuthOpen(false)}
+        onSuccess={(user) => {
+          setCustomerUser(user);
+          setCustomerName(user.name);
+          setCustomerPhone(user.phone);
+          setCustomerAuthOpen(false);
+          setCheckoutOpen(true);
+        }}
+      />
     </div>
   );
 }
+

@@ -61,11 +61,11 @@ export default function AdminMotifsPage() {
     setEditingMotif(m);
     setMotifCode(m.motif_code);
     setName(m.name);
-    setDescription(m.description);
+    setDescription(m.description || m.meaning || '');
     setMeaning(m.meaning);
     setColorsInput(m.colors ? m.colors.join(', ') : '');
-    setOrigin(m.origin);
-    setLocation(m.location);
+    setOrigin(m.origin || '');
+    setLocation(m.location || '');
     setArtisanId(m.artisan_id || '');
     setInformantName(m.informant_name || '');
     setVerificationSource(m.verification_source);
@@ -147,7 +147,7 @@ export default function AdminMotifsPage() {
     (m) =>
       m.motif_code.toLowerCase().includes(searchTerm.toLowerCase()) ||
       m.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      m.origin.toLowerCase().includes(searchTerm.toLowerCase())
+      (m.origin || '').toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
