@@ -25,43 +25,29 @@ const teamMembers = [
     name: 'Mai Thị Cẩm Tú',
     role: 'Lead / Trưởng Nhóm Dự Án',
     badge: 'LEAD',
-    image: '/images/team/MaiThiCamTu_user.png',
+    image: '/images/team/MaiThiCamTu_brocade.png',
     desc: 'Điều phối tổng thể, nghiên cứu mô hình kinh doanh xã hội & kết nối hợp tác buôn làng.',
   },
   {
-    name: 'Huỳnh Gia Bảo',
-    role: 'Tech Lead / Chuyển Đổi Số',
-    badge: 'TECH',
-    image: '/images/team/HuynhGiaBao_user.png',
-    desc: 'Kiến trúc sư hệ thống website thương mại điện tử, số hóa ngân hàng hoa văn & định danh QR.',
-  },
-  {
-    name: 'Trần Thị Thảo Vy',
-    role: 'Trưởng Ban Du Lịch Sinh Thái',
-    badge: 'TOURISM',
-    image: '/images/team/TranThiThaoVy_user.png',
-    desc: 'Phụ trách trải nghiệm bản địa, kết nối làng du lịch cộng đồng Ia Mơ Nông & lan tỏa văn hóa.',
-  },
-  {
-    name: 'Đỗ Dương Khang',
-    role: 'Marketing Lead / Truyền Thông',
-    badge: 'MARKETING',
-    image: '/images/team/DoDuongKhang_user.png',
-    desc: 'Xây dựng chiến lược tiếp thị đa kênh, kể câu chuyện di sản và tiếp cận khách hàng trẻ.',
-  },
-  {
-    name: 'Trần Vũ Trọng Hiếu',
-    role: 'Phụ Trách Pháp Lý & SHTT',
+    name: 'Huỳnh Diệp Cẩm Tú',
+    role: 'Phụ Trách Pháp Lý & Đối Ngoại',
     badge: 'LEGAL',
-    image: '/images/team/TranVuTrongHieu_user.png',
-    desc: 'Bảo vệ quyền sở hữu trí tuệ hoa văn truyền thống, hợp đồng thương mại công bằng cho nghệ nhân.',
+    image: '/images/team/HuynhDiepCamTu_brocade.png',
+    desc: 'Bảo vệ quyền sở hữu trí tuệ hoa văn truyền thống, hợp đồng thương mại công bằng và kết nối buôn làng.',
   },
   {
-    name: 'Đinh Cát Tường',
-    role: 'Ban Cố Vấn & Hỗ Trợ Dự Án',
-    badge: 'ADVISOR',
-    image: '/images/team/DinhCatTuong_user.png',
-    desc: 'Tư vấn chiến lược phát triển, phân tích dữ liệu thị trường và kết nối các nguồn lực xã hội.',
+    name: 'Nguyễn Ngọc Nữ',
+    role: 'Trưởng Ban Du Lịch Sinh Thái & Bản Địa',
+    badge: 'TOURISM',
+    image: '/images/team/NguyenNgocNu_brocade.png',
+    desc: 'Phụ trách trải nghiệm bản địa, kết nối làng du lịch cộng đồng Ia Mơ Nông & lan tỏa văn hóa thổ cẩm Jrai.',
+  },
+  {
+    name: 'Đinh Sĩ Doãn Đăng',
+    role: 'Phụ Trách Truyền Thông & Hình Ảnh',
+    badge: 'MEDIA',
+    image: '/images/team/DinhSiDoanDang_brocade.png',
+    desc: 'Xây dựng chiến lược truyền thông thị giác, kể câu chuyện di sản qua lăng kính nhiếp ảnh và thương hiệu.',
   },
 ];
 
@@ -296,39 +282,15 @@ export default function AboutPage() {
         </div>
 
         {/* MENTOR SPOTLIGHT CARD */}
-        <div className="max-w-md mx-auto">
-          <div className="text-center mb-3">
-            <span className="text-xs font-extrabold uppercase tracking-widest text-amber-400">
-              ★ GIẢNG VIÊN HƯỚNG DẪN KHOA HỌC (MENTOR) ★
-            </span>
-          </div>
-          <div className="bg-[#231C18] border-2 border-amber-500/50 rounded-3xl p-6 text-center shadow-2xl relative overflow-hidden group">
-            <div className="w-32 h-32 mx-auto rounded-2xl overflow-hidden border-2 border-amber-400/60 shadow-xl mb-4 bg-stone-900">
-              <img
-                src="/images/team/TongGiaTuong_user.png"
-                alt="Thầy Tống Gia Tường"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-              />
-            </div>
-            <h3 className="font-serif font-bold text-xl text-white">Thầy Tống Gia Tường</h3>
-            <p className="text-xs font-bold text-[#E58A1F] uppercase tracking-wider mt-1">
-              Mentor / Giảng Viên Hướng Dẫn
-            </p>
-            <p className="text-xs text-stone-400 mt-2 leading-relaxed">
-              Trường Đại học Kinh tế - Luật, ĐHQG-HCM • Đồng hành định hướng chiến lược nghiên cứu khoa học và phát triển sinh kế cộng đồng bền vững.
-            </p>
-          </div>
-        </div>
-
-        {/* 6 FOUNDING TEAM MEMBERS */}
+        {/* 4 FOUNDING TEAM MEMBERS */}
         <div className="space-y-4">
           <div className="text-center">
             <span className="text-xs font-extrabold uppercase tracking-wider text-[#FFA726]">
-              BAN ĐIỀU HÀNH & PHÁT TRIỂN DỰ ÁN (6 THÀNH VIÊN)
+              BAN ĐIỀU HÀNH & PHÁT TRIỂN DỰ ÁN (4 THÀNH VIÊN)
             </span>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {teamMembers.map((mem) => (
               <div
                 key={mem.name}

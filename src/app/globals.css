@@ -1042,19 +1042,16 @@ body.lang-en .lang-vi { display: none !important; }
 
 .team-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  column-gap: 36px;
-  row-gap: 125px; /* Khoảng cách rộng rãi giữa 2 hàng giúp ảnh chân dung nhô cao không bị chồng lấn */
-  margin-top: 50px;
-  padding-top: 60px; /* Chừa không gian cho ảnh người nhô lên trên card */
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 24px;
+  row-gap: 60px;
+  margin-top: 30px;
+  padding-top: 50px;
   margin-bottom: 50px;
 }
 
 .mentor-spotlight-wrap {
-  display: flex;
-  justify-content: center;
-  margin: 30px auto 40px;
-  padding-top: 60px;
+  display: none;
 }
 
 .mentor-spotlight-card {
@@ -1118,7 +1115,7 @@ body.lang-en .lang-vi { display: none !important; }
 /* Portrait Wrapper nhô lên trên */
 .team-portrait-wrapper {
   position: absolute;
-  top: -60px;
+  top: -45px;
   bottom: 0;
   left: 0;
   right: 0;
@@ -1126,22 +1123,23 @@ body.lang-en .lang-vi { display: none !important; }
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  overflow: visible;
+  overflow: hidden;
+  border-radius: 20px 20px 0 0;
 }
 
 .team-portrait-wrapper img {
-  height: 120%;
-  width: auto;
-  max-width: 120%;
-  object-fit: contain;
-  object-position: bottom center;
+  height: 100%;
+  width: 100%;
+  max-width: 100%;
+  object-fit: cover;
+  object-position: top center;
   display: block;
   transition: transform 0.4s ease;
-  transform-origin: bottom center;
+  transform-origin: center center;
 }
 
 .team-card:hover .team-portrait-wrapper img {
-  transform: scale(1.05);
+  transform: scale(1.06);
 }
 
 /* Căn chỉnh ảnh bạn Hiếu thẳng hàng ngang với Khang và Cát Tường mà tỷ lệ người vừa vặn, không bị to */

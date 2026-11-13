@@ -70,43 +70,29 @@ const FOUNDING_TEAM = [
     name: 'Mai Thị Cẩm Tú',
     role: 'Lead / Trưởng Nhóm Dự Án',
     badge: 'LEAD',
-    image: '/images/team/MaiThiCamTu_user.png',
+    image: '/images/team/MaiThiCamTu_brocade.png',
     desc: 'Điều phối tổng thể, nghiên cứu mô hình kinh doanh xã hội & kết nối hợp tác buôn làng.',
   },
   {
-    name: 'Huỳnh Gia Bảo',
-    role: 'Tech Lead / Chuyển Đổi Số',
-    badge: 'TECH',
-    image: '/images/team/HuynhGiaBao_user.png',
-    desc: 'Kiến trúc sư hệ thống website thương mại điện tử, số hóa ngân hàng hoa văn & định danh QR.',
-  },
-  {
-    name: 'Trần Thị Thảo Vy',
-    role: 'Trưởng Ban Du Lịch Sinh Thái',
-    badge: 'TOURISM',
-    image: '/images/team/TranThiThaoVy_user.png',
-    desc: 'Phụ trách trải nghiệm bản địa, kết nối làng du lịch cộng đồng Ia Mơ Nông & lan tỏa văn hóa.',
-  },
-  {
-    name: 'Đỗ Dương Khang',
-    role: 'Marketing Lead / Truyền Thông',
-    badge: 'MARKETING',
-    image: '/images/team/DoDuongKhang_user.png',
-    desc: 'Xây dựng chiến lược tiếp thị đa kênh, kể câu chuyện di sản và tiếp cận khách hàng trẻ.',
-  },
-  {
-    name: 'Trần Vũ Trọng Hiếu',
-    role: 'Phụ Trách Pháp Lý & SHTT',
+    name: 'Huỳnh Diệp Cẩm Tú',
+    role: 'Phụ Trách Pháp Lý & Đối Ngoại',
     badge: 'LEGAL',
-    image: '/images/team/TranVuTrongHieu_user.png',
-    desc: 'Bảo vệ quyền sở hữu trí tuệ hoa văn truyền thống, hợp đồng thương mại công bằng cho nghệ nhân.',
+    image: '/images/team/HuynhDiepCamTu_brocade.png',
+    desc: 'Bảo vệ quyền sở hữu trí tuệ hoa văn truyền thống, hợp đồng thương mại công bằng và kết nối buôn làng.',
   },
   {
-    name: 'Đinh Cát Tường',
-    role: 'Ban Cố Vấn & Hỗ Trợ Dự Án',
-    badge: 'ADVISOR',
-    image: '/images/team/DinhCatTuong_user.png',
-    desc: 'Tư vấn chiến lược phát triển, phân tích dữ liệu thị trường và kết nối các nguồn lực xã hội.',
+    name: 'Nguyễn Ngọc Nữ',
+    role: 'Trưởng Ban Du Lịch Sinh Thái & Bản Địa',
+    badge: 'TOURISM',
+    image: '/images/team/NguyenNgocNu_brocade.png',
+    desc: 'Phụ trách trải nghiệm bản địa, kết nối làng du lịch cộng đồng Ia Mơ Nông & lan tỏa văn hóa thổ cẩm Jrai.',
+  },
+  {
+    name: 'Đinh Sĩ Doãn Đăng',
+    role: 'Phụ Trách Truyền Thông & Hình Ảnh',
+    badge: 'MEDIA',
+    image: '/images/team/DinhSiDoanDang_brocade.png',
+    desc: 'Xây dựng chiến lược truyền thông thị giác, kể câu chuyện di sản qua lăng kính nhiếp ảnh và thương hiệu.',
   },
 ];
 
@@ -1366,42 +1352,21 @@ export default function HomePage() {
             </p>
           </div>
 
-          {/* Khối Mentor / Giảng viên hướng dẫn riêng nổi bật phía trên */}
-          <div style={{ marginBottom: '10px', textAlign: 'center' }}>
-            <span style={{ fontSize: '0.85rem', fontWeight: 800, color: '#F59E0B', textTransform: 'uppercase', letterSpacing: '1.5px' }}>
-              ★ GIẢNG VIÊN HƯỚNG DẪN KHOA HỌC (MENTOR) ★
-            </span>
-          </div>
-
-          <div className="mentor-spotlight-wrap">
-            <div className="team-card mentor-spotlight-card">
-              <div className="team-bg-shape"></div>
-              <div className="team-bg-text">MENTOR</div>
-              <div className="team-portrait-wrapper">
-                <img src="/images/team/TongGiaTuong_user.png" alt="Thầy Tống Gia Tường" />
-              </div>
-              <div className="team-info-overlay">
-                <h4 className="team-name">Thầy Tống Gia Tường</h4>
-                <p className="team-role">Mentor / Giảng Viên Hướng Dẫn</p>
-              </div>
-            </div>
-          </div>
-
           {/* Tiêu đề khối sinh viên sáng lập */}
-          <div style={{ marginTop: '60px', marginBottom: '10px', textAlign: 'center' }}>
+          <div style={{ marginTop: '30px', marginBottom: '10px', textAlign: 'center' }}>
             <span style={{ fontSize: '0.85rem', fontWeight: 800, color: '#FFA726', textTransform: 'uppercase', letterSpacing: '1.5px' }}>
-              BAN ĐIỀU HÀNH & PHÁT TRIỂN DỰ ÁN (6 THÀNH VIÊN)
+              BAN ĐIỀU HÀNH & PHÁT TRIỂN DỰ ÁN (4 THÀNH VIÊN)
             </span>
           </div>
 
-          {/* Lưới 6 thành viên sinh viên: Format Tứ Quý Garden Tone Nóng */}
+          {/* Lưới 4 thành viên sáng lập: Format Tứ Quý Garden Trang Phục Thổ Cẩm */}
           <div className="team-grid">
             {/* 1. Mai Thị Cẩm Tú - Lead */}
             <div className="team-card">
               <div className="team-bg-shape"></div>
               <div className="team-bg-text">LEAD</div>
               <div className="team-portrait-wrapper">
-                <img src="/images/team/MaiThiCamTu_user.png" alt="Mai Thị Cẩm Tú" />
+                <img src="/images/team/MaiThiCamTu_brocade.png" alt="Mai Thị Cẩm Tú" />
               </div>
               <div className="team-info-overlay">
                 <h4 className="team-name">Mai Thị Cẩm Tú</h4>
@@ -1409,68 +1374,42 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* 2. Huỳnh Gia Bảo - Tech Lead */}
-            <div className="team-card">
-              <div className="team-bg-shape"></div>
-              <div className="team-bg-text">TECH</div>
-              <div className="team-portrait-wrapper">
-                <img src="/images/team/HuynhGiaBao_user.png" alt="Huỳnh Gia Bảo" />
-              </div>
-              <div className="team-info-overlay">
-                <h4 className="team-name">Huỳnh Gia Bảo</h4>
-                <p className="team-role">Tech Lead / Chuyển Đổi Số</p>
-              </div>
-            </div>
-
-            {/* 3. Trần Thị Thảo Vy - Tourism */}
-            <div className="team-card">
-              <div className="team-bg-shape"></div>
-              <div className="team-bg-text">TOURISM</div>
-              <div className="team-portrait-wrapper">
-                <img src="/images/team/TranThiThaoVy_user.png" alt="Trần Thị Thảo Vy" />
-              </div>
-              <div className="team-info-overlay">
-                <h4 className="team-name">Trần Thị Thảo Vy</h4>
-                <p className="team-role">Trưởng Ban Du Lịch Sinh Thái</p>
-              </div>
-            </div>
-
-            {/* 4. Đỗ Dương Khang - Marketing */}
-            <div className="team-card">
-              <div className="team-bg-shape"></div>
-              <div className="team-bg-text">MARKETING</div>
-              <div className="team-portrait-wrapper">
-                <img src="/images/team/DoDuongKhang_user.png" alt="Đỗ Dương Khang" />
-              </div>
-              <div className="team-info-overlay">
-                <h4 className="team-name">Đỗ Dương Khang</h4>
-                <p className="team-role">Marketing Lead / Truyền Thông</p>
-              </div>
-            </div>
-
-            {/* 5. Trần Vũ Trọng Hiếu - Legal */}
+            {/* 2. Huỳnh Diệp Cẩm Tú - Legal & Partnership */}
             <div className="team-card">
               <div className="team-bg-shape"></div>
               <div className="team-bg-text">LEGAL</div>
               <div className="team-portrait-wrapper">
-                <img src="/images/team/TranVuTrongHieu_user.png" alt="Trần Vũ Trọng Hiếu" className="team-img-hieu" />
+                <img src="/images/team/HuynhDiepCamTu_brocade.png" alt="Huỳnh Diệp Cẩm Tú" />
               </div>
               <div className="team-info-overlay">
-                <h4 className="team-name">Trần Vũ Trọng Hiếu</h4>
-                <p className="team-role">Phụ Trách Pháp Lý & SHTT</p>
+                <h4 className="team-name">Huỳnh Diệp Cẩm Tú</h4>
+                <p className="team-role">Phụ Trách Pháp Lý & Đối Ngoại</p>
               </div>
             </div>
 
-            {/* 6. Đinh Cát Tường - Advisor */}
+            {/* 3. Nguyễn Ngọc Nữ - Tourism & Culture */}
             <div className="team-card">
               <div className="team-bg-shape"></div>
-              <div className="team-bg-text">ADVISOR</div>
+              <div className="team-bg-text">TOURISM</div>
               <div className="team-portrait-wrapper">
-                <img src="/images/team/DinhCatTuong_user.png" alt="Đinh Cát Tường" />
+                <img src="/images/team/NguyenNgocNu_brocade.png" alt="Nguyễn Ngọc Nữ" />
               </div>
               <div className="team-info-overlay">
-                <h4 className="team-name">Đinh Cát Tường</h4>
-                <p className="team-role">Ban Cố Vấn & Hỗ Trợ Dự Án</p>
+                <h4 className="team-name">Nguyễn Ngọc Nữ</h4>
+                <p className="team-role">Trưởng Ban Du Lịch Sinh Thái & Bản Địa</p>
+              </div>
+            </div>
+
+            {/* 4. Đinh Sĩ Doãn Đăng - Media & Marketing */}
+            <div className="team-card">
+              <div className="team-bg-shape"></div>
+              <div className="team-bg-text">MEDIA</div>
+              <div className="team-portrait-wrapper">
+                <img src="/images/team/DinhSiDoanDang_brocade.png" alt="Đinh Sĩ Doãn Đăng" />
+              </div>
+              <div className="team-info-overlay">
+                <h4 className="team-name">Đinh Sĩ Doãn Đăng</h4>
+                <p className="team-role">Phụ Trách Truyền Thông & Hình Ảnh</p>
               </div>
             </div>
           </div>
