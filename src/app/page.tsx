@@ -279,6 +279,51 @@ export default function HomePage() {
     };
   }, []);
 
+  // Animated Counters for Hero Heritage Stats
+  const [stat1, setStat1] = useState(0);
+  const [stat2, setStat2] = useState(0);
+  const [stat3, setStat3] = useState(0);
+  const [stat4, setStat4] = useState(0);
+
+  useEffect(() => {
+    // Run counter animation on mount
+    const duration = 1800;
+    const startTime = performance.now();
+    const animate = (currentTime: number) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const easeProgress = 1 - (1 - progress) * (1 - progress);
+
+      setStat1(Math.floor(easeProgress * 100));
+      setStat2(Math.floor(easeProgress * 40));
+      setStat3(Math.floor(easeProgress * 30));
+      setStat4(Math.floor(easeProgress * 65));
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+    requestAnimationFrame(animate);
+
+    // Scroll reveal observer for all sections
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+          }
+        });
+      },
+      { threshold: 0.12 }
+    );
+
+    document.querySelectorAll('.reveal-on-scroll').forEach((el) => {
+      observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   // Auto-advance hero carousel slides every 5s
   useEffect(() => {
     const timer = setInterval(() => {
@@ -465,86 +510,84 @@ export default function HomePage() {
           </button>
         </div>
 
-        {/* Hero Content matching detnentuonglai.vercel.app */}
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 z-20">
-          <div className="max-w-2xl space-y-6">
-            <div className="inline-flex items-center gap-2 bg-[#8B2522]/80 border border-amber-400/50 px-4 py-1.5 rounded-full text-xs font-bold text-amber-200 shadow-xl backdrop-blur-sm">
-              <Sparkles className="w-4 h-4 text-amber-300 animate-pulse" />
-              <span>ĐỀ TÀI NCKH & KHỞI NGHIỆP • UEL - ĐHQG-HCM</span>
+        {/* Hero Content with Authentic Typography and Animated Counter */}
+        <div className="container hero-content animate-fade-in-up z-20">
+          <div className="hero-tagline">
+            <Sparkles className="w-4 h-4 text-amber-300 animate-pulse" />
+            <span>ĐỀ TÀI NCKH & KHỞI NGHIỆP • UEL - ĐHQG-HCM</span>
+          </div>
+
+          <div className="text-center" style={{ marginBottom: '14px' }}>
+            <div className="text-xs sm:text-sm font-sans font-black uppercase tracking-widest text-[#E58A1F] flex items-center justify-center gap-2 mb-2">
+              <span>DỆT NÊN TƯƠNG LAI</span>
+              <span className="text-[10px] bg-[#8B2522] px-2 py-0.5 rounded text-white border border-amber-500/40">
+                JRAI ƠI
+              </span>
             </div>
+            <h1 className="hero-title">
+              “Giữ một nghề, <br />
+              <span className="hero-title-highlight">
+                dệt nên tương lai.”
+              </span>
+            </h1>
+          </div>
 
-            <div className="space-y-2">
-              <div className="text-xs sm:text-sm font-sans font-black uppercase tracking-widest text-[#E58A1F] flex items-center gap-2">
-                <span>DỆT NÊN TƯƠNG LAI</span>
-                <span className="text-[10px] bg-[#8B2522] px-2 py-0.5 rounded text-white border border-amber-500/40">
-                  JRAI ƠI
-                </span>
-              </div>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-black tracking-tight text-[#FFFDF9] leading-[1.1]">
-                “Giữ một nghề, <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F59E0B] via-[#FDE68A] to-[#E58A1F]">
-                  dệt nên tương lai.”
-                </span>
-              </h1>
+          <p className="hero-desc">
+            Không thay đổi cái gốc của nghề, thay đổi cách giá trị của nghề được nhìn thấy. Chúng tôi kết hợp di sản thổ cẩm Jrai tại Ia Mơ Nông (Gia Lai) với công nghệ số và mã QR định danh để tạo sinh kế bền vững cho buôn làng.
+          </p>
+
+          {/* Quick Action CTAs matching detnentuonglai & E-commerce */}
+          <div className="hero-actions">
+            <a
+              href="#products"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-[#B9383A] to-[#8B2522] hover:from-[#A83232] hover:to-[#7A1F1C] text-white font-bold text-xs sm:text-sm px-6 py-3.5 rounded-2xl shadow-xl border border-amber-500/30 transition hover:-translate-y-0.5"
+            >
+              <ShoppingBag className="w-4 h-4 text-amber-300" />
+              <span>KHÁM PHÁ 57 SẢN PHẨM</span>
+            </a>
+
+            <a
+              href="#artisans"
+              className="inline-flex items-center gap-2 bg-[#231C18] hover:bg-[#32261E] text-amber-300 hover:text-white font-bold text-xs sm:text-sm px-5 py-3.5 rounded-2xl border border-amber-900/50 transition hover:-translate-y-0.5"
+            >
+              <Users className="w-4 h-4 text-amber-400" />
+              <span>NGHỆ NHÂN LÀNG KÉP</span>
+            </a>
+
+            <a
+              href="#motifs"
+              className="inline-flex items-center gap-2 bg-[#231C18] hover:bg-[#32261E] text-stone-300 hover:text-white font-bold text-xs sm:text-sm px-5 py-3.5 rounded-2xl border border-stone-800 transition hover:-translate-y-0.5"
+            >
+              <Grid className="w-4 h-4 text-amber-400" />
+              <span>NGÂN HÀNG HOA VĂN</span>
+            </a>
+
+            <a
+              href="#traceability"
+              className="inline-flex items-center gap-2 bg-[#1C1613] hover:bg-[#2A201A] text-amber-400 hover:text-white font-bold text-xs sm:text-sm px-4 py-3.5 rounded-2xl border border-amber-600/40 transition hover:-translate-y-0.5"
+            >
+              <QrCode className="w-4 h-4 text-amber-400" />
+              <span>TRA CỨU QR</span>
+            </a>
+          </div>
+
+          {/* Heritage Stats Grid with Live Animated Counters */}
+          <div className="hero-stats-grid">
+            <div className="hero-stat-item">
+              <span className="hero-stat-num">{stat1}%</span>
+              <span className="hero-stat-label">Định danh QR độc bản</span>
             </div>
-
-            <p className="text-base sm:text-lg text-stone-200 font-normal leading-relaxed">
-              Không thay đổi cái gốc của nghề, thay đổi cách giá trị của nghề được nhìn thấy. Chúng tôi kết hợp di sản thổ cẩm Jrai tại Ia Mơ Nông (Gia Lai) với công nghệ số và mã QR định danh để tạo sinh kế bền vững cho buôn làng.
-            </p>
-
-            {/* Quick Action CTAs matching detnentuonglai & E-commerce */}
-            <div className="flex flex-wrap items-center gap-3 pt-2">
-              <a
-                href="#products"
-                className="inline-flex items-center gap-2 bg-gradient-to-r from-[#B9383A] to-[#8B2522] hover:from-[#A83232] hover:to-[#7A1F1C] text-white font-bold text-xs sm:text-sm px-6 py-3.5 rounded-2xl shadow-xl border border-amber-500/30 transition hover:-translate-y-0.5"
-              >
-                <ShoppingBag className="w-4 h-4 text-amber-300" />
-                <span>KHÁM PHÁ 57 SẢN PHẨM</span>
-              </a>
-
-              <a
-                href="#artisans"
-                className="inline-flex items-center gap-2 bg-[#231C18] hover:bg-[#32261E] text-amber-300 hover:text-white font-bold text-xs sm:text-sm px-5 py-3.5 rounded-2xl border border-amber-900/50 transition hover:-translate-y-0.5"
-              >
-                <Users className="w-4 h-4 text-amber-400" />
-                <span>NGHỆ NHÂN LÀNG KÉP</span>
-              </a>
-
-              <a
-                href="#motifs"
-                className="inline-flex items-center gap-2 bg-[#231C18] hover:bg-[#32261E] text-stone-300 hover:text-white font-bold text-xs sm:text-sm px-5 py-3.5 rounded-2xl border border-stone-800 transition hover:-translate-y-0.5"
-              >
-                <Grid className="w-4 h-4 text-amber-400" />
-                <span>NGÂN HÀNG HOA VĂN</span>
-              </a>
-
-              <a
-                href="#traceability"
-                className="inline-flex items-center gap-2 bg-[#1C1613] hover:bg-[#2A201A] text-amber-400 hover:text-white font-bold text-xs sm:text-sm px-4 py-3.5 rounded-2xl border border-amber-600/40 transition hover:-translate-y-0.5"
-              >
-                <QrCode className="w-4 h-4 text-amber-400" />
-                <span>TRA CỨU QR</span>
-              </a>
+            <div className="hero-stat-item">
+              <span className="hero-stat-num">{stat2}+ H</span>
+              <span className="hero-stat-label">Giờ dệt tay mỗi tác phẩm</span>
             </div>
-
-            {/* Heritage Stats Grid matching detnentuonglai.vercel.app exactly */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-stone-800/80">
-              <div className="space-y-0.5">
-                <div className="text-2xl lg:text-3xl font-serif font-black text-amber-400">100%</div>
-                <div className="text-xs text-stone-300 font-medium">Định danh QR độc bản</div>
-              </div>
-              <div className="space-y-0.5">
-                <div className="text-2xl lg:text-3xl font-serif font-black text-amber-400">40+ H</div>
-                <div className="text-xs text-stone-300 font-medium">Giờ dệt tay mỗi tác phẩm</div>
-              </div>
-              <div className="space-y-0.5">
-                <div className="text-2xl lg:text-3xl font-serif font-black text-amber-400">30+</div>
-                <div className="text-xs text-stone-300 font-medium">Nghệ nhân Ia Mơ Nông</div>
-              </div>
-              <div className="space-y-0.5">
-                <div className="text-2xl lg:text-3xl font-serif font-black text-amber-400">65%</div>
-                <div className="text-xs text-stone-300 font-medium">Doanh thu tới tay người dệt</div>
-              </div>
+            <div className="hero-stat-item">
+              <span className="hero-stat-num">{stat3}+</span>
+              <span className="hero-stat-label">Nghệ nhân Ia Mơ Nông</span>
+            </div>
+            <div className="hero-stat-item">
+              <span className="hero-stat-num">{stat4}%</span>
+              <span className="hero-stat-label">Doanh thu tới tay người dệt</span>
             </div>
           </div>
         </div>
@@ -578,82 +621,78 @@ export default function HomePage() {
       {/* ========================================================
           BÀI TOÁN & LỜI GIẢI ĐỔI MỚI (TÍNH MỚI TRONG SVTHM 2026)
       ======================================================== */}
-      <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 scroll-mt-24">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-          <div className="lg:col-span-6 space-y-6">
-            <div className="inline-flex items-center gap-2 bg-[#8B2522]/40 border border-[#B9383A]/60 px-3.5 py-1.5 rounded-full text-xs font-bold text-amber-300">
-              <Sparkles className="w-4 h-4 text-amber-400" />
-              <span>Bài toán & Lời giải đổi mới</span>
-            </div>
+      <section className="section section-watermark-hearth reveal-on-scroll">
+        <div className="container">
+          <div className="innovation-grid">
+            <div className="space-y-6">
+              <span className="section-tag">
+                <Sparkles className="w-4 h-4" />
+                <span>Bài toán & Lời giải đổi mới</span>
+              </span>
 
-            <h2 className="text-3xl sm:text-4xl font-serif font-black text-[#FFFDF9] leading-snug">
-              Làm sao để một nghề truyền thống có thể tự nuôi sống chính mình?
-            </h2>
+              <h2 className="section-title">
+                Làm sao để một nghề truyền thống có thể tự nuôi sống chính mình?
+              </h2>
 
-            <p className="text-sm sm:text-base text-stone-300 leading-relaxed font-normal">
-              Tại Gia Lai, nghề dệt thổ cẩm Jrai đối mặt thách thức lớn: sản phẩm thủ công tốn hàng chục giờ đếm sợi, khó cạnh tranh về giá với hàng dệt máy công nghiệp giá rẻ. Khi nghề không tạo ra đủ sinh kế, thế hệ trẻ dần rời xa khung cửi.
-            </p>
+              <p className="section-desc">
+                Tại Gia Lai, nghề dệt thổ cẩm Jrai đối mặt thách thức lớn: sản phẩm thủ công tốn hàng chục giờ đếm sợi, khó cạnh tranh về giá với hàng dệt máy công nghiệp giá rẻ. Khi nghề không tạo ra đủ sinh kế, thế hệ trẻ dần rời xa khung cửi.
+              </p>
 
-            <p className="text-sm sm:text-base text-stone-300 leading-relaxed font-normal">
-              Dự án không chọn cách làm thổ cẩm rẻ hơn để cạnh tranh, mà chọn con đường <strong className="text-amber-400 font-semibold">nâng tầm giá trị</strong>: biến thời gian, kỹ thuật độc bản và chiều sâu văn hóa thành lý do để khách hàng trân trọng và lựa chọn thông qua nền tảng số hóa và mã định danh QR.
-            </p>
+              <p className="section-desc">
+                Dự án không chọn cách làm thổ cẩm rẻ hơn để cạnh tranh, mà chọn con đường <strong className="text-amber-800 font-bold">nâng tầm giá trị</strong>: biến thời gian, kỹ thuật độc bản và chiều sâu văn hóa thành lý do để khách hàng trân trọng và lựa chọn thông qua nền tảng số hóa và mã định danh QR.
+              </p>
 
-            <div className="pt-2 flex flex-wrap gap-4 text-xs font-semibold text-stone-400">
-              <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
-                <span>Thực địa tại làng Kép & làng Phung</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-amber-400"></span>
-                <span>Mã hóa 20 hoa văn bản địa</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="lg:col-span-6 bg-gradient-to-br from-[#1C1613] via-[#241A14] to-[#181310] p-6 sm:p-8 rounded-3xl border border-amber-900/40 shadow-2xl space-y-5">
-            <div className="border-b border-stone-800/80 pb-4">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-amber-500">Mô hình sinh kế bền vững</span>
-              <h3 className="text-xl sm:text-2xl font-serif font-bold text-white mt-1">
-                Mô hình “Bảo Tồn — Kết Nối — Thí Điểm”
-              </h3>
-            </div>
-
-            {/* Pillar 01 */}
-            <div className="flex items-start gap-4 p-4 rounded-2xl bg-[#17120F]/80 border border-stone-800 hover:border-amber-700/50 transition">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#8B2522] to-[#B9383A] text-white font-serif font-black text-lg flex items-center justify-center shrink-0 shadow-md">
-                01
-              </div>
-              <div className="space-y-1">
-                <h4 className="font-serif font-bold text-base text-amber-200">Bảo Tồn Nguyên Bản</h4>
-                <p className="text-xs text-stone-300 leading-relaxed">
-                  Giữ nguyên kỹ thuật dệt khung cửi hông, màu nhuộm thảo mộc tự nhiên từ vỏ cây rừng và sợi bông thô Kơpăh.
-                </p>
+              <div className="pt-2 flex flex-wrap gap-4 text-xs font-semibold text-stone-600">
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-emerald-600"></span>
+                  <span>Thực địa tại làng Kép & làng Phung</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-amber-600"></span>
+                  <span>Mã hóa 20 hoa văn bản địa</span>
+                </div>
               </div>
             </div>
 
-            {/* Pillar 02 */}
-            <div className="flex items-start gap-4 p-4 rounded-2xl bg-[#17120F]/80 border border-amber-900/40 hover:border-amber-500/50 transition">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-600 to-amber-500 text-stone-950 font-serif font-black text-lg flex items-center justify-center shrink-0 shadow-md">
-                02
+            <div className="innovation-card-box">
+              <div style={{ borderBottom: '1px solid #E5DACB', paddingBottom: '14px', marginBottom: '20px' }}>
+                <span style={{ fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', color: 'var(--color-forest-gold)' }}>Mô hình sinh kế bền vững</span>
+                <h3 style={{ fontSize: '1.35rem', fontWeight: 800, color: '#1F1D1B', marginTop: '4px' }}>
+                  Mô hình “Bảo Tồn — Kết Nối — Thí Điểm”
+                </h3>
               </div>
-              <div className="space-y-1">
-                <h4 className="font-serif font-bold text-base text-amber-300">Kết Nối Công Nghệ Số & Du Lịch</h4>
-                <p className="text-xs text-stone-300 leading-relaxed">
-                  Số hóa hoa văn thành Ngân hàng di sản và gắn mã QR định danh độc bản; liên kết chuỗi homestay, resort tại Gia Lai.
-                </p>
-              </div>
-            </div>
 
-            {/* Pillar 03 */}
-            <div className="flex items-start gap-4 p-4 rounded-2xl bg-[#17120F]/80 border border-emerald-950/60 hover:border-emerald-700/50 transition">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-700 to-emerald-600 text-white font-serif font-black text-lg flex items-center justify-center shrink-0 shadow-md">
-                03
+              {/* Pillar 01 */}
+              <div className="pillar-item">
+                <div className="pillar-icon">01</div>
+                <div>
+                  <h4 className="pillar-title">Bảo Tồn Nguyên Bản</h4>
+                  <p className="pillar-desc">
+                    Giữ nguyên kỹ thuật dệt khung cửi hông, màu nhuộm thảo mộc tự nhiên từ vỏ cây rừng và sợi bông thô Kơpăh.
+                  </p>
+                </div>
               </div>
-              <div className="space-y-1">
-                <h4 className="font-serif font-bold text-base text-emerald-200">Thí Điểm Sinh Kế Thực Tế</h4>
-                <p className="text-xs text-stone-300 leading-relaxed">
-                  Triển khai thực địa tại Xã Ia Mơ Nông với nghệ nhân thật, sản phẩm thật, đo lường thu nhập cải thiện rõ rệt cho phụ nữ Jrai.
-                </p>
+
+              {/* Pillar 02 */}
+              <div className="pillar-item">
+                <div className="pillar-icon gold">02</div>
+                <div>
+                  <h4 className="pillar-title">Kết Nối Công Nghệ Số & Du Lịch</h4>
+                  <p className="pillar-desc">
+                    Số hóa hoa văn thành Ngân hàng di sản và gắn mã QR định danh độc bản; liên kết chuỗi homestay, resort tại Gia Lai.
+                  </p>
+                </div>
+              </div>
+
+              {/* Pillar 03 */}
+              <div className="pillar-item">
+                <div className="pillar-icon green">03</div>
+                <div>
+                  <h4 className="pillar-title">Thí Điểm Sinh Kế Thực Tế</h4>
+                  <p className="pillar-desc">
+                    Triển khai thực địa tại Xã Ia Mơ Nông với nghệ nhân thật, sản phẩm thật, đo lường thu nhập cải thiện rõ rệt cho phụ nữ Jrai.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -663,26 +702,30 @@ export default function HomePage() {
       {/* ========================================================
           2. MỤC 2: SẢN PHẨM (#products) - TOÀN BỘ 57 SẢN PHẨM
       ======================================================== */}
-      <section id="products" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 scroll-mt-24">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[#3D2C1F] pb-6">
-          <div>
-            <span className="section-tag">
-              Bộ sưu tập tiêu biểu
-            </span>
-            <h2 className="section-title">
-              Sản Phẩm Thổ Cẩm Ứng Dụng Đời Sống
-            </h2>
-            <p className="section-desc">
-              100% sản phẩm dệt cửi hông thủ công bởi bàn tay của các nghệ nhân làng Kép và làng Phung. Khi mua sản phẩm, bạn nhận kèm một mã định danh số QR giúp tra cứu tên thợ dệt, thời gian hoàn thành và ý nghĩa hoa văn.
-            </p>
-          </div>
+      <section className="section section-watermark-weave reveal-on-scroll" id="products" style={{ scrollMarginTop: '80px' }}>
+        <div className="container space-y-8">
+          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '20px', gap: '16px' }}>
+            <div>
+              <span className="section-tag">
+                Bộ sưu tập tiêu biểu
+              </span>
+              <h2 className="section-title">
+                Sản Phẩm Thổ Cẩm Ứng Dụng Đời Sống
+              </h2>
+              <p className="section-desc">
+                100% sản phẩm dệt cửi hông thủ công bởi bàn tay của các nghệ nhân làng Kép và làng Phung. Khi mua sản phẩm, bạn nhận kèm một mã định danh số QR giúp tra cứu tên thợ dệt, thời gian hoàn thành và ý nghĩa hoa văn.
+              </p>
+            </div>
 
-          <div className="flex items-center gap-3">
-            <span className="text-xs font-bold text-amber-700 bg-amber-100/80 px-4 py-2 rounded-xl border border-amber-300">
-              Hiển thị {filteredProducts.length} / 57 sản phẩm
-            </span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <span className="text-xs font-bold text-amber-900 bg-amber-100/90 px-3.5 py-1.5 rounded-full border border-amber-300">
+                Hiển thị {filteredProducts.length} / 57 tác phẩm
+              </span>
+              <Link href="/products" className="btn btn-outline-dark btn-sm">
+                Xem tất cả &rarr;
+              </Link>
+            </div>
           </div>
-        </div>
 
         {/* Filter Controls: Search & Category Pills */}
         <div className="space-y-4 bg-[#1E1713] p-5 rounded-3xl border border-amber-900/40 shadow-lg">
@@ -862,14 +905,15 @@ export default function HomePage() {
             );
           })}
         </div>
+        </div>
       </section>
 
       {/* ========================================================
           3. MỤC 3: NGÂN HÀNG HOA VĂN (#motifs) - ĐẦY ĐỦ 20 HOA VĂN
       ======================================================== */}
-      <section id="motifs" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 scroll-mt-24">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[#3D2C1F] pb-6">
-          <div>
+      <section className="section section-watermark-mist reveal-on-scroll" id="motifs" style={{ scrollMarginTop: '80px' }}>
+        <div className="container space-y-8">
+          <div className="text-center" style={{ maxWidth: '720px', margin: '0 auto 48px' }}>
             <span className="section-tag gold">
               Kho tri thức văn hoá số
             </span>
@@ -879,11 +923,12 @@ export default function HomePage() {
             <p className="section-desc">
               Không tự bịa đặt ý nghĩa — mỗi hoa văn lưu trữ tại đây đều được xác minh minh bạch từ nghệ nhân và già làng tại Ia Mơ Nông, Chư Păh.
             </p>
+            <div style={{ marginTop: '14px' }}>
+              <span className="text-xs font-bold text-amber-900 bg-amber-100/90 px-3.5 py-1.5 rounded-full border border-amber-300">
+                20 / 20 biểu tượng số hóa di sản
+              </span>
+            </div>
           </div>
-          <span className="text-xs font-bold text-amber-700 bg-amber-100/80 px-4 py-2 rounded-xl border border-amber-300">
-            20 / 20 biểu tượng số hóa
-          </span>
-        </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {motifs.map((m) => (
@@ -926,13 +971,21 @@ export default function HomePage() {
             </div>
           ))}
         </div>
-      </section>
 
-      {/* ========================================================
-          4. MỤC 4: NGHỆ NHÂN (#artisans) - ĐẦY ĐỦ 9 NGHỆ NHÂN
-      ======================================================== */}
-      <section id="artisans" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 scroll-mt-24">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[#3D2C1F] pb-6">
+        <div className="text-center" style={{ marginTop: '45px' }}>
+          <Link href="/motifs" className="btn btn-gold">
+            Khám phá toàn bộ 20 Hoa Văn Di Sản &rarr;
+          </Link>
+        </div>
+      </div>
+    </section>
+
+    {/* ========================================================
+        4. MỤC 4: NGHỆ NHÂN (#artisans) - ĐẦY ĐỦ 9 NGHỆ NHÂN
+    ======================================================== */}
+    <section className="section section-watermark-gathering reveal-on-scroll" id="artisans" style={{ scrollMarginTop: '80px' }}>
+      <div className="container space-y-8">
+        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '24px', gap: '16px' }}>
           <div>
             <span className="section-tag">
               Con người & Bàn tay vàng
@@ -944,9 +997,14 @@ export default function HomePage() {
               Gặp gỡ 9 nghệ nhân dệt cửi hông tiêu biểu tại làng Kép và làng Phung, những người phụ nữ Jrai gìn giữ linh hồn thổ cẩm qua nhiều thế hệ.
             </p>
           </div>
-          <span className="text-xs font-bold text-amber-700 bg-amber-100/80 px-4 py-2 rounded-xl border border-amber-300">
-            09 / 09 nghệ nhân giữ nghề
-          </span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <span className="text-xs font-bold text-amber-900 bg-amber-100/90 px-3.5 py-1.5 rounded-full border border-amber-300">
+              09 / 09 nghệ nhân giữ nghề
+            </span>
+            <Link href="/artisans" className="btn btn-outline-dark btn-sm">
+              Xem tất cả &rarr;
+            </Link>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -988,21 +1046,23 @@ export default function HomePage() {
             </div>
           ))}
         </div>
-      </section>
+      </div>
+    </section>
 
-      {/* ========================================================
-          5. MỤC 5: TRA CỨU QR (#traceability) - TƯƠNG TÁC NGAY TẠI CHỖ
-      ======================================================== */}
-      <section id="traceability" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 scroll-mt-24">
-        <div className="border-b border-[#3D2C1F] pb-6">
-          <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#E58A1F] mb-1">
-            <QrCode className="w-4 h-4 text-amber-400" />
+    {/* ========================================================
+        5. MỤC 5: TRA CỨU QR (#traceability) - TƯƠNG TÁC NGAY TẠI CHỖ
+    ======================================================== */}
+    <section className="section section-watermark-stilt reveal-on-scroll" id="traceability" style={{ scrollMarginTop: '80px' }}>
+      <div className="container space-y-8">
+        <div className="text-center" style={{ maxWidth: '780px', margin: '0 auto 40px' }}>
+          <span className="section-tag gold" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+            <QrCode className="w-3.5 h-3.5" />
             <span>HỆ THỐNG ĐỊNH DANH SỐ (DIGITAL PRODUCT PASSPORT)</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl font-serif font-black text-[#FFFDF9]">
+          </span>
+          <h2 className="section-title">
             Tra Cứu Minh Bạch Nguồn Gốc Từng Mũi Dệt
           </h2>
-          <p className="text-xs sm:text-sm text-stone-400 mt-1 max-w-2xl">
+          <p className="section-desc">
             Nhập mã sản phẩm hoặc bấm chọn các mã mẫu dưới đây để xem ngay Hộ Chiếu Số bao gồm: Nghệ nhân thực hiện, Ý nghĩa hoa văn và Bản đồ tọa độ Gia Lai.
           </p>
         </div>
@@ -1150,12 +1210,14 @@ export default function HomePage() {
             Không tìm thấy thông tin cho mã &ldquo;{passportCode}&rdquo;. Vui lòng thử các mã mẫu như K001, B001, VI001...
           </div>
         )}
+        </div>
       </section>
 
       {/* ========================================================
           6. MỤC 6: VỀ CHÚNG TÔI (#about) - CÂU CHUYỆN & ĐỘI NGŨ KẾ THỪA
       ======================================================== */}
-      <section id="about" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16 scroll-mt-24">
+      <section className="section reveal-on-scroll" id="about" style={{ scrollMarginTop: '80px' }}>
+        <div className="container space-y-16">
         {/* A. Hero Origin Story Banner */}
         <div className="bg-gradient-to-r from-[#231C18] via-[#1E1713] to-[#231C18] text-white p-8 sm:p-12 rounded-3xl border border-amber-900/40 relative overflow-hidden shadow-2xl">
           <div
@@ -1290,85 +1352,126 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* D. Mentor & Founding Team ("The People Behind The Weave") */}
-        <div className="space-y-10 bg-gradient-to-b from-[#1E1713] to-[#14110F] p-8 sm:p-12 rounded-3xl border border-amber-900/40 shadow-2xl">
-          <div className="text-center max-w-2xl mx-auto space-y-1">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#E58A1F]">
+        {/* D. Mentor & Founding Team ("The People Behind The Weave") - Tứ Quý Garden Card Format */}
+        <div className="team-section-container reveal-on-scroll" style={{ borderRadius: '32px', padding: '60px 24px 80px', margin: '20px 0' }}>
+          <div className="text-center" style={{ maxWidth: '760px', margin: '0 auto 30px' }}>
+            <span className="section-tag" style={{ color: '#F59E0B', backgroundColor: 'rgba(229, 138, 31, 0.15)', borderColor: 'rgba(229, 138, 31, 0.35)' }}>
               CỐ VẤN KHOA HỌC & ĐỘI NGŨ DỰ ÁN
             </span>
-            <h3 className="text-2xl sm:text-3xl font-serif font-black text-white">
+            <h2 className="section-title" style={{ color: '#FFFFFF' }}>
               The People Behind The Weave
-            </h3>
-            <p className="text-xs text-stone-400">
+            </h2>
+            <p className="section-desc" style={{ color: '#E2D9D0', margin: '0 auto 30px' }}>
               Những người gieo khát vọng số hóa và kết nối sinh kế bền vững cho buôn làng Jrai tại cuộc thi SVTHM 2026.
             </p>
           </div>
 
-          {/* Mentor Card */}
-          <div className="max-w-md mx-auto">
-            <div className="text-center mb-2">
-              <span className="text-[11px] font-extrabold uppercase tracking-widest text-amber-400">
-                ★ GIẢNG VIÊN HƯỚNG DẪN KHOA HỌC (MENTOR) ★
-              </span>
-            </div>
-            <div className="bg-[#231C18] border-2 border-amber-500/50 rounded-3xl p-6 text-center shadow-2xl relative overflow-hidden group">
-              <div className="w-28 h-28 mx-auto rounded-2xl overflow-hidden border-2 border-amber-400/60 shadow-xl mb-3 bg-stone-900">
-                <img
-                  src="/images/team/TongGiaTuong_user.png"
-                  alt="Thầy Tống Gia Tường"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                />
+          {/* Khối Mentor / Giảng viên hướng dẫn riêng nổi bật phía trên */}
+          <div style={{ marginBottom: '10px', textAlign: 'center' }}>
+            <span style={{ fontSize: '0.85rem', fontWeight: 800, color: '#F59E0B', textTransform: 'uppercase', letterSpacing: '1.5px' }}>
+              ★ GIẢNG VIÊN HƯỚNG DẪN KHOA HỌC (MENTOR) ★
+            </span>
+          </div>
+
+          <div className="mentor-spotlight-wrap">
+            <div className="team-card mentor-spotlight-card">
+              <div className="team-bg-shape"></div>
+              <div className="team-bg-text">MENTOR</div>
+              <div className="team-portrait-wrapper">
+                <img src="/images/team/TongGiaTuong_user.png" alt="Thầy Tống Gia Tường" />
               </div>
-              <h4 className="font-serif font-bold text-lg text-white">Thầy Tống Gia Tường</h4>
-              <p className="text-xs font-bold text-[#E58A1F] uppercase tracking-wider mt-0.5">
-                Mentor / Giảng Viên Hướng Dẫn
-              </p>
-              <p className="text-xs text-stone-400 mt-2 leading-relaxed">
-                Trường Đại học Kinh tế - Luật, ĐHQG-HCM • Đồng hành định hướng chiến lược nghiên cứu khoa học và phát triển sinh kế cộng đồng bền vững.
-              </p>
+              <div className="team-info-overlay">
+                <h4 className="team-name">Thầy Tống Gia Tường</h4>
+                <p className="team-role">Mentor / Giảng Viên Hướng Dẫn</p>
+              </div>
             </div>
           </div>
 
-          {/* 6 Founding Team Members */}
-          <div className="space-y-4">
-            <div className="text-center">
-              <span className="text-xs font-extrabold uppercase tracking-wider text-[#FFA726]">
-                BAN ĐIỀU HÀNH & PHÁT TRIỂN DỰ ÁN (6 THÀNH VIÊN)
-              </span>
+          {/* Tiêu đề khối sinh viên sáng lập */}
+          <div style={{ marginTop: '60px', marginBottom: '10px', textAlign: 'center' }}>
+            <span style={{ fontSize: '0.85rem', fontWeight: 800, color: '#FFA726', textTransform: 'uppercase', letterSpacing: '1.5px' }}>
+              BAN ĐIỀU HÀNH & PHÁT TRIỂN DỰ ÁN (6 THÀNH VIÊN)
+            </span>
+          </div>
+
+          {/* Lưới 6 thành viên sinh viên: Format Tứ Quý Garden Tone Nóng */}
+          <div className="team-grid">
+            {/* 1. Mai Thị Cẩm Tú - Lead */}
+            <div className="team-card">
+              <div className="team-bg-shape"></div>
+              <div className="team-bg-text">LEAD</div>
+              <div className="team-portrait-wrapper">
+                <img src="/images/team/MaiThiCamTu_user.png" alt="Mai Thị Cẩm Tú" />
+              </div>
+              <div className="team-info-overlay">
+                <h4 className="team-name">Mai Thị Cẩm Tú</h4>
+                <p className="team-role">Lead / Trưởng Nhóm Dự Án</p>
+              </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {FOUNDING_TEAM.map((mem) => (
-                <div
-                  key={mem.name}
-                  className="bg-[#231C18] rounded-2xl border border-amber-900/40 p-5 flex flex-col justify-between space-y-4 shadow-lg hover:border-amber-500/50 transition-all group"
-                >
-                  <div className="flex items-center gap-4">
-                    <div className="w-16 h-16 rounded-2xl overflow-hidden border border-amber-500/40 bg-stone-950 shrink-0 shadow-md">
-                      <img
-                        src={mem.image}
-                        alt={mem.name}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform"
-                      />
-                    </div>
-                    <div>
-                      <span className="text-[10px] font-extrabold font-mono uppercase px-2 py-0.5 rounded bg-[#8B2522] text-[#FDE68A]">
-                        {mem.badge}
-                      </span>
-                      <h4 className="font-serif font-bold text-sm sm:text-base text-white mt-1">
-                        {mem.name}
-                      </h4>
-                      <p className="text-[11px] text-[#E58A1F] font-medium leading-tight">
-                        {mem.role}
-                      </p>
-                    </div>
-                  </div>
+            {/* 2. Huỳnh Gia Bảo - Tech Lead */}
+            <div className="team-card">
+              <div className="team-bg-shape"></div>
+              <div className="team-bg-text">TECH</div>
+              <div className="team-portrait-wrapper">
+                <img src="/images/team/HuynhGiaBao_user.png" alt="Huỳnh Gia Bảo" />
+              </div>
+              <div className="team-info-overlay">
+                <h4 className="team-name">Huỳnh Gia Bảo</h4>
+                <p className="team-role">Tech Lead / Chuyển Đổi Số</p>
+              </div>
+            </div>
 
-                  <p className="text-xs text-stone-400 leading-relaxed border-t border-stone-800/80 pt-3">
-                    {mem.desc}
-                  </p>
-                </div>
-              ))}
+            {/* 3. Trần Thị Thảo Vy - Tourism */}
+            <div className="team-card">
+              <div className="team-bg-shape"></div>
+              <div className="team-bg-text">TOURISM</div>
+              <div className="team-portrait-wrapper">
+                <img src="/images/team/TranThiThaoVy_user.png" alt="Trần Thị Thảo Vy" />
+              </div>
+              <div className="team-info-overlay">
+                <h4 className="team-name">Trần Thị Thảo Vy</h4>
+                <p className="team-role">Trưởng Ban Du Lịch Sinh Thái</p>
+              </div>
+            </div>
+
+            {/* 4. Đỗ Dương Khang - Marketing */}
+            <div className="team-card">
+              <div className="team-bg-shape"></div>
+              <div className="team-bg-text">MARKETING</div>
+              <div className="team-portrait-wrapper">
+                <img src="/images/team/DoDuongKhang_user.png" alt="Đỗ Dương Khang" />
+              </div>
+              <div className="team-info-overlay">
+                <h4 className="team-name">Đỗ Dương Khang</h4>
+                <p className="team-role">Marketing Lead / Truyền Thông</p>
+              </div>
+            </div>
+
+            {/* 5. Trần Vũ Trọng Hiếu - Legal */}
+            <div className="team-card">
+              <div className="team-bg-shape"></div>
+              <div className="team-bg-text">LEGAL</div>
+              <div className="team-portrait-wrapper">
+                <img src="/images/team/TranVuTrongHieu_user.png" alt="Trần Vũ Trọng Hiếu" className="team-img-hieu" />
+              </div>
+              <div className="team-info-overlay">
+                <h4 className="team-name">Trần Vũ Trọng Hiếu</h4>
+                <p className="team-role">Phụ Trách Pháp Lý & SHTT</p>
+              </div>
+            </div>
+
+            {/* 6. Đinh Cát Tường - Advisor */}
+            <div className="team-card">
+              <div className="team-bg-shape"></div>
+              <div className="team-bg-text">ADVISOR</div>
+              <div className="team-portrait-wrapper">
+                <img src="/images/team/DinhCatTuong_user.png" alt="Đinh Cát Tường" />
+              </div>
+              <div className="team-info-overlay">
+                <h4 className="team-name">Đinh Cát Tường</h4>
+                <p className="team-role">Ban Cố Vấn & Hỗ Trợ Dự Án</p>
+              </div>
             </div>
           </div>
         </div>
@@ -1425,6 +1528,7 @@ export default function HomePage() {
               ))}
             </div>
           </div>
+        </div>
         </div>
       </section>
 
