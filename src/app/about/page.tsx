@@ -281,47 +281,65 @@ export default function AboutPage() {
           </p>
         </div>
 
-        {/* MENTOR SPOTLIGHT CARD */}
         {/* 4 FOUNDING TEAM MEMBERS */}
-        <div className="space-y-4">
-          <div className="text-center">
-            <span className="text-xs font-extrabold uppercase tracking-wider text-[#FFA726]">
-              BAN ĐIỀU HÀNH & PHÁT TRIỂN DỰ ÁN (4 THÀNH VIÊN)
-            </span>
+        <div style={{ marginTop: '20px', marginBottom: '10px', textAlign: 'center' }}>
+          <span style={{ fontSize: '0.85rem', fontWeight: 800, color: '#FFA726', textTransform: 'uppercase', letterSpacing: '1.5px' }}>
+            BAN ĐIỀU HÀNH & PHÁT TRIỂN DỰ ÁN (4 THÀNH VIÊN)
+          </span>
+        </div>
+
+        {/* Lưới 4 thành viên sáng lập: Format Tứ Quý Garden Chuẩn Tone Nóng */}
+        <div className="team-grid">
+          {/* 1. Mai Thị Cẩm Tú - Lead */}
+          <div className="team-card">
+            <div className="team-bg-shape"></div>
+            <div className="team-bg-text">LEAD</div>
+            <div className="team-portrait-wrapper">
+              <img src="/images/team/MaiThiCamTu_brocade.png" alt="Mai Thị Cẩm Tú" />
+            </div>
+            <div className="team-info-overlay">
+              <h4 className="team-name">Mai Thị Cẩm Tú</h4>
+              <p className="team-role">Lead / Trưởng Nhóm Dự Án</p>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {teamMembers.map((mem) => (
-              <div
-                key={mem.name}
-                className="bg-[#231C18] rounded-2xl border border-amber-900/40 p-5 flex flex-col justify-between space-y-4 shadow-lg hover:border-amber-500/50 transition-all group"
-              >
-                <div className="flex items-center gap-4">
-                  <div className="w-16 h-16 rounded-2xl overflow-hidden border border-amber-500/40 bg-stone-950 shrink-0 shadow-md">
-                    <img
-                      src={mem.image}
-                      alt={mem.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform"
-                    />
-                  </div>
-                  <div>
-                    <span className="text-[10px] font-extrabold font-mono uppercase px-2 py-0.5 rounded bg-[#8B2522] text-[#FDE68A]">
-                      {mem.badge}
-                    </span>
-                    <h4 className="font-serif font-bold text-sm sm:text-base text-white mt-1">
-                      {mem.name}
-                    </h4>
-                    <p className="text-[11px] text-[#E58A1F] font-medium leading-tight">
-                      {mem.role}
-                    </p>
-                  </div>
-                </div>
+          {/* 2. Huỳnh Diệp Cẩm Tú - Legal & Partnership */}
+          <div className="team-card">
+            <div className="team-bg-shape"></div>
+            <div className="team-bg-text">LEGAL</div>
+            <div className="team-portrait-wrapper">
+              <img src="/images/team/HuynhDiepCamTu_brocade.png" alt="Huỳnh Diệp Cẩm Tú" />
+            </div>
+            <div className="team-info-overlay">
+              <h4 className="team-name">Huỳnh Diệp Cẩm Tú</h4>
+              <p className="team-role">Phụ Trách Pháp Lý & Đối Ngoại</p>
+            </div>
+          </div>
 
-                <p className="text-xs text-stone-400 leading-relaxed border-t border-stone-800/80 pt-3">
-                  {mem.desc}
-                </p>
-              </div>
-            ))}
+          {/* 3. Nguyễn Ngọc Nữ - Tourism & Culture */}
+          <div className="team-card">
+            <div className="team-bg-shape"></div>
+            <div className="team-bg-text">TOURISM</div>
+            <div className="team-portrait-wrapper">
+              <img src="/images/team/NguyenNgocNu_brocade.png" alt="Nguyễn Ngọc Nữ" />
+            </div>
+            <div className="team-info-overlay">
+              <h4 className="team-name">Nguyễn Ngọc Nữ</h4>
+              <p className="team-role">Trưởng Ban Du Lịch Sinh Thái & Bản Địa</p>
+            </div>
+          </div>
+
+          {/* 4. Đinh Sĩ Doãn Đăng - Media & Marketing */}
+          <div className="team-card">
+            <div className="team-bg-shape"></div>
+            <div className="team-bg-text">MEDIA</div>
+            <div className="team-portrait-wrapper">
+              <img src="/images/team/DinhSiDoanDang_brocade.png" alt="Đinh Sĩ Doãn Đăng" />
+            </div>
+            <div className="team-info-overlay">
+              <h4 className="team-name">Đinh Sĩ Doãn Đăng</h4>
+              <p className="team-role">Phụ Trách Truyền Thông & Hình Ảnh</p>
+            </div>
           </div>
         </div>
       </section>

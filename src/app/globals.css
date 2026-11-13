@@ -1043,10 +1043,10 @@ body.lang-en .lang-vi { display: none !important; }
 .team-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  column-gap: 24px;
-  row-gap: 60px;
-  margin-top: 30px;
-  padding-top: 50px;
+  column-gap: 28px;
+  row-gap: 120px;
+  margin-top: 50px;
+  padding-top: 70px; /* Chừa không gian cho ảnh người nhô cao lên trên card */
   margin-bottom: 50px;
 }
 
@@ -1112,10 +1112,10 @@ body.lang-en .lang-vi { display: none !important; }
   pointer-events: none;
 }
 
-/* Portrait Wrapper nhô lên trên */
+/* Portrait Wrapper nhô lên trên cao - Format Chuẩn Tứ Quý Garden & Dệt Nên Tương Lai */
 .team-portrait-wrapper {
   position: absolute;
-  top: -45px;
+  top: -60px;
   bottom: 0;
   left: 0;
   right: 0;
@@ -1123,23 +1123,22 @@ body.lang-en .lang-vi { display: none !important; }
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  overflow: hidden;
-  border-radius: 20px 20px 0 0;
+  overflow: visible !important;
 }
 
 .team-portrait-wrapper img {
-  height: 100%;
-  width: 100%;
-  max-width: 100%;
-  object-fit: cover;
-  object-position: top center;
+  height: 120%;
+  width: auto;
+  max-width: 120%;
+  object-fit: contain;
+  object-position: bottom center;
   display: block;
   transition: transform 0.4s ease;
-  transform-origin: center center;
+  transform-origin: bottom center;
 }
 
 .team-card:hover .team-portrait-wrapper img {
-  transform: scale(1.06);
+  transform: scale(1.08);
 }
 
 /* Căn chỉnh ảnh bạn Hiếu thẳng hàng ngang với Khang và Cát Tường mà tỷ lệ người vừa vặn, không bị to */
