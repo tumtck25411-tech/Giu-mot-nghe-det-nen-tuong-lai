@@ -8,7 +8,7 @@ export default function AboutProjectPage() {
   return (
     <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-8 lg:px-12 py-10 space-y-12">
       {/* Header Banner */}
-      <div className="bg-stone-900 text-white p-8 sm:p-12 rounded-3xl border border-amber-900/40 relative overflow-hidden">
+      <div className="bg-stone-900 text-white p-8 sm:p-12 rounded-xl border border-amber-900/40 relative overflow-hidden">
         <div className="max-w-3xl space-y-4 relative z-10">
           <div className="inline-flex items-center gap-2 bg-amber-950 text-amber-300 text-xs font-bold px-3.5 py-1 rounded-md border border-amber-800/40 uppercase tracking-wider">
             <Sparkles className="w-3.5 h-3.5" />
@@ -25,7 +25,7 @@ export default function AboutProjectPage() {
 
       {/* CORE OBJECTIVES */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-xs space-y-4">
+        <div className="bg-white p-8 rounded-xl border border-slate-200 shadow-xs space-y-4">
           <div className="w-12 h-12 rounded-2xl bg-amber-800 text-white font-bold flex items-center justify-center">
             <Grid className="w-6 h-6" />
           </div>
@@ -37,7 +37,7 @@ export default function AboutProjectPage() {
           </p>
         </div>
 
-        <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-xs space-y-4">
+        <div className="bg-white p-8 rounded-xl border border-slate-200 shadow-xs space-y-4">
           <div className="w-12 h-12 rounded-2xl bg-amber-800 text-white font-bold flex items-center justify-center">
             <QrCode className="w-6 h-6" />
           </div>
@@ -51,7 +51,7 @@ export default function AboutProjectPage() {
       </div>
 
       {/* TWO DISTINCT USER GROUPS EXPLANATION */}
-      <div className="bg-amber-950 text-white p-8 sm:p-10 rounded-3xl border border-amber-800/40 space-y-6">
+      <div className="bg-amber-950 text-white p-8 sm:p-10 rounded-xl border border-amber-800/40 space-y-6">
         <div className="space-y-2">
           <span className="text-xs font-bold text-amber-400 uppercase tracking-widest">
             Kiến Trúc Phân Quyền Bảo Mật

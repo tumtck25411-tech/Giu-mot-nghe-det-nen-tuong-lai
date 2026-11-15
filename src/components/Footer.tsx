@@ -34,7 +34,7 @@ export default function Footer() {
             </div>
             <div>
               <p className="text-xs font-bold text-white uppercase tracking-wider">100% Thủ Công Bản Địa</p>
-              <p className="text-[11px] text-stone-400">Dệt cửi hông bởi nghệ nhân làng Kép</p>
+              <p className="text-xs text-stone-400">Dệt cửi hông bởi nghệ nhân làng Kép</p>
             </div>
           </div>
 
@@ -44,7 +44,7 @@ export default function Footer() {
             </div>
             <div>
               <p className="text-xs font-bold text-white uppercase tracking-wider">Mã QR Định Danh Độc Bản</p>
-              <p className="text-[11px] text-stone-400">Minh bạch người dệt, hoa văn, số giờ công</p>
+              <p className="text-xs text-stone-400">Minh bạch người dệt, hoa văn, số giờ công</p>
             </div>
           </div>
 
@@ -54,7 +54,7 @@ export default function Footer() {
             </div>
             <div>
               <p className="text-xs font-bold text-white uppercase tracking-wider">Thương Mại Công Bằng</p>
-              <p className="text-[11px] text-stone-400">Gắn kết thu nhập trực tiếp cho nghệ nhân</p>
+              <p className="text-xs text-stone-400">Gắn kết thu nhập trực tiếp cho nghệ nhân</p>
             </div>
           </div>
 
@@ -64,7 +64,7 @@ export default function Footer() {
             </div>
             <div>
               <p className="text-xs font-bold text-white uppercase tracking-wider">Giao Hàng Toàn Quốc</p>
-              <p className="text-[11px] text-stone-400">Kiểm tra hàng trước khi thanh toán (COD)</p>
+              <p className="text-xs text-stone-400">Kiểm tra hàng trước khi thanh toán (COD)</p>
             </div>
           </div>
         </div>
@@ -80,7 +80,7 @@ export default function Footer() {
               </div>
               <div>
                 <h3 className="font-serif font-black text-xl text-[#FFFDF9] tracking-wider">JRAI ƠI</h3>
-                <p className="text-[10px] text-[#E58A1F] font-bold uppercase tracking-widest">
+                <p className="text-xs text-[#E58A1F] font-bold uppercase tracking-widest">
                   Thương Mại Điện Tử Thổ Cẩm Jrai
                 </p>
               </div>

@@ -121,7 +121,7 @@ export default function CartPage() {
       </div>
 
       {cart.length === 0 ? (
-        <div className="bg-[#1C1714] p-16 rounded-3xl border border-amber-900/40 text-center space-y-4 shadow-xl">
+        <div className="bg-[#1C1714] p-16 rounded-xl border border-amber-900/40 text-center space-y-4 shadow-xl">
           <div className="w-20 h-20 rounded-full bg-stone-900 flex items-center justify-center mx-auto text-amber-500 border border-stone-800">
             <ShoppingBag className="w-10 h-10" />
           </div>
@@ -142,7 +142,7 @@ export default function CartPage() {
       ) : (
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Cart Table (8 Cols) */}
-          <div className="lg:col-span-8 bg-[#1C1714] rounded-3xl border border-amber-900/40 p-6 shadow-xl space-y-4">
+          <div className="lg:col-span-8 bg-[#1C1714] rounded-xl border border-amber-900/40 p-6 shadow-xl space-y-4">
             <div className="space-y-4 divide-y divide-stone-800">
               {cart.map((item) => (
                 <div key={item.productId} className="pt-4 first:pt-0 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
@@ -154,7 +154,7 @@ export default function CartPage() {
                       className="w-20 h-20 object-cover rounded-2xl border border-stone-800 shrink-0 bg-stone-900"
                     />
                     <div>
-                      <span className="text-[10px] font-mono text-amber-500 px-2 py-0.5 rounded bg-stone-900 border border-amber-900/40">
+                      <span className="text-xs font-mono text-amber-500 px-2 py-0.5 rounded bg-stone-900 border border-amber-900/40">
                         {item.product?.product_code}
                       </span>
                       <Link href={`/product/${item.productId}`}>
@@ -235,7 +235,7 @@ export default function CartPage() {
           {/* Cart Summary & Coupon (4 Cols) */}
           <div className="lg:col-span-4 space-y-6">
             {/* Coupon Box */}
-            <div className="bg-[#1C1714] p-6 rounded-3xl border border-amber-900/40 shadow-xl space-y-3">
+            <div className="bg-[#1C1714] p-6 rounded-xl border border-amber-900/40 shadow-xl space-y-3">
               <div className="flex items-center gap-2 text-xs font-bold text-amber-400 uppercase tracking-wider">
                 <Tag className="w-4 h-4" />
                 <span>Mã Giảm Giá Khuyến Mãi</span>
@@ -274,7 +274,7 @@ export default function CartPage() {
                 </div>
               )}
 
-              <div className="text-[11px] text-stone-500 space-y-0.5 pt-1">
+              <div className="text-xs text-stone-500 space-y-0.5 pt-1">
                 <p>Gợi ý mã khuyến mãi:</p>
                 <p>• <code>JRAIOI10</code>: Giảm 10% đơn từ 300k</p>
                 <p>• <code>WELCOME50</code>: Giảm 50.000₫ cho đơn từ 400k</p>
@@ -282,7 +282,7 @@ export default function CartPage() {
             </div>
 
             {/* Order Calculation */}
-            <div className="bg-[#1C1714] p-6 rounded-3xl border border-amber-900/40 shadow-xl space-y-4">
+            <div className="bg-[#1C1714] p-6 rounded-xl border border-amber-900/40 shadow-xl space-y-4">
               <h3 className="font-serif font-bold text-base text-white border-b border-stone-800 pb-3">
                 Tổng Đơn Hàng
               </h3>
@@ -341,7 +341,7 @@ export default function CartPage() {
                 <ArrowRight className="w-4 h-4" />
               </button>
 
-              <div className="p-3 bg-[#120F0D] rounded-xl border border-amber-900/30 text-[11px] text-stone-400 space-y-1">
+              <div className="p-3 bg-[#120F0D] rounded-xl border border-amber-900/30 text-xs text-stone-400 space-y-1">
                 <p className="flex items-center gap-1.5 text-stone-300">
                   <ShieldCheck className="w-3.5 h-3.5 text-amber-500 shrink-0" />
                   <span>Kiểm tra hàng trước khi thanh toán tiền mặt (COD).</span>

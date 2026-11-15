@@ -53,16 +53,16 @@
   
   /* Container & Shadows - Rộng thoáng chuẩn Desktop 1920px & 1440px */
   --container-max: 1680px;
-  --radius-sm: 8px;
-  --radius-md: 14px;
-  --radius-lg: 20px;
-  --radius-xl: 24px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 16px;
   --radius-full: 9999px;
   
-  --shadow-subtle: 0 4px 15px rgba(0, 0, 0, 0.25);
-  --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.4);
-  --shadow-hover: 0 18px 45px rgba(185, 56, 58, 0.35);
-  --shadow-dark: 0 15px 40px rgba(0, 0, 0, 0.6);
+  --shadow-subtle: 0 2px 8px rgba(0, 0, 0, 0.12);
+  --shadow-card: 0 4px 14px rgba(0, 0, 0, 0.16);
+  --shadow-hover: 0 6px 20px rgba(185, 56, 58, 0.18);
+  --shadow-dark: 0 8px 24px rgba(0, 0, 0, 0.28);
 
   --transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
@@ -1128,16 +1128,16 @@ main {
   height: 350px;
   background: #231C18;
   border: 1px solid rgba(229, 138, 31, 0.25);
-  border-radius: 20px;
-  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.35);
+  border-radius: 14px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
   overflow: visible; /* Cho phép portrait vươn lên trên */
   padding: 0;
   transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s ease;
 }
 
 .team-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 24px 56px rgba(185, 56, 58, 0.35);
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(185, 56, 58, 0.25);
   border-color: var(--color-forest-gold);
 }
 
@@ -1150,7 +1150,7 @@ main {
   width: 52%;
   height: calc(100% + 60px);
   background: linear-gradient(160deg, #9E2A2B 0%, #5C1900 100%);
-  border-radius: 20px 0 0 20px;
+  border-radius: 14px 0 0 14px;
   z-index: 1;
   transition: background 0.3s ease;
 }
@@ -1317,9 +1317,9 @@ main {
 .journey-trail-content {
   width: 46%;
   background: #2C231E;
-  border-radius: 24px;
+  border-radius: 14px;
   border: 1px solid rgba(229, 138, 31, 0.28);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -1328,8 +1328,8 @@ main {
 }
 
 .journey-trail-content:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 24px 50px rgba(185, 56, 58, 0.35);
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(185, 56, 58, 0.25);
   border-color: var(--color-forest-gold);
 }
 

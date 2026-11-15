@@ -29,7 +29,7 @@ export default function AdminHeader({ title, subtitle }: AdminHeaderProps) {
           </div>
           <div>
             <div className="font-bold text-slate-900 leading-tight">Quản trị viên</div>
-            <div className="text-[10px] text-slate-500">Super Admin</div>
+            <div className="text-xs text-slate-500">Super Admin</div>
           </div>
         </div>
       </div>

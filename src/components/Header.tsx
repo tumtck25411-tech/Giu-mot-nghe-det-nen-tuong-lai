@@ -134,7 +134,7 @@ export default function Header() {
               <span>JRAI ƠI — “Giữ một nghề, dệt nên tương lai.”</span>
             </span>
             <span className="hidden md:inline-flex items-center gap-2 text-stone-300">
-              <span className="bg-[#B9383A]/60 border border-amber-400/40 text-amber-300 px-2 py-0.5 rounded text-[11px] font-bold">100% QR Độc Bản</span>
+              <span className="bg-[#B9383A]/60 border border-amber-400/40 text-amber-300 px-2 py-0.5 rounded text-xs font-bold">100% QR Độc Bản</span>
             </span>
           </div>
         </div>
@@ -151,11 +151,11 @@ export default function Header() {
               <div>
                 <div className="font-serif font-black text-xl sm:text-2xl tracking-wider text-[#FFFDF9] group-hover:text-[#F59E0B] transition-colors leading-none flex items-center gap-2">
                   <span>DỆT NÊN TƯƠNG LAI</span>
-                  <span className="text-[10px] font-sans font-bold uppercase px-2 py-0.5 rounded bg-[#8B2522] text-[#FDE68A] tracking-normal border border-amber-400/40">
+                  <span className="text-xs font-sans font-bold uppercase px-2 py-0.5 rounded bg-[#8B2522] text-[#FDE68A] tracking-normal border border-amber-400/40">
                     JRAI ƠI
                   </span>
                 </div>
-                <div className="text-[10px] sm:text-[11px] tracking-widest text-[#E58A1F] uppercase font-bold mt-1">
+                <div className="text-xs sm:text-xs tracking-widest text-[#E58A1F] uppercase font-bold mt-1">
                   DI SẢN THỔ CẨM JRAI • UEL - ĐHQG-HCM
                 </div>
               </div>
@@ -232,7 +232,7 @@ export default function Header() {
                 <ShoppingBag className="w-4 h-4 text-[#FDE68A] group-hover:scale-110 transition-transform" />
                 <span className="hidden sm:inline text-xs font-bold text-amber-50">Giỏ hàng</span>
                 {cartCount > 0 && (
-                  <span className="inline-flex items-center justify-center min-w-[20px] h-5 px-1.5 text-[11px] font-black rounded-full bg-[#E58A1F] text-stone-950 shadow">
+                  <span className="inline-flex items-center justify-center min-w-[20px] h-5 px-1.5 text-xs font-black rounded-full bg-[#E58A1F] text-stone-950 shadow">
                     {cartCount}
                   </span>
                 )}
@@ -252,11 +252,11 @@ export default function Header() {
 
         {/* Mobile Navigation Drawer */}
         {mobileMenuOpen && (
-          <div className="lg:hidden bg-[#181411] border-b border-amber-900/50 px-4 pt-3 pb-6 space-y-2 animate-in slide-in-from-top duration-200 shadow-2xl">
+          <div className="lg:hidden bg-[#181411] border-b border-amber-900/50 px-4 pt-3 pb-6 space-y-2 animate-in slide-in-from-top duration-200 shadow-sm">
             <div className="p-3 bg-[#2A1E17] rounded-xl border border-amber-800/40 mb-3 flex items-center justify-between">
               <div>
                 <p className="text-xs text-amber-200 font-bold">JRAI ƠI — Thổ cẩm Gia Lai</p>
-                <p className="text-[11px] text-stone-400">“Giữ một nghề, dệt nên tương lai.”</p>
+                <p className="text-xs text-stone-400">“Giữ một nghề, dệt nên tương lai.”</p>
               </div>
               <Link
                 href="/cart"
@@ -342,7 +342,7 @@ export default function Header() {
       {/* Global Realtime Search Modal */}
       {searchOpen && (
         <div className="fixed inset-0 z-50 flex items-start justify-center pt-16 sm:pt-24 px-4 bg-black/75 backdrop-blur-sm animate-in fade-in duration-200">
-          <div className="w-full max-w-2xl bg-[#1C1714] border border-amber-900/50 rounded-2xl shadow-2xl overflow-hidden text-stone-200">
+          <div className="w-full max-w-2xl bg-[#1C1714] border border-amber-900/50 rounded-2xl shadow-sm overflow-hidden text-stone-200">
             {/* Search Input Bar */}
             <form onSubmit={handleSearchSubmit} className="relative border-b border-stone-800 p-4 flex items-center gap-3">
               <Search className="w-5 h-5 text-amber-500 shrink-0" />
@@ -408,7 +408,7 @@ export default function Header() {
                         <button
                           type="button"
                           onClick={handleSearchSubmit}
-                          className="hover:underline flex items-center gap-1 text-[11px]"
+                          className="hover:underline flex items-center gap-1 text-xs"
                         >
                           Xem tất cả <ArrowRight className="w-3 h-3" />
                         </button>
@@ -434,7 +434,7 @@ export default function Header() {
                                 <span className="text-xs font-bold text-amber-500">
                                   {p.price.toLocaleString('vi-VN')}₫
                                 </span>
-                                <span className="text-[10px] px-1.5 py-0.2 rounded bg-stone-800 text-stone-400">
+                                <span className="text-xs px-1.5 py-0.2 rounded bg-stone-800 text-stone-400">
                                   {p.product_code}
                                 </span>
                               </div>
@@ -465,7 +465,7 @@ export default function Header() {
                             />
                             <div>
                               <p className="text-xs font-bold text-white">{a.name}</p>
-                              <p className="text-[11px] text-stone-400">{a.village}</p>
+                              <p className="text-xs text-stone-400">{a.village}</p>
                             </div>
                           </Link>
                         ))}
@@ -493,7 +493,7 @@ export default function Header() {
                             />
                             <div>
                               <p className="text-xs font-bold text-white">{m.name}</p>
-                              <p className="text-[11px] text-amber-500/80">{m.motif_code}</p>
+                              <p className="text-xs text-amber-500/80">{m.motif_code}</p>
                             </div>
                           </Link>
                         ))}

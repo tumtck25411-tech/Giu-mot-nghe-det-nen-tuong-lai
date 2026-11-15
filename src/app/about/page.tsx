@@ -118,7 +118,7 @@ export default function AboutPage() {
   return (
     <div className="w-full max-w-[1680px] mx-auto px-4 sm:px-8 lg:px-12 py-10 space-y-20">
       {/* 1. HERO BANNER: KẾ THỪA CÂU CHUYỆN KHỞI NGUỒN */}
-      <section className="bg-gradient-to-r from-[#231C18] via-[#1E1713] to-[#231C18] text-white p-8 sm:p-14 rounded-3xl border border-amber-900/40 relative overflow-hidden shadow-2xl">
+      <section className="bg-gradient-to-r from-[#231C18] via-[#1E1713] to-[#231C18] text-white p-8 sm:p-14 rounded-xl border border-amber-900/40 relative overflow-hidden shadow-sm">
         <div
           className="absolute inset-0 bg-cover bg-center opacity-25 mix-blend-luminosity"
           style={{ backgroundImage: `url('/images/background/image6.jpg')` }}
@@ -190,7 +190,7 @@ export default function AboutPage() {
 
         {/* Fieldwork Photo */}
         <div className="relative">
-          <div className="rounded-3xl overflow-hidden border-2 border-amber-500/30 shadow-2xl aspect-[4/3]">
+          <div className="rounded-xl overflow-hidden border-2 border-amber-500/30 shadow-sm aspect-[4/3]">
             <img
               src="/images/background/image6.jpg"
               alt="Sinh viên UEL và nghệ nhân gìn giữ nghề dệt tại Ia Mơ Nông"
@@ -198,7 +198,7 @@ export default function AboutPage() {
             />
           </div>
           <div className="absolute -bottom-5 -right-3 bg-[#1C1714] border border-amber-500/40 p-4 rounded-2xl shadow-xl max-w-xs text-xs text-stone-300">
-            <span className="text-[10px] font-extrabold uppercase text-[#E58A1F] block mb-1">
+            <span className="text-xs font-extrabold uppercase text-[#E58A1F] block mb-1">
               ĐỊA BÀN THÍ ĐIỂM
             </span>
             <p className="font-serif font-bold text-white text-xs sm:text-sm">
@@ -306,7 +306,7 @@ export default function AboutPage() {
       </section>
 
       {/* 4. CỐ VẤN KHOA HỌC & ĐỘI NGŨ SÁNG LẬP */}
-      <section className="space-y-12 bg-gradient-to-b from-[#1E1713] to-[#14110F] p-8 sm:p-12 rounded-3xl border border-amber-900/40 shadow-2xl">
+      <section className="space-y-12 bg-gradient-to-b from-[#1E1713] to-[#14110F] p-8 sm:p-12 rounded-xl border border-amber-900/40 shadow-sm">
         <div className="text-center max-w-2xl mx-auto space-y-2">
           <span className="text-xs font-bold uppercase tracking-widest text-[#E58A1F] bg-[#231C18] px-3.5 py-1 rounded-full border border-amber-900/40 inline-block">
             CỐ VẤN KHOA HỌC & ĐỘI NGŨ DỰ ÁN
@@ -384,7 +384,7 @@ export default function AboutPage() {
 
       {/* 5. 5 CAM KẾT VÀNG & ĐỊA BÀN TRIỂN KHAI */}
       <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="bg-[#231C18] p-8 rounded-3xl border border-amber-900/40 space-y-5">
+        <div className="bg-[#231C18] p-8 rounded-xl border border-amber-900/40 space-y-5">
           <div className="flex items-center gap-2">
             <ShieldCheck className="w-6 h-6 text-amber-400" />
             <h3 className="text-xl font-serif font-bold text-white">5 Cam Kết Vàng Của JRAI ƠI</h3>
@@ -423,7 +423,7 @@ export default function AboutPage() {
           </ul>
         </div>
 
-        <div className="bg-[#231C18] p-8 rounded-3xl border border-amber-900/40 space-y-5">
+        <div className="bg-[#231C18] p-8 rounded-xl border border-amber-900/40 space-y-5">
           <div className="flex items-center gap-2">
             <MapPin className="w-6 h-6 text-amber-400" />
             <h3 className="text-xl font-serif font-bold text-white">Địa Bàn Triển Khai Thực Địa</h3>

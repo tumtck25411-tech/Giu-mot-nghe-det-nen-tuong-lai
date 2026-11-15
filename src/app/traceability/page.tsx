@@ -222,7 +222,7 @@ function TraceabilityContent() {
   return (
     <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-8 lg:px-12 py-10 space-y-10">
       {/* Hero Header With Dynamic Animated Text */}
-      <div className="bg-gradient-to-r from-[#231C18] via-[#1E1713] to-[#231C18] text-white p-8 sm:p-14 rounded-3xl border border-amber-900/50 relative overflow-hidden shadow-2xl text-center">
+      <div className="bg-gradient-to-r from-[#231C18] via-[#1E1713] to-[#231C18] text-white p-8 sm:p-14 rounded-xl border border-amber-900/50 relative overflow-hidden shadow-sm text-center">
         {/* Decorative background glows */}
         <div className="absolute -top-24 -left-24 w-72 h-72 bg-[#B9383A]/20 rounded-full blur-3xl pointer-events-none animate-pulse" />
         <div className="absolute -bottom-24 -right-24 w-72 h-72 bg-amber-500/15 rounded-full blur-3xl pointer-events-none animate-pulse" style={{ animationDelay: '1s' }} />
@@ -250,7 +250,7 @@ function TraceabilityContent() {
       </div>
 
       {/* SEARCH CARD */}
-      <div className="bg-[#1C1714] p-6 sm:p-8 rounded-3xl border border-amber-900/40 shadow-xl space-y-6">
+      <div className="bg-[#1C1714] p-6 sm:p-8 rounded-xl border border-amber-900/40 shadow-xl space-y-6">
         <div className="text-center max-w-xl mx-auto space-y-1">
           <h2 className="text-lg font-serif font-bold text-white">
             Nhập mã tem sản phẩm hoặc quét mã QR
@@ -294,7 +294,7 @@ function TraceabilityContent() {
 
         {/* Camera Live Stream Drawer with Laser Scanner */}
         {cameraActive && (
-          <div className="max-w-md mx-auto p-5 bg-stone-950 rounded-2xl border-2 border-amber-500/60 text-center space-y-4 shadow-2xl relative">
+          <div className="max-w-md mx-auto p-5 bg-stone-950 rounded-2xl border-2 border-amber-500/60 text-center space-y-4 shadow-sm relative">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <span className="w-3 h-3 rounded-full bg-red-500 animate-ping" />
@@ -330,33 +330,33 @@ function TraceabilityContent() {
               <div className="absolute inset-x-4 top-0 h-1 bg-gradient-to-r from-transparent via-red-500 to-transparent shadow-[0_0_15px_#EF4444] animate-laser-scan pointer-events-none" />
 
               {/* Scanning status pill */}
-              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-stone-900/90 backdrop-blur-sm text-amber-300 text-[11px] px-3.5 py-1 rounded-full border border-amber-500/40 pointer-events-none whitespace-nowrap shadow-lg">
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-stone-900/90 backdrop-blur-sm text-amber-300 text-xs px-3.5 py-1 rounded-full border border-amber-500/40 pointer-events-none whitespace-nowrap shadow-lg">
                 Đang quét mã QR... Hướng camera vào tem
               </div>
             </div>
 
             {/* Quick Testing Triggers for Smooth Demo */}
             <div className="space-y-1.5 pt-1 text-left bg-stone-900/60 p-3 rounded-xl border border-stone-800">
-              <p className="text-[11px] text-stone-400 font-medium">Bấm nhanh để quét thử mẫu:</p>
+              <p className="text-xs text-stone-400 font-medium">Bấm nhanh để quét thử mẫu:</p>
               <div className="flex flex-wrap gap-1.5">
                 <button
                   type="button"
                   onClick={() => simulateScan('V001')}
-                  className="text-[11px] font-mono bg-[#8B2522] hover:bg-[#B9383A] text-amber-200 px-2.5 py-1 rounded-lg border border-amber-500/40 transition font-bold"
+                  className="text-xs font-mono bg-[#8B2522] hover:bg-[#B9383A] text-amber-200 px-2.5 py-1 rounded-lg border border-amber-500/40 transition font-bold"
                 >
                   ⚡ Quét V001 (Váy)
                 </button>
                 <button
                   type="button"
                   onClick={() => simulateScan('K001')}
-                  className="text-[11px] font-mono bg-stone-800 hover:bg-stone-700 text-stone-200 px-2.5 py-1 rounded-lg border border-stone-700 transition font-bold"
+                  className="text-xs font-mono bg-stone-800 hover:bg-stone-700 text-stone-200 px-2.5 py-1 rounded-lg border border-stone-700 transition font-bold"
                 >
                   ⚡ Quét K001 (Khăn)
                 </button>
                 <button
                   type="button"
                   onClick={() => simulateScan('C001')}
-                  className="text-[11px] font-mono bg-stone-800 hover:bg-stone-700 text-stone-200 px-2.5 py-1 rounded-lg border border-stone-700 transition font-bold"
+                  className="text-xs font-mono bg-stone-800 hover:bg-stone-700 text-stone-200 px-2.5 py-1 rounded-lg border border-stone-700 transition font-bold"
                 >
                   ⚡ Quét C001 (Túi)
                 </button>
@@ -369,7 +369,7 @@ function TraceabilityContent() {
         {cameraError && (
           <div className="max-w-md mx-auto p-4 bg-red-950/60 border border-red-800/80 rounded-2xl text-center space-y-2">
             <p className="text-xs text-red-300">{cameraError}</p>
-            <p className="text-[11px] text-stone-400">Bạn có thể chọn nhanh các mã mẫu bên dưới để xem kết quả tức thì.</p>
+            <p className="text-xs text-stone-400">Bạn có thể chọn nhanh các mã mẫu bên dưới để xem kết quả tức thì.</p>
           </div>
         )}
 
@@ -383,7 +383,7 @@ function TraceabilityContent() {
 
         {/* Sample Code Pills */}
         <div className="pt-2 border-t border-stone-800 text-center space-y-2">
-          <span className="text-[11px] font-bold text-amber-500 uppercase tracking-wider block">
+          <span className="text-xs font-bold text-amber-500 uppercase tracking-wider block">
             Mã mẫu thử nghiệm:
           </span>
           <div className="flex flex-wrap justify-center gap-2">
@@ -410,7 +410,7 @@ function TraceabilityContent() {
 
       {/* RESULT SECTION: DIGITAL PRODUCT PASSPORT */}
       {notFound && (
-        <div className="bg-[#1C1714] p-12 rounded-3xl border border-red-900/40 text-center space-y-4 shadow-xl">
+        <div className="bg-[#1C1714] p-12 rounded-xl border border-red-900/40 text-center space-y-4 shadow-xl">
           <div className="w-14 h-14 rounded-full bg-red-950/60 border border-red-800 flex items-center justify-center mx-auto text-red-400">
             <AlertCircle className="w-7 h-7" />
           </div>
@@ -424,7 +424,7 @@ function TraceabilityContent() {
       )}
 
       {!product && !notFound && (
-        <div className="bg-[#1C1714] p-12 rounded-3xl border border-amber-900/30 text-center space-y-3 shadow-xl">
+        <div className="bg-[#1C1714] p-12 rounded-xl border border-amber-900/30 text-center space-y-3 shadow-xl">
           <div className="w-16 h-16 rounded-full bg-[#231C18] border border-amber-900/40 flex items-center justify-center mx-auto text-amber-400 text-2xl shadow-inner">
             📱
           </div>
@@ -438,7 +438,7 @@ function TraceabilityContent() {
       {product && (
         <div className="space-y-8 animate-in fade-in duration-300">
           {/* Passport Banner Card */}
-          <div className="bg-[#1C1714] rounded-3xl border border-amber-500/50 p-6 sm:p-10 shadow-2xl relative overflow-hidden">
+          <div className="bg-[#1C1714] rounded-xl border border-amber-500/50 p-6 sm:p-10 shadow-sm relative overflow-hidden">
             {/* Top Seal */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-stone-800 pb-6">
               <div className="flex items-center gap-3">
@@ -450,7 +450,7 @@ function TraceabilityContent() {
                     <span className="text-xs font-mono font-bold text-amber-400">
                       DIGITAL PRODUCT PASSPORT
                     </span>
-                    <span className="text-[10px] bg-emerald-950 text-emerald-400 px-2 py-0.5 rounded-full font-bold border border-emerald-800/40">
+                    <span className="text-xs bg-emerald-950 text-emerald-400 px-2 py-0.5 rounded-full font-bold border border-emerald-800/40">
                       ✓ ĐÃ XÁC THỰC NGUỒN GỐC
                     </span>
                   </div>
@@ -461,7 +461,7 @@ function TraceabilityContent() {
               </div>
 
               <div className="text-left sm:text-right">
-                <span className="text-[11px] text-stone-400 block font-mono">MÃ ĐỊNH DANH ĐỘC BẢN:</span>
+                <span className="text-xs text-stone-400 block font-mono">MÃ ĐỊNH DANH ĐỘC BẢN:</span>
                 <span className="text-lg font-black text-amber-400 font-mono tracking-wider">
                   {product.product_code}
                 </span>
@@ -481,7 +481,7 @@ function TraceabilityContent() {
                 </div>
 
                 <div className="p-4 bg-[#231C18] rounded-2xl border border-amber-900/40 text-center space-y-2">
-                  <span className="text-[10px] text-amber-500 uppercase font-bold tracking-wider block">
+                  <span className="text-xs text-amber-500 uppercase font-bold tracking-wider block">
                     Định danh số cho mác sản phẩm:
                   </span>
                   <div className="flex justify-center">
@@ -493,7 +493,7 @@ function TraceabilityContent() {
                       className="w-32 h-32 rounded-xl border border-stone-700 bg-white p-2 shadow-sm"
                     />
                   </div>
-                  <p className="text-[11px] text-stone-400 font-mono">{product.product_code}</p>
+                  <p className="text-xs text-stone-400 font-mono">{product.product_code}</p>
                 </div>
               </div>
 
@@ -609,7 +609,7 @@ function TraceabilityContent() {
           </div>
 
           {/* PRINT & DOWNLOAD QR TOOLS */}
-          <div className="bg-[#1C1714] p-8 rounded-3xl border border-amber-900/40 shadow-xl space-y-4">
+          <div className="bg-[#1C1714] p-8 rounded-xl border border-amber-900/40 shadow-xl space-y-4">
             <h3 className="text-lg font-serif font-bold text-white">
               Công Cụ Tải & In Thẻ Tem Mã QR
             </h3>

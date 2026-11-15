@@ -315,11 +315,11 @@ export default function CustomOrderPage() {
     <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-8 lg:px-12 py-10 space-y-10">
       {/* Toast Notification */}
       {addedNotice && (
-        <div className="fixed bottom-6 right-6 z-50 bg-[#B9383A] text-white px-6 py-4 rounded-2xl shadow-2xl border border-amber-400/50 flex items-center gap-3 animate-in slide-in-from-bottom duration-300">
+        <div className="fixed bottom-6 right-6 z-50 bg-[#B9383A] text-white px-6 py-4 rounded-2xl shadow-sm border border-amber-400/50 flex items-center gap-3 animate-in slide-in-from-bottom duration-300">
           <CheckCircle2 className="w-6 h-6 text-amber-300 shrink-0" />
           <div>
             <div className="text-xs font-bold">{addedNotice}</div>
-            <Link href="/cart" className="text-[11px] underline font-bold text-amber-200 hover:text-white">
+            <Link href="/cart" className="text-xs underline font-bold text-amber-200 hover:text-white">
               Xem giỏ hàng & thanh toán &rarr;
             </Link>
           </div>
@@ -327,7 +327,7 @@ export default function CustomOrderPage() {
       )}
 
       {/* 1. HERO BANNER WITH DYNAMIC SHIMMER */}
-      <div className="bg-gradient-to-r from-[#231C18] via-[#1E1713] to-[#231C18] text-white p-8 sm:p-12 rounded-3xl border border-amber-900/50 relative overflow-hidden shadow-2xl text-center">
+      <div className="bg-gradient-to-r from-[#231C18] via-[#1E1713] to-[#231C18] text-white p-8 sm:p-12 rounded-xl border border-amber-900/50 relative overflow-hidden shadow-sm text-center">
         <div className="absolute -top-20 -left-20 w-64 h-64 bg-[#B9383A]/20 rounded-full blur-3xl pointer-events-none animate-pulse" />
         <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-amber-500/15 rounded-full blur-3xl pointer-events-none animate-pulse" style={{ animationDelay: '1s' }} />
 
@@ -369,7 +369,7 @@ export default function CustomOrderPage() {
                       : 'bg-[#181411] text-stone-500 hover:text-stone-300'
                   }`}
                 >
-                  <span className="text-[10px] opacity-80">BƯỚC 0{step.num}</span>
+                  <span className="text-xs opacity-80">BƯỚC 0{step.num}</span>
                   <span className="hidden sm:inline text-xs truncate max-w-full">{step.title}</span>
                   <span className="sm:hidden text-xs">{step.num}</span>
                 </button>
@@ -385,7 +385,7 @@ export default function CustomOrderPage() {
         <div className="lg:col-span-7 space-y-6">
           {/* STEP 1: CHỌN LOẠI SẢN PHẨM */}
           {currentStep === 1 && (
-            <div className="bg-[#1C1714] p-6 sm:p-8 rounded-3xl border border-amber-900/40 shadow-xl space-y-6 animate-in fade-in duration-300">
+            <div className="bg-[#1C1714] p-6 sm:p-8 rounded-xl border border-amber-900/40 shadow-xl space-y-6 animate-in fade-in duration-300">
               <div className="flex items-center justify-between border-b border-stone-800 pb-4">
                 <div>
                   <span className="text-xs font-mono font-bold text-amber-500 uppercase tracking-wider">
@@ -421,7 +421,7 @@ export default function CustomOrderPage() {
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center justify-between gap-1">
-                            <span className="text-[10px] font-bold uppercase text-amber-400 bg-amber-950/80 px-2 py-0.5 rounded border border-amber-900/60">
+                            <span className="text-xs font-bold uppercase text-amber-400 bg-amber-950/80 px-2 py-0.5 rounded border border-amber-900/60">
                               {prod.category}
                             </span>
                             {isSelected && (
@@ -431,14 +431,14 @@ export default function CustomOrderPage() {
                           <h3 className="font-serif font-bold text-sm text-white mt-1 line-clamp-1">
                             {prod.name}
                           </h3>
-                          <p className="text-[11px] text-stone-400 line-clamp-2 mt-1">
+                          <p className="text-xs text-stone-400 line-clamp-2 mt-1">
                             {prod.desc}
                           </p>
                         </div>
                       </div>
 
                       <div className="pt-2 border-t border-stone-800/80 flex items-center justify-between text-xs">
-                        <span className="text-stone-400 text-[11px] flex items-center gap-1">
+                        <span className="text-stone-400 text-xs flex items-center gap-1">
                           <Clock className="w-3 h-3 text-amber-400" />
                           <span>{prod.days}</span>
                         </span>
@@ -465,7 +465,7 @@ export default function CustomOrderPage() {
 
           {/* STEP 2: CHỌN MÀU SẮC */}
           {currentStep === 2 && (
-            <div className="bg-[#1C1714] p-6 sm:p-8 rounded-3xl border border-amber-900/40 shadow-xl space-y-6 animate-in fade-in duration-300">
+            <div className="bg-[#1C1714] p-6 sm:p-8 rounded-xl border border-amber-900/40 shadow-xl space-y-6 animate-in fade-in duration-300">
               <div className="flex items-center justify-between border-b border-stone-800 pb-4">
                 <div>
                   <span className="text-xs font-mono font-bold text-amber-500 uppercase tracking-wider">
@@ -499,17 +499,17 @@ export default function CustomOrderPage() {
                           />
                           <div>
                             <h3 className="font-bold text-xs text-white">{col.name}</h3>
-                            <span className="text-[10px] text-amber-300 font-medium">{col.badge}</span>
+                            <span className="text-xs text-amber-300 font-medium">{col.badge}</span>
                           </div>
                         </div>
                         {isSelected && <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />}
                       </div>
 
-                      <p className="text-[11px] text-stone-300 leading-relaxed">{col.origin}</p>
-                      <p className="text-[10px] text-stone-400 italic">“{col.meaning}”</p>
+                      <p className="text-xs text-stone-300 leading-relaxed">{col.origin}</p>
+                      <p className="text-xs text-stone-400 italic">“{col.meaning}”</p>
 
                       <div className="pt-2 border-t border-stone-800/80 flex items-center justify-between text-xs">
-                        <span className="text-stone-400 text-[11px]">Phụ thu nhuộm:</span>
+                        <span className="text-stone-400 text-xs">Phụ thu nhuộm:</span>
                         <span className="font-bold text-amber-400 font-mono">
                           {col.fee === 0 ? 'Miễn phí di sản' : `+${col.fee.toLocaleString('vi-VN')}₫`}
                         </span>
@@ -540,7 +540,7 @@ export default function CustomOrderPage() {
 
           {/* STEP 3: CHỌN HOA VĂN THỔ CẨM */}
           {currentStep === 3 && (
-            <div className="bg-[#1C1714] p-6 sm:p-8 rounded-3xl border border-amber-900/40 shadow-xl space-y-6 animate-in fade-in duration-300">
+            <div className="bg-[#1C1714] p-6 sm:p-8 rounded-xl border border-amber-900/40 shadow-xl space-y-6 animate-in fade-in duration-300">
               <div className="flex items-center justify-between border-b border-stone-800 pb-4">
                 <div>
                   <span className="text-xs font-mono font-bold text-amber-500 uppercase tracking-wider">
@@ -579,17 +579,17 @@ export default function CustomOrderPage() {
                             <h3 className="font-serif font-bold text-sm text-white">{mot.name}</h3>
                             {isSelected && <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />}
                           </div>
-                          <span className="text-[10px] text-amber-400 font-mono block mt-0.5">
+                          <span className="text-xs text-amber-400 font-mono block mt-0.5">
                             {mot.codeName}
                           </span>
-                          <p className="text-[11px] text-stone-300 line-clamp-2 mt-1">
+                          <p className="text-xs text-stone-300 line-clamp-2 mt-1">
                             {mot.meaning}
                           </p>
                         </div>
                       </div>
 
                       <div className="pt-2 border-t border-stone-800/80 flex items-center justify-between text-xs">
-                        <span className="text-stone-400 text-[10px] truncate max-w-[150px]">
+                        <span className="text-stone-400 text-xs truncate max-w-[150px]">
                           {mot.provenance}
                         </span>
                         <span className="font-bold text-amber-400 font-mono">
@@ -636,7 +636,7 @@ export default function CustomOrderPage() {
 
           {/* STEP 4: XEM BẢN DEMO AI & ĐẶT HÀNG */}
           {currentStep === 4 && (
-            <div className="bg-[#1C1714] p-6 sm:p-8 rounded-3xl border border-amber-900/40 shadow-xl space-y-6 animate-in fade-in duration-300">
+            <div className="bg-[#1C1714] p-6 sm:p-8 rounded-xl border border-amber-900/40 shadow-xl space-y-6 animate-in fade-in duration-300">
               <div className="flex items-center justify-between border-b border-stone-800 pb-4">
                 <div>
                   <span className="text-xs font-mono font-bold text-amber-500 uppercase tracking-wider">
@@ -743,14 +743,14 @@ export default function CustomOrderPage() {
 
         {/* RIGHT COLUMN: AI PREVIEW VISUALIZER CARD (5 COLS) */}
         <div className="lg:col-span-5 sticky top-28 space-y-6">
-          <div className="bg-[#1C1714] p-6 rounded-3xl border-2 border-amber-500/50 shadow-2xl relative overflow-hidden">
+          <div className="bg-[#1C1714] p-6 rounded-xl border-2 border-amber-500/50 shadow-sm relative overflow-hidden">
             {/* Visualizer Badge */}
             <div className="flex items-center justify-between mb-4">
-              <div className="inline-flex items-center gap-2 bg-[#8B2522] text-amber-200 text-[11px] font-black px-3 py-1 rounded-full border border-amber-500/40 uppercase tracking-wider">
+              <div className="inline-flex items-center gap-2 bg-[#8B2522] text-amber-200 text-xs font-black px-3 py-1 rounded-full border border-amber-500/40 uppercase tracking-wider">
                 <Sparkles className="w-3.5 h-3.5 text-amber-300 animate-spin" style={{ animationDuration: '6s' }} />
                 <span>BẢN DEMO MÔ PHỎNG AI</span>
               </div>
-              <span className="text-[10px] font-mono text-amber-400/80 bg-stone-900 px-2 py-0.5 rounded border border-stone-800">
+              <span className="text-xs font-mono text-amber-400/80 bg-stone-900 px-2 py-0.5 rounded border border-stone-800">
                 {customSku}
               </span>
             </div>
@@ -786,14 +786,14 @@ export default function CustomOrderPage() {
                   <div className="text-[9px] uppercase tracking-wider text-amber-400 font-bold truncate">
                     Hoa văn dệt
                   </div>
-                  <div className="text-[10px] font-bold text-white truncate">
+                  <div className="text-xs font-bold text-white truncate">
                     {selectedMotif.name}
                   </div>
                 </div>
               </div>
 
               {/* Live Swatch Badge on Top Left */}
-              <div className="absolute top-3 left-3 flex items-center gap-1.5 bg-[#181411]/90 backdrop-blur-md px-2.5 py-1 rounded-full border border-stone-800 text-[10px] text-white">
+              <div className="absolute top-3 left-3 flex items-center gap-1.5 bg-[#181411]/90 backdrop-blur-md px-2.5 py-1 rounded-full border border-stone-800 text-xs text-white">
                 <span
                   className="w-3 h-3 rounded-full border border-white/60"
                   style={{ backgroundColor: selectedColor.code }}
@@ -802,7 +802,7 @@ export default function CustomOrderPage() {
               </div>
 
               {/* Bottom Canvas Caption */}
-              <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white text-[11px] bg-black/60 backdrop-blur-sm px-3 py-1.5 rounded-xl border border-stone-800">
+              <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white text-xs bg-black/60 backdrop-blur-sm px-3 py-1.5 rounded-xl border border-stone-800">
                 <span className="font-medium truncate max-w-[200px]">
                   ✨ Mô phỏng tỷ lệ dệt 100% sợi cửi hông
                 </span>
@@ -844,7 +844,7 @@ export default function CustomOrderPage() {
                   <span className="text-xs text-stone-400 uppercase tracking-wider block font-bold">
                     TỔNG GIÁ TIỀN HOÀN THIỆN:
                   </span>
-                  <span className="text-[10px] text-emerald-400">
+                  <span className="text-xs text-emerald-400">
                     Đã bao gồm tem mã QR & bảo chứng nghệ nhân
                   </span>
                 </div>
@@ -855,12 +855,12 @@ export default function CustomOrderPage() {
             </div>
 
             {/* ARTISAN COMMITMENT BADGE */}
-            <div className="mt-5 p-3.5 bg-[#251D18] rounded-xl border border-amber-900/40 text-[11px] text-stone-300 space-y-1.5">
+            <div className="mt-5 p-3.5 bg-[#251D18] rounded-xl border border-amber-900/40 text-xs text-stone-300 space-y-1.5">
               <div className="flex items-center gap-2 text-amber-300 font-bold">
                 <ShieldCheck className="w-4 h-4 text-amber-400 shrink-0" />
                 <span>Cam kết chuẩn di sản SVTHM 2026:</span>
               </div>
-              <p className="text-[10px] text-stone-400 leading-relaxed">
+              <p className="text-xs text-stone-400 leading-relaxed">
                 Mỗi sản phẩm cá nhân hóa đều được cấp 01 tem mã QR số hóa truy xuất trực tiếp tên nghệ nhân làng nghề, số giờ dệt và chứng thực nguồn gốc bông Kơpăh tự nhiên tại Chư Păh, Gia Lai.
               </p>
             </div>

@@ -83,7 +83,7 @@ export default function AdminDashboardPage() {
         {/* OVERVIEW STATS CARDS */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {/* Revenue */}
-          <div className="bg-[#181411] p-6 rounded-3xl border border-amber-900/40 shadow-xl space-y-2">
+          <div className="bg-[#181411] p-6 rounded-xl border border-amber-900/40 shadow-xl space-y-2">
             <div className="flex items-center justify-between text-amber-500">
               <span className="text-xs font-bold uppercase tracking-wider text-stone-400">
                 Tổng Doanh Thu
@@ -93,11 +93,11 @@ export default function AdminDashboardPage() {
             <div className="text-3xl font-black text-amber-400 font-mono">
               {totalRevenue.toLocaleString('vi-VN')}₫
             </div>
-            <p className="text-[11px] text-stone-500">Từ {orders.length} đơn hàng ghi nhận</p>
+            <p className="text-xs text-stone-500">Từ {orders.length} đơn hàng ghi nhận</p>
           </div>
 
           {/* Orders */}
-          <div className="bg-[#181411] p-6 rounded-3xl border border-amber-900/40 shadow-xl space-y-2">
+          <div className="bg-[#181411] p-6 rounded-xl border border-amber-900/40 shadow-xl space-y-2">
             <div className="flex items-center justify-between text-amber-500">
               <span className="text-xs font-bold uppercase tracking-wider text-stone-400">
                 Đơn Hàng Mới Cần Xử Lý
@@ -107,13 +107,13 @@ export default function AdminDashboardPage() {
             <div className="text-3xl font-black text-white font-mono">
               {pendingOrders.length} <span className="text-base font-normal text-stone-400">/ {orders.length}</span>
             </div>
-            <p className="text-[11px] text-amber-400">
+            <p className="text-xs text-amber-400">
               {shippingOrders.length} đơn đang giao • {deliveredOrders.length} đã giao
             </p>
           </div>
 
           {/* Products & Inventory */}
-          <div className="bg-[#181411] p-6 rounded-3xl border border-amber-900/40 shadow-xl space-y-2">
+          <div className="bg-[#181411] p-6 rounded-xl border border-amber-900/40 shadow-xl space-y-2">
             <div className="flex items-center justify-between text-amber-500">
               <span className="text-xs font-bold uppercase tracking-wider text-stone-400">
                 Tổng Sản Phẩm Kho
@@ -121,13 +121,13 @@ export default function AdminDashboardPage() {
               <Package className="w-5 h-5" />
             </div>
             <div className="text-3xl font-black text-white font-mono">{products.length}</div>
-            <p className="text-[11px] text-emerald-400">
+            <p className="text-xs text-emerald-400">
               {inStockCount} còn hàng • {outOfStockCount} hết hàng
             </p>
           </div>
 
           {/* Motifs & Artisans */}
-          <div className="bg-[#181411] p-6 rounded-3xl border border-amber-900/40 shadow-xl space-y-2">
+          <div className="bg-[#181411] p-6 rounded-xl border border-amber-900/40 shadow-xl space-y-2">
             <div className="flex items-center justify-between text-amber-500">
               <span className="text-xs font-bold uppercase tracking-wider text-stone-400">
                 Di Sản Số Hóa
@@ -137,7 +137,7 @@ export default function AdminDashboardPage() {
             <div className="text-3xl font-black text-white font-mono">
               {motifs.length} <span className="text-sm font-normal text-stone-400">hoa văn</span>
             </div>
-            <p className="text-[11px] text-stone-400">{artisans.length} nghệ nhân giữ nghề</p>
+            <p className="text-xs text-stone-400">{artisans.length} nghệ nhân giữ nghề</p>
           </div>
         </div>
 
@@ -191,7 +191,7 @@ export default function AdminDashboardPage() {
         {/* 2-Column: Recent Orders & Best Selling Products */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Recent Orders (7 Cols) */}
-          <div className="lg:col-span-7 bg-[#181411] p-6 rounded-3xl border border-stone-800 shadow-xl space-y-4">
+          <div className="lg:col-span-7 bg-[#181411] p-6 rounded-xl border border-stone-800 shadow-xl space-y-4">
             <div className="flex items-center justify-between border-b border-stone-800 pb-3">
               <h3 className="font-serif font-bold text-base text-white flex items-center gap-2">
                 <ShoppingBag className="w-4 h-4 text-amber-400" />
@@ -211,19 +211,19 @@ export default function AdminDashboardPage() {
                   <div>
                     <div className="flex items-center gap-2">
                       <span className="font-mono font-bold text-amber-400">{ord.code}</span>
-                      <span className="text-[10px] bg-stone-900 text-stone-400 px-1.5 py-0.5 rounded border border-stone-800">
+                      <span className="text-xs bg-stone-900 text-stone-400 px-1.5 py-0.5 rounded border border-stone-800">
                         {ord.items.length} món
                       </span>
                     </div>
                     <p className="text-stone-300 font-bold mt-0.5">{ord.customerName}</p>
-                    <p className="text-[10px] text-stone-500 font-mono">{ord.customerPhone}</p>
+                    <p className="text-xs text-stone-500 font-mono">{ord.customerPhone}</p>
                   </div>
 
                   <div className="text-right space-y-1">
                     <p className="font-mono font-black text-white">
                       {ord.totalAmount.toLocaleString('vi-VN')}₫
                     </p>
-                    <span className="inline-block px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-950/80 text-amber-300 border border-amber-800/40">
+                    <span className="inline-block px-2 py-0.5 rounded-full text-xs font-bold bg-amber-950/80 text-amber-300 border border-amber-800/40">
                       {ord.status}
                     </span>
                   </div>
@@ -233,7 +233,7 @@ export default function AdminDashboardPage() {
           </div>
 
           {/* Featured/Best Seller Products (5 Cols) */}
-          <div className="lg:col-span-5 bg-[#181411] p-6 rounded-3xl border border-stone-800 shadow-xl space-y-4">
+          <div className="lg:col-span-5 bg-[#181411] p-6 rounded-xl border border-stone-800 shadow-xl space-y-4">
             <div className="flex items-center justify-between border-b border-stone-800 pb-3">
               <h3 className="font-serif font-bold text-base text-white flex items-center gap-2">
                 <TrendingUp className="w-4 h-4 text-emerald-400" />
@@ -256,7 +256,7 @@ export default function AdminDashboardPage() {
                     className="w-12 h-12 object-cover rounded-xl border border-stone-800 bg-stone-900 shrink-0"
                   />
                   <div className="flex-1 min-w-0">
-                    <span className="text-[10px] font-mono text-amber-500">{p.product_code}</span>
+                    <span className="text-xs font-mono text-amber-500">{p.product_code}</span>
                     <p className="text-xs font-bold text-white truncate">{p.name}</p>
                     <p className="text-xs text-amber-400 font-mono font-bold">
                       {p.price.toLocaleString('vi-VN')}₫

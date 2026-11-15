@@ -85,7 +85,7 @@ export default function OrderSuccessPage() {
       </div>
 
       {/* Success Hero Header */}
-      <div className="bg-[#1C1714] p-8 sm:p-12 rounded-3xl border border-emerald-500/50 shadow-2xl text-center space-y-3 relative overflow-hidden">
+      <div className="bg-[#1C1714] p-8 sm:p-12 rounded-xl border border-emerald-500/50 shadow-sm text-center space-y-3 relative overflow-hidden">
         <div className="w-16 h-16 rounded-full bg-emerald-950 border-2 border-emerald-500 text-emerald-400 flex items-center justify-center mx-auto shadow-lg">
           <CheckCircle2 className="w-9 h-9" />
         </div>
@@ -107,7 +107,7 @@ export default function OrderSuccessPage() {
 
       {/* Payment Instruction (if Banking) */}
       {order.paymentMethod === 'banking' && (
-        <div className="bg-[#231C18] p-6 sm:p-8 rounded-3xl border border-amber-500/50 shadow-xl space-y-6">
+        <div className="bg-[#231C18] p-6 sm:p-8 rounded-xl border border-amber-500/50 shadow-xl space-y-6">
           <div className="flex items-center gap-3 border-b border-stone-800 pb-3">
             <QrCode className="w-6 h-6 text-amber-400" />
             <div>
@@ -128,7 +128,7 @@ export default function OrderSuccessPage() {
                   alt="VietQR MB Bank"
                   className="w-full h-auto rounded-lg"
                 />
-                <p className="text-[10px] text-stone-600 text-center font-mono mt-1 font-bold">
+                <p className="text-xs text-stone-600 text-center font-mono mt-1 font-bold">
                   Quét bằng mọi ứng dụng ngân hàng
                 </p>
               </div>
@@ -165,7 +165,7 @@ export default function OrderSuccessPage() {
       {/* Order Details & Customer Info Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Customer & Shipping */}
-        <div className="bg-[#1C1714] p-6 rounded-3xl border border-amber-900/40 space-y-3 text-xs shadow-lg">
+        <div className="bg-[#1C1714] p-6 rounded-xl border border-amber-900/40 space-y-3 text-xs shadow-lg">
           <h3 className="font-serif font-bold text-sm text-white flex items-center gap-2 border-b border-stone-800 pb-2">
             <MapPin className="w-4 h-4 text-amber-500" />
             <span>Địa Chỉ Nhận Hàng</span>
@@ -196,7 +196,7 @@ export default function OrderSuccessPage() {
         </div>
 
         {/* Items Summary */}
-        <div className="bg-[#1C1714] p-6 rounded-3xl border border-amber-900/40 space-y-3 text-xs shadow-lg">
+        <div className="bg-[#1C1714] p-6 rounded-xl border border-amber-900/40 space-y-3 text-xs shadow-lg">
           <h3 className="font-serif font-bold text-sm text-white flex items-center gap-2 border-b border-stone-800 pb-2">
             <Package className="w-4 h-4 text-amber-500" />
             <span>Sản Phẩm Đã Đặt ({order.items.length})</span>

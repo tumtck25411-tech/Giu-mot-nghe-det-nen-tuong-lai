@@ -8,7 +8,7 @@ export default function AboutBrocadePage() {
   return (
     <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-8 lg:px-12 py-10 space-y-12">
       {/* Header Banner */}
-      <div className="bg-stone-900 text-white p-8 sm:p-12 rounded-3xl border border-amber-900/40 relative overflow-hidden">
+      <div className="bg-stone-900 text-white p-8 sm:p-12 rounded-xl border border-amber-900/40 relative overflow-hidden">
         <div className="max-w-3xl space-y-4 relative z-10">
           <div className="inline-flex items-center gap-2 bg-amber-950 text-amber-300 text-xs font-bold px-3.5 py-1 rounded-md border border-amber-800/40 uppercase tracking-wider">
             <BookOpen className="w-3.5 h-3.5" />
@@ -24,7 +24,7 @@ export default function AboutBrocadePage() {
       </div>
 
       {/* Cultural Preservation Pledge Notice (Strict user prompt requirement!) */}
-      <div className="bg-amber-900/10 border-2 border-amber-800/40 rounded-3xl p-6 sm:p-8 space-y-3">
+      <div className="bg-amber-900/10 border-2 border-amber-800/40 rounded-xl p-6 sm:p-8 space-y-3">
         <div className="flex items-center gap-3 text-amber-900 font-bold text-base">
           <ShieldAlert className="w-6 h-6 text-amber-800 shrink-0" />
           <span>Nguyên Tắc Minh Bạch Nguồn Gốc Văn Hóa</span>
@@ -36,7 +36,7 @@ export default function AboutBrocadePage() {
 
       {/* Grid of Values */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white p-8 rounded-3xl border border-slate-200 space-y-3 shadow-xs">
+        <div className="bg-white p-8 rounded-xl border border-slate-200 space-y-3 shadow-xs">
           <div className="w-12 h-12 rounded-2xl bg-amber-100 text-amber-900 font-bold flex items-center justify-center">
             <Heart className="w-6 h-6" />
           </div>
@@ -46,7 +46,7 @@ export default function AboutBrocadePage() {
           </p>
         </div>
 
-        <div className="bg-white p-8 rounded-3xl border border-slate-200 space-y-3 shadow-xs">
+        <div className="bg-white p-8 rounded-xl border border-slate-200 space-y-3 shadow-xs">
           <div className="w-12 h-12 rounded-2xl bg-amber-100 text-amber-900 font-bold flex items-center justify-center">
             <Clock className="w-6 h-6" />
           </div>
@@ -56,7 +56,7 @@ export default function AboutBrocadePage() {
           </p>
         </div>
 
-        <div className="bg-white p-8 rounded-3xl border border-slate-200 space-y-3 shadow-xs">
+        <div className="bg-white p-8 rounded-xl border border-slate-200 space-y-3 shadow-xs">
           <div className="w-12 h-12 rounded-2xl bg-amber-100 text-amber-900 font-bold flex items-center justify-center">
             <Award className="w-6 h-6" />
           </div>
@@ -68,7 +68,7 @@ export default function AboutBrocadePage() {
       </div>
 
       {/* CTA Links */}
-      <div className="bg-stone-900 text-white rounded-3xl p-8 sm:p-10 flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div className="bg-stone-900 text-white rounded-xl p-8 sm:p-10 flex flex-col sm:flex-row items-center justify-between gap-6">
         <div>
           <h3 className="text-2xl font-serif font-bold text-amber-100">
             Sẵn Sàng Khám Phá Kho Di Sản?

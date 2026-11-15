@@ -45,7 +45,7 @@ export default function MotifsPage() {
   return (
     <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-8 lg:px-12 py-10 space-y-8">
       {/* Header Banner */}
-      <div className="bg-gradient-to-r from-[#231C18] via-[#1E1713] to-[#231C18] text-white p-8 sm:p-10 rounded-3xl border border-amber-900/40 relative overflow-hidden shadow-2xl">
+      <div className="bg-gradient-to-r from-[#231C18] via-[#1E1713] to-[#231C18] text-white p-8 sm:p-10 rounded-xl border border-amber-900/40 relative overflow-hidden shadow-sm">
         <div className="max-w-3xl space-y-3 relative z-10">
           <div className="inline-flex items-center gap-2 bg-[#8B2522] text-amber-200 text-xs font-bold px-3.5 py-1 rounded-full border border-amber-500/40 uppercase tracking-wider">
             <Grid className="w-3.5 h-3.5" />
@@ -61,7 +61,7 @@ export default function MotifsPage() {
       </div>
 
       {/* SEARCH BAR & THEME FILTER */}
-      <div className="bg-[#1C1714] p-6 rounded-3xl border border-amber-900/40 shadow-xl space-y-4">
+      <div className="bg-[#1C1714] p-6 rounded-xl border border-amber-900/40 shadow-xl space-y-4">
         <div className="flex flex-col sm:flex-row gap-4">
           <div className="flex-1 relative">
             <Search className="w-4 h-4 absolute left-3.5 top-3.5 text-stone-500" />
@@ -137,14 +137,14 @@ export default function MotifsPage() {
                   <div className="absolute top-3 left-3 bg-[#B9383A] text-white font-mono text-xs font-bold px-2.5 py-1 rounded-lg shadow">
                     {motif.motif_code}
                   </div>
-                  <div className="absolute bottom-3 right-3 bg-stone-900/90 text-amber-300 text-[10px] font-bold px-2.5 py-1 rounded-md border border-amber-800/40">
+                  <div className="absolute bottom-3 right-3 bg-stone-900/90 text-amber-300 text-xs font-bold px-2.5 py-1 rounded-md border border-amber-800/40">
                     {usedProducts.length} Sản phẩm ứng dụng
                   </div>
                 </div>
 
                 <div className="p-5 space-y-3">
                   <div>
-                    <span className="text-[10px] font-bold text-amber-500 uppercase tracking-wider block">
+                    <span className="text-xs font-bold text-amber-500 uppercase tracking-wider block">
                       {motif.theme_name} {motif.name_jrai && `• ${motif.name_jrai}`}
                     </span>
                     <h3 className="font-serif font-bold text-white text-base group-hover:text-amber-400 transition-colors mt-0.5 line-clamp-1">
@@ -156,7 +156,7 @@ export default function MotifsPage() {
                     {motif.meaning || motif.philosophy}
                   </p>
 
-                  <div className="space-y-1 text-[11px] text-stone-400 pt-2 border-t border-stone-800/80">
+                  <div className="space-y-1 text-xs text-stone-400 pt-2 border-t border-stone-800/80">
                     <p>
                       <strong className="text-stone-300">Kỹ thuật:</strong> {motif.technique}
                     </p>
@@ -177,7 +177,7 @@ export default function MotifsPage() {
                   <span>Xem hồ sơ giải mã</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
-                <span className="text-[10px] text-stone-500 font-mono">Làng Kép</span>
+                <span className="text-xs text-stone-500 font-mono">Làng Kép</span>
               </div>
             </div>
           );

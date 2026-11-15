@@ -116,37 +116,37 @@ export default function AdminOrdersPage() {
           {/* Quick Metrics */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <div className="p-5 bg-[#181411] rounded-2xl border border-amber-900/40 space-y-1">
-              <span className="text-[10px] font-bold text-stone-400 uppercase tracking-wider block">
+              <span className="text-xs font-bold text-stone-400 uppercase tracking-wider block">
                 Doanh Thu Hiệu Lực
               </span>
               <div className="text-xl font-black text-amber-400 font-mono">
                 {totalRevenue.toLocaleString('vi-VN')}₫
               </div>
-              <p className="text-[11px] text-stone-500">Từ {orders.length} đơn hàng ghi nhận</p>
+              <p className="text-xs text-stone-500">Từ {orders.length} đơn hàng ghi nhận</p>
             </div>
 
             <div className="p-5 bg-[#181411] rounded-2xl border border-amber-900/40 space-y-1">
-              <span className="text-[10px] font-bold text-amber-400 uppercase tracking-wider block">
+              <span className="text-xs font-bold text-amber-400 uppercase tracking-wider block">
                 Chờ Xác Nhận
               </span>
               <div className="text-xl font-black text-white font-mono">{pendingCount} đơn</div>
-              <p className="text-[11px] text-stone-500">Cần liên hệ khách hàng xác nhận</p>
+              <p className="text-xs text-stone-500">Cần liên hệ khách hàng xác nhận</p>
             </div>
 
             <div className="p-5 bg-[#181411] rounded-2xl border border-amber-900/40 space-y-1">
-              <span className="text-[10px] font-bold text-indigo-400 uppercase tracking-wider block">
+              <span className="text-xs font-bold text-indigo-400 uppercase tracking-wider block">
                 Đang Giao Vận
               </span>
               <div className="text-xl font-black text-white font-mono">{shippingCount} đơn</div>
-              <p className="text-[11px] text-stone-500">Đã gửi bưu tá vận chuyển</p>
+              <p className="text-xs text-stone-500">Đã gửi bưu tá vận chuyển</p>
             </div>
 
             <div className="p-5 bg-[#181411] rounded-2xl border border-amber-900/40 space-y-1">
-              <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-wider block">
+              <span className="text-xs font-bold text-emerald-400 uppercase tracking-wider block">
                 Giao Thành Công
               </span>
               <div className="text-xl font-black text-emerald-400 font-mono">{deliveredCount} đơn</div>
-              <p className="text-[11px] text-stone-500">Đã hoàn tất thanh toán</p>
+              <p className="text-xs text-stone-500">Đã hoàn tất thanh toán</p>
             </div>
           </div>
 
@@ -184,7 +184,7 @@ export default function AdminOrdersPage() {
           <div className="bg-[#181411] rounded-2xl border border-stone-800 overflow-hidden shadow-xl">
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs text-stone-300">
-                <thead className="bg-[#120F0D] border-b border-stone-800 text-stone-400 uppercase text-[10px] tracking-wider font-bold">
+                <thead className="bg-[#120F0D] border-b border-stone-800 text-stone-400 uppercase text-xs tracking-wider font-bold">
                   <tr>
                     <th className="p-4">Mã Đơn</th>
                     <th className="p-4">Khách Hàng</th>
@@ -211,27 +211,27 @@ export default function AdminOrdersPage() {
                         </td>
                         <td className="p-4">
                           <p className="font-bold text-white">{ord.customerName}</p>
-                          <p className="text-[11px] text-stone-500 font-mono">{ord.customerPhone}</p>
+                          <p className="text-xs text-stone-500 font-mono">{ord.customerPhone}</p>
                         </td>
                         <td className="p-4">{ord.items.length} món</td>
                         <td className="p-4 font-mono font-bold text-white">
                           {ord.totalAmount.toLocaleString('vi-VN')}₫
                         </td>
                         <td className="p-4">
-                          <span className="text-[11px] uppercase font-mono">
+                          <span className="text-xs uppercase font-mono">
                             {ord.paymentMethod === 'cod' ? 'COD' : 'VietQR'}
                           </span>
                         </td>
                         <td className="p-4">
                           <span
-                            className={`px-2.5 py-1 rounded-full text-[10px] font-bold border ${
+                            className={`px-2.5 py-1 rounded-full text-xs font-bold border ${
                               STATUS_LABELS[ord.status]?.bg
                             } ${STATUS_LABELS[ord.status]?.color}`}
                           >
                             {STATUS_LABELS[ord.status]?.label || ord.status}
                           </span>
                         </td>
-                        <td className="p-4 text-[11px] text-stone-400">
+                        <td className="p-4 text-xs text-stone-400">
                           {new Date(ord.createdAt).toLocaleDateString('vi-VN')}
                         </td>
                         <td className="p-4 text-right">
@@ -256,11 +256,11 @@ export default function AdminOrdersPage() {
       {/* Order Detail Modal */}
       {selectedOrder && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200">
-          <div className="w-full max-w-2xl bg-[#1C1714] border border-amber-900/60 rounded-3xl shadow-2xl p-6 sm:p-8 space-y-6 max-h-[90vh] overflow-y-auto text-stone-200">
+          <div className="w-full max-w-2xl bg-[#1C1714] border border-amber-900/60 rounded-xl shadow-sm p-6 sm:p-8 space-y-6 max-h-[90vh] overflow-y-auto text-stone-200">
             {/* Modal Header */}
             <div className="flex items-center justify-between border-b border-stone-800 pb-4">
               <div>
-                <span className="text-[10px] font-mono text-stone-500 uppercase">CHI TIẾT ĐƠN HÀNG</span>
+                <span className="text-xs font-mono text-stone-500 uppercase">CHI TIẾT ĐƠN HÀNG</span>
                 <h3 className="text-xl font-serif font-black text-amber-400 font-mono">
                   {selectedOrder.code}
                 </h3>
@@ -367,7 +367,7 @@ export default function AdminOrdersPage() {
             {/* Recipient & Order Data */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
               <div className="p-4 bg-[#231C18] rounded-2xl border border-stone-800 space-y-1.5">
-                <span className="text-[10px] font-bold text-amber-500 uppercase tracking-wider block">
+                <span className="text-xs font-bold text-amber-500 uppercase tracking-wider block">
                   Người Nhận Hàng
                 </span>
                 <p><strong>Họ tên:</strong> {selectedOrder.customerName}</p>
@@ -378,7 +378,7 @@ export default function AdminOrdersPage() {
               </div>
 
               <div className="p-4 bg-[#231C18] rounded-2xl border border-stone-800 space-y-1.5">
-                <span className="text-[10px] font-bold text-amber-500 uppercase tracking-wider block">
+                <span className="text-xs font-bold text-amber-500 uppercase tracking-wider block">
                   Thanh Toán & Vận Chuyển
                 </span>
                 <p><strong>Hình thức:</strong> {selectedOrder.paymentMethod === 'cod' ? 'Thanh toán COD khi nhận hàng' : 'Chuyển khoản VietQR'}</p>
@@ -402,7 +402,7 @@ export default function AdminOrdersPage() {
                   <div key={idx} className="py-2.5 flex items-center justify-between text-xs">
                     <div>
                       <p className="font-bold text-white">{it.productName}</p>
-                      <p className="text-[11px] text-stone-400 font-mono">Mã: {it.productCode}</p>
+                      <p className="text-xs text-stone-400 font-mono">Mã: {it.productCode}</p>
                     </div>
                     <div className="text-right font-mono">
                       <span>{it.quantity} x {it.unitPrice.toLocaleString('vi-VN')}₫</span>

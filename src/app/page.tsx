@@ -419,9 +419,9 @@ export default function HomePage() {
     <div className="w-full space-y-24 pb-24 overflow-hidden relative">
       {/* Toast Notification */}
       {addedNotice && (
-        <div className="fixed bottom-6 right-6 z-50 bg-[#B9383A] text-white px-5 py-3.5 rounded-2xl shadow-2xl border border-amber-400/40 flex items-center gap-3 animate-in slide-in-from-bottom duration-300">
+        <div className="fixed bottom-6 right-6 z-50 bg-[#B9383A] text-white px-5 py-3.5 rounded-lg shadow-md border border-amber-400/40 flex items-center gap-3 animate-in slide-in-from-bottom duration-300">
           <CheckCircle2 className="w-5 h-5 text-amber-300 shrink-0" />
-          <span className="text-xs font-bold">{addedNotice}</span>
+          <span className="text-sm font-bold">{addedNotice}</span>
           <button
             onClick={() => setCartOpen(true)}
             className="text-xs underline font-bold ml-2 text-amber-200 hover:text-white"
@@ -434,7 +434,7 @@ export default function HomePage() {
       {/* Floating Cart Button (Balanced Position) */}
       <button
         onClick={() => setCartOpen(true)}
-        className="fixed bottom-6 right-6 z-40 bg-gradient-to-r from-[#B9383A] to-[#8B2522] hover:from-[#A83232] hover:to-[#7A1F1C] text-white px-4 py-3 rounded-full shadow-2xl border border-amber-400/40 flex items-center gap-2.5 transition-transform hover:scale-105"
+        className="fixed bottom-6 right-6 z-40 bg-[#B9383A] hover:bg-[#A83232] text-white px-4 py-3 rounded-full shadow-md border border-amber-400/40 flex items-center gap-2.5 transition-transform hover:scale-105"
         title="Mở giỏ hàng"
       >
         <ShoppingBag className="w-5 h-5 text-amber-300" />
@@ -471,7 +471,7 @@ export default function HomePage() {
 
         {/* Hero Slider Caption Badge */}
         <div className="absolute bottom-6 right-6 z-20 hidden md:block">
-          <div className="bg-[#1A1412]/85 backdrop-blur-md border border-amber-600/40 text-amber-200 text-xs px-4 py-2 rounded-full shadow-xl font-medium flex items-center gap-2">
+          <div className="bg-[#1A1412]/85 backdrop-blur-md border border-amber-600/40 text-amber-200 text-xs px-4 py-2 rounded-full shadow-md font-medium flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
             <span>{HERO_SLIDES[currentHeroSlide].caption}</span>
           </div>
@@ -482,7 +482,7 @@ export default function HomePage() {
           <button
             onClick={prevHeroSlide}
             aria-label="Slide trước"
-            className="w-9 h-9 rounded-full bg-[#181310]/80 hover:bg-[#8B2522] text-white border border-amber-500/40 flex items-center justify-center transition shadow-lg text-lg"
+            className="w-9 h-9 rounded-full bg-[#181310]/80 hover:bg-[#8B2522] text-white border border-amber-500/40 flex items-center justify-center transition shadow-md text-lg"
           >
             ‹
           </button>
@@ -501,7 +501,7 @@ export default function HomePage() {
           <button
             onClick={nextHeroSlide}
             aria-label="Slide tiếp theo"
-            className="w-9 h-9 rounded-full bg-[#181310]/80 hover:bg-[#8B2522] text-white border border-amber-500/40 flex items-center justify-center transition shadow-lg text-lg"
+            className="w-9 h-9 rounded-full bg-[#181310]/80 hover:bg-[#8B2522] text-white border border-amber-500/40 flex items-center justify-center transition shadow-md text-lg"
           >
             ›
           </button>
@@ -517,7 +517,7 @@ export default function HomePage() {
           <div className="text-center" style={{ marginBottom: '14px' }}>
             <div className="text-xs sm:text-sm font-sans font-black uppercase tracking-widest text-[#E58A1F] flex items-center justify-center gap-2 mb-2">
               <span>DỆT NÊN TƯƠNG LAI</span>
-              <span className="text-[10px] bg-[#8B2522] px-2 py-0.5 rounded text-white border border-amber-500/40">
+              <span className="text-xs font-bold bg-[#8B2522] px-2.5 py-0.5 rounded text-white border border-amber-500/40">
                 JRAI ƠI
               </span>
             </div>
@@ -537,7 +537,7 @@ export default function HomePage() {
           <div className="hero-actions">
             <a
               href="#products"
-              className="inline-flex items-center gap-2 bg-gradient-to-r from-[#B9383A] to-[#8B2522] hover:from-[#A83232] hover:to-[#7A1F1C] text-white font-bold text-xs sm:text-sm px-6 py-3.5 rounded-2xl shadow-xl border border-amber-500/30 transition hover:-translate-y-0.5"
+              className="inline-flex items-center gap-2 bg-[#B9383A] hover:bg-[#A83232] text-white font-bold text-xs sm:text-sm px-5 py-3 rounded-lg shadow-sm border border-amber-500/30 transition hover:-translate-y-0.5"
             >
               <ShoppingBag className="w-4 h-4 text-amber-300" />
               <span>KHÁM PHÁ 57 SẢN PHẨM</span>
@@ -545,7 +545,7 @@ export default function HomePage() {
 
             <a
               href="#artisans"
-              className="inline-flex items-center gap-2 bg-[#231C18] hover:bg-[#32261E] text-amber-300 hover:text-white font-bold text-xs sm:text-sm px-5 py-3.5 rounded-2xl border border-amber-900/50 transition hover:-translate-y-0.5"
+              className="inline-flex items-center gap-2 bg-[#1C1613] hover:bg-[#2C211A] text-amber-300 hover:text-white font-bold text-xs sm:text-sm px-4.5 py-3 rounded-lg border border-amber-900/50 transition hover:-translate-y-0.5"
             >
               <Users className="w-4 h-4 text-amber-400" />
               <span>NGHỆ NHÂN LÀNG KÉP</span>
@@ -553,7 +553,7 @@ export default function HomePage() {
 
             <a
               href="#motifs"
-              className="inline-flex items-center gap-2 bg-[#231C18] hover:bg-[#32261E] text-stone-300 hover:text-white font-bold text-xs sm:text-sm px-5 py-3.5 rounded-2xl border border-stone-800 transition hover:-translate-y-0.5"
+              className="inline-flex items-center gap-2 bg-[#1C1613] hover:bg-[#2C211A] text-stone-300 hover:text-white font-bold text-xs sm:text-sm px-4.5 py-3 rounded-lg border border-stone-800 transition hover:-translate-y-0.5"
             >
               <Grid className="w-4 h-4 text-amber-400" />
               <span>NGÂN HÀNG HOA VĂN</span>
@@ -561,7 +561,7 @@ export default function HomePage() {
 
             <a
               href="#traceability"
-              className="inline-flex items-center gap-2 bg-[#1C1613] hover:bg-[#2A201A] text-amber-400 hover:text-white font-bold text-xs sm:text-sm px-4 py-3.5 rounded-2xl border border-amber-600/40 transition hover:-translate-y-0.5"
+              className="inline-flex items-center gap-2 bg-[#1C1613] hover:bg-[#2A201A] text-amber-400 hover:text-white font-bold text-xs sm:text-sm px-4 py-3 rounded-lg border border-amber-600/40 transition hover:-translate-y-0.5"
             >
               <QrCode className="w-4 h-4 text-amber-400" />
               <span>TRA CỨU QR</span>
@@ -725,7 +725,7 @@ export default function HomePage() {
           </div>
 
         {/* Filter Controls: Search & Category Pills */}
-        <div className="space-y-4 bg-[#1E1713] p-5 rounded-3xl border border-amber-900/40 shadow-lg">
+        <div className="space-y-4 bg-[#1C1613] p-5 rounded-xl border border-amber-900/30 shadow-sm">
           <div className="flex flex-col sm:flex-row gap-3">
             <div className="relative flex-1">
               <Search className="w-4 h-4 absolute left-3.5 top-3.5 text-stone-400" />
@@ -734,7 +734,7 @@ export default function HomePage() {
                 placeholder="Tìm theo tên sản phẩm hoặc mã (K001, B001, C001, VI001...)"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-[#14110F] border border-stone-800 text-xs text-stone-200 placeholder-stone-500 focus:outline-none focus:border-amber-500"
+                className="w-full pl-10 pr-4 py-2.5 rounded-lg bg-[#14110F] border border-stone-800 text-sm text-stone-200 placeholder-stone-500 focus:outline-none focus:border-amber-500"
               />
             </div>
 
@@ -742,7 +742,7 @@ export default function HomePage() {
               <select
                 value={priceRange}
                 onChange={(e) => setPriceRange(e.target.value)}
-                className="px-3 py-2.5 rounded-xl bg-[#14110F] border border-stone-800 text-xs text-stone-300 focus:outline-none focus:border-amber-500"
+                className="px-3 py-2.5 rounded-lg bg-[#14110F] border border-stone-800 text-sm text-stone-300 focus:outline-none focus:border-amber-500"
               >
                 <option value="all">Mọi mức giá</option>
                 <option value="under-300">Dưới 300.000₫</option>
@@ -753,7 +753,7 @@ export default function HomePage() {
               <select
                 value={selectedArtisanFilter}
                 onChange={(e) => setSelectedArtisanFilter(e.target.value)}
-                className="px-3 py-2.5 rounded-xl bg-[#14110F] border border-stone-800 text-xs text-stone-300 focus:outline-none focus:border-amber-500"
+                className="px-3 py-2.5 rounded-lg bg-[#14110F] border border-stone-800 text-sm text-stone-300 focus:outline-none focus:border-amber-500"
               >
                 <option value="all">Tất cả nghệ nhân</option>
                 {artisans.map((a) => (
@@ -771,9 +771,9 @@ export default function HomePage() {
               <button
                 key={cat.id}
                 onClick={() => setSelectedCategory(cat.id)}
-                className={`px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all flex items-center gap-1.5 ${
+                className={`px-3.5 py-2 rounded-lg text-sm font-semibold whitespace-nowrap transition flex items-center gap-1.5 ${
                   selectedCategory === cat.id
-                    ? 'bg-[#B9383A] text-white shadow-md border border-amber-400/50'
+                    ? 'bg-[#B9383A] text-white shadow-sm border border-amber-400/50'
                     : 'bg-[#14110F] text-stone-400 hover:text-stone-200 border border-stone-800/80'
                 }`}
               >
@@ -842,7 +842,7 @@ export default function HomePage() {
                   </h3>
 
                   {p.story && (
-                    <div className="text-[12px] font-semibold text-amber-800 line-clamp-1 mb-1">
+                    <div className="text-xs font-semibold text-amber-800 line-clamp-1 mb-1">
                       📖 {p.story}
                     </div>
                   )}
@@ -866,7 +866,7 @@ export default function HomePage() {
                           {p.price.toLocaleString('vi-VN')}₫
                         </span>
                         {p.original_price && p.original_price > p.price && (
-                          <span className="text-[11px] text-stone-400 line-through ml-2">
+                          <span className="text-xs text-stone-400 line-through ml-2">
                             {p.original_price.toLocaleString('vi-VN')}₫
                           </span>
                         )}
@@ -1068,14 +1068,14 @@ export default function HomePage() {
         </div>
 
         {/* Input & Sample Buttons */}
-        <div className="bg-[#1E1713] p-6 rounded-3xl border border-amber-900/40 shadow-xl space-y-4">
+        <div className="bg-[#1C1613] p-6 rounded-xl border border-amber-900/30 shadow-sm space-y-4">
           <div className="flex flex-col sm:flex-row gap-3">
             <input
               type="text"
               value={passportCode}
               onChange={(e) => setPassportCode(e.target.value.toUpperCase())}
               placeholder="Nhập mã sản phẩm: K001, B001, C001, VI001, TT001..."
-              className="flex-1 bg-[#14110F] border border-amber-700/60 rounded-xl px-4 py-3 text-sm text-white placeholder-stone-500 focus:outline-none focus:border-amber-400 font-mono"
+              className="flex-1 bg-[#14110F] border border-amber-700/50 rounded-lg px-4 py-3 text-sm text-white placeholder-stone-500 focus:outline-none focus:border-amber-400 font-mono"
             />
             <button
               onClick={() => {
@@ -1086,19 +1086,19 @@ export default function HomePage() {
                   setPassportProduct(found || null);
                 }
               }}
-              className="bg-[#B9383A] hover:bg-[#A83232] text-white text-xs font-bold px-6 py-3 rounded-xl border border-amber-400/40 shadow transition whitespace-nowrap"
+              className="bg-[#B9383A] hover:bg-[#A83232] text-white text-xs sm:text-sm font-bold px-6 py-3 rounded-lg border border-amber-400/40 shadow-sm transition whitespace-nowrap"
             >
               TRA CỨU HỘ CHIẾU
             </button>
           </div>
 
-          <div className="flex items-center gap-2 overflow-x-auto pb-1 text-xs">
+          <div className="flex items-center gap-2 overflow-x-auto pb-1 text-xs sm:text-sm">
             <span className="text-stone-400 whitespace-nowrap">Bấm thử mẫu:</span>
             {['K001', 'B001', 'VI001', 'C001', 'TT001', 'TD001', 'V001', 'A001'].map((c) => (
               <button
                 key={c}
                 onClick={() => setPassportCode(c)}
-                className={`px-3 py-1.5 rounded-lg font-mono font-bold transition ${
+                className={`px-3 py-1.5 rounded-md font-mono font-bold transition ${
                   passportCode.toUpperCase() === c
                     ? 'bg-amber-600 text-white'
                     : 'bg-[#14110F] text-stone-300 hover:text-white border border-stone-800'
@@ -1112,10 +1112,10 @@ export default function HomePage() {
 
         {/* Passport Result Box */}
         {passportProduct ? (
-          <div className="bg-[#231C18] rounded-3xl border border-amber-900/40 overflow-hidden shadow-2xl p-6 sm:p-8 space-y-6">
+          <div className="bg-[#1C1613] rounded-xl border border-amber-900/30 overflow-hidden shadow-sm p-6 sm:p-8 space-y-6">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-stone-800 pb-5">
               <div>
-                <span className="text-xs font-mono text-amber-400 uppercase tracking-widest font-bold">
+                <span className="text-xs sm:text-sm font-mono text-amber-400 uppercase tracking-widest font-bold">
                   HỘ CHIẾU SỐ: JRAI-IMN-{passportProduct.product_code}
                 </span>
                 <h3 className="text-2xl font-serif font-black text-white mt-1">
@@ -1123,10 +1123,10 @@ export default function HomePage() {
                 </h3>
               </div>
               <div className="text-right">
-                <span className="text-xl font-bold font-mono text-amber-400">
+                <span className="text-xl sm:text-2xl font-bold font-mono text-amber-400">
                   {passportProduct.price.toLocaleString('vi-VN')}₫
                 </span>
-                <p className="text-[11px] text-emerald-400 font-semibold flex items-center gap-1 justify-end">
+                <p className="text-xs text-emerald-400 font-semibold flex items-center gap-1 justify-end">
                   <CheckCircle2 className="w-3.5 h-3.5" />
                   <span>Xác thực di sản bản địa</span>
                 </p>
@@ -1136,14 +1136,14 @@ export default function HomePage() {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               {/* Product Image & Info */}
               <div className="space-y-4">
-                <div className="aspect-[4/3] rounded-2xl overflow-hidden border border-stone-800 bg-stone-950">
+                <div className="aspect-[4/3] rounded-lg overflow-hidden border border-stone-800 bg-stone-950">
                   <img
                     src={passportProduct.image_url}
                     alt={passportProduct.name}
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div className="p-4 bg-[#1C1714] rounded-2xl border border-stone-800 space-y-2 text-xs">
+                <div className="p-4 bg-[#14110F] rounded-lg border border-stone-800 space-y-2 text-xs sm:text-sm">
                   <div className="flex justify-between">
                     <span className="text-stone-400">Phân loại:</span>
                     <span className="font-bold text-white">{passportProduct.category_name}</span>
@@ -1165,15 +1165,15 @@ export default function HomePage() {
 
               {/* Story & Cultural Context */}
               <div className="space-y-4">
-                <h4 className="text-sm font-serif font-bold text-amber-300 uppercase tracking-wider border-b border-stone-800 pb-2">
+                <h4 className="text-sm sm:text-base font-serif font-bold text-amber-300 uppercase tracking-wider border-b border-stone-800 pb-2">
                   Ý Nghĩa Văn Hóa & Câu Chuyện
                 </h4>
-                <p className="text-xs text-stone-300 leading-relaxed">
+                <p className="text-xs sm:text-sm text-stone-300 leading-relaxed">
                   {passportProduct.story || passportProduct.description}
                 </p>
 
-                <div className="p-4 bg-[#1C1714] rounded-2xl border border-stone-800 space-y-2 text-xs">
-                  <span className="text-xs font-bold text-amber-400 block">Nghệ nhân thực hiện:</span>
+                <div className="p-4 bg-[#14110F] rounded-lg border border-stone-800 space-y-2 text-xs sm:text-sm">
+                  <span className="text-xs sm:text-sm font-bold text-amber-400 block">Nghệ nhân thực hiện:</span>
                   <p className="text-stone-300">
                     Sản phẩm được dệt hoàn toàn bằng cửi hông bởi các nghệ nhân giàu kinh nghiệm tại xã Ia Mơ Nông, huyện Chư Păh, Gia Lai.
                   </p>
@@ -1182,8 +1182,8 @@ export default function HomePage() {
 
               {/* QR Tag Downloader Tool */}
               <div className="space-y-4 flex flex-col justify-between">
-                <div className="p-5 bg-[#1C1714] rounded-2xl border border-amber-900/40 text-center space-y-3">
-                  <span className="text-xs font-bold text-amber-400 uppercase tracking-wider block">
+                <div className="p-5 bg-[#14110F] rounded-lg border border-amber-900/30 text-center space-y-3">
+                  <span className="text-xs sm:text-sm font-bold text-amber-400 uppercase tracking-wider block">
                     Tem Nhãn QR Định Danh
                   </span>
                   <QRCodeGenerator
@@ -1197,7 +1197,7 @@ export default function HomePage() {
 
                 <button
                   onClick={() => handleAddToCart(passportProduct)}
-                  className="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#B9383A] to-[#8B2522] hover:from-[#A83232] text-white font-bold text-xs shadow-lg flex items-center justify-center gap-2"
+                  className="w-full py-3.5 rounded-lg bg-[#B9383A] hover:bg-[#A83232] text-white font-bold text-xs sm:text-sm shadow-sm flex items-center justify-center gap-2"
                 >
                   <ShoppingBag className="w-4 h-4 text-amber-300" />
                   <span>THÊM SẢN PHẨM NÀY VÀO GIỎ HÀNG</span>
@@ -1206,7 +1206,7 @@ export default function HomePage() {
             </div>
           </div>
         ) : (
-          <div className="p-8 bg-[#1C1714] rounded-3xl border border-stone-800 text-center text-stone-400 text-xs">
+          <div className="p-8 bg-[#14110F] rounded-xl border border-stone-800 text-center text-stone-400 text-sm">
             Không tìm thấy thông tin cho mã &ldquo;{passportCode}&rdquo;. Vui lòng thử các mã mẫu như K001, B001, VI001...
           </div>
         )}
@@ -1219,7 +1219,7 @@ export default function HomePage() {
       <section className="section reveal-on-scroll" id="about" style={{ scrollMarginTop: '80px' }}>
         <div className="container space-y-16">
         {/* A. Hero Origin Story Banner */}
-        <div className="bg-gradient-to-r from-[#231C18] via-[#1E1713] to-[#231C18] text-white p-8 sm:p-12 rounded-3xl border border-amber-900/40 relative overflow-hidden shadow-2xl">
+        <div className="bg-[#1C1613] text-white p-7 sm:p-10 rounded-xl border border-amber-900/30 relative overflow-hidden shadow-sm">
           <div
             className="absolute inset-0 bg-cover bg-center opacity-20 mix-blend-luminosity"
             style={{ backgroundImage: `url('/images/background/image6.jpg')` }}
@@ -1236,7 +1236,7 @@ export default function HomePage() {
               Từ Câu Hỏi Về Sinh Kế Đến Khát Vọng Giữ Lửa Nghề
             </h2>
 
-            <p className="text-stone-300 text-xs sm:text-sm leading-relaxed italic border-l-4 border-[#B9383A] pl-4">
+            <p className="text-stone-300 text-sm sm:text-base leading-relaxed italic border-l-4 border-[#B9383A] pl-4">
               &ldquo;Nếu một nghề truyền thống có giá trị nhưng người làm nghề không thể sống được từ nghề, thì làm thế nào để nghề ấy tiếp tục tồn tại?&rdquo; — Câu hỏi trăn trở ấy đã đưa nhóm chúng tôi đặt chân đến buôn làng Ia Mơ Nông.
             </p>
           </div>
@@ -1244,7 +1244,7 @@ export default function HomePage() {
 
         {/* B. Fieldwork Story: 2 Columns */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-          <div className="space-y-4 text-stone-300 text-xs sm:text-sm leading-relaxed">
+          <div className="space-y-4 text-stone-300 text-sm sm:text-base leading-relaxed">
             <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#E58A1F]">
               <Sparkles className="w-4 h-4 text-amber-400" />
               <span>HÀNH TRÌNH THỰC ĐỊA IA MƠ NÔNG</span>
@@ -1262,26 +1262,26 @@ export default function HomePage() {
               Tại xã Ia Mơ Nông, huyện Chư Păh, chúng tôi ngồi cùng những người phụ nữ Jrai bên hiên nhà sàn, lắng nghe tiếng lách cách của thoi đưa và nhận ra: công nghệ số không phải để thay thế đôi bàn tay nghệ nhân, mà là chiếc cầu nối để đưa câu chuyện, công sức và tri thức văn hóa phía sau từng nếp dệt đến với những khách hàng trân quý.
             </p>
 
-            <div className="bg-[#231C18] border-l-4 border-[#B9383A] p-4 rounded-r-2xl border-y border-r border-amber-900/30">
-              <p className="font-serif italic font-bold text-amber-200 text-sm">
+            <div className="bg-[#231C18] border-l-4 border-[#B9383A] p-4 rounded-r-lg border-y border-r border-amber-900/30">
+              <p className="font-serif italic font-bold text-amber-200 text-sm sm:text-base">
                 &ldquo;Không thay đổi cái gốc của nghề, thay đổi cách giá trị của nghề được nhìn thấy.&rdquo;
               </p>
             </div>
           </div>
 
           <div className="relative">
-            <div className="rounded-3xl overflow-hidden border-2 border-amber-500/30 shadow-2xl aspect-[4/3]">
+            <div className="rounded-xl overflow-hidden border border-amber-500/30 shadow-sm aspect-[4/3]">
               <img
                 src="/images/background/image6.jpg"
                 alt="Sinh viên UEL và nghệ nhân gìn giữ nghề dệt tại Ia Mơ Nông"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
               />
             </div>
-            <div className="absolute -bottom-4 -right-3 bg-[#1C1714] border border-amber-500/40 p-3.5 rounded-2xl shadow-xl max-w-xs text-xs text-stone-300">
-              <span className="text-[10px] font-extrabold uppercase text-[#E58A1F] block mb-0.5">
+            <div className="absolute -bottom-4 -right-3 bg-[#1C1714] border border-amber-500/40 p-3 rounded-lg shadow-sm max-w-xs text-xs sm:text-sm text-stone-300">
+              <span className="text-xs font-bold uppercase text-[#E58A1F] block mb-0.5">
                 ĐỊA BÀN THÍ ĐIỂM
               </span>
-              <p className="font-serif font-bold text-white text-xs">
+              <p className="font-serif font-bold text-white text-xs sm:text-sm">
                 CLB Dệt Thổ Cẩm Ia Mơ Nông, Chư Păh, Gia Lai
               </p>
             </div>
@@ -1289,7 +1289,7 @@ export default function HomePage() {
         </div>
 
         {/* C. 6 Weaving Stages with Actual Photos - Winding Trail */}
-        <section className="section journey-section-bg py-16 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 rounded-3xl" id="journey">
+        <section className="section journey-section-bg py-16 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 rounded-xl" id="journey">
           <div className="w-full max-w-[1500px] mx-auto">
             <div className="text-center" style={{ maxWidth: '720px', margin: '0 auto 35px' }}>
               <span
@@ -1385,7 +1385,7 @@ export default function HomePage() {
         </section>
 
         {/* D. Mentor & Founding Team ("The People Behind The Weave") - Tứ Quý Garden Card Format */}
-        <div className="team-section-container reveal-on-scroll" style={{ borderRadius: '32px', padding: '60px 24px 80px', margin: '20px 0' }}>
+        <div className="team-section-container reveal-on-scroll" style={{ borderRadius: '16px', padding: '50px 24px 70px', margin: '20px 0' }}>
           <div className="text-center" style={{ maxWidth: '760px', margin: '0 auto 30px' }}>
             <span className="section-tag" style={{ color: '#F59E0B', backgroundColor: 'rgba(229, 138, 31, 0.15)', borderColor: 'rgba(229, 138, 31, 0.35)' }}>
               CỐ VẤN KHOA HỌC & ĐỘI NGŨ DỰ ÁN
@@ -1463,12 +1463,12 @@ export default function HomePage() {
 
         {/* E. 5 Commitments & Reviews */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="bg-[#231C18] p-8 rounded-3xl border border-amber-900/40 space-y-4">
+          <div className="bg-[#1C1613] p-7 rounded-xl border border-amber-900/30 space-y-4 shadow-sm">
             <h3 className="text-xl font-serif font-bold text-white flex items-center gap-2">
               <ShieldCheck className="w-5 h-5 text-amber-400" />
               <span>5 Cam Kết Vàng Của JRAI ƠI</span>
             </h3>
-            <ul className="space-y-3 text-xs text-stone-300">
+            <ul className="space-y-3 text-sm text-stone-300">
               <li className="flex items-start gap-2.5">
                 <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
                 <span><strong>100% Thủ công bản địa:</strong> Dệt cửi hông bởi các nghệ nhân làng Kép & làng Phung, Ia Mơ Nông.</span>
@@ -1492,19 +1492,19 @@ export default function HomePage() {
             </ul>
           </div>
 
-          <div className="bg-[#231C18] p-8 rounded-3xl border border-amber-900/40 space-y-4">
+          <div className="bg-[#1C1613] p-7 rounded-xl border border-amber-900/30 space-y-4 shadow-sm">
             <h3 className="text-xl font-serif font-bold text-white flex items-center gap-2">
               <Star className="w-5 h-5 text-amber-400 fill-amber-400" />
               <span>Đánh Giá Thực Tế Từ Khách Hàng</span>
             </h3>
             <div className="space-y-3">
               {reviews.map((r) => (
-                <div key={r.id} className="p-3 bg-[#1C1714] rounded-xl border border-stone-800 text-xs space-y-1">
+                <div key={r.id} className="p-3.5 bg-[#14110F] rounded-lg border border-stone-800 text-sm space-y-1">
                   <div className="flex items-center justify-between">
                     <span className="font-bold text-amber-300">{r.customerName}</span>
                     <div className="flex gap-0.5">
                       {[...Array(r.rating)].map((_, i) => (
-                        <Star key={i} className="w-3 h-3 text-amber-400 fill-amber-400" />
+                        <Star key={i} className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
                       ))}
                     </div>
                   </div>
@@ -1523,7 +1523,7 @@ export default function HomePage() {
       ======================================================== */}
       {selectedProduct && (
         <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-[#1C1714] border border-amber-900/60 rounded-3xl max-w-2xl w-full p-6 sm:p-8 space-y-6 max-h-[90vh] overflow-y-auto relative animate-in fade-in zoom-in-95 duration-200 shadow-2xl">
+          <div className="bg-[#1C1714] border border-amber-900/50 rounded-xl max-w-2xl w-full p-6 sm:p-8 space-y-6 max-h-[90vh] overflow-y-auto relative animate-in fade-in zoom-in-95 duration-200 shadow-lg">
             <button
               onClick={() => setSelectedProduct(null)}
               className="absolute top-4 right-4 p-2 rounded-full bg-stone-900 hover:bg-stone-800 text-stone-400 hover:text-white"
@@ -1532,7 +1532,7 @@ export default function HomePage() {
             </button>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <div className="aspect-[4/3] rounded-2xl overflow-hidden border border-stone-800 bg-stone-950">
+              <div className="aspect-[4/3] rounded-lg overflow-hidden border border-stone-800 bg-stone-950">
                 <img
                   src={selectedProduct.image_url}
                   alt={selectedProduct.name}
@@ -1541,19 +1541,19 @@ export default function HomePage() {
               </div>
 
               <div className="space-y-3">
-                <span className="text-[10px] font-mono text-amber-400 uppercase font-bold bg-[#8B2522] px-2 py-0.5 rounded">
+                <span className="text-xs font-mono text-amber-400 uppercase font-bold bg-[#8B2522] px-2.5 py-0.5 rounded">
                   {selectedProduct.product_code} • {selectedProduct.category_name}
                 </span>
                 <h3 className="font-serif font-bold text-xl text-white">
                   {selectedProduct.name}
                 </h3>
-                <div className="text-xl font-bold font-mono text-amber-400">
+                <div className="text-xl sm:text-2xl font-bold font-mono text-amber-400">
                   {selectedProduct.price.toLocaleString('vi-VN')}₫
                 </div>
-                <p className="text-xs text-stone-300 leading-relaxed">
+                <p className="text-sm text-stone-300 leading-relaxed">
                   {selectedProduct.description}
                 </p>
-                <div className="text-xs text-stone-400 space-y-1 pt-1">
+                <div className="text-xs sm:text-sm text-stone-400 space-y-1 pt-1">
                   <div><strong>Thời gian dệt:</strong> {selectedProduct.production_time}</div>
                   <div><strong>Chất liệu:</strong> {selectedProduct.material}</div>
                   <div><strong>Xuất xứ:</strong> {selectedProduct.location}</div>
@@ -1569,7 +1569,7 @@ export default function HomePage() {
                     setSelectedProduct(null);
                     setCartOpen(true);
                   }}
-                  className="flex-1 py-3 rounded-xl bg-[#B9383A] hover:bg-[#A83232] text-white font-bold text-xs shadow-lg flex items-center justify-center gap-2"
+                  className="flex-1 py-3 rounded-lg bg-[#B9383A] hover:bg-[#A83232] text-white font-bold text-xs sm:text-sm shadow-sm flex items-center justify-center gap-2"
                 >
                   <ShoppingBag className="w-4 h-4" />
                   <span>MUA NGAY / THÊM GIỎ HÀNG</span>
@@ -1582,7 +1582,7 @@ export default function HomePage() {
                     const el = document.getElementById('traceability');
                     if (el) el.scrollIntoView({ behavior: 'smooth' });
                   }}
-                  className="px-4 py-3 rounded-xl bg-[#231C18] hover:bg-[#32261E] text-amber-400 text-xs font-bold border border-amber-900/50 flex items-center gap-1.5"
+                  className="px-4 py-3 rounded-lg bg-[#231C18] hover:bg-[#32261E] text-amber-400 text-xs sm:text-sm font-bold border border-amber-900/50 flex items-center gap-1.5"
                 >
                   <QrCode className="w-4 h-4" />
                   <span>Xem mã QR</span>
@@ -1592,7 +1592,7 @@ export default function HomePage() {
               <Link
                 href={`/product/${selectedProduct.id}`}
                 onClick={() => setSelectedProduct(null)}
-                className="block text-center text-xs text-amber-400 hover:text-amber-200 underline font-semibold transition"
+                className="block text-center text-xs sm:text-sm text-amber-400 hover:text-amber-200 underline font-semibold transition"
               >
                 Xem toàn bộ trang chi tiết sản phẩm &rarr;
               </Link>
@@ -1606,7 +1606,7 @@ export default function HomePage() {
       ======================================================== */}
       {selectedMotif && (
         <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-[#1C1714] border border-amber-900/60 rounded-3xl max-w-lg w-full p-6 sm:p-8 space-y-5 max-h-[90vh] overflow-y-auto relative animate-in fade-in zoom-in-95 duration-200 shadow-2xl">
+          <div className="bg-[#1C1714] border border-amber-900/50 rounded-xl max-w-lg w-full p-6 sm:p-8 space-y-5 max-h-[90vh] overflow-y-auto relative animate-in fade-in zoom-in-95 duration-200 shadow-lg">
             <button
               onClick={() => setSelectedMotif(null)}
               className="absolute top-4 right-4 p-2 rounded-full bg-stone-900 hover:bg-stone-800 text-stone-400 hover:text-white"
@@ -1614,12 +1614,12 @@ export default function HomePage() {
               <X className="w-5 h-5" />
             </button>
 
-            <div className="aspect-[4/3] bg-stone-950 rounded-2xl overflow-hidden p-4 flex items-center justify-center border border-stone-800">
+            <div className="aspect-[4/3] bg-stone-950 rounded-lg overflow-hidden p-4 flex items-center justify-center border border-stone-800">
               <img src={selectedMotif.image_url} alt={selectedMotif.name} className="max-h-full object-contain" />
             </div>
 
             <div>
-              <span className="text-[10px] font-mono text-amber-400 uppercase font-bold">
+              <span className="text-xs font-mono text-amber-400 uppercase font-bold">
                 {selectedMotif.motif_code} • {selectedMotif.theme_name}
               </span>
               <h3 className="font-serif font-bold text-xl text-white mt-1">
@@ -1627,7 +1627,7 @@ export default function HomePage() {
               </h3>
             </div>
 
-            <div className="space-y-3 text-xs text-stone-300 leading-relaxed">
+            <div className="space-y-3 text-sm text-stone-300 leading-relaxed">
               <div>
                 <strong className="text-amber-400 block mb-1">Ý nghĩa biểu tượng:</strong>
                 <p>{selectedMotif.meaning}</p>
@@ -1639,7 +1639,7 @@ export default function HomePage() {
                 </div>
               )}
               {selectedMotif.informant_name && (
-                <div className="p-3 bg-stone-900 rounded-xl text-[11px] text-stone-400">
+                <div className="p-3 bg-stone-900 rounded-lg text-xs sm:text-sm text-stone-400">
                   <strong>Nguồn xác minh điền dã:</strong> {selectedMotif.informant_name} ({selectedMotif.verification_source})
                 </div>
               )}
@@ -1653,7 +1653,7 @@ export default function HomePage() {
       ======================================================== */}
       {selectedArtisanModal && (
         <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-[#1C1714] border border-amber-900/60 rounded-3xl max-w-lg w-full p-6 sm:p-8 space-y-5 max-h-[90vh] overflow-y-auto relative animate-in fade-in zoom-in-95 duration-200 shadow-2xl">
+          <div className="bg-[#1C1714] border border-amber-900/50 rounded-xl max-w-lg w-full p-6 sm:p-8 space-y-5 max-h-[90vh] overflow-y-auto relative animate-in fade-in zoom-in-95 duration-200 shadow-lg">
             <button
               onClick={() => setSelectedArtisanModal(null)}
               className="absolute top-4 right-4 p-2 rounded-full bg-stone-900 hover:bg-stone-800 text-stone-400 hover:text-white"
@@ -1661,7 +1661,7 @@ export default function HomePage() {
               <X className="w-5 h-5" />
             </button>
 
-            <div className="aspect-[4/3] rounded-2xl overflow-hidden border border-stone-800 bg-stone-950">
+            <div className="aspect-[4/3] rounded-lg overflow-hidden border border-stone-800 bg-stone-950">
               <img
                 src={selectedArtisanModal.avatar || selectedArtisanModal.image_url}
                 alt={selectedArtisanModal.name}
@@ -1670,7 +1670,7 @@ export default function HomePage() {
             </div>
 
             <div>
-              <span className="text-[10px] font-mono text-amber-400 uppercase font-bold">
+              <span className="text-xs font-mono text-amber-400 uppercase font-bold">
                 {selectedArtisanModal.experience} • {selectedArtisanModal.village}
               </span>
               <h3 className="font-serif font-bold text-xl text-white mt-1">
@@ -1678,11 +1678,11 @@ export default function HomePage() {
               </h3>
             </div>
 
-            <p className="text-xs text-amber-200 italic p-3 bg-stone-900 rounded-xl border border-stone-800">
+            <p className="text-sm text-amber-200 italic p-3 bg-stone-900 rounded-lg border border-stone-800">
               &ldquo;{selectedArtisanModal.quote}&rdquo;
             </p>
 
-            <p className="text-xs text-stone-300 leading-relaxed">
+            <p className="text-sm text-stone-300 leading-relaxed">
               {selectedArtisanModal.bio || `${selectedArtisanModal.name} là nghệ nhân kỳ cựu gìn giữ nghề dệt thổ cẩm cửi hông tại ${selectedArtisanModal.village}.`}
             </p>
           </div>
@@ -1694,7 +1694,7 @@ export default function HomePage() {
       ======================================================== */}
       {cartOpen && (
         <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex justify-end">
-          <div className="bg-[#1C1714] w-full max-w-md h-full p-6 flex flex-col justify-between border-l border-amber-900/60 shadow-2xl animate-in slide-in-from-right duration-300">
+          <div className="bg-[#1C1714] w-full max-w-md h-full p-6 flex flex-col justify-between border-l border-amber-900/50 shadow-lg animate-in slide-in-from-right duration-300">
             <div className="space-y-4 flex-1 overflow-y-auto pr-1">
               <div className="flex items-center justify-between border-b border-stone-800 pb-4">
                 <div className="flex items-center gap-2">
@@ -1710,7 +1710,7 @@ export default function HomePage() {
               </div>
 
               {/* Free ship progress */}
-              <div className="p-3 bg-[#231C18] rounded-xl border border-amber-900/40 text-xs">
+              <div className="p-3 bg-[#231C18] rounded-lg border border-amber-900/40 text-xs sm:text-sm">
                 {isFreeShip ? (
                   <span className="text-emerald-400 font-bold flex items-center gap-1.5">
                     <CheckCircle2 className="w-4 h-4" />
@@ -1725,7 +1725,7 @@ export default function HomePage() {
 
               {/* Items List */}
               {cartItems.length === 0 ? (
-                <div className="py-12 text-center text-stone-400 text-xs space-y-3">
+                <div className="py-12 text-center text-stone-400 text-sm space-y-3">
                   <ShoppingBag className="w-10 h-10 text-stone-600 mx-auto" />
                   <p>Giỏ hàng đang trống.</p>
                 </div>
@@ -1734,22 +1734,22 @@ export default function HomePage() {
                   {cartItems.map((item) => (
                     <div
                       key={item.productId}
-                      className="p-3 bg-[#231C18] rounded-2xl border border-stone-800 flex items-center gap-3"
+                      className="p-3 bg-[#231C18] rounded-lg border border-stone-800 flex items-center gap-3"
                     >
                       <img
                         src={item.product?.image_url || '/images/products/k001.jpg'}
                         alt={item.product?.name || 'Sản phẩm'}
-                        className="w-14 h-14 object-cover rounded-xl border border-stone-700 shrink-0"
+                        className="w-14 h-14 object-cover rounded-lg border border-stone-700 shrink-0"
                       />
                       <div className="flex-1 min-w-0">
-                        <h4 className="text-xs font-bold text-white truncate">{item.product?.name}</h4>
-                        <span className="text-[10px] font-mono text-amber-400">{item.product?.product_code}</span>
-                        <div className="text-xs font-bold text-amber-400 mt-1">
+                        <h4 className="text-sm font-bold text-white truncate">{item.product?.name}</h4>
+                        <span className="text-xs font-mono text-amber-400">{item.product?.product_code}</span>
+                        <div className="text-sm font-bold text-amber-400 mt-1">
                           {((item.product?.price || 0) * item.quantity).toLocaleString('vi-VN')}₫
                         </div>
                       </div>
 
-                      <div className="flex items-center gap-1 bg-[#14110F] px-2 py-1 rounded-xl border border-stone-800">
+                      <div className="flex items-center gap-1 bg-[#14110F] px-2 py-1 rounded-md border border-stone-800">
                         <button
                           onClick={() => updateCartQuantity(item.productId, item.quantity - 1)}
                           className="text-stone-400 hover:text-white p-0.5"
@@ -1787,7 +1787,7 @@ export default function HomePage() {
 
                 <button
                   onClick={handleProceedToCheckout}
-                  className="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#B9383A] to-[#8B2522] hover:from-[#A83232] text-white font-bold text-xs shadow-xl flex items-center justify-center gap-2"
+                  className="w-full py-3.5 rounded-lg bg-[#B9383A] hover:bg-[#A83232] text-white font-bold text-xs sm:text-sm shadow-sm flex items-center justify-center gap-2"
                 >
                   <CreditCard className="w-4 h-4 text-amber-300" />
                   <span>TIẾN HÀNH THANH TOÁN (3 BƯỚC)</span>
@@ -1803,7 +1803,7 @@ export default function HomePage() {
       ======================================================== */}
       {checkoutOpen && (
         <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-[#1C1714] border border-amber-900/60 rounded-3xl max-w-lg w-full p-6 sm:p-8 space-y-6 max-h-[90vh] overflow-y-auto relative animate-in fade-in zoom-in-95 duration-200 shadow-2xl">
+          <div className="bg-[#1C1714] border border-amber-900/50 rounded-xl max-w-lg w-full p-6 sm:p-8 space-y-6 max-h-[90vh] overflow-y-auto relative animate-in fade-in zoom-in-95 duration-200 shadow-lg">
             <button
               onClick={() => {
                 setCheckoutOpen(false);
@@ -1816,23 +1816,23 @@ export default function HomePage() {
 
             {orderCreatedId ? (
               <div className="text-center space-y-4 py-4">
-                <div className="w-16 h-16 rounded-full bg-emerald-950/80 border border-emerald-500 text-emerald-400 flex items-center justify-center mx-auto shadow-xl">
+                <div className="w-16 h-16 rounded-full bg-emerald-950/80 border border-emerald-500 text-emerald-400 flex items-center justify-center mx-auto shadow-sm">
                   <CheckCircle2 className="w-8 h-8" />
                 </div>
                 <h3 className="font-serif font-black text-2xl text-white">Đặt Hàng Thành Công!</h3>
-                <p className="text-xs text-stone-300">
-                  Mã đơn hàng của bạn là: <strong className="text-amber-400 font-mono text-sm">{orderCreatedId}</strong>
+                <p className="text-sm text-stone-300">
+                  Mã đơn hàng của bạn là: <strong className="text-amber-400 font-mono text-base">{orderCreatedId}</strong>
                 </p>
 
                 {paymentMethod === 'banking' && (
-                  <div className="p-4 bg-stone-900 rounded-2xl border border-amber-900/50 space-y-3">
-                    <span className="text-xs font-bold text-amber-400 block">Mã VietQR Chuyển Khoản Tự Động:</span>
+                  <div className="p-4 bg-stone-900 rounded-lg border border-amber-900/40 space-y-3">
+                    <span className="text-xs sm:text-sm font-bold text-amber-400 block">Mã VietQR Chuyển Khoản Tự Động:</span>
                     <img
                       src={`https://img.vietqr.io/image/970422-0383451929-compact2.png?amount=${cartTotal.subtotal}&addInfo=${encodeURIComponent(orderCreatedId)}&accountName=${encodeURIComponent('NGUYEN VAN THANG')}`}
                       alt="VietQR MB Bank"
-                      className="w-48 h-48 mx-auto rounded-xl border border-stone-700 shadow"
+                      className="w-48 h-48 mx-auto rounded-lg border border-stone-700 shadow-sm"
                     />
-                    <div className="text-[11px] text-stone-300 space-y-0.5">
+                    <div className="text-xs sm:text-sm text-stone-300 space-y-0.5">
                       <p>Ngân hàng: <strong>MB Bank</strong></p>
                       <p>Số tài khoản: <strong>0383451929</strong></p>
                       <p>Chủ tài khoản: <strong>NGUYEN VAN THANG</strong></p>
@@ -1841,7 +1841,7 @@ export default function HomePage() {
                   </div>
                 )}
 
-                <p className="text-[11px] text-stone-400">
+                <p className="text-xs sm:text-sm text-stone-400">
                   Cảm ơn bạn đã đồng hành bảo tồn nghề dệt thổ cẩm Jrai!
                 </p>
 
@@ -1850,7 +1850,7 @@ export default function HomePage() {
                     setCheckoutOpen(false);
                     setOrderCreatedId(null);
                   }}
-                  className="w-full py-3 rounded-xl bg-amber-800 hover:bg-amber-700 text-white font-bold text-xs"
+                  className="w-full py-3 rounded-lg bg-amber-800 hover:bg-amber-700 text-white font-bold text-sm"
                 >
                   HOÀN TẤT & TIẾP TỤC KHÁM PHÁ
                 </button>
@@ -1859,13 +1859,13 @@ export default function HomePage() {
               <form onSubmit={handleCheckoutSubmit} className="space-y-4">
                 <div className="border-b border-stone-800 pb-3">
                   <h3 className="font-serif font-bold text-xl text-white">Thanh Toán Đơn Hàng</h3>
-                  <p className="text-xs text-stone-400">
+                  <p className="text-xs sm:text-sm text-stone-400">
                     Tổng giá trị đơn ({cartTotal.count} món): <strong className="text-amber-400 font-mono">{cartTotal.subtotal.toLocaleString('vi-VN')}₫</strong>
                   </p>
                 </div>
 
                 {customerUser && (
-                  <div className="bg-[#231C18] border border-amber-900/60 rounded-2xl p-3 flex items-center justify-between text-xs">
+                  <div className="bg-[#231C18] border border-amber-900/40 rounded-lg p-3 flex items-center justify-between text-xs sm:text-sm">
                     <div className="flex items-center gap-2.5">
                       <div className="w-8 h-8 rounded-full overflow-hidden border border-amber-500/50 bg-stone-900 shrink-0">
                         <img
@@ -1876,18 +1876,18 @@ export default function HomePage() {
                       </div>
                       <div>
                         <span className="font-bold text-white block">{customerUser.name}</span>
-                        <span className="text-[10px] text-amber-400">
+                        <span className="text-xs text-amber-400">
                           {customerUser.provider ? `Đã xác thực qua ${customerUser.provider.toUpperCase()}` : customerUser.email}
                         </span>
                       </div>
                     </div>
-                    <span className="text-[10px] bg-emerald-950 text-emerald-300 font-bold px-2 py-0.5 rounded-full border border-emerald-800">
+                    <span className="text-xs bg-emerald-950 text-emerald-300 font-bold px-2 py-0.5 rounded-full border border-emerald-800">
                       Đã đăng nhập
                     </span>
                   </div>
                 )}
 
-                <div className="space-y-3 text-xs">
+                <div className="space-y-3 text-xs sm:text-sm">
                   <div>
                     <label className="text-stone-300 font-bold block mb-1">Họ và tên người nhận *</label>
                     <input
@@ -1896,7 +1896,7 @@ export default function HomePage() {
                       placeholder="Ví dụ: Nguyễn Văn A"
                       value={customerName}
                       onChange={(e) => setCustomerName(e.target.value)}
-                      className="w-full bg-stone-900 border border-stone-800 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-amber-500"
+                      className="w-full bg-stone-900 border border-stone-800 rounded-lg px-3.5 py-2.5 text-white focus:outline-none focus:border-amber-500 text-sm"
                     />
                   </div>
 
@@ -1908,7 +1908,7 @@ export default function HomePage() {
                       placeholder="Ví dụ: 0987654321"
                       value={customerPhone}
                       onChange={(e) => setCustomerPhone(e.target.value)}
-                      className="w-full bg-stone-900 border border-stone-800 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-amber-500"
+                      className="w-full bg-stone-900 border border-stone-800 rounded-lg px-3.5 py-2.5 text-white focus:outline-none focus:border-amber-500 text-sm"
                     />
                   </div>
 
@@ -1920,7 +1920,7 @@ export default function HomePage() {
                       placeholder="Số nhà, đường, phường/xã, quận/huyện, tỉnh/thành..."
                       value={shippingAddress}
                       onChange={(e) => setShippingAddress(e.target.value)}
-                      className="w-full bg-stone-900 border border-stone-800 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-amber-500"
+                      className="w-full bg-stone-900 border border-stone-800 rounded-lg px-3.5 py-2.5 text-white focus:outline-none focus:border-amber-500 text-sm"
                     />
                   </div>
 
@@ -1930,27 +1930,27 @@ export default function HomePage() {
                       <button
                         type="button"
                         onClick={() => setPaymentMethod('banking')}
-                        className={`p-3 rounded-xl border text-left transition ${
+                        className={`p-3 rounded-lg border text-left transition ${
                           paymentMethod === 'banking'
                             ? 'bg-amber-950/60 border-amber-500 text-white'
                             : 'bg-stone-900 border-stone-800 text-stone-400'
                         }`}
                       >
-                        <div className="font-bold text-amber-400">VietQR Tự Động</div>
-                        <div className="text-[10px] mt-0.5">Quét mã ngân hàng</div>
+                        <div className="font-bold text-amber-400 text-sm">VietQR Tự Động</div>
+                        <div className="text-xs text-stone-400 mt-0.5">Quét mã ngân hàng</div>
                       </button>
 
                       <button
                         type="button"
                         onClick={() => setPaymentMethod('cod')}
-                        className={`p-3 rounded-xl border text-left transition ${
+                        className={`p-3 rounded-lg border text-left transition ${
                           paymentMethod === 'cod'
                             ? 'bg-amber-950/60 border-amber-500 text-white'
                             : 'bg-stone-900 border-stone-800 text-stone-400'
                         }`}
                       >
-                        <div className="font-bold text-amber-400">Thanh toán COD</div>
-                        <div className="text-[10px] mt-0.5">Nhận hàng trả tiền</div>
+                        <div className="font-bold text-amber-400 text-sm">Thanh toán COD</div>
+                        <div className="text-xs text-stone-400 mt-0.5">Nhận hàng trả tiền</div>
                       </button>
                     </div>
                   </div>
@@ -1958,7 +1958,7 @@ export default function HomePage() {
 
                 <button
                   type="submit"
-                  className="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#B9383A] to-[#8B2522] hover:from-[#A83232] text-white font-bold text-xs shadow-xl transition"
+                  className="w-full py-3.5 rounded-lg bg-[#B9383A] hover:bg-[#A83232] text-white font-bold text-sm shadow-sm transition"
                 >
                   XÁC NHẬN ĐẶT HÀNG ({cartTotal.subtotal.toLocaleString('vi-VN')}₫)
                 </button>

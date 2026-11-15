@@ -68,7 +68,7 @@ export default function AdminWeavingProcessPage() {
             return (
               <div
                 key={step.id}
-                className="bg-white p-6 rounded-3xl border border-slate-200 shadow-xs space-y-4"
+                className="bg-white p-6 rounded-xl border border-slate-200 shadow-xs space-y-4"
               >
                 <div className="flex items-center justify-between border-b border-slate-100 pb-3">
                   <div className="flex items-center gap-3">

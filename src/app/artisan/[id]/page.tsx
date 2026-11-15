@@ -95,9 +95,9 @@ export default function ArtisanDetailPage() {
       </nav>
 
       {/* ARTISAN PROFILE HEADER */}
-      <div className="bg-[#1C1714] rounded-3xl p-6 sm:p-10 border border-amber-900/40 shadow-2xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      <div className="bg-[#1C1714] rounded-xl p-6 sm:p-10 border border-amber-900/40 shadow-sm grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
         <div className="lg:col-span-4">
-          <div className="aspect-square rounded-3xl overflow-hidden bg-stone-900 border-2 border-amber-700/40 shadow-xl relative">
+          <div className="aspect-square rounded-xl overflow-hidden bg-stone-900 border-2 border-amber-700/40 shadow-xl relative">
             <img
               src={artisan.avatar || artisan.image_url}
               alt={artisan.name}
@@ -187,7 +187,7 @@ export default function ArtisanDetailPage() {
                   />
                 </div>
                 <div className="p-4 space-y-2">
-                  <span className="text-[10px] font-mono text-amber-500">{p.product_code}</span>
+                  <span className="text-xs font-mono text-amber-500">{p.product_code}</span>
                   <h4 className="font-serif font-bold text-xs text-white group-hover:text-amber-400 line-clamp-1">
                     {p.name}
                   </h4>
@@ -195,7 +195,7 @@ export default function ArtisanDetailPage() {
                     <span className="text-sm font-black text-amber-400">
                       {p.price.toLocaleString('vi-VN')}₫
                     </span>
-                    <span className="text-[10px] text-stone-400">{p.production_time}</span>
+                    <span className="text-xs text-stone-400">{p.production_time}</span>
                   </div>
                 </div>
               </Link>

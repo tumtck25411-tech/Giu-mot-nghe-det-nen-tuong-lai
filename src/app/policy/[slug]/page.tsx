@@ -140,7 +140,7 @@ export default function PolicyDetailPage() {
       </nav>
 
       {/* Header */}
-      <div className="bg-[#1C1714] p-8 sm:p-10 rounded-3xl border border-amber-900/40 shadow-xl space-y-3">
+      <div className="bg-[#1C1714] p-8 sm:p-10 rounded-xl border border-amber-900/40 shadow-xl space-y-3">
         <div className="w-12 h-12 rounded-2xl bg-[#8B2522] text-amber-300 flex items-center justify-center">
           <Icon className="w-6 h-6" />
         </div>

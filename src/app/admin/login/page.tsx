@@ -28,7 +28,7 @@ export default function AdminLoginPage() {
   };
 
   return (
-    <div className="w-full max-w-md bg-stone-900 border border-amber-900/40 rounded-3xl p-8 shadow-2xl space-y-6 text-white">
+    <div className="w-full max-w-md bg-stone-900 border border-amber-900/40 rounded-xl p-8 shadow-sm space-y-6 text-white">
       {/* Brand Header */}
       <div className="text-center space-y-2">
         <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-amber-800 text-white font-serif font-black text-2xl shadow-lg border border-amber-500/40 mb-2">

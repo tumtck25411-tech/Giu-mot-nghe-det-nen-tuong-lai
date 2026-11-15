@@ -186,10 +186,10 @@ export default function AdminMotifsPage() {
         )}
 
         {/* MOTIFS TABLE */}
-        <div className="bg-white rounded-3xl border border-slate-200 shadow-xs overflow-hidden">
+        <div className="bg-white rounded-xl border border-slate-200 shadow-xs overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
-              <thead className="bg-slate-50 text-slate-500 uppercase font-bold text-[10px] border-b border-slate-200">
+              <thead className="bg-slate-50 text-slate-500 uppercase font-bold text-xs border-b border-slate-200">
                 <tr>
                   <th className="py-4 px-4">Ảnh</th>
                   <th className="py-4 px-4">Mã Hoa Văn</th>
@@ -215,7 +215,7 @@ export default function AdminMotifsPage() {
                     <td className="py-3 px-4 text-slate-600 truncate max-w-[200px]">{m.meaning}</td>
                     <td className="py-3 px-4 text-slate-600 truncate max-w-[180px]">{m.verification_source}</td>
                     <td className="py-3 px-4">
-                      <span className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">
+                      <span className="px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800">
                         {m.status === 'published' ? 'Đã xuất bản' : 'Lưu nháp'}
                       </span>
                     </td>
@@ -248,7 +248,7 @@ export default function AdminMotifsPage() {
       {/* ADD / EDIT MODAL */}
       {showModal && (
         <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4">
-          <div className="bg-white w-full max-w-2xl rounded-3xl p-6 sm:p-8 space-y-6 shadow-2xl max-h-[90vh] overflow-y-auto">
+          <div className="bg-white w-full max-w-2xl rounded-xl p-6 sm:p-8 space-y-6 shadow-sm max-h-[90vh] overflow-y-auto">
             <div className="flex items-center justify-between border-b border-slate-100 pb-4">
               <h3 className="font-serif font-bold text-xl text-slate-900">
                 {editingMotif ? `Sửa Hoa Văn: ${editingMotif.motif_code}` : 'Thêm Mã Hoa Văn Jrai Mới'}

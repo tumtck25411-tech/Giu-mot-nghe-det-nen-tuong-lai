@@ -161,7 +161,7 @@ export default function ProductDetailPage() {
     <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 py-8 space-y-12">
       {/* Toast Feedback */}
       {addedNotice && (
-        <div className="fixed bottom-6 right-6 z-50 bg-[#B9383A] text-white px-5 py-3.5 rounded-2xl shadow-2xl border border-amber-400/40 flex items-center gap-3 animate-in slide-in-from-bottom duration-300">
+        <div className="fixed bottom-6 right-6 z-50 bg-[#B9383A] text-white px-5 py-3.5 rounded-2xl shadow-sm border border-amber-400/40 flex items-center gap-3 animate-in slide-in-from-bottom duration-300">
           <CheckCircle2 className="w-5 h-5 text-amber-300" />
           <span className="text-xs font-bold">{addedNotice}</span>
           <Link href="/cart" className="text-xs underline font-bold ml-2 text-amber-200">
@@ -194,7 +194,7 @@ export default function ProductDetailPage() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
         {/* Left Column: Image Gallery (5 Cols) */}
         <div className="lg:col-span-6 space-y-4">
-          <div className="relative aspect-square bg-[#1A1412] rounded-3xl overflow-hidden border border-amber-900/40 shadow-2xl">
+          <div className="relative aspect-square bg-[#1A1412] rounded-xl overflow-hidden border border-amber-900/40 shadow-sm">
             <img
               src={activeImage || product.image_url}
               alt={product.name}
@@ -247,7 +247,7 @@ export default function ProductDetailPage() {
               </div>
               <div>
                 <p className="text-xs font-bold text-white">Mã QR Định Danh Độc Bản</p>
-                <p className="text-[11px] text-stone-400">Xem minh bạch giờ dệt, thợ dệt & hoa văn</p>
+                <p className="text-xs text-stone-400">Xem minh bạch giờ dệt, thợ dệt & hoa văn</p>
               </div>
             </div>
             <Link
@@ -284,7 +284,7 @@ export default function ProductDetailPage() {
                   <span className="text-xs text-stone-500 line-through">
                     {product.original_price.toLocaleString('vi-VN')}₫
                   </span>
-                  <span className="text-[10px] font-bold bg-[#B9383A] text-white px-2 py-0.5 rounded-full">
+                  <span className="text-xs font-bold bg-[#B9383A] text-white px-2 py-0.5 rounded-full">
                     Tiết kiệm {((product.original_price - product.price) / 1000).toFixed(0)}k
                   </span>
                 </div>
@@ -296,7 +296,7 @@ export default function ProductDetailPage() {
                 <CheckCircle2 className="w-3.5 h-3.5" />
                 <span>Còn {product.stock_quantity || 8} sản phẩm</span>
               </span>
-              <p className="text-[10px] text-stone-400 mt-1">Dệt tay độc bản tại Làng Kép</p>
+              <p className="text-xs text-stone-400 mt-1">Dệt tay độc bản tại Làng Kép</p>
             </div>
           </div>
 
@@ -305,7 +305,7 @@ export default function ProductDetailPage() {
             <div className="p-3.5 bg-[#1C1714] rounded-xl border border-stone-800 flex items-center gap-3">
               <Clock className="w-5 h-5 text-amber-500 shrink-0" />
               <div>
-                <span className="text-[10px] text-stone-500 uppercase font-bold block">Thời gian dệt</span>
+                <span className="text-xs text-stone-500 uppercase font-bold block">Thời gian dệt</span>
                 <span className="text-xs font-bold text-stone-200">{product.production_time}</span>
               </div>
             </div>
@@ -313,7 +313,7 @@ export default function ProductDetailPage() {
             <div className="p-3.5 bg-[#1C1714] rounded-xl border border-stone-800 flex items-center gap-3">
               <MapPin className="w-5 h-5 text-amber-500 shrink-0" />
               <div>
-                <span className="text-[10px] text-stone-500 uppercase font-bold block">Địa bàn dệt</span>
+                <span className="text-xs text-stone-500 uppercase font-bold block">Địa bàn dệt</span>
                 <span className="text-xs font-bold text-stone-200 truncate block max-w-[140px]">
                   {product.location || 'Ia Mơ Nông, Chư Păh'}
                 </span>
@@ -323,7 +323,7 @@ export default function ProductDetailPage() {
             <div className="p-3.5 bg-[#1C1714] rounded-xl border border-stone-800 flex items-center gap-3">
               <Layers className="w-5 h-5 text-amber-500 shrink-0" />
               <div>
-                <span className="text-[10px] text-stone-500 uppercase font-bold block">Chất liệu</span>
+                <span className="text-xs text-stone-500 uppercase font-bold block">Chất liệu</span>
                 <span className="text-xs font-bold text-stone-200 truncate block max-w-[140px]">
                   {product.material}
                 </span>
@@ -333,7 +333,7 @@ export default function ProductDetailPage() {
             <div className="p-3.5 bg-[#1C1714] rounded-xl border border-stone-800 flex items-center gap-3">
               <User className="w-5 h-5 text-amber-500 shrink-0" />
               <div>
-                <span className="text-[10px] text-stone-500 uppercase font-bold block">Nghệ nhân thực hiện</span>
+                <span className="text-xs text-stone-500 uppercase font-bold block">Nghệ nhân thực hiện</span>
                 <span className="text-xs font-bold text-stone-200 truncate block max-w-[140px]">
                   {product.artisan_name || 'Nghệ nhân Jrai'}
                 </span>
@@ -425,7 +425,7 @@ export default function ProductDetailPage() {
       </div>
 
       {/* SECTION: CÂU CHUYỆN ĐẰNG SAU SẢN PHẨM (DEDICATED SECTION) */}
-      <section className="bg-[#1C1714] p-8 sm:p-12 rounded-3xl border border-amber-900/40 shadow-2xl space-y-8">
+      <section className="bg-[#1C1714] p-8 sm:p-12 rounded-xl border border-amber-900/40 shadow-sm space-y-8">
         <div className="border-b border-stone-800 pb-4">
           <div className="inline-flex items-center gap-2 bg-[#8B2522] text-amber-200 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-2">
             <Sparkles className="w-3.5 h-3.5" />
@@ -464,7 +464,7 @@ export default function ProductDetailPage() {
             {/* Artisan Profile Box */}
             {artisan && (
               <div className="bg-[#231C18] p-5 rounded-2xl border border-amber-900/40 space-y-3 shadow-md">
-                <div className="text-[11px] font-bold text-amber-500 uppercase tracking-wider">
+                <div className="text-xs font-bold text-amber-500 uppercase tracking-wider">
                   Nghệ Nhân Thực Hiện
                 </div>
                 <div className="flex items-center gap-3">
@@ -476,7 +476,7 @@ export default function ProductDetailPage() {
                   <div>
                     <h4 className="font-serif font-bold text-sm text-white">{artisan.name}</h4>
                     <p className="text-xs text-stone-400">{artisan.experience}</p>
-                    <p className="text-[11px] text-amber-400/80">{artisan.village}</p>
+                    <p className="text-xs text-amber-400/80">{artisan.village}</p>
                   </div>
                 </div>
                 {artisan.quote && (
@@ -496,7 +496,7 @@ export default function ProductDetailPage() {
             {/* Linked Motif Box */}
             {linkedMotifs.length > 0 && (
               <div className="bg-[#231C18] p-5 rounded-2xl border border-amber-900/40 space-y-3 shadow-md">
-                <div className="text-[11px] font-bold text-amber-500 uppercase tracking-wider">
+                <div className="text-xs font-bold text-amber-500 uppercase tracking-wider">
                   Hoa Văn Ứng Dụng
                 </div>
                 {linkedMotifs.map((m) => (
@@ -507,7 +507,7 @@ export default function ProductDetailPage() {
                       </div>
                       <div>
                         <h4 className="font-serif font-bold text-xs text-white line-clamp-1">{m.name}</h4>
-                        <span className="text-[10px] font-mono text-amber-400">{m.motif_code}</span>
+                        <span className="text-xs font-mono text-amber-400">{m.motif_code}</span>
                       </div>
                     </div>
                     <p className="text-xs text-stone-400 line-clamp-3">
@@ -528,7 +528,7 @@ export default function ProductDetailPage() {
       </section>
 
       {/* SECTION: DIGITAL PRODUCT PASSPORT (QR CODE TRACEABILITY) */}
-      <section className="bg-[#231C18] p-8 sm:p-12 rounded-3xl border border-amber-900/40 shadow-2xl space-y-6">
+      <section className="bg-[#231C18] p-8 sm:p-12 rounded-xl border border-amber-900/40 shadow-sm space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-stone-800 pb-4">
           <div>
             <div className="inline-flex items-center gap-2 bg-[#8B2522] text-amber-200 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-2">
@@ -562,7 +562,7 @@ export default function ProductDetailPage() {
       </section>
 
       {/* SECTION: ĐÁNH GIÁ SẢN PHẨM & GỬI NHẬN XÉT */}
-      <section className="bg-[#1C1714] p-8 sm:p-10 rounded-3xl border border-amber-900/40 shadow-xl space-y-6">
+      <section className="bg-[#1C1714] p-8 sm:p-10 rounded-xl border border-amber-900/40 shadow-xl space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-stone-800 pb-4">
           <div>
             <h3 className="text-xl font-serif font-black text-white flex items-center gap-2">
@@ -648,7 +648,7 @@ export default function ProductDetailPage() {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <span className="text-xs font-bold text-amber-300">{r.customerName}</span>
-                    <span className="text-[10px] bg-emerald-950 text-emerald-400 px-1.5 py-0.5 rounded border border-emerald-800/40">
+                    <span className="text-xs bg-emerald-950 text-emerald-400 px-1.5 py-0.5 rounded border border-emerald-800/40">
                       Đã mua hàng
                     </span>
                   </div>
@@ -695,7 +695,7 @@ export default function ProductDetailPage() {
                   />
                 </div>
                 <div className="p-4 space-y-2">
-                  <span className="text-[10px] font-mono text-amber-500">{rp.product_code}</span>
+                  <span className="text-xs font-mono text-amber-500">{rp.product_code}</span>
                   <h4 className="font-serif font-bold text-xs text-white group-hover:text-amber-400 line-clamp-1">
                     {rp.name}
                   </h4>

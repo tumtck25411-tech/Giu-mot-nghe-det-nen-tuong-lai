@@ -76,10 +76,10 @@ export default function AdminProductsPage() {
         )}
 
         {/* PRODUCTS TABLE */}
-        <div className="bg-white rounded-3xl border border-slate-200 shadow-xs overflow-hidden">
+        <div className="bg-white rounded-xl border border-slate-200 shadow-xs overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
-              <thead className="bg-slate-50 text-slate-500 uppercase font-bold text-[10px] border-b border-slate-200">
+              <thead className="bg-slate-50 text-slate-500 uppercase font-bold text-xs border-b border-slate-200">
                 <tr>
                   <th className="py-4 px-4">Ảnh</th>
                   <th className="py-4 px-4">Mã SP</th>
@@ -109,7 +109,7 @@ export default function AdminProductsPage() {
                     <td className="py-3 px-4">
                       <button
                         onClick={() => handleToggleStatus(p.id, p.status)}
-                        className={`px-2.5 py-1 rounded-full text-[10px] font-bold transition ${
+                        className={`px-2.5 py-1 rounded-full text-xs font-bold transition ${
                           p.status === 'published'
                             ? 'bg-emerald-100 text-emerald-800 hover:bg-emerald-200'
                             : 'bg-amber-100 text-amber-800 hover:bg-amber-200'

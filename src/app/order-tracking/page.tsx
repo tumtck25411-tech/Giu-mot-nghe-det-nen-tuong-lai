@@ -86,7 +86,7 @@ function OrderTrackingContent() {
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10">
       {/* Header Banner */}
-      <div className="bg-gradient-to-r from-[#231C18] via-[#1E1713] to-[#231C18] text-white p-8 sm:p-12 rounded-3xl border border-amber-900/40 relative overflow-hidden shadow-2xl text-center">
+      <div className="bg-gradient-to-r from-[#231C18] via-[#1E1713] to-[#231C18] text-white p-8 sm:p-12 rounded-xl border border-amber-900/40 relative overflow-hidden shadow-sm text-center">
         <div className="max-w-2xl mx-auto space-y-3 relative z-10">
           <div className="inline-flex items-center gap-2 bg-[#8B2522] text-amber-200 text-xs font-bold px-3.5 py-1 rounded-full uppercase tracking-wider">
             <Truck className="w-3.5 h-3.5" />
@@ -102,7 +102,7 @@ function OrderTrackingContent() {
       </div>
 
       {/* SEARCH BOX */}
-      <div className="bg-[#1C1714] p-6 sm:p-8 rounded-3xl border border-amber-900/40 shadow-xl space-y-4">
+      <div className="bg-[#1C1714] p-6 sm:p-8 rounded-xl border border-amber-900/40 shadow-xl space-y-4">
         <form onSubmit={handleSubmit} className="grid grid-cols-1 sm:grid-cols-12 gap-3">
           <div className="sm:col-span-5 relative">
             <input
@@ -150,7 +150,7 @@ function OrderTrackingContent() {
 
       {/* NOT FOUND NOTIFICATION */}
       {notFound && (
-        <div className="bg-[#1C1714] p-10 rounded-3xl border border-red-900/40 text-center space-y-3 shadow-lg">
+        <div className="bg-[#1C1714] p-10 rounded-xl border border-red-900/40 text-center space-y-3 shadow-lg">
           <AlertCircle className="w-10 h-10 text-red-400 mx-auto" />
           <h3 className="text-base font-serif font-bold text-white">
             Không tìm thấy thông tin đơn hàng &quot;{orderCode}&quot;
@@ -165,10 +165,10 @@ function OrderTrackingContent() {
       {order && (
         <div className="space-y-8 animate-in fade-in duration-300">
           {/* Order Header Summary */}
-          <div className="bg-[#1C1714] p-6 sm:p-8 rounded-3xl border border-amber-900/40 shadow-xl space-y-6">
+          <div className="bg-[#1C1714] p-6 sm:p-8 rounded-xl border border-amber-900/40 shadow-xl space-y-6">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-stone-800 pb-4">
               <div>
-                <span className="text-[11px] font-mono text-stone-400 block">MÃ ĐƠN HÀNG:</span>
+                <span className="text-xs font-mono text-stone-400 block">MÃ ĐƠN HÀNG:</span>
                 <h2 className="text-xl font-serif font-black text-amber-400 font-mono">
                   {order.code}
                 </h2>
@@ -178,7 +178,7 @@ function OrderTrackingContent() {
               </div>
 
               <div className="text-left sm:text-right">
-                <span className="text-[11px] text-stone-400 block">TRẠNG THÁI HIỆN TẠI:</span>
+                <span className="text-xs text-stone-400 block">TRẠNG THÁI HIỆN TẠI:</span>
                 <span
                   className={`inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-bold border mt-1 ${
                     STATUS_CONFIG[order.status]?.badgeBg || 'bg-stone-900'
@@ -239,7 +239,7 @@ function OrderTrackingContent() {
                         >
                           {step.title}
                         </h5>
-                        <p className="text-[10px] text-stone-400 mt-0.5">{step.desc}</p>
+                        <p className="text-xs text-stone-400 mt-0.5">{step.desc}</p>
                       </div>
                     );
                   })}
@@ -263,7 +263,7 @@ function OrderTrackingContent() {
                       <div className="w-2 h-2 rounded-full bg-amber-500 mt-1.5 shrink-0" />
                       <div className="flex-1">
                         <p className="text-stone-200">{h.description}</p>
-                        <span className="text-[10px] text-stone-500 font-mono">
+                        <span className="text-xs text-stone-500 font-mono">
                           {new Date(h.time).toLocaleString('vi-VN')}
                         </span>
                       </div>
@@ -277,7 +277,7 @@ function OrderTrackingContent() {
           {/* ORDER ITEMS & RECIPIENT CARD */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Recipient info */}
-            <div className="bg-[#1C1714] p-6 rounded-3xl border border-amber-900/40 space-y-3 text-xs shadow-lg">
+            <div className="bg-[#1C1714] p-6 rounded-xl border border-amber-900/40 space-y-3 text-xs shadow-lg">
               <h3 className="font-serif font-bold text-sm text-white flex items-center gap-2 border-b border-stone-800 pb-2">
                 <MapPin className="w-4 h-4 text-amber-500" />
                 <span>Thông Tin Nhận Hàng</span>
@@ -298,7 +298,7 @@ function OrderTrackingContent() {
             </div>
 
             {/* Product list */}
-            <div className="bg-[#1C1714] p-6 rounded-3xl border border-amber-900/40 space-y-3 text-xs shadow-lg">
+            <div className="bg-[#1C1714] p-6 rounded-xl border border-amber-900/40 space-y-3 text-xs shadow-lg">
               <h3 className="font-serif font-bold text-sm text-white flex items-center gap-2 border-b border-stone-800 pb-2">
                 <Package className="w-4 h-4 text-amber-500" />
                 <span>Chi Tiết Sản Phẩm</span>

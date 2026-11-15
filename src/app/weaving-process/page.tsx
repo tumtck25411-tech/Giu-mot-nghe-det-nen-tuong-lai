@@ -26,7 +26,7 @@ export default function WeavingProcessPage() {
   return (
     <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-8 lg:px-12 py-10 space-y-12">
       {/* Header Banner */}
-      <div className="bg-stone-900 text-white p-8 sm:p-12 rounded-3xl border border-amber-900/40 relative overflow-hidden">
+      <div className="bg-stone-900 text-white p-8 sm:p-12 rounded-xl border border-amber-900/40 relative overflow-hidden">
         <div className="max-w-3xl space-y-4 relative z-10">
           <div className="inline-flex items-center gap-2 bg-amber-950 text-amber-300 text-xs font-bold px-3.5 py-1 rounded-md border border-amber-800/40 uppercase tracking-wider">
             <GitCommit className="w-3.5 h-3.5" />
@@ -59,7 +59,7 @@ export default function WeavingProcessPage() {
               </div>
 
               {/* Step Card Content */}
-              <div className="w-full md:w-[calc(50%-2.5rem)] ml-16 md:ml-0 bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-xs space-y-4">
+              <div className="w-full md:w-[calc(50%-2.5rem)] ml-16 md:ml-0 bg-white p-6 sm:p-8 rounded-xl border border-slate-200 shadow-xs space-y-4">
                 <div className="inline-block bg-amber-100 text-amber-900 text-xs font-bold px-3 py-1 rounded-md font-mono">
                   GIAI ĐOẠN 0{step.step_number}
                 </div>
@@ -94,7 +94,7 @@ export default function WeavingProcessPage() {
       </div>
 
       {/* CTA */}
-      <div className="bg-amber-900 text-white p-8 rounded-3xl text-center space-y-4 shadow-lg">
+      <div className="bg-amber-900 text-white p-8 rounded-xl text-center space-y-4 shadow-lg">
         <h3 className="text-2xl font-serif font-bold text-amber-100">
           Khám Phá Các Sản Phẩm Ứng Dụng Từ Quy Trình Dệt
         </h3>

@@ -88,7 +88,7 @@ export default function MotifDetailPage() {
       </nav>
 
       {/* MOTIF HEADER & OVERVIEW */}
-      <div className="bg-[#1C1714] rounded-3xl p-6 sm:p-10 border border-amber-900/40 shadow-2xl grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <div className="bg-[#1C1714] rounded-xl p-6 sm:p-10 border border-amber-900/40 shadow-sm grid grid-cols-1 lg:grid-cols-12 gap-8">
         <div className="lg:col-span-5 space-y-4">
           <div className="aspect-4/3 rounded-2xl overflow-hidden bg-stone-950 border border-stone-800 p-6 flex items-center justify-center relative shadow-inner">
             <img
@@ -165,7 +165,7 @@ export default function MotifDetailPage() {
 
       {/* RESEARCH & CULTURAL DOSSIER */}
       {(motif.research_overview || (motif.research_bullets && motif.research_bullets.length > 0)) && (
-        <section className="bg-[#1C1714] p-8 sm:p-10 rounded-3xl border border-amber-900/40 shadow-xl space-y-6">
+        <section className="bg-[#1C1714] p-8 sm:p-10 rounded-xl border border-amber-900/40 shadow-xl space-y-6">
           <h2 className="text-xl font-serif font-black text-white flex items-center gap-2">
             <Sparkles className="w-5 h-5 text-amber-400" />
             <span>Tư Liệu Giải Mã Hoa Văn (Series Thổ Cẩm)</span>
@@ -223,7 +223,7 @@ export default function MotifDetailPage() {
                   />
                 </div>
                 <div className="p-4 space-y-2">
-                  <span className="text-[10px] font-mono text-amber-500">{p.product_code}</span>
+                  <span className="text-xs font-mono text-amber-500">{p.product_code}</span>
                   <h4 className="font-serif font-bold text-xs text-white group-hover:text-amber-400 line-clamp-1">
                     {p.name}
                   </h4>

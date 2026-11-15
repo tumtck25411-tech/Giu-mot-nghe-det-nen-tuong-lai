@@ -26,7 +26,7 @@ export default function ArtisansPage() {
   return (
     <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-8 lg:px-12 py-10 space-y-10">
       {/* Header Banner */}
-      <div className="bg-gradient-to-r from-[#231C18] via-[#1E1713] to-[#231C18] text-white p-8 sm:p-10 rounded-3xl border border-amber-900/40 relative overflow-hidden shadow-2xl">
+      <div className="bg-gradient-to-r from-[#231C18] via-[#1E1713] to-[#231C18] text-white p-8 sm:p-10 rounded-xl border border-amber-900/40 relative overflow-hidden shadow-sm">
         <div className="max-w-3xl space-y-3 relative z-10">
           <div className="inline-flex items-center gap-2 bg-[#8B2522] text-amber-200 text-xs font-bold px-3.5 py-1 rounded-full border border-amber-500/40 uppercase tracking-wider">
             <Users className="w-3.5 h-3.5" />
@@ -55,7 +55,7 @@ export default function ArtisansPage() {
           return (
             <div
               key={artisan.id}
-              className="bg-[#231C18] rounded-3xl overflow-hidden border border-amber-900/30 hover:border-amber-500/60 shadow-xl transition-all duration-300 group flex flex-col justify-between hover:-translate-y-1.5"
+              className="bg-[#231C18] rounded-xl overflow-hidden border border-amber-900/30 hover:border-amber-500/60 shadow-xl transition-all duration-300 group flex flex-col justify-between hover:-translate-y-1.5"
             >
               <div>
                 {/* Avatar Banner */}
@@ -68,7 +68,7 @@ export default function ArtisansPage() {
                   <div className="absolute top-4 left-4 bg-stone-950/80 backdrop-blur-sm text-amber-300 font-mono text-xs font-bold px-3 py-1 rounded-lg border border-amber-500/40">
                     {artisan.experience}
                   </div>
-                  <div className="absolute bottom-3 right-3 bg-[#B9383A] text-white text-[11px] font-bold px-3 py-1 rounded-full shadow">
+                  <div className="absolute bottom-3 right-3 bg-[#B9383A] text-white text-xs font-bold px-3 py-1 rounded-full shadow">
                     {artisanProducts.length} Tác phẩm
                   </div>
                 </div>

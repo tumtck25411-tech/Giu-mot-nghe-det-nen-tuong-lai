@@ -103,9 +103,9 @@ export default function AdminArtisansPage() {
           </button>
         </div>
 
-        <div className="bg-white rounded-3xl border border-slate-200 overflow-hidden">
+        <div className="bg-white rounded-xl border border-slate-200 overflow-hidden">
           <table className="w-full text-left text-xs">
-            <thead className="bg-slate-50 uppercase text-[10px] font-bold text-slate-500 border-b border-slate-200">
+            <thead className="bg-slate-50 uppercase text-xs font-bold text-slate-500 border-b border-slate-200">
               <tr>
                 <th className="py-4 px-4">Ảnh</th>
                 <th className="py-4 px-4">Tên Nghệ Nhân</th>
@@ -142,7 +142,7 @@ export default function AdminArtisansPage() {
 
       {showModal && (
         <div className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-4">
-          <div className="bg-white w-full max-w-xl rounded-3xl p-6 space-y-4 shadow-2xl">
+          <div className="bg-white w-full max-w-xl rounded-xl p-6 space-y-4 shadow-sm">
             <div className="flex items-center justify-between border-b pb-3">
               <h3 className="font-bold text-lg">{editingArtisan ? 'Sửa Nghệ Nhân' : 'Thêm Nghệ Nhân Mới'}</h3>
               <button onClick={() => setShowModal(false)}>

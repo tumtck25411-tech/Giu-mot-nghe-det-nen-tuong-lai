@@ -185,7 +185,7 @@ export default function CheckoutPage() {
         {/* Left Form: Shipping Details & Payment Selection (7 Cols) */}
         <div className="lg:col-span-7 space-y-6">
           {/* Customer Info Card */}
-          <div className="bg-[#1C1714] p-6 sm:p-8 rounded-3xl border border-amber-900/40 shadow-xl space-y-4">
+          <div className="bg-[#1C1714] p-6 sm:p-8 rounded-xl border border-amber-900/40 shadow-xl space-y-4">
             <h2 className="text-base font-serif font-bold text-white flex items-center gap-2 border-b border-stone-800 pb-3">
               <User className="w-4 h-4 text-amber-500" />
               <span>1. Thông Tin Người Nhận Hàng</span>
@@ -250,7 +250,7 @@ export default function CheckoutPage() {
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               <div>
-                <label className="text-[11px] text-stone-400 font-bold block mb-1">Tỉnh / Thành phố</label>
+                <label className="text-xs text-stone-400 font-bold block mb-1">Tỉnh / Thành phố</label>
                 <input
                   type="text"
                   value={province}
@@ -260,7 +260,7 @@ export default function CheckoutPage() {
               </div>
 
               <div>
-                <label className="text-[11px] text-stone-400 font-bold block mb-1">Quận / Huyện</label>
+                <label className="text-xs text-stone-400 font-bold block mb-1">Quận / Huyện</label>
                 <input
                   type="text"
                   value={district}
@@ -270,7 +270,7 @@ export default function CheckoutPage() {
               </div>
 
               <div>
-                <label className="text-[11px] text-stone-400 font-bold block mb-1">Phường / Xã</label>
+                <label className="text-xs text-stone-400 font-bold block mb-1">Phường / Xã</label>
                 <input
                   type="text"
                   value={ward}
@@ -295,7 +295,7 @@ export default function CheckoutPage() {
           </div>
 
           {/* Payment Method Card */}
-          <div className="bg-[#1C1714] p-6 sm:p-8 rounded-3xl border border-amber-900/40 shadow-xl space-y-4">
+          <div className="bg-[#1C1714] p-6 sm:p-8 rounded-xl border border-amber-900/40 shadow-xl space-y-4">
             <h2 className="text-base font-serif font-bold text-white flex items-center gap-2 border-b border-stone-800 pb-3">
               <CreditCard className="w-4 h-4 text-amber-500" />
               <span>2. Phương Thức Thanh Toán</span>
@@ -322,7 +322,7 @@ export default function CheckoutPage() {
                   <span className="text-xs font-bold text-white block">
                     Thanh toán khi nhận hàng (COD)
                   </span>
-                  <span className="text-[11px] text-stone-400 block mt-0.5">
+                  <span className="text-xs text-stone-400 block mt-0.5">
                     Quý khách được kiểm tra sản phẩm thổ cẩm trước khi thanh toán tiền mặt cho nhân viên giao hàng.
                   </span>
                 </div>
@@ -347,16 +347,16 @@ export default function CheckoutPage() {
                 <div className="w-full">
                   <span className="text-xs font-bold text-white flex items-center gap-2">
                     <span>Chuyển khoản ngân hàng (Quét mã VietQR)</span>
-                    <span className="text-[10px] px-2 py-0.5 rounded bg-[#8B2522] text-amber-200">
+                    <span className="text-xs px-2 py-0.5 rounded bg-[#8B2522] text-amber-200">
                       Khuyên Dùng
                     </span>
                   </span>
-                  <span className="text-[11px] text-stone-400 block mt-0.5">
+                  <span className="text-xs text-stone-400 block mt-0.5">
                     Quét mã QR qua app ngân hàng hoặc MoMo / VNPay. Mã VietQR động sẽ hiển thị ngay tại trang xác nhận đơn.
                   </span>
 
                   {paymentMethod === 'banking' && (
-                    <div className="mt-3 p-3 bg-stone-950 rounded-xl border border-amber-800/40 text-[11px] text-stone-300 space-y-1">
+                    <div className="mt-3 p-3 bg-stone-950 rounded-xl border border-amber-800/40 text-xs text-stone-300 space-y-1">
                       <p>• Ngân hàng: <strong>MB Bank (Quân Đội)</strong></p>
                       <p>• Số tài khoản: <strong>0383451929</strong></p>
                       <p>• Chủ tài khoản: <strong>JRAI OI HANDICRAFT GIA LAI</strong></p>
@@ -370,7 +370,7 @@ export default function CheckoutPage() {
 
         {/* Right Summary Column (5 Cols) */}
         <div className="lg:col-span-5 space-y-6">
-          <div className="bg-[#1C1714] p-6 sm:p-8 rounded-3xl border border-amber-900/40 shadow-xl space-y-4">
+          <div className="bg-[#1C1714] p-6 sm:p-8 rounded-xl border border-amber-900/40 shadow-xl space-y-4">
             <h3 className="font-serif font-bold text-base text-white border-b border-stone-800 pb-3 flex items-center justify-between">
               <span>Đơn Hàng Của Bạn</span>
               <Link href="/cart" className="text-xs font-sans text-amber-400 hover:underline font-normal">
@@ -389,7 +389,7 @@ export default function CheckoutPage() {
                   />
                   <div className="flex-1 min-w-0">
                     <p className="text-xs font-bold text-white truncate">{item.product?.name}</p>
-                    <p className="text-[11px] text-stone-400">
+                    <p className="text-xs text-stone-400">
                       {item.quantity} x {item.product?.price.toLocaleString('vi-VN')}₫
                     </p>
                   </div>
@@ -449,7 +449,7 @@ export default function CheckoutPage() {
               )}
             </button>
 
-            <div className="p-3 bg-[#120F0D] rounded-xl border border-amber-900/30 text-[11px] text-stone-400 space-y-1">
+            <div className="p-3 bg-[#120F0D] rounded-xl border border-amber-900/30 text-xs text-stone-400 space-y-1">
               <p className="flex items-center gap-1.5 text-stone-300">
                 <ShieldCheck className="w-3.5 h-3.5 text-amber-500 shrink-0" />
                 <span>Bảo mật thông tin đơn hàng 100%.</span>

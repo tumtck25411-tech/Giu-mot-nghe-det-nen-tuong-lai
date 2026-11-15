@@ -53,14 +53,14 @@ export default function AdminSidebar() {
             <div className="font-bold text-sm text-[#FFFDF9] leading-tight flex items-center gap-1.5">
               <span>JRAI ƠI CMS</span>
             </div>
-            <div className="text-[11px] text-amber-400 font-medium">Hệ Thống Quản Trị</div>
+            <div className="text-xs text-amber-400 font-medium">Hệ Thống Quản Trị</div>
           </div>
         </Link>
       </div>
 
       {/* Navigation */}
       <div className="flex-1 py-6 px-3 space-y-1 overflow-y-auto">
-        <div className="px-3 pb-2 text-[10px] font-bold text-stone-500 uppercase tracking-widest">
+        <div className="px-3 pb-2 text-xs font-bold text-stone-500 uppercase tracking-widest">
           QUẢN TRỊ THƯƠNG MẠI
         </div>
 

@@ -43,7 +43,7 @@ export default function AdminQRManagerPage() {
 
       <div className="px-8 space-y-6">
         {/* Core principle banner */}
-        <div className="bg-amber-950 text-white p-6 rounded-3xl border border-amber-800/40 flex items-start gap-4">
+        <div className="bg-amber-950 text-white p-6 rounded-xl border border-amber-800/40 flex items-start gap-4">
           <Info className="w-6 h-6 text-amber-400 shrink-0 mt-0.5" />
           <div className="space-y-1 text-xs leading-relaxed">
             <h4 className="font-bold text-sm text-amber-200">
@@ -57,7 +57,7 @@ export default function AdminQRManagerPage() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Left Column: Product Selector */}
-          <div className="lg:col-span-5 bg-white p-6 rounded-3xl border border-slate-200 shadow-xs space-y-4">
+          <div className="lg:col-span-5 bg-white p-6 rounded-xl border border-slate-200 shadow-xs space-y-4">
             <h3 className="font-bold text-sm text-slate-900 border-b border-slate-100 pb-2">
               1. Chọn Sản Phẩm Cần Tạo Mã QR
             </h3>
@@ -94,7 +94,7 @@ export default function AdminQRManagerPage() {
                     <div className="flex-1 min-w-0">
                       <div className="font-mono font-bold text-xs text-amber-900">{p.product_code}</div>
                       <div className="font-bold text-xs text-slate-900 truncate">{p.name}</div>
-                      <div className="text-[10px] text-slate-500">{p.category}</div>
+                      <div className="text-xs text-slate-500">{p.category}</div>
                     </div>
                   </button>
                 );
@@ -105,10 +105,10 @@ export default function AdminQRManagerPage() {
           {/* Right Column: QR Generator & Output Actions */}
           <div className="lg:col-span-7 space-y-6">
             {selectedProduct ? (
-              <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-xs space-y-6">
+              <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-xs space-y-6">
                 <div className="flex items-center justify-between border-b border-slate-100 pb-4">
                   <div>
-                    <span className="text-[10px] font-mono font-bold bg-amber-800 text-white px-2 py-0.5 rounded">
+                    <span className="text-xs font-mono font-bold bg-amber-800 text-white px-2 py-0.5 rounded">
                       {selectedProduct.product_code}
                     </span>
                     <h3 className="font-serif font-bold text-lg text-slate-900 mt-1">
@@ -136,7 +136,7 @@ export default function AdminQRManagerPage() {
                 />
               </div>
             ) : (
-              <div className="bg-white p-12 rounded-3xl text-center text-slate-500 border border-slate-200 text-xs">
+              <div className="bg-white p-12 rounded-xl text-center text-slate-500 border border-slate-200 text-xs">
                 Vui lòng chọn một sản phẩm từ danh sách bên trái để tạo mã QR.
               </div>
             )}

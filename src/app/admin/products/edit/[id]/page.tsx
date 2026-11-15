@@ -180,7 +180,7 @@ export default function EditProductPage() {
           </div>
         )}
 
-        <div className="bg-white rounded-3xl p-8 border border-slate-200 shadow-xs space-y-8">
+        <div className="bg-white rounded-xl p-8 border border-slate-200 shadow-xs space-y-8">
           {/* Section 1: Basic Metadata */}
           <div className="space-y-4">
             <h3 className="font-serif font-bold text-lg text-slate-900 border-b border-slate-100 pb-2">
@@ -263,7 +263,7 @@ export default function EditProductPage() {
                 <label className="flex flex-col items-center justify-center p-6 border-2 border-dashed border-amber-700/40 hover:border-amber-700 rounded-2xl cursor-pointer bg-white transition text-center shadow-xs">
                   <ImageIcon className="w-8 h-8 text-amber-800 mb-2" />
                   <span className="font-bold text-xs text-amber-900">Bấm Để Chọn Ảnh Mới Từ Thư Mục Máy Tính</span>
-                  <span className="text-[10px] text-slate-500 mt-1">Mở Windows File Explorer để chọn file</span>
+                  <span className="text-xs text-slate-500 mt-1">Mở Windows File Explorer để chọn file</span>
                   <input
                     type="file"
                     accept="image/*"
@@ -288,7 +288,7 @@ export default function EditProductPage() {
                 <label className="flex flex-col items-center justify-center p-6 border-2 border-dashed border-slate-400 hover:border-amber-700 rounded-2xl cursor-pointer bg-white transition text-center shadow-xs">
                   <Video className="w-8 h-8 text-amber-800 mb-2" />
                   <span className="font-bold text-xs text-slate-800">Bấm Để Chọn File Video Từ Máy Tính</span>
-                  <span className="text-[10px] text-slate-500 mt-1">Hỗ trợ file video MP4, MOV, WebM</span>
+                  <span className="text-xs text-slate-500 mt-1">Hỗ trợ file video MP4, MOV, WebM</span>
                   <input
                     type="file"
                     accept="video/*"
@@ -303,7 +303,7 @@ export default function EditProductPage() {
                       <video src={videoUrl} controls className="w-full h-full" />
                     </div>
                     {videoFileName && (
-                      <p className="text-[11px] font-bold text-emerald-700 truncate">
+                      <p className="text-xs font-bold text-emerald-700 truncate">
                         ✓ File video mới: {videoFileName}
                       </p>
                     )}
@@ -378,7 +378,7 @@ export default function EditProductPage() {
                       <div className="font-mono font-bold text-xs text-amber-900">
                         {m.motif_code} - {m.name}
                       </div>
-                      <div className="text-[11px] text-slate-500 line-clamp-1">{m.meaning}</div>
+                      <div className="text-xs text-slate-500 line-clamp-1">{m.meaning}</div>
                     </div>
                   </label>
                 );

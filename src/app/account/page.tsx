@@ -95,7 +95,7 @@ export default function AccountPage() {
   return (
     <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-8 lg:px-12 py-10 space-y-8">
       {/* Header Banner */}
-      <div className="bg-gradient-to-r from-[#231C18] via-[#1E1713] to-[#231C18] text-white p-8 sm:p-10 rounded-3xl border border-amber-900/40 relative overflow-hidden shadow-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+      <div className="bg-gradient-to-r from-[#231C18] via-[#1E1713] to-[#231C18] text-white p-8 sm:p-10 rounded-xl border border-amber-900/40 relative overflow-hidden shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-6">
         <div className="space-y-2">
           <div className="inline-flex items-center gap-2 bg-[#8B2522] text-amber-200 text-xs font-bold px-3.5 py-1 rounded-full uppercase tracking-wider">
             <User className="w-3.5 h-3.5" />
@@ -124,7 +124,7 @@ export default function AccountPage() {
 
       {!customer ? (
         /* Login / Register Card */
-        <div className="max-w-md mx-auto bg-[#1C1714] p-8 rounded-3xl border border-amber-900/40 shadow-2xl space-y-6">
+        <div className="max-w-md mx-auto bg-[#1C1714] p-8 rounded-xl border border-amber-900/40 shadow-sm space-y-6">
           <div className="flex border-b border-stone-800 text-center">
             <button
               onClick={() => setAuthMode('login')}
@@ -200,7 +200,7 @@ export default function AccountPage() {
 
               <div className="relative flex items-center justify-center py-2">
                 <div className="border-t border-stone-800 w-full" />
-                <span className="bg-[#1C1714] px-2 text-[10px] font-bold text-stone-500 uppercase tracking-wider shrink-0">
+                <span className="bg-[#1C1714] px-2 text-xs font-bold text-stone-500 uppercase tracking-wider shrink-0">
                   HOẶC DÙNG SỐ ĐIỆN THOẠI / EMAIL
                 </span>
                 <div className="border-t border-stone-800 w-full" />
@@ -228,7 +228,7 @@ export default function AccountPage() {
                   ĐĂNG NHẬP NGAY
                 </button>
 
-                <div className="text-[11px] text-stone-500 text-center pt-1">
+                <div className="text-xs text-stone-500 text-center pt-1">
                   Hệ thống hỗ trợ đăng nhập nhanh bằng số điện thoại đặt hàng.
                 </div>
               </form>
@@ -325,7 +325,7 @@ export default function AccountPage() {
           {activeTab === 'orders' && (
             <div className="space-y-4">
               {orders.length === 0 ? (
-                <div className="bg-[#1C1714] p-12 rounded-3xl border border-stone-800 text-center space-y-3">
+                <div className="bg-[#1C1714] p-12 rounded-xl border border-stone-800 text-center space-y-3">
                   <p className="text-xs text-stone-400">Bạn chưa có đơn hàng nào.</p>
                   <Link
                     href="/products"
@@ -339,17 +339,17 @@ export default function AccountPage() {
                   {orders.map((ord) => (
                     <div
                       key={ord.id}
-                      className="bg-[#1C1714] p-6 rounded-3xl border border-amber-900/40 shadow-lg flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+                      className="bg-[#1C1714] p-6 rounded-xl border border-amber-900/40 shadow-lg flex flex-col sm:flex-row sm:items-center justify-between gap-4"
                     >
                       <div className="space-y-2">
                         <div className="flex items-center gap-3">
                           <span className="text-xs font-mono font-bold text-amber-400">
                             {ord.code}
                           </span>
-                          <span className="text-[10px] bg-stone-900 text-stone-300 px-2 py-0.5 rounded border border-stone-800">
+                          <span className="text-xs bg-stone-900 text-stone-300 px-2 py-0.5 rounded border border-stone-800">
                             {new Date(ord.createdAt).toLocaleDateString('vi-VN')}
                           </span>
-                          <span className="text-[10px] bg-amber-950 text-amber-300 px-2 py-0.5 rounded font-bold border border-amber-800/40">
+                          <span className="text-xs bg-amber-950 text-amber-300 px-2 py-0.5 rounded font-bold border border-amber-800/40">
                             {ord.status}
                           </span>
                         </div>
@@ -383,7 +383,7 @@ export default function AccountPage() {
           {activeTab === 'wishlist' && (
             <div>
               {wishlistProducts.length === 0 ? (
-                <div className="bg-[#1C1714] p-12 rounded-3xl border border-stone-800 text-center space-y-3">
+                <div className="bg-[#1C1714] p-12 rounded-xl border border-stone-800 text-center space-y-3">
                   <p className="text-xs text-stone-400">Chưa có sản phẩm nào trong danh sách yêu thích.</p>
                   <Link
                     href="/products"
@@ -410,7 +410,7 @@ export default function AccountPage() {
                         <div className="flex gap-2 pt-2">
                           <button
                             onClick={() => addToCart(p, 1)}
-                            className="flex-1 bg-[#B9383A] text-white text-[11px] font-bold py-2 rounded-xl shadow"
+                            className="flex-1 bg-[#B9383A] text-white text-xs font-bold py-2 rounded-xl shadow"
                           >
                             Thêm giỏ
                           </button>
@@ -432,7 +432,7 @@ export default function AccountPage() {
 
           {/* TAB 3: PROFILE */}
           {activeTab === 'profile' && (
-            <div className="bg-[#1C1714] p-8 rounded-3xl border border-amber-900/40 space-y-4 max-w-xl text-xs text-stone-300">
+            <div className="bg-[#1C1714] p-8 rounded-xl border border-amber-900/40 space-y-4 max-w-xl text-xs text-stone-300">
               <h3 className="font-serif font-bold text-base text-white border-b border-stone-800 pb-3">
                 Thông Tin Cá Nhân
               </h3>

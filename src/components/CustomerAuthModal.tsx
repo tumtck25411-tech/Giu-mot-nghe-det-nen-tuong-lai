@@ -71,7 +71,7 @@ export default function CustomerAuthModal({
 
   return (
     <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-      <div className="bg-[#1C1714] border border-amber-900/60 rounded-3xl max-w-md w-full p-6 sm:p-8 space-y-6 relative animate-in fade-in zoom-in-95 duration-200 shadow-2xl text-white">
+      <div className="bg-[#1C1714] border border-amber-900/60 rounded-xl max-w-md w-full p-6 sm:p-8 space-y-6 relative animate-in fade-in zoom-in-95 duration-200 shadow-sm text-white">
         {/* Close Button */}
         <button
           onClick={onClose}
@@ -143,7 +143,7 @@ export default function CustomerAuthModal({
         {/* Divider */}
         <div className="relative flex items-center justify-center">
           <div className="border-t border-stone-800 w-full" />
-          <span className="bg-[#1C1714] px-3 text-[11px] font-bold text-stone-400 uppercase tracking-wider shrink-0">
+          <span className="bg-[#1C1714] px-3 text-xs font-bold text-stone-400 uppercase tracking-wider shrink-0">
             HOẶC ĐĂNG NHẬP NHANH
           </span>
           <div className="border-t border-stone-800 w-full" />
@@ -161,7 +161,7 @@ export default function CustomerAuthModal({
         ) : (
           <form onSubmit={handleManualLogin} className="space-y-3 animate-in fade-in">
             <div>
-              <label className="text-[11px] font-bold text-stone-300 uppercase block mb-1">
+              <label className="text-xs font-bold text-stone-300 uppercase block mb-1">
                 Số Điện Thoại Hoặc Email
               </label>
               <input
@@ -175,7 +175,7 @@ export default function CustomerAuthModal({
             </div>
 
             <div>
-              <label className="text-[11px] font-bold text-stone-300 uppercase block mb-1">
+              <label className="text-xs font-bold text-stone-300 uppercase block mb-1">
                 Họ và Tên Khách Hàng (Tùy chọn)
               </label>
               <input
@@ -198,7 +198,7 @@ export default function CustomerAuthModal({
         )}
 
         {/* Heritage Trust Badge */}
-        <div className="pt-2 border-t border-stone-800/80 flex items-center justify-center gap-2 text-[11px] text-stone-400">
+        <div className="pt-2 border-t border-stone-800/80 flex items-center justify-center gap-2 text-xs text-stone-400">
           <ShieldCheck className="w-4 h-4 text-amber-400 shrink-0" />
           <span>Bảo mật 100% • Cam kết minh bạch nguồn gốc thổ cẩm Jrai</span>
         </div>

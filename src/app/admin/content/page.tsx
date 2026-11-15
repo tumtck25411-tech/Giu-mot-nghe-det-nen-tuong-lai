@@ -90,7 +90,7 @@ export default function AdminContentPage() {
         )}
 
         {/* Content Editor Form */}
-        <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-xs space-y-6">
+        <div className="bg-white p-8 rounded-xl border border-slate-200 shadow-xs space-y-6">
           <h3 className="font-serif font-bold text-lg text-slate-900 border-b border-slate-100 pb-3">
             Nội Dung Trang: {activeTab.toUpperCase()}
           </h3>
