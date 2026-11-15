@@ -139,7 +139,7 @@ export default function Header() {
           </div>
         </div>
 
-        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-12">
           <div className="flex items-center justify-between h-20">
             {/* Logo DỆT NÊN TƯƠNG LAI & JRAI ƠI */}
             <Link href="/" className="flex items-center gap-3.5 group">

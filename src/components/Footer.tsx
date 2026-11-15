@@ -27,7 +27,7 @@ export default function Footer() {
     <footer className="bg-[#120F0D] text-stone-300 border-t border-[#3D2C1F]">
       {/* Brand Values Highlight Bar */}
       <div className="bg-[#1A1412] border-b border-[#3D2C1F] py-6 px-4">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center sm:text-left">
+        <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center sm:text-left">
           <div className="flex items-center gap-3 justify-center sm:justify-start">
             <div className="w-10 h-10 rounded-xl bg-[#8B2522]/30 border border-[#B9383A]/50 flex items-center justify-center text-amber-400 shrink-0">
               <Sparkles className="w-5 h-5" />
@@ -70,7 +70,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-12 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Brand Info */}
           <div className="lg:col-span-2 space-y-4">
@@ -201,13 +201,8 @@ export default function Footer() {
               className="inline-flex items-center gap-2 bg-[#231C18] hover:bg-[#32261E] text-amber-300 hover:text-amber-200 font-bold text-xs py-2.5 px-4 rounded-xl border border-amber-800/60 transition shadow-sm w-full justify-center"
             >
               <Lock className="w-3.5 h-3.5 text-amber-400" />
-              <span>Đăng nhập Admin /admin</span>
+              <span>Cổng Quản Trị Hệ Thống</span>
             </Link>
-
-            <div className="mt-4 p-2.5 bg-[#1A1412] rounded-xl border border-amber-900/30 text-[11px] text-stone-400">
-              <span className="font-semibold text-amber-300 block mb-0.5">Tài khoản Admin mặc định:</span>
-              <code>admin</code> / <code>admin123</code>
-            </div>
           </div>
         </div>
 

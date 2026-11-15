@@ -1290,7 +1290,7 @@ export default function HomePage() {
 
         {/* C. 6 Weaving Stages with Actual Photos - Winding Trail */}
         <section className="section journey-section-bg py-16 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 rounded-3xl" id="journey">
-          <div className="max-w-6xl mx-auto">
+          <div className="w-full max-w-[1500px] mx-auto">
             <div className="text-center" style={{ maxWidth: '720px', margin: '0 auto 35px' }}>
               <span
                 className="section-tag inline-block mb-3 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider"

@@ -80,7 +80,7 @@ export default function ArtisanDetailPage() {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
+    <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-8 lg:px-12 py-8 space-y-10">
       {/* Breadcrumb */}
       <nav className="flex items-center gap-2 text-xs text-stone-400">
         <Link href="/" className="hover:text-white transition">

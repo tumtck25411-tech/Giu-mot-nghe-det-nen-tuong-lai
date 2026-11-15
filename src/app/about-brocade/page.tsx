@@ -6,7 +6,7 @@ import { ShieldAlert, BookOpen, Clock, Heart, Award, ArrowRight } from 'lucide-r
 
 export default function AboutBrocadePage() {
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
+    <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-8 lg:px-12 py-10 space-y-12">
       {/* Header Banner */}
       <div className="bg-stone-900 text-white p-8 sm:p-12 rounded-3xl border border-amber-900/40 relative overflow-hidden">
         <div className="max-w-3xl space-y-4 relative z-10">

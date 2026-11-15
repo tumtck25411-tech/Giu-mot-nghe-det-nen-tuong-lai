@@ -43,7 +43,7 @@ export default function MotifsPage() {
   }, [motifs, searchTerm, selectedTheme]);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
+    <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-8 lg:px-12 py-10 space-y-8">
       {/* Header Banner */}
       <div className="bg-gradient-to-r from-[#231C18] via-[#1E1713] to-[#231C18] text-white p-8 sm:p-10 rounded-3xl border border-amber-900/40 relative overflow-hidden shadow-2xl">
         <div className="max-w-3xl space-y-3 relative z-10">

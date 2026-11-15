@@ -158,7 +158,7 @@ export default function ProductDetailPage() {
   const traceabilityUrl = `${getPublicDomain()}/traceability?code=${product.product_code}`;
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+    <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 py-8 space-y-12">
       {/* Toast Feedback */}
       {addedNotice && (
         <div className="fixed bottom-6 right-6 z-50 bg-[#B9383A] text-white px-5 py-3.5 rounded-2xl shadow-2xl border border-amber-400/40 flex items-center gap-3 animate-in slide-in-from-bottom duration-300">

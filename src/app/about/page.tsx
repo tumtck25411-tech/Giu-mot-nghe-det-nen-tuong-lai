@@ -116,7 +116,7 @@ const weavingStages = [
 
 export default function AboutPage() {
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-20">
+    <div className="w-full max-w-[1680px] mx-auto px-4 sm:px-8 lg:px-12 py-10 space-y-20">
       {/* 1. HERO BANNER: KẾ THỪA CÂU CHUYỆN KHỞI NGUỒN */}
       <section className="bg-gradient-to-r from-[#231C18] via-[#1E1713] to-[#231C18] text-white p-8 sm:p-14 rounded-3xl border border-amber-900/40 relative overflow-hidden shadow-2xl">
         <div

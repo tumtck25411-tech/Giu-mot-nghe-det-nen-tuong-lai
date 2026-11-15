@@ -312,7 +312,7 @@ export default function CustomOrderPage() {
   };
 
   return (
-    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10">
+    <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-8 lg:px-12 py-10 space-y-10">
       {/* Toast Notification */}
       {addedNotice && (
         <div className="fixed bottom-6 right-6 z-50 bg-[#B9383A] text-white px-6 py-4 rounded-2xl shadow-2xl border border-amber-400/50 flex items-center gap-3 animate-in slide-in-from-bottom duration-300">
