@@ -100,50 +100,62 @@ const WEAVING_STAGES_FULL = [
   {
     step: '01',
     stage: 'CHẶNG 01 • BÌA RỪNG CHƯ PĂH',
+    numLabel: 'BƯỚC 01 / NGUYÊN LIỆU MỘC',
     title: 'Thu Hái Bông Kơpăh Tự Nhiên',
+    subtitle: 'Mùa khô Tây Nguyên • Thu hái hoàn toàn thủ công',
     image: '/images/weaving/step-1.jpg',
-    pills: ['⏱️ Tháng 11 - 12', '📍 Rừng Kơpăh Ia Mơ Nông', '🌿 100% Tự nhiên'],
-    desc: 'Thu hái những quả bông tự nhiên vừa bung nở trắng muốt, giữ trọn vẹn độ tơi xốp và tinh khiết của đất trời đại ngàn.',
+    pills: ['⏱️ Tháng 11 - 12 (Mùa khô)', '📍 Rừng Kơpăh Ia Mơ Nông', '🌿 100% Bông tự nhiên'],
+    desc: 'Vào khoảng tháng 11 - 12 hàng năm, phụ nữ Jrai lên nương rẫy và bìa rừng Chư Păh thu hái những quả bông tự nhiên vừa bung nở trắng muốt, giữ trọn vẹn độ tơi xốp và tinh khiết của đất trời đại ngàn.',
   },
   {
     step: '02',
     stage: 'CHẶNG 02 • BÊN HIÊN NHÀ SÀN',
+    numLabel: 'BƯỚC 02 / BẬT BÔNG & KÉO SỢI',
     title: 'Cán Bông & Kéo Sợi Mộc',
+    subtitle: 'Tách hạt gỗ truyền thống • Se sợi con sâu đều đặn',
     image: '/images/weaving/step-2.jpg',
-    pills: ['⏱️ 2 - 3 ngày', '📍 Hiên nhà sàn', '🪵 Trục cán gỗ & Xa quay'],
-    desc: 'Tách sạch hạt bằng trục cán gỗ mộc mạc, vò bông thành từng búp mịn rồi kéo thành những cuộn sợi dai chắc, bền bỉ.',
+    pills: ['⏱️ 2 - 3 ngày thao tác', '📍 Hiên nhà sàn truyền thống', '🪵 Trục cán gỗ & Xa quay tay'],
+    desc: 'Tách sạch hạt bằng trục cán gỗ mộc mạc, vò bông thành từng búp mịn rồi dùng ống quay xa bằng tay để kéo thành những cuộn sợi chỉ dai chắc, bền bỉ và đều đặn theo từng nhịp quay nhịp nhàng.',
   },
   {
     step: '03',
     stage: 'CHẶNG 03 • NỒI NHUỘM BẢN ĐỊA',
+    numLabel: 'BƯỚC 03 / SẮC MÀU THẢO MỘC',
     title: 'Nhuộm Thảo Mộc Rừng Tự Nhiên',
+    subtitle: 'Lá chàm mun, vỏ cây Klét, rễ Knung • 0% hóa chất',
     image: '/images/weaving/step-5.jpg',
-    pills: ['⏱️ 5 - 7 ngày ngâm ủ', '📍 Làng Kép', '🍃 0% Hóa chất'],
-    desc: "Lá chàm mun T'râm đen tuyền, vỏ cây Klét đỏ bazan, rễ cây Knung vàng ấm. 100% thảo mộc tự nhiên ngâm ủ thủ công.",
+    pills: ['⏱️ 5 - 7 ngày ngâm ủ', '📍 Làng Kép, Chư Păh', '🍃 Chàm mun, Klét, Knung'],
+    desc: "Nấu nước lá chàm mun (T'râm) tạo sắc đen huyền bí, vỏ cây Klét đun sôi cho màu đỏ đất bazan, rễ cây Knung cho sắc vàng tươi ấm áp. Từng cuộn sợi được ngâm ủ kỹ lưỡng nhiều ngày đêm dưới nắng gió.",
   },
   {
     step: '04',
     stage: 'CHẶNG 04 • CỬI HÔNG TRUYỀN THỐNG',
+    numLabel: 'BƯỚC 04 / KHUNG CỬI DỆT HÔNG',
     title: 'Mắc Khung Cửi Hông (Backstrap Loom)',
+    subtitle: 'Cố định đai lưng • Tạo lực căng bằng chính cơ thể',
     image: '/images/weaving/step-7.jpg',
     pills: ['⏱️ 1 ngày mắc cửi', '📍 Đai lưng nghệ nhân', '🧵 Căng sợi tự nhiên'],
-    desc: 'Cố định bằng đai da áp sát lưng. Độ ngả người và lực đẩy đôi chân tạo nên độ căng tự nhiên hoàn hảo cho từng sợi dọc.',
+    desc: 'Khác biệt hoàn toàn với cửi đứng công nghiệp, khung cửi hông Jrai được cố định bằng đai da áp sát lưng nghệ nhân. Độ ngả người và lực đẩy đôi chân tạo nên độ căng tự nhiên hoàn hảo cho từng sợi dọc.',
   },
   {
     step: '05',
     stage: 'CHẶNG 05 • TRUYỀN KHẨU KÝ ỨC',
+    numLabel: 'BƯỚC 05 / TẠO TÁC HOA VĂN',
     title: 'Dệt Hoa Văn Độc Bản Theo Ký Ức',
+    subtitle: 'Đếm từng sợi chỉ • Không bản vẽ in sẵn',
     image: '/images/weaving/step-9.jpg',
-    pills: ['⏱️ 10 - 20 ngày', '📍 Làng Phung & Kép', '✨ Ký ức mẫu hệ'],
-    desc: 'Nghệ nhân nhặt đếm từng sợi chỉ theo bài ca truyền khẩu. Hoa văn cánh bướm Kơkơh, Chiêng cồng, Răng cưa bảo vệ hiện lên sắc sảo.',
+    pills: ['⏱️ 10 - 20 ngày dệt tay', '📍 Làng Phung & Làng Kép', '✨ Ký ức mẫu hệ'],
+    desc: 'Không cần sơ đồ trên giấy, nghệ nhân nhặt đếm từng sợi chỉ theo bài ca truyền khẩu của mẫu hệ. Hoa văn cánh bướm Kơkơh, sóng âm Chiêng cồng, Răng cưa bảo vệ hiện lên sắc sảo, sống động.',
   },
   {
     step: '06',
     stage: 'CHẶNG 06 • MINH BẠCH SỐ HÓA',
+    numLabel: 'BƯỚC 06 / ĐỊNH DANH SỐ SVTHM 2026',
     title: 'Cấp Tem Mã QR Định Danh Di Sản',
+    subtitle: 'Minh bạch nghệ nhân • Số giờ dệt • Ý nghĩa hoa văn',
     image: '/images/background/image5.jpg',
-    pills: ['⏱️ Định danh độc bản', '📍 CLB Dệt Ia Mơ Nông', '📱 Quét QR xem nghệ nhân'],
-    desc: 'Cấp tem mác QR độc bản tra cứu chân dung nghệ nhân, làng nghề Ia Mơ Nông và công sức dệt nên sản phẩm.',
+    pills: ['⏱️ Định danh số độc bản', '📍 CLB Dệt Ia Mơ Nông', '📱 Quét QR xem nghệ nhân'],
+    desc: 'Tác phẩm dệt xong được kiểm định khắt khe và cấp một tem mác QR độc bản. Người mua dùng camera điện thoại quét mã là thấy ngay chân dung nghệ nhân, làng nghề Ia Mơ Nông và công sức dệt nên sản phẩm.',
   },
 ];
 
@@ -1274,69 +1286,101 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* C. 6 Weaving Stages with Actual Photos */}
-        <div className="space-y-6">
-          <div className="text-center max-w-2xl mx-auto space-y-1">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#E58A1F]">
-              QUY TRÌNH THỦ CÔNG TRUYỀN THỐNG
-            </span>
-            <h3 className="text-2xl sm:text-3xl font-serif font-black text-white">
-              Hành Trình 6 Chặng Dệt Nên Một Tác Phẩm
-            </h3>
-            <p className="text-xs text-stone-400">
-              Mỗi tấm thổ cẩm Jrai là kết tinh của hàng chục giờ đếm từng sợi chỉ trên khung cửi hông, trải qua 6 công đoạn khắt khe từ cây bông rừng đến mác định danh số QR.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {WEAVING_STAGES_FULL.map((stage) => (
-              <div
-                key={stage.step}
-                className="bg-[#1E1713] rounded-3xl border border-amber-900/40 overflow-hidden shadow-xl flex flex-col justify-between group hover:border-amber-500/60 transition-all"
+        {/* C. 6 Weaving Stages with Actual Photos - Winding Trail */}
+        <section className="section journey-section-bg py-16 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 rounded-3xl" id="journey">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center" style={{ maxWidth: '720px', margin: '0 auto 35px' }}>
+              <span
+                className="section-tag inline-block mb-3 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider"
+                style={{
+                  color: 'var(--color-forest-gold)',
+                  backgroundColor: 'rgba(229, 138, 31, 0.15)',
+                  borderColor: 'rgba(229, 138, 31, 0.35)',
+                }}
               >
-                <div>
-                  <div className="aspect-[16/10] overflow-hidden relative">
-                    <img
-                      src={stage.image}
-                      alt={stage.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute top-3 left-3 bg-[#1C1714]/90 backdrop-blur-sm border border-amber-500/40 px-2.5 py-1 rounded-xl text-[10px] font-bold text-amber-300">
-                      {stage.stage}
+                Quy trình thủ công truyền thống
+              </span>
+              <h3
+                className="section-title text-3xl sm:text-4xl font-serif font-black text-white mb-3"
+                style={{ textShadow: '0 2px 14px rgba(0, 0, 0, 0.8)' }}
+              >
+                Hành Trình Dệt Nên Một Tác Phẩm Thổ Cẩm
+              </h3>
+              <p className="section-desc text-sm sm:text-base text-stone-300" style={{ opacity: 0.95 }}>
+                Mỗi tấm thổ cẩm Jrai là kết tinh của hàng chục giờ đếm từng sợi chỉ trên khung cửi hông, trải qua 6 công đoạn khắt khe từ cây bông rừng đến mác định danh số QR.
+              </p>
+            </div>
+
+            {/* KHUNG HÀNH TRÌNH ĐƯỜNG CONG TÂY NGUYÊN (WINDING S-CURVE JOURNEY) */}
+            <div className="journey-winding-wrapper">
+              <svg
+                className="journey-winding-svg"
+                viewBox="0 0 1000 1750"
+                preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <defs>
+                  <linearGradient id="trailGradientHome" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stopColor="#9E2A2B" />
+                    <stop offset="50%" stopColor="#D97706" />
+                    <stop offset="100%" stopColor="#9E2A2B" />
+                  </linearGradient>
+                </defs>
+                <path
+                  d="M 500,70 
+                     C 420,170 580,260 500,360 
+                     C 420,460 580,550 500,650 
+                     C 420,750 580,840 500,940 
+                     C 420,1040 580,1130 500,1230 
+                     C 420,1330 580,1430 500,1530
+                     L 500,1650"
+                  fill="none"
+                  stroke="url(#trailGradientHome)"
+                  strokeWidth="4"
+                  strokeDasharray="10 8"
+                  strokeLinecap="round"
+                />
+              </svg>
+
+              {WEAVING_STAGES_FULL.map((stage, index) => {
+                const isEven = index % 2 === 0;
+                const stepClass = isEven ? 'journey-trail-step step-left' : 'journey-trail-step step-right';
+
+                return (
+                  <div key={stage.step} className={stepClass}>
+                    <div className="journey-trail-content">
+                      <div className="journey-trail-thumb">
+                        <img src={stage.image} alt={stage.title} />
+                        <span className="journey-milestone-tag">{stage.stage}</span>
+                      </div>
+                      <div className="journey-trail-body">
+                        <div className="journey-watermark-num">{stage.step}</div>
+                        <div className="journey-trail-num">{stage.numLabel}</div>
+                        <h4 className="journey-trail-title">{stage.title}</h4>
+                        <div className="journey-trail-subtitle">{stage.subtitle}</div>
+                        <div className="journey-specs-pills">
+                          {stage.pills.map((pill, pIdx) => (
+                            <span key={pIdx} className="journey-spec-pill">
+                              {pill}
+                            </span>
+                          ))}
+                        </div>
+                        <p className="journey-trail-text">{stage.desc}</p>
+                        <Link href="/weaving-process" className="journey-trail-link">
+                          Xem chi tiết công đoạn ➔
+                        </Link>
+                      </div>
                     </div>
-                    <div className="absolute top-3 right-3 w-8 h-8 rounded-xl bg-[#8B2522] text-white font-serif font-black text-xs flex items-center justify-center border border-amber-400/50 shadow">
-                      {stage.step}
+                    <div className="journey-trail-center">
+                      <div className="journey-pin-node">{stage.step}</div>
                     </div>
+                    <div className="journey-trail-spacer" />
                   </div>
-
-                  <div className="p-5 space-y-2.5">
-                    <h4 className="font-serif font-bold text-sm text-white group-hover:text-amber-300 transition-colors">
-                      {stage.title}
-                    </h4>
-
-                    <div className="flex flex-wrap gap-1">
-                      {stage.pills.map((pill, i) => (
-                        <span
-                          key={i}
-                          className="text-[9px] bg-[#14110F] text-stone-300 px-2 py-0.5 rounded-lg border border-stone-800"
-                        >
-                          {pill}
-                        </span>
-                      ))}
-                    </div>
-
-                    <p className="text-xs text-stone-400 leading-relaxed pt-1">{stage.desc}</p>
-                  </div>
-                </div>
-
-                <div className="p-3.5 bg-[#181411] border-t border-stone-800/80 flex items-center justify-between text-xs text-amber-400 font-bold">
-                  <span>Chặng {stage.step}</span>
-                  <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </div>
-              </div>
-            ))}
+                );
+              })}
+            </div>
           </div>
-        </div>
+        </section>
 
         {/* D. Mentor & Founding Team ("The People Behind The Weave") - Tứ Quý Garden Card Format */}
         <div className="team-section-container reveal-on-scroll" style={{ borderRadius: '32px', padding: '60px 24px 80px', margin: '20px 0' }}>

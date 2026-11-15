@@ -55,6 +55,7 @@ const weavingStages = [
   {
     step: '01',
     stage: 'CHẶNG 01 • BÌA RỪNG CHƯ PĂH',
+    numLabel: 'BƯỚC 01 / NGUYÊN LIỆU MỘC',
     title: 'Thu Hái Bông Kơpăh Tự Nhiên',
     subtitle: 'Mùa khô Tây Nguyên • Thu hái hoàn toàn thủ công',
     image: '/images/weaving/step-1.jpg',
@@ -64,6 +65,7 @@ const weavingStages = [
   {
     step: '02',
     stage: 'CHẶNG 02 • BÊN HIÊN NHÀ SÀN',
+    numLabel: 'BƯỚC 02 / BẬT BÔNG & KÉO SỢI',
     title: 'Cán Bông & Kéo Sợi Mộc',
     subtitle: 'Tách hạt gỗ truyền thống • Se sợi con sâu đều đặn',
     image: '/images/weaving/step-2.jpg',
@@ -73,6 +75,7 @@ const weavingStages = [
   {
     step: '03',
     stage: 'CHẶNG 03 • NỒI NHUỘM BẢN ĐỊA',
+    numLabel: 'BƯỚC 03 / SẮC MÀU THẢO MỘC',
     title: 'Nhuộm Thảo Mộc Rừng Tự Nhiên',
     subtitle: 'Lá chàm mun, vỏ cây Klét, rễ Knung • 0% hóa chất',
     image: '/images/weaving/step-5.jpg',
@@ -82,6 +85,7 @@ const weavingStages = [
   {
     step: '04',
     stage: 'CHẶNG 04 • CỬI HÔNG TRUYỀN THỐNG',
+    numLabel: 'BƯỚC 04 / KHUNG CỬI DỆT HÔNG',
     title: 'Mắc Khung Cửi Hông (Backstrap Loom)',
     subtitle: 'Cố định đai lưng • Tạo lực căng bằng chính cơ thể',
     image: '/images/weaving/step-7.jpg',
@@ -91,6 +95,7 @@ const weavingStages = [
   {
     step: '05',
     stage: 'CHẶNG 05 • TRUYỀN KHẨU KÝ ỨC',
+    numLabel: 'BƯỚC 05 / TẠO TÁC HOA VĂN',
     title: 'Dệt Hoa Văn Độc Bản Theo Ký Ức',
     subtitle: 'Đếm từng sợi chỉ • Không bản vẽ in sẵn',
     image: '/images/weaving/step-9.jpg',
@@ -100,6 +105,7 @@ const weavingStages = [
   {
     step: '06',
     stage: 'CHẶNG 06 • MINH BẠCH SỐ HÓA',
+    numLabel: 'BƯỚC 06 / ĐỊNH DANH SỐ SVTHM 2026',
     title: 'Cấp Tem Mã QR Định Danh Di Sản',
     subtitle: 'Minh bạch nghệ nhân • Số giờ dệt • Ý nghĩa hoa văn',
     image: '/images/background/image5.jpg',
@@ -203,67 +209,99 @@ export default function AboutPage() {
       </section>
 
       {/* 3. HÀNH TRÌNH 6 BƯỚC DỆT NÊN MỘT TÁC PHẨM THỔ CẨM */}
-      <section className="space-y-10" id="journey">
-        <div className="text-center max-w-3xl mx-auto space-y-2">
-          <span className="text-xs font-bold uppercase tracking-widest text-[#E58A1F] bg-[#231C18] px-3.5 py-1 rounded-full border border-amber-900/40 inline-block">
-            QUY TRÌNH THỦ CÔNG TRUYỀN THỐNG
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-serif font-black text-white">
-            Hành Trình 6 Chặng Dệt Nên Một Tác Phẩm Thổ Cẩm
-          </h2>
-          <p className="text-xs sm:text-sm text-stone-400">
-            Mỗi tấm thổ cẩm Jrai là kết tinh của hàng chục giờ đếm từng sợi chỉ trên khung cửi hông, trải qua 6 công đoạn khắt khe từ cây bông rừng đến mác định danh số QR.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {weavingStages.map((stage) => (
-            <div
-              key={stage.step}
-              className="bg-[#1E1713] rounded-3xl border border-amber-900/40 overflow-hidden shadow-xl flex flex-col justify-between group hover:border-amber-500/60 transition-all"
+      <section className="section journey-section-bg py-16 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8" id="journey">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center" style={{ maxWidth: '720px', margin: '0 auto 35px' }}>
+            <span
+              className="section-tag inline-block mb-3 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider"
+              style={{
+                color: 'var(--color-forest-gold)',
+                backgroundColor: 'rgba(229, 138, 31, 0.15)',
+                borderColor: 'rgba(229, 138, 31, 0.35)',
+              }}
             >
-              <div>
-                <div className="aspect-[16/10] overflow-hidden relative">
-                  <img
-                    src={stage.image}
-                    alt={stage.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute top-3 left-3 bg-[#1C1714]/90 backdrop-blur-sm border border-amber-500/40 px-3 py-1 rounded-xl text-[10px] font-bold text-amber-300">
-                    {stage.stage}
+              Quy trình thủ công truyền thống
+            </span>
+            <h2
+              className="section-title text-3xl sm:text-4xl font-serif font-black text-white mb-3"
+              style={{ textShadow: '0 2px 14px rgba(0, 0, 0, 0.8)' }}
+            >
+              Hành Trình Dệt Nên Một Tác Phẩm Thổ Cẩm
+            </h2>
+            <p className="section-desc text-sm sm:text-base text-stone-300" style={{ opacity: 0.95 }}>
+              Mỗi tấm thổ cẩm Jrai là kết tinh của hàng chục giờ đếm từng sợi chỉ trên khung cửi hông, trải qua 6 công đoạn khắt khe từ cây bông rừng đến mác định danh số QR.
+            </p>
+          </div>
+
+          {/* KHUNG HÀNH TRÌNH ĐƯỜNG CONG TÂY NGUYÊN (WINDING S-CURVE JOURNEY) */}
+          <div className="journey-winding-wrapper">
+            {/* Đường cong SVG nối các mốc */}
+            <svg
+              className="journey-winding-svg"
+              viewBox="0 0 1000 1750"
+              preserveAspectRatio="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <defs>
+                <linearGradient id="trailGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="#9E2A2B" />
+                  <stop offset="50%" stopColor="#D97706" />
+                  <stop offset="100%" stopColor="#9E2A2B" />
+                </linearGradient>
+              </defs>
+              <path
+                d="M 500,70 
+                   C 420,170 580,260 500,360 
+                   C 420,460 580,550 500,650 
+                   C 420,750 580,840 500,940 
+                   C 420,1040 580,1130 500,1230 
+                   C 420,1330 580,1430 500,1530
+                   L 500,1650"
+                fill="none"
+                stroke="url(#trailGradient)"
+                strokeWidth="4"
+                strokeDasharray="10 8"
+                strokeLinecap="round"
+              />
+            </svg>
+
+            {weavingStages.map((stage, index) => {
+              const isEven = index % 2 === 0;
+              const stepClass = isEven ? 'journey-trail-step step-left' : 'journey-trail-step step-right';
+
+              return (
+                <div key={stage.step} className={stepClass}>
+                  <div className="journey-trail-content">
+                    <div className="journey-trail-thumb">
+                      <img src={stage.image} alt={stage.title} />
+                      <span className="journey-milestone-tag">{stage.stage}</span>
+                    </div>
+                    <div className="journey-trail-body">
+                      <div className="journey-watermark-num">{stage.step}</div>
+                      <div className="journey-trail-num">{stage.numLabel}</div>
+                      <h3 className="journey-trail-title">{stage.title}</h3>
+                      <div className="journey-trail-subtitle">{stage.subtitle}</div>
+                      <div className="journey-specs-pills">
+                        {stage.pills.map((pill, pIdx) => (
+                          <span key={pIdx} className="journey-spec-pill">
+                            {pill}
+                          </span>
+                        ))}
+                      </div>
+                      <p className="journey-trail-text">{stage.desc}</p>
+                      <Link href="/weaving-process" className="journey-trail-link">
+                        Xem chi tiết công đoạn ➔
+                      </Link>
+                    </div>
                   </div>
-                  <div className="absolute top-3 right-3 w-8 h-8 rounded-xl bg-[#8B2522] text-white font-serif font-black text-xs flex items-center justify-center border border-amber-400/50 shadow">
-                    {stage.step}
+                  <div className="journey-trail-center">
+                    <div className="journey-pin-node">{stage.step}</div>
                   </div>
+                  <div className="journey-trail-spacer" />
                 </div>
-
-                <div className="p-5 space-y-3">
-                  <h3 className="font-serif font-bold text-base text-white group-hover:text-amber-300 transition-colors">
-                    {stage.title}
-                  </h3>
-                  <div className="text-[11px] text-[#E58A1F] font-semibold">{stage.subtitle}</div>
-
-                  <div className="flex flex-wrap gap-1.5">
-                    {stage.pills.map((pill, i) => (
-                      <span
-                        key={i}
-                        className="text-[10px] bg-[#14110F] text-stone-300 px-2 py-0.5 rounded-lg border border-stone-800"
-                      >
-                        {pill}
-                      </span>
-                    ))}
-                  </div>
-
-                  <p className="text-xs text-stone-400 leading-relaxed pt-1">{stage.desc}</p>
-                </div>
-              </div>
-
-              <div className="p-4 bg-[#181411] border-t border-stone-800/80 flex items-center justify-between text-xs text-amber-400 font-bold">
-                <span>Chi tiết công đoạn {stage.step}</span>
-                <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </div>
-            </div>
-          ))}
+              );
+            })}
+          </div>
         </div>
       </section>
 
