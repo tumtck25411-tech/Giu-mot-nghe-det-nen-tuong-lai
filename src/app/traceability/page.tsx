@@ -222,40 +222,36 @@ function TraceabilityContent() {
   return (
     <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-8 lg:px-12 py-10 space-y-10">
       {/* Hero Header With Dynamic Animated Text */}
-      <div className="bg-gradient-to-r from-[#231C18] via-[#1E1713] to-[#231C18] text-white p-8 sm:p-14 rounded-xl border border-amber-900/50 relative overflow-hidden shadow-sm text-center">
-        {/* Decorative background glows */}
-        <div className="absolute -top-24 -left-24 w-72 h-72 bg-[#B9383A]/20 rounded-full blur-3xl pointer-events-none animate-pulse" />
-        <div className="absolute -bottom-24 -right-24 w-72 h-72 bg-amber-500/15 rounded-full blur-3xl pointer-events-none animate-pulse" style={{ animationDelay: '1s' }} />
-
+      <div className="bg-[#F2ECE1] p-8 sm:p-14 rounded-xl border border-[#E5DACB] border-b-2 border-b-[#EA8E23] relative overflow-hidden shadow-sm text-center">
         <div className="max-w-3xl mx-auto space-y-4 relative z-10">
-          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#8B2522] via-[#B9383A] to-[#8B2522] text-amber-200 text-xs font-black px-4 py-1.5 rounded-full border border-amber-400/50 uppercase tracking-widest shadow-lg animate-pulse">
-            <QrCode className="w-4 h-4 text-amber-300 animate-spin" style={{ animationDuration: '8s' }} />
+          <span className="section-tag gold">
+            <QrCode className="w-3.5 h-3.5 inline mr-1 text-[#EA8E23]" />
             <span>MINH BẠCH NGUỒN GỐC SỐ HÓA • DIGITAL PASSPORT</span>
-          </div>
+          </span>
 
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-black bg-gradient-to-r from-[#FFFDF9] via-amber-200 to-[#FFFDF9] bg-clip-text text-transparent animate-shimmer-glow tracking-tight leading-tight">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-black text-[#1F1D1B] tracking-tight leading-tight">
             TRUY XUẤT NGUỒN GỐC SẢN PHẨM
           </h1>
 
-          <div className="flex items-center justify-center gap-2 text-xs text-amber-400/90 font-bold uppercase tracking-wider">
-            <Sparkles className="w-3.5 h-3.5 text-amber-400 animate-bounce" />
+          <div className="flex items-center justify-center gap-2 text-xs text-[#EA8E23] font-bold uppercase tracking-wider">
+            <Sparkles className="w-3.5 h-3.5 text-[#EA8E23]" />
             <span>100% Sản Phẩm Mang Mã Định Danh Độc Bản SVTHM 2026</span>
-            <Sparkles className="w-3.5 h-3.5 text-amber-400 animate-bounce" />
+            <Sparkles className="w-3.5 h-3.5 text-[#EA8E23]" />
           </div>
 
-          <p className="text-stone-300 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
+          <p className="text-[#5D554D] text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
             Mỗi sản phẩm thổ cẩm thủ công JRAI ƠI đều gắn liền với một nghệ nhân buôn làng. Quét mã QR bằng camera hoặc nhập mã trên tem để chứng thực giờ dệt, phôi sợi tự nhiên và thông điệp văn hóa mẫu hệ.
           </p>
         </div>
       </div>
 
       {/* SEARCH CARD */}
-      <div className="bg-[#1C1714] p-6 sm:p-8 rounded-xl border border-amber-900/40 shadow-xl space-y-6">
+      <div className="bg-white p-6 sm:p-8 rounded-xl border border-[#E5DACB] shadow-sm space-y-6">
         <div className="text-center max-w-xl mx-auto space-y-1">
-          <h2 className="text-lg font-serif font-bold text-white">
+          <h2 className="text-lg font-serif font-bold text-[#1F1D1B]">
             Nhập mã tem sản phẩm hoặc quét mã QR
           </h2>
-          <p className="text-xs text-stone-400">
+          <p className="text-xs text-[#5D554D]">
             Mã in trên mác vải hoặc nhãn giấy sản phẩm (Định dạng: K001, B001, V001, hoặc JRAI-IMN-001...)
           </p>
         </div>
@@ -263,19 +259,19 @@ function TraceabilityContent() {
         {/* Search Input Bar */}
         <form onSubmit={handleFormSubmit} className="max-w-2xl mx-auto flex flex-col sm:flex-row gap-3">
           <div className="relative flex-1">
-            <Search className="w-4 h-4 absolute left-3.5 top-3.5 text-stone-500" />
+            <Search className="w-4 h-4 absolute left-3.5 top-3.5 text-[#8A7E72]" />
             <input
               type="text"
               value={inputCode}
               onChange={(e) => setInputCode(e.target.value)}
               placeholder="Nhập mã: V001, K001, B001, C001, VI001..."
-              className="w-full pl-10 pr-4 py-3 bg-[#120F0D] border border-amber-700/60 rounded-xl text-sm text-white placeholder-stone-600 focus:outline-none focus:border-amber-400 font-mono tracking-wider"
+              className="w-full pl-10 pr-4 py-3 bg-[#FBF8F3] border border-[#E5DACB] rounded-xl text-sm text-[#1F1D1B] placeholder-[#8A7E72] focus:outline-none focus:border-[#C43B3D] focus:bg-white font-mono tracking-wider"
             />
           </div>
 
           <button
             type="submit"
-            className="bg-[#B9383A] hover:bg-[#A83232] text-white text-xs font-bold px-7 py-3 rounded-xl shadow border border-amber-400/40 transition flex items-center justify-center gap-2 whitespace-nowrap"
+            className="bg-[#C43B3D] hover:bg-[#8A2325] text-white text-xs font-bold px-7 py-3 rounded-xl shadow transition flex items-center justify-center gap-2 whitespace-nowrap"
           >
             <Search className="w-4 h-4" />
             <span>TRA CỨU NGAY</span>
@@ -284,10 +280,10 @@ function TraceabilityContent() {
           <button
             type="button"
             onClick={toggleCamera}
-            className="bg-[#231C18] hover:bg-[#32261E] text-amber-300 text-xs font-bold px-4 py-3 rounded-xl border border-amber-900/50 transition flex items-center justify-center gap-1.5"
+            className="bg-[#F2ECE1] hover:bg-[#E5DACB] text-[#1F1D1B] text-xs font-bold px-4 py-3 rounded-xl border border-[#E5DACB] transition flex items-center justify-center gap-1.5"
             title="Quét bằng camera điện thoại"
           >
-            <Camera className="w-4 h-4" />
+            <Camera className="w-4 h-4 text-[#C43B3D]" />
             <span className="hidden sm:inline">{cameraActive ? 'Tắt Camera' : 'Quét Camera'}</span>
           </button>
         </form>
@@ -367,23 +363,23 @@ function TraceabilityContent() {
 
         {/* Camera Error Message */}
         {cameraError && (
-          <div className="max-w-md mx-auto p-4 bg-red-950/60 border border-red-800/80 rounded-2xl text-center space-y-2">
-            <p className="text-xs text-red-300">{cameraError}</p>
-            <p className="text-xs text-stone-400">Bạn có thể chọn nhanh các mã mẫu bên dưới để xem kết quả tức thì.</p>
+          <div className="max-w-md mx-auto p-4 bg-red-50 border border-red-200 rounded-2xl text-center space-y-2">
+            <p className="text-xs text-red-600 font-bold">{cameraError}</p>
+            <p className="text-xs text-[#5D554D]">Bạn có thể chọn nhanh các mã mẫu bên dưới để xem kết quả tức thì.</p>
           </div>
         )}
 
         {/* Scan Success Notice */}
         {scanSuccessCode && (
-          <div className="max-w-md mx-auto p-3 bg-emerald-950/70 border border-emerald-700 rounded-xl text-center text-xs text-emerald-300 font-bold flex items-center justify-center gap-2">
-            <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+          <div className="max-w-md mx-auto p-3 bg-emerald-50 border border-emerald-300 rounded-xl text-center text-xs text-emerald-700 font-bold flex items-center justify-center gap-2">
+            <CheckCircle2 className="w-4 h-4 text-emerald-600" />
             <span>Đã nhận diện mã QR thành công: {scanSuccessCode}</span>
           </div>
         )}
 
         {/* Sample Code Pills */}
-        <div className="pt-2 border-t border-stone-800 text-center space-y-2">
-          <span className="text-xs font-bold text-amber-500 uppercase tracking-wider block">
+        <div className="pt-2 border-t border-[#E5DACB] text-center space-y-2">
+          <span className="text-xs font-bold text-[#EA8E23] uppercase tracking-wider block">
             Mã mẫu thử nghiệm:
           </span>
           <div className="flex flex-wrap justify-center gap-2">
@@ -397,8 +393,8 @@ function TraceabilityContent() {
                 }}
                 className={`text-xs px-3.5 py-1.5 rounded-full border transition font-mono ${
                   queriedCode.toUpperCase() === s.code
-                    ? 'bg-[#B9383A] text-white border-amber-400 font-bold'
-                    : 'bg-[#251E1A] text-stone-300 hover:text-white hover:bg-[#322722] border-amber-900/40'
+                    ? 'bg-[#C43B3D] text-white border-[#C43B3D] font-bold shadow-sm'
+                    : 'bg-[#FBF8F3] text-[#5D554D] hover:text-[#1F1D1B] hover:bg-[#F2ECE1] border-[#E5DACB]'
                 }`}
               >
                 {s.label}
@@ -410,26 +406,26 @@ function TraceabilityContent() {
 
       {/* RESULT SECTION: DIGITAL PRODUCT PASSPORT */}
       {notFound && (
-        <div className="bg-[#1C1714] p-12 rounded-xl border border-red-900/40 text-center space-y-4 shadow-xl">
-          <div className="w-14 h-14 rounded-full bg-red-950/60 border border-red-800 flex items-center justify-center mx-auto text-red-400">
+        <div className="bg-white p-12 rounded-xl border border-red-200 text-center space-y-4 shadow-sm">
+          <div className="w-14 h-14 rounded-full bg-red-50 border border-red-200 flex items-center justify-center mx-auto text-red-600">
             <AlertCircle className="w-7 h-7" />
           </div>
-          <h3 className="text-xl font-serif font-bold text-white">
+          <h3 className="text-xl font-serif font-bold text-[#1F1D1B]">
             Không tìm thấy dữ liệu cho mã &quot;{queriedCode}&quot;
           </h3>
-          <p className="text-xs text-stone-400 max-w-md mx-auto">
+          <p className="text-xs text-[#5D554D] max-w-md mx-auto">
             Vui lòng kiểm tra lại mã số in trên tem nhãn hoặc chọn một trong các mã mẫu thử nghiệm (K001, B001, VI001, C001...) ở phía trên.
           </p>
         </div>
       )}
 
       {!product && !notFound && (
-        <div className="bg-[#1C1714] p-12 rounded-xl border border-amber-900/30 text-center space-y-3 shadow-xl">
-          <div className="w-16 h-16 rounded-full bg-[#231C18] border border-amber-900/40 flex items-center justify-center mx-auto text-amber-400 text-2xl shadow-inner">
+        <div className="bg-white p-12 rounded-xl border border-[#E5DACB] text-center space-y-3 shadow-sm">
+          <div className="w-16 h-16 rounded-full bg-[#F2ECE1] border border-[#E5DACB] flex items-center justify-center mx-auto text-2xl shadow-inner">
             📱
           </div>
-          <h3 className="text-lg font-serif font-bold text-white">Chưa có mã tra cứu nào được chọn</h3>
-          <p className="text-xs text-stone-400 max-w-md mx-auto">
+          <h3 className="text-lg font-serif font-bold text-[#1F1D1B]">Chưa có mã tra cứu nào được chọn</h3>
+          <p className="text-xs text-[#5D554D] max-w-md mx-auto">
             Nhập mã tem sản phẩm vào ô tìm kiếm ở trên hoặc bấm vào các nút <strong>Mã mẫu thử nghiệm</strong> để mở ra bản tường trình nguồn gốc số hóa của tác phẩm.
           </p>
         </div>
@@ -438,31 +434,31 @@ function TraceabilityContent() {
       {product && (
         <div className="space-y-8 animate-in fade-in duration-300">
           {/* Passport Banner Card */}
-          <div className="bg-[#1C1714] rounded-xl border border-amber-500/50 p-6 sm:p-10 shadow-sm relative overflow-hidden">
+          <div className="bg-white rounded-xl border border-[#E5DACB] p-6 sm:p-10 shadow-sm relative overflow-hidden">
             {/* Top Seal */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-stone-800 pb-6">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#E5DACB] pb-6">
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#B9383A] to-[#8B2522] text-white flex items-center justify-center font-serif font-black text-2xl border border-amber-400/50 shadow">
+                <div className="w-12 h-12 rounded-2xl bg-[#C43B3D] text-white flex items-center justify-center font-serif font-black text-2xl shadow">
                   J
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
-                    <span className="text-xs font-mono font-bold text-amber-400">
+                    <span className="text-xs font-mono font-bold text-[#EA8E23]">
                       DIGITAL PRODUCT PASSPORT
                     </span>
-                    <span className="text-xs bg-emerald-950 text-emerald-400 px-2 py-0.5 rounded-full font-bold border border-emerald-800/40">
+                    <span className="text-xs bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full font-bold border border-emerald-300">
                       ✓ ĐÃ XÁC THỰC NGUỒN GỐC
                     </span>
                   </div>
-                  <h2 className="text-xl sm:text-2xl font-serif font-black text-white mt-0.5">
+                  <h2 className="text-xl sm:text-2xl font-serif font-black text-[#1F1D1B] mt-0.5">
                     HỘ CHIẾU SỐ DI SẢN THỔ CẨM JRAI
                   </h2>
                 </div>
               </div>
 
               <div className="text-left sm:text-right">
-                <span className="text-xs text-stone-400 block font-mono">MÃ ĐỊNH DANH ĐỘC BẢN:</span>
-                <span className="text-lg font-black text-amber-400 font-mono tracking-wider">
+                <span className="text-xs text-[#8A7E72] block font-mono">MÃ ĐỊNH DANH ĐỘC BẢN:</span>
+                <span className="text-lg font-black text-[#C43B3D] font-mono tracking-wider">
                   {product.product_code}
                 </span>
               </div>
@@ -472,7 +468,7 @@ function TraceabilityContent() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 pt-8">
               {/* Image & Quick QR (4 Cols) */}
               <div className="lg:col-span-4 space-y-4">
-                <div className="aspect-[4/3] rounded-2xl overflow-hidden bg-stone-900 border border-stone-800 shadow-md">
+                <div className="aspect-[4/3] rounded-2xl overflow-hidden bg-[#FBF8F3] border border-[#E5DACB] shadow-sm">
                   <img
                     src={product.image_url}
                     alt={product.name}
@@ -480,8 +476,8 @@ function TraceabilityContent() {
                   />
                 </div>
 
-                <div className="p-4 bg-[#231C18] rounded-2xl border border-amber-900/40 text-center space-y-2">
-                  <span className="text-xs text-amber-500 uppercase font-bold tracking-wider block">
+                <div className="p-4 bg-[#FBF8F3] rounded-2xl border border-[#E5DACB] text-center space-y-2">
+                  <span className="text-xs text-[#EA8E23] uppercase font-bold tracking-wider block">
                     Định danh số cho mác sản phẩm:
                   </span>
                   <div className="flex justify-center">
@@ -490,23 +486,23 @@ function TraceabilityContent() {
                         productUrl
                       )}`}
                       alt="QR Traceability"
-                      className="w-32 h-32 rounded-xl border border-stone-700 bg-white p-2 shadow-sm"
+                      className="w-32 h-32 rounded-xl border border-[#E5DACB] bg-white p-2 shadow-sm"
                     />
                   </div>
-                  <p className="text-xs text-stone-400 font-mono">{product.product_code}</p>
+                  <p className="text-xs text-[#5D554D] font-mono">{product.product_code}</p>
                 </div>
               </div>
 
               {/* Data Specifications (8 Cols) */}
               <div className="lg:col-span-8 space-y-6">
                 <div>
-                  <span className="text-xs text-amber-400 font-bold uppercase tracking-wider block">
+                  <span className="text-xs text-[#EA8E23] font-bold uppercase tracking-wider block">
                     {product.category_name}
                   </span>
-                  <h3 className="text-2xl font-serif font-black text-white mt-0.5">
+                  <h3 className="text-2xl font-serif font-black text-[#1F1D1B] mt-0.5">
                     {product.name}
                   </h3>
-                  <p className="text-xs text-stone-300 mt-2 leading-relaxed">
+                  <p className="text-xs text-[#5D554D] mt-2 leading-relaxed">
                     {product.description}
                   </p>
                 </div>
@@ -514,21 +510,21 @@ function TraceabilityContent() {
                 {/* 4 Pillars of Traceability */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {/* Pillar 1: Maker */}
-                  <div className="p-4 bg-[#231C18] rounded-2xl border border-amber-900/30 space-y-2">
-                    <div className="flex items-center gap-2 text-xs font-bold text-amber-400 uppercase">
+                  <div className="p-4 bg-[#FBF8F3] rounded-2xl border border-[#E5DACB] space-y-2">
+                    <div className="flex items-center gap-2 text-xs font-bold text-[#EA8E23] uppercase">
                       <User className="w-4 h-4" />
                       <span>1. Nghệ nhân thực hiện</span>
                     </div>
-                    <p className="text-sm font-bold text-white">
+                    <p className="text-sm font-bold text-[#1F1D1B]">
                       {product.artisan_name || (artisan ? artisan.name : 'Nghệ nhân Làng Kép')}
                     </p>
-                    <p className="text-xs text-stone-400">
+                    <p className="text-xs text-[#5D554D]">
                       {artisan?.experience || 'Hơn 30 năm tuổi nghề dệt cửi hông'}
                     </p>
                     {artisan && (
                       <Link
                         href={`/artisan/${artisan.id}`}
-                        className="text-xs text-amber-400 hover:underline font-bold inline-block pt-1"
+                        className="text-xs text-[#C43B3D] hover:underline font-bold inline-block pt-1"
                       >
                         Xem hồ sơ nghệ nhân &rarr;
                       </Link>
@@ -536,55 +532,55 @@ function TraceabilityContent() {
                   </div>
 
                   {/* Pillar 2: Village & Time */}
-                  <div className="p-4 bg-[#231C18] rounded-2xl border border-amber-900/30 space-y-2">
-                    <div className="flex items-center gap-2 text-xs font-bold text-amber-400 uppercase">
+                  <div className="p-4 bg-[#FBF8F3] rounded-2xl border border-[#E5DACB] space-y-2">
+                    <div className="flex items-center gap-2 text-xs font-bold text-[#EA8E23] uppercase">
                       <MapPin className="w-4 h-4" />
                       <span>2. Nguồn gốc địa bàn</span>
                     </div>
-                    <p className="text-sm font-bold text-white">
+                    <p className="text-sm font-bold text-[#1F1D1B]">
                       {product.location || 'Làng Kép, Xã Ia Mơ Nông, Chư Păh, Gia Lai'}
                     </p>
-                    <p className="text-xs text-stone-400 flex items-center gap-1">
-                      <Clock className="w-3.5 h-3.5 text-amber-500" />
+                    <p className="text-xs text-[#5D554D] flex items-center gap-1">
+                      <Clock className="w-3.5 h-3.5 text-[#EA8E23]" />
                       <span>Thời gian hoàn thành: <strong>{product.production_time}</strong></span>
                     </p>
                   </div>
 
                   {/* Pillar 3: Materials & Weaving */}
-                  <div className="p-4 bg-[#231C18] rounded-2xl border border-amber-900/30 space-y-2">
-                    <div className="flex items-center gap-2 text-xs font-bold text-amber-400 uppercase">
+                  <div className="p-4 bg-[#FBF8F3] rounded-2xl border border-[#E5DACB] space-y-2">
+                    <div className="flex items-center gap-2 text-xs font-bold text-[#EA8E23] uppercase">
                       <Layers className="w-4 h-4" />
                       <span>3. Chất liệu & Kỹ thuật</span>
                     </div>
-                    <p className="text-xs text-stone-200">
-                      <strong>Chất liệu:</strong> {product.material}
+                    <p className="text-xs text-[#5D554D]">
+                      <strong className="text-[#1F1D1B]">Chất liệu:</strong> {product.material}
                     </p>
-                    <p className="text-xs text-stone-200">
-                      <strong>Kỹ thuật:</strong> Dệt cửi hông (backstrap loom), cài sợi nổi 3D Kơnech.
+                    <p className="text-xs text-[#5D554D]">
+                      <strong className="text-[#1F1D1B]">Kỹ thuật:</strong> Dệt cửi hông (backstrap loom), cài sợi nổi 3D Kơnech.
                     </p>
                   </div>
 
                   {/* Pillar 4: Motif Symbolism */}
-                  <div className="p-4 bg-[#231C18] rounded-2xl border border-amber-900/30 space-y-2">
-                    <div className="flex items-center gap-2 text-xs font-bold text-amber-400 uppercase">
+                  <div className="p-4 bg-[#FBF8F3] rounded-2xl border border-[#E5DACB] space-y-2">
+                    <div className="flex items-center gap-2 text-xs font-bold text-[#EA8E23] uppercase">
                       <Sparkles className="w-4 h-4" />
                       <span>4. Ý nghĩa hoa văn</span>
                     </div>
-                    <p className="text-xs text-stone-200 font-bold">
+                    <p className="text-xs text-[#1F1D1B] font-bold">
                       {product.motif_name || (motif ? motif.name : 'Hoa văn hình học cổ di sản')}
                     </p>
-                    <p className="text-xs text-stone-400 line-clamp-2">
+                    <p className="text-xs text-[#5D554D] line-clamp-2">
                       {motif?.meaning || 'Biểu trưng của sự hòa hợp cùng thiên nhiên và trật tự buôn làng.'}
                     </p>
                   </div>
                 </div>
 
                 {/* Cultural Narrative Summary */}
-                <div className="p-5 bg-[#231C18] rounded-2xl border border-amber-900/40 space-y-2">
-                  <h4 className="text-xs font-bold text-amber-400 uppercase tracking-wider">
+                <div className="p-5 bg-[#F2ECE1] rounded-2xl border border-[#E5DACB] space-y-2">
+                  <h4 className="text-xs font-bold text-[#EA8E23] uppercase tracking-wider">
                     {product.story_title || 'Ý NGHĨA VĂN HÓA SẢN PHẨM'}
                   </h4>
-                  <p className="text-xs text-stone-300 leading-relaxed italic">
+                  <p className="text-xs text-[#5D554D] leading-relaxed italic">
                     {product.story_lead || product.story.slice(0, 300) + '...'}
                   </p>
                 </div>
@@ -593,14 +589,14 @@ function TraceabilityContent() {
                 <div className="flex flex-wrap items-center justify-between gap-4 pt-2">
                   <Link
                     href={`/product/${product.id}`}
-                    className="inline-flex items-center gap-2 bg-[#B9383A] hover:bg-[#A83232] text-white text-xs font-bold px-6 py-3 rounded-xl shadow transition"
+                    className="inline-flex items-center gap-2 bg-[#C43B3D] hover:bg-[#8A2325] text-white text-xs font-bold px-6 py-3 rounded-xl shadow transition"
                   >
                     <span>Xem trang bán hàng sản phẩm này</span>
                     <ArrowRight className="w-4 h-4" />
                   </Link>
 
-                  <div className="text-xs text-stone-400 flex items-center gap-1.5">
-                    <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                  <div className="text-xs text-[#5D554D] flex items-center gap-1.5">
+                    <ShieldCheck className="w-4 h-4 text-emerald-600" />
                     <span>Dữ liệu số hóa chính thức bởi Ban điều phối JRAI ƠI</span>
                   </div>
                 </div>
@@ -609,11 +605,11 @@ function TraceabilityContent() {
           </div>
 
           {/* PRINT & DOWNLOAD QR TOOLS */}
-          <div className="bg-[#1C1714] p-8 rounded-xl border border-amber-900/40 shadow-xl space-y-4">
-            <h3 className="text-lg font-serif font-bold text-white">
+          <div className="bg-white p-8 rounded-xl border border-[#E5DACB] shadow-sm space-y-4">
+            <h3 className="text-lg font-serif font-bold text-[#1F1D1B]">
               Công Cụ Tải & In Thẻ Tem Mã QR
             </h3>
-            <p className="text-xs text-stone-400">
+            <p className="text-xs text-[#5D554D]">
               Dành cho khách hàng hoặc Ban quản trị in tem nhãn gắn vào sản phẩm thực tế:
             </p>
             <QRCodeGenerator
@@ -632,7 +628,7 @@ function TraceabilityContent() {
 
 export default function TraceabilityPage() {
   return (
-    <React.Suspense fallback={<div className="min-h-screen bg-[#14110F] py-20 text-center text-stone-400">Đang tải hệ thống tra cứu nguồn gốc sản phẩm...</div>}>
+    <React.Suspense fallback={<div className="min-h-screen bg-[#FBF8F3] py-20 text-center text-[#5D554D]">Đang tải hệ thống tra cứu nguồn gốc sản phẩm...</div>}>
       <TraceabilityContent />
     </React.Suspense>
   );

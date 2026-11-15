@@ -725,16 +725,16 @@ export default function HomePage() {
           </div>
 
         {/* Filter Controls: Search & Category Pills */}
-        <div className="space-y-4 bg-[#1C1613] p-5 rounded-xl border border-amber-900/30 shadow-sm">
+        <div className="space-y-4 bg-white p-5 sm:p-6 rounded-xl border border-[#E5DACB] shadow-sm">
           <div className="flex flex-col sm:flex-row gap-3">
             <div className="relative flex-1">
-              <Search className="w-4 h-4 absolute left-3.5 top-3.5 text-stone-400" />
+              <Search className="w-4 h-4 absolute left-3.5 top-3.5 text-[#8A7E72]" />
               <input
                 type="text"
                 placeholder="Tìm theo tên sản phẩm hoặc mã (K001, B001, C001, VI001...)"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2.5 rounded-lg bg-[#14110F] border border-stone-800 text-sm text-stone-200 placeholder-stone-500 focus:outline-none focus:border-amber-500"
+                className="w-full pl-10 pr-4 py-2.5 rounded-lg bg-[#FBF8F3] border border-[#E5DACB] text-sm text-[#1F1D1B] placeholder-[#8A7E72] focus:outline-none focus:border-[#C43B3D] focus:bg-white"
               />
             </div>
 
@@ -742,7 +742,7 @@ export default function HomePage() {
               <select
                 value={priceRange}
                 onChange={(e) => setPriceRange(e.target.value)}
-                className="px-3 py-2.5 rounded-lg bg-[#14110F] border border-stone-800 text-sm text-stone-300 focus:outline-none focus:border-amber-500"
+                className="px-3 py-2.5 rounded-lg bg-[#FBF8F3] border border-[#E5DACB] text-sm text-[#1F1D1B] focus:outline-none focus:border-[#C43B3D] focus:bg-white"
               >
                 <option value="all">Mọi mức giá</option>
                 <option value="under-300">Dưới 300.000₫</option>
@@ -753,7 +753,7 @@ export default function HomePage() {
               <select
                 value={selectedArtisanFilter}
                 onChange={(e) => setSelectedArtisanFilter(e.target.value)}
-                className="px-3 py-2.5 rounded-lg bg-[#14110F] border border-stone-800 text-sm text-stone-300 focus:outline-none focus:border-amber-500"
+                className="px-3 py-2.5 rounded-lg bg-[#FBF8F3] border border-[#E5DACB] text-sm text-[#1F1D1B] focus:outline-none focus:border-[#C43B3D] focus:bg-white"
               >
                 <option value="all">Tất cả nghệ nhân</option>
                 {artisans.map((a) => (
@@ -773,8 +773,8 @@ export default function HomePage() {
                 onClick={() => setSelectedCategory(cat.id)}
                 className={`px-3.5 py-2 rounded-lg text-sm font-semibold whitespace-nowrap transition flex items-center gap-1.5 ${
                   selectedCategory === cat.id
-                    ? 'bg-[#B9383A] text-white shadow-sm border border-amber-400/50'
-                    : 'bg-[#14110F] text-stone-400 hover:text-stone-200 border border-stone-800/80'
+                    ? 'bg-[#C43B3D] text-white shadow-xs border border-[#C43B3D]'
+                    : 'bg-[#FBF8F3] hover:bg-[#F2ECE1] text-[#5D554D] hover:text-[#1F1D1B] border border-[#E5DACB]'
                 }`}
               >
                 <span>{cat.name}</span>
@@ -1068,14 +1068,14 @@ export default function HomePage() {
         </div>
 
         {/* Input & Sample Buttons */}
-        <div className="bg-[#1C1613] p-6 rounded-xl border border-amber-900/30 shadow-sm space-y-4">
+        <div className="bg-white p-6 rounded-xl border border-[#E5DACB] shadow-sm space-y-4">
           <div className="flex flex-col sm:flex-row gap-3">
             <input
               type="text"
               value={passportCode}
               onChange={(e) => setPassportCode(e.target.value.toUpperCase())}
               placeholder="Nhập mã sản phẩm: K001, B001, C001, VI001, TT001..."
-              className="flex-1 bg-[#14110F] border border-amber-700/50 rounded-lg px-4 py-3 text-sm text-white placeholder-stone-500 focus:outline-none focus:border-amber-400 font-mono"
+              className="flex-1 bg-[#FBF8F3] border border-[#E5DACB] rounded-lg px-4 py-3 text-sm text-[#1F1D1B] placeholder-[#8A7E72] focus:outline-none focus:border-[#C43B3D] focus:bg-white font-mono"
             />
             <button
               onClick={() => {
@@ -1086,22 +1086,22 @@ export default function HomePage() {
                   setPassportProduct(found || null);
                 }
               }}
-              className="bg-[#B9383A] hover:bg-[#A83232] text-white text-xs sm:text-sm font-bold px-6 py-3 rounded-lg border border-amber-400/40 shadow-sm transition whitespace-nowrap"
+              className="bg-[#C43B3D] hover:bg-[#8A2325] text-white text-xs sm:text-sm font-bold px-6 py-3 rounded-lg shadow-sm transition whitespace-nowrap"
             >
               TRA CỨU HỘ CHIẾU
             </button>
           </div>
 
           <div className="flex items-center gap-2 overflow-x-auto pb-1 text-xs sm:text-sm">
-            <span className="text-stone-400 whitespace-nowrap">Bấm thử mẫu:</span>
+            <span className="text-[#8A7E72] whitespace-nowrap">Bấm thử mẫu:</span>
             {['K001', 'B001', 'VI001', 'C001', 'TT001', 'TD001', 'V001', 'A001'].map((c) => (
               <button
                 key={c}
                 onClick={() => setPassportCode(c)}
                 className={`px-3 py-1.5 rounded-md font-mono font-bold transition ${
                   passportCode.toUpperCase() === c
-                    ? 'bg-amber-600 text-white'
-                    : 'bg-[#14110F] text-stone-300 hover:text-white border border-stone-800'
+                    ? 'bg-[#C43B3D] text-white shadow-xs'
+                    : 'bg-[#FBF8F3] text-[#5D554D] hover:text-[#1F1D1B] border border-[#E5DACB]'
                 }`}
               >
                 {c}
@@ -1112,21 +1112,21 @@ export default function HomePage() {
 
         {/* Passport Result Box */}
         {passportProduct ? (
-          <div className="bg-[#1C1613] rounded-xl border border-amber-900/30 overflow-hidden shadow-sm p-6 sm:p-8 space-y-6">
-            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-stone-800 pb-5">
+          <div className="bg-white rounded-xl border border-[#E5DACB] overflow-hidden shadow-sm p-6 sm:p-8 space-y-6">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-[#E5DACB] pb-5">
               <div>
-                <span className="text-xs sm:text-sm font-mono text-amber-400 uppercase tracking-widest font-bold">
+                <span className="text-xs sm:text-sm font-mono text-[#EA8E23] uppercase tracking-widest font-bold">
                   HỘ CHIẾU SỐ: JRAI-IMN-{passportProduct.product_code}
                 </span>
-                <h3 className="text-2xl font-serif font-black text-white mt-1">
+                <h3 className="text-2xl font-serif font-black text-[#1F1D1B] mt-1">
                   {passportProduct.name}
                 </h3>
               </div>
               <div className="text-right">
-                <span className="text-xl sm:text-2xl font-bold font-mono text-amber-400">
+                <span className="text-xl sm:text-2xl font-bold font-mono text-[#C43B3D]">
                   {passportProduct.price.toLocaleString('vi-VN')}₫
                 </span>
-                <p className="text-xs text-emerald-400 font-semibold flex items-center gap-1 justify-end">
+                <p className="text-xs text-[#3D7535] font-semibold flex items-center gap-1 justify-end">
                   <CheckCircle2 className="w-3.5 h-3.5" />
                   <span>Xác thực di sản bản địa</span>
                 </p>
@@ -1136,45 +1136,45 @@ export default function HomePage() {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               {/* Product Image & Info */}
               <div className="space-y-4">
-                <div className="aspect-[4/3] rounded-lg overflow-hidden border border-stone-800 bg-stone-950">
+                <div className="aspect-[4/3] rounded-lg overflow-hidden border border-[#E5DACB] bg-[#F2ECE1]">
                   <img
                     src={passportProduct.image_url}
                     alt={passportProduct.name}
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div className="p-4 bg-[#14110F] rounded-lg border border-stone-800 space-y-2 text-xs sm:text-sm">
+                <div className="p-4 bg-[#FBF8F3] rounded-lg border border-[#E5DACB] space-y-2 text-xs sm:text-sm">
                   <div className="flex justify-between">
-                    <span className="text-stone-400">Phân loại:</span>
-                    <span className="font-bold text-white">{passportProduct.category_name}</span>
+                    <span className="text-[#8A7E72]">Phân loại:</span>
+                    <span className="font-bold text-[#1F1D1B]">{passportProduct.category_name}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-stone-400">Thời gian dệt:</span>
-                    <span className="font-bold text-amber-300">{passportProduct.production_time}</span>
+                    <span className="text-[#8A7E72]">Thời gian dệt:</span>
+                    <span className="font-bold text-[#C43B3D]">{passportProduct.production_time}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-stone-400">Chất liệu:</span>
-                    <span className="font-bold text-white">{passportProduct.material}</span>
+                    <span className="text-[#8A7E72]">Chất liệu:</span>
+                    <span className="font-bold text-[#1F1D1B]">{passportProduct.material}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-stone-400">Tọa độ:</span>
-                    <span className="font-bold text-white truncate max-w-[160px]">{passportProduct.location}</span>
+                    <span className="text-[#8A7E72]">Tọa độ:</span>
+                    <span className="font-bold text-[#1F1D1B] truncate max-w-[160px]">{passportProduct.location}</span>
                   </div>
                 </div>
               </div>
 
               {/* Story & Cultural Context */}
               <div className="space-y-4">
-                <h4 className="text-sm sm:text-base font-serif font-bold text-amber-300 uppercase tracking-wider border-b border-stone-800 pb-2">
+                <h4 className="text-sm sm:text-base font-serif font-bold text-[#1F1D1B] uppercase tracking-wider border-b border-[#E5DACB] pb-2">
                   Ý Nghĩa Văn Hóa & Câu Chuyện
                 </h4>
-                <p className="text-xs sm:text-sm text-stone-300 leading-relaxed">
+                <p className="text-xs sm:text-sm text-[#5D554D] leading-relaxed">
                   {passportProduct.story || passportProduct.description}
                 </p>
 
-                <div className="p-4 bg-[#14110F] rounded-lg border border-stone-800 space-y-2 text-xs sm:text-sm">
-                  <span className="text-xs sm:text-sm font-bold text-amber-400 block">Nghệ nhân thực hiện:</span>
-                  <p className="text-stone-300">
+                <div className="p-4 bg-[#FBF8F3] rounded-lg border border-[#E5DACB] space-y-2 text-xs sm:text-sm">
+                  <span className="text-xs sm:text-sm font-bold text-[#EA8E23] block">Nghệ nhân thực hiện:</span>
+                  <p className="text-[#5D554D]">
                     Sản phẩm được dệt hoàn toàn bằng cửi hông bởi các nghệ nhân giàu kinh nghiệm tại xã Ia Mơ Nông, huyện Chư Păh, Gia Lai.
                   </p>
                 </div>
@@ -1182,8 +1182,8 @@ export default function HomePage() {
 
               {/* QR Tag Downloader Tool */}
               <div className="space-y-4 flex flex-col justify-between">
-                <div className="p-5 bg-[#14110F] rounded-lg border border-amber-900/30 text-center space-y-3">
-                  <span className="text-xs sm:text-sm font-bold text-amber-400 uppercase tracking-wider block">
+                <div className="p-5 bg-[#FBF8F3] rounded-lg border border-[#E5DACB] text-center space-y-3">
+                  <span className="text-xs sm:text-sm font-bold text-[#1F1D1B] uppercase tracking-wider block">
                     Tem Nhãn QR Định Danh
                   </span>
                   <QRCodeGenerator
@@ -1197,16 +1197,16 @@ export default function HomePage() {
 
                 <button
                   onClick={() => handleAddToCart(passportProduct)}
-                  className="w-full py-3.5 rounded-lg bg-[#B9383A] hover:bg-[#A83232] text-white font-bold text-xs sm:text-sm shadow-sm flex items-center justify-center gap-2"
+                  className="w-full py-3.5 rounded-lg bg-[#C43B3D] hover:bg-[#8A2325] text-white font-bold text-xs sm:text-sm shadow-sm flex items-center justify-center gap-2 transition"
                 >
-                  <ShoppingBag className="w-4 h-4 text-amber-300" />
+                  <ShoppingBag className="w-4 h-4 text-amber-200" />
                   <span>THÊM SẢN PHẨM NÀY VÀO GIỎ HÀNG</span>
                 </button>
               </div>
             </div>
           </div>
         ) : (
-          <div className="p-8 bg-[#14110F] rounded-xl border border-stone-800 text-center text-stone-400 text-sm">
+          <div className="p-8 bg-white rounded-xl border border-[#E5DACB] text-center text-[#5D554D] text-sm shadow-sm">
             Không tìm thấy thông tin cho mã &ldquo;{passportCode}&rdquo;. Vui lòng thử các mã mẫu như K001, B001, VI001...
           </div>
         )}
@@ -1219,24 +1219,18 @@ export default function HomePage() {
       <section className="section reveal-on-scroll" id="about" style={{ scrollMarginTop: '80px' }}>
         <div className="container space-y-16">
         {/* A. Hero Origin Story Banner */}
-        <div className="bg-[#1C1613] text-white p-7 sm:p-10 rounded-xl border border-amber-900/30 relative overflow-hidden shadow-sm">
-          <div
-            className="absolute inset-0 bg-cover bg-center opacity-20 mix-blend-luminosity"
-            style={{ backgroundImage: `url('/images/background/image6.jpg')` }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#181411] via-[#181411]/90 to-transparent" />
-
-          <div className="max-w-3xl space-y-4 relative z-10">
-            <div className="inline-flex items-center gap-2 bg-[#8B2522] text-amber-200 text-xs font-bold px-4 py-1.5 rounded-full border border-amber-500/40 uppercase tracking-wider">
-              <Compass className="w-4 h-4 text-amber-300" />
+        <div className="bg-[#F2ECE1] p-8 sm:p-12 rounded-xl border border-[#E5DACB] border-b-2 border-b-[#EA8E23] relative overflow-hidden shadow-sm text-center">
+          <div className="max-w-3xl mx-auto space-y-4 relative z-10">
+            <span className="section-tag gold">
+              <Compass className="w-3.5 h-3.5 inline mr-1 text-[#EA8E23]" />
               <span>CÂU CHUYỆN KHỞI NGUỒN • DỰ ÁN DỆT NÊN TƯƠNG LAI</span>
-            </div>
+            </span>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-black text-[#FFFDF9] leading-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-black text-[#1F1D1B] leading-tight">
               Từ Câu Hỏi Về Sinh Kế Đến Khát Vọng Giữ Lửa Nghề
             </h2>
 
-            <p className="text-stone-300 text-sm sm:text-base leading-relaxed italic border-l-4 border-[#B9383A] pl-4">
+            <p className="text-[#5D554D] text-sm sm:text-base leading-relaxed italic border-l-4 border-[#C43B3D] pl-4 max-w-2xl mx-auto text-left sm:text-center">
               &ldquo;Nếu một nghề truyền thống có giá trị nhưng người làm nghề không thể sống được từ nghề, thì làm thế nào để nghề ấy tiếp tục tồn tại?&rdquo; — Câu hỏi trăn trở ấy đã đưa nhóm chúng tôi đặt chân đến buôn làng Ia Mơ Nông.
             </p>
           </div>
@@ -1244,13 +1238,13 @@ export default function HomePage() {
 
         {/* B. Fieldwork Story: 2 Columns */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-          <div className="space-y-4 text-stone-300 text-sm sm:text-base leading-relaxed">
-            <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#E58A1F]">
-              <Sparkles className="w-4 h-4 text-amber-400" />
+          <div className="space-y-4 text-[#5D554D] text-sm sm:text-base leading-relaxed">
+            <span className="section-tag">
+              <Sparkles className="w-3.5 h-3.5 inline mr-1 text-[#C43B3D]" />
               <span>HÀNH TRÌNH THỰC ĐỊA IA MƠ NÔNG</span>
-            </div>
+            </span>
 
-            <h3 className="text-2xl sm:text-3xl font-serif font-black text-white leading-tight">
+            <h3 className="text-2xl sm:text-3xl font-serif font-black text-[#1F1D1B] leading-tight">
               Không chỉ là bảo tồn, mà là làm cho giá trị của nghề được nhìn thấy
             </h3>
 
@@ -1262,26 +1256,26 @@ export default function HomePage() {
               Tại xã Ia Mơ Nông, huyện Chư Păh, chúng tôi ngồi cùng những người phụ nữ Jrai bên hiên nhà sàn, lắng nghe tiếng lách cách của thoi đưa và nhận ra: công nghệ số không phải để thay thế đôi bàn tay nghệ nhân, mà là chiếc cầu nối để đưa câu chuyện, công sức và tri thức văn hóa phía sau từng nếp dệt đến với những khách hàng trân quý.
             </p>
 
-            <div className="bg-[#231C18] border-l-4 border-[#B9383A] p-4 rounded-r-lg border-y border-r border-amber-900/30">
-              <p className="font-serif italic font-bold text-amber-200 text-sm sm:text-base">
+            <div className="bg-[#F2ECE1] border-l-4 border-[#C43B3D] p-4 rounded-r-lg border-y border-r border-[#E5DACB]">
+              <p className="font-serif italic font-bold text-[#1F1D1B] text-sm sm:text-base">
                 &ldquo;Không thay đổi cái gốc của nghề, thay đổi cách giá trị của nghề được nhìn thấy.&rdquo;
               </p>
             </div>
           </div>
 
           <div className="relative">
-            <div className="rounded-xl overflow-hidden border border-amber-500/30 shadow-sm aspect-[4/3]">
+            <div className="rounded-xl overflow-hidden border border-[#E5DACB] shadow-sm aspect-[4/3]">
               <img
                 src="/images/background/image6.jpg"
                 alt="Sinh viên UEL và nghệ nhân gìn giữ nghề dệt tại Ia Mơ Nông"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
               />
             </div>
-            <div className="absolute -bottom-4 -right-3 bg-[#1C1714] border border-amber-500/40 p-3 rounded-lg shadow-sm max-w-xs text-xs sm:text-sm text-stone-300">
-              <span className="text-xs font-bold uppercase text-[#E58A1F] block mb-0.5">
+            <div className="absolute -bottom-4 -right-3 bg-white border border-[#E5DACB] border-l-4 border-l-[#EA8E23] p-4 rounded-xl shadow-md max-w-xs text-xs sm:text-sm text-[#5D554D]">
+              <span className="text-xs font-extrabold uppercase text-[#EA8E23] block mb-0.5">
                 ĐỊA BÀN THÍ ĐIỂM
               </span>
-              <p className="font-serif font-bold text-white text-xs sm:text-sm">
+              <p className="font-serif font-bold text-[#1F1D1B] text-xs sm:text-sm">
                 CLB Dệt Thổ Cẩm Ia Mơ Nông, Chư Păh, Gia Lai
               </p>
             </div>
@@ -1463,52 +1457,52 @@ export default function HomePage() {
 
         {/* E. 5 Commitments & Reviews */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="bg-[#1C1613] p-7 rounded-xl border border-amber-900/30 space-y-4 shadow-sm">
-            <h3 className="text-xl font-serif font-bold text-white flex items-center gap-2">
-              <ShieldCheck className="w-5 h-5 text-amber-400" />
+          <div className="bg-white p-7 rounded-xl border border-[#E5DACB] space-y-4 shadow-sm">
+            <h3 className="text-xl font-serif font-bold text-[#1F1D1B] flex items-center gap-2">
+              <ShieldCheck className="w-5 h-5 text-[#EA8E23]" />
               <span>5 Cam Kết Vàng Của JRAI ƠI</span>
             </h3>
-            <ul className="space-y-3 text-sm text-stone-300">
+            <ul className="space-y-3 text-sm text-[#5D554D]">
               <li className="flex items-start gap-2.5">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
                 <span><strong>100% Thủ công bản địa:</strong> Dệt cửi hông bởi các nghệ nhân làng Kép & làng Phung, Ia Mơ Nông.</span>
               </li>
               <li className="flex items-start gap-2.5">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
                 <span><strong>Minh bạch tuyệt đối:</strong> Mỗi sản phẩm đi kèm một mã số định danh QR tra cứu độc bản.</span>
               </li>
               <li className="flex items-start gap-2.5">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
                 <span><strong>Thương mại công bằng:</strong> 100% thù lao dệt công bằng và trích quỹ hỗ trợ nghệ nhân cao tuổi.</span>
               </li>
               <li className="flex items-start gap-2.5">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
                 <span><strong>Bảo tồn tri thức mẫu hệ:</strong> Ghi chép và số hóa các bài ca, hoa văn truyền khẩu Jrai.</span>
               </li>
               <li className="flex items-start gap-2.5">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
                 <span><strong>Giao hàng toàn quốc:</strong> Kiểm tra hàng trước khi thanh toán (COD).</span>
               </li>
             </ul>
           </div>
 
-          <div className="bg-[#1C1613] p-7 rounded-xl border border-amber-900/30 space-y-4 shadow-sm">
-            <h3 className="text-xl font-serif font-bold text-white flex items-center gap-2">
-              <Star className="w-5 h-5 text-amber-400 fill-amber-400" />
+          <div className="bg-white p-7 rounded-xl border border-[#E5DACB] space-y-4 shadow-sm">
+            <h3 className="text-xl font-serif font-bold text-[#1F1D1B] flex items-center gap-2">
+              <Star className="w-5 h-5 text-amber-500 fill-amber-500" />
               <span>Đánh Giá Thực Tế Từ Khách Hàng</span>
             </h3>
             <div className="space-y-3">
               {reviews.map((r) => (
-                <div key={r.id} className="p-3.5 bg-[#14110F] rounded-lg border border-stone-800 text-sm space-y-1">
+                <div key={r.id} className="p-3.5 bg-[#FBF8F3] rounded-lg border border-[#E5DACB] text-sm space-y-1">
                   <div className="flex items-center justify-between">
-                    <span className="font-bold text-amber-300">{r.customerName}</span>
+                    <span className="font-bold text-[#1F1D1B]">{r.customerName}</span>
                     <div className="flex gap-0.5">
                       {[...Array(r.rating)].map((_, i) => (
-                        <Star key={i} className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
+                        <Star key={i} className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />
                       ))}
                     </div>
                   </div>
-                  <p className="text-stone-300 italic">&ldquo;{r.comment}&rdquo;</p>
+                  <p className="text-[#5D554D] italic">&ldquo;{r.comment}&rdquo;</p>
                 </div>
               ))}
             </div>
@@ -1522,17 +1516,17 @@ export default function HomePage() {
           MODAL: PRODUCT QUICK VIEW
       ======================================================== */}
       {selectedProduct && (
-        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-[#1C1714] border border-amber-900/50 rounded-xl max-w-2xl w-full p-6 sm:p-8 space-y-6 max-h-[90vh] overflow-y-auto relative animate-in fade-in zoom-in-95 duration-200 shadow-lg">
+        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-white border border-[#E5DACB] rounded-xl max-w-2xl w-full p-6 sm:p-8 space-y-6 max-h-[90vh] overflow-y-auto relative animate-in fade-in zoom-in-95 duration-200 shadow-2xl">
             <button
               onClick={() => setSelectedProduct(null)}
-              className="absolute top-4 right-4 p-2 rounded-full bg-stone-900 hover:bg-stone-800 text-stone-400 hover:text-white"
+              className="absolute top-4 right-4 p-2 rounded-full bg-[#F2ECE1] hover:bg-[#E5DACB] text-[#5D554D] hover:text-[#1F1D1B]"
             >
               <X className="w-5 h-5" />
             </button>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <div className="aspect-[4/3] rounded-lg overflow-hidden border border-stone-800 bg-stone-950">
+              <div className="aspect-[4/3] rounded-lg overflow-hidden border border-[#E5DACB] bg-[#FBF8F3]">
                 <img
                   src={selectedProduct.image_url}
                   alt={selectedProduct.name}
@@ -1541,27 +1535,27 @@ export default function HomePage() {
               </div>
 
               <div className="space-y-3">
-                <span className="text-xs font-mono text-amber-400 uppercase font-bold bg-[#8B2522] px-2.5 py-0.5 rounded">
+                <span className="text-xs font-mono text-white uppercase font-bold bg-[#C43B3D] px-2.5 py-0.5 rounded">
                   {selectedProduct.product_code} • {selectedProduct.category_name}
                 </span>
-                <h3 className="font-serif font-bold text-xl text-white">
+                <h3 className="font-serif font-bold text-xl text-[#1F1D1B]">
                   {selectedProduct.name}
                 </h3>
-                <div className="text-xl sm:text-2xl font-bold font-mono text-amber-400">
+                <div className="text-xl sm:text-2xl font-bold font-mono text-[#C43B3D]">
                   {selectedProduct.price.toLocaleString('vi-VN')}₫
                 </div>
-                <p className="text-sm text-stone-300 leading-relaxed">
+                <p className="text-sm text-[#5D554D] leading-relaxed">
                   {selectedProduct.description}
                 </p>
-                <div className="text-xs sm:text-sm text-stone-400 space-y-1 pt-1">
-                  <div><strong>Thời gian dệt:</strong> {selectedProduct.production_time}</div>
-                  <div><strong>Chất liệu:</strong> {selectedProduct.material}</div>
-                  <div><strong>Xuất xứ:</strong> {selectedProduct.location}</div>
+                <div className="text-xs sm:text-sm text-[#5D554D] space-y-1 pt-1">
+                  <div><strong className="text-[#1F1D1B]">Thời gian dệt:</strong> {selectedProduct.production_time}</div>
+                  <div><strong className="text-[#1F1D1B]">Chất liệu:</strong> {selectedProduct.material}</div>
+                  <div><strong className="text-[#1F1D1B]">Xuất xứ:</strong> {selectedProduct.location}</div>
                 </div>
               </div>
             </div>
 
-            <div className="pt-4 border-t border-stone-800 space-y-3">
+            <div className="pt-4 border-t border-[#E5DACB] space-y-3">
               <div className="flex gap-3">
                 <button
                   onClick={() => {
@@ -1569,7 +1563,7 @@ export default function HomePage() {
                     setSelectedProduct(null);
                     setCartOpen(true);
                   }}
-                  className="flex-1 py-3 rounded-lg bg-[#B9383A] hover:bg-[#A83232] text-white font-bold text-xs sm:text-sm shadow-sm flex items-center justify-center gap-2"
+                  className="flex-1 py-3 rounded-lg bg-[#C43B3D] hover:bg-[#8A2325] text-white font-bold text-xs sm:text-sm shadow-sm flex items-center justify-center gap-2"
                 >
                   <ShoppingBag className="w-4 h-4" />
                   <span>MUA NGAY / THÊM GIỎ HÀNG</span>
@@ -1582,9 +1576,9 @@ export default function HomePage() {
                     const el = document.getElementById('traceability');
                     if (el) el.scrollIntoView({ behavior: 'smooth' });
                   }}
-                  className="px-4 py-3 rounded-lg bg-[#231C18] hover:bg-[#32261E] text-amber-400 text-xs sm:text-sm font-bold border border-amber-900/50 flex items-center gap-1.5"
+                  className="px-4 py-3 rounded-lg bg-[#F2ECE1] hover:bg-[#E5DACB] text-[#1F1D1B] text-xs sm:text-sm font-bold border border-[#E5DACB] flex items-center gap-1.5"
                 >
-                  <QrCode className="w-4 h-4" />
+                  <QrCode className="w-4 h-4 text-[#C43B3D]" />
                   <span>Xem mã QR</span>
                 </button>
               </div>
@@ -1592,7 +1586,7 @@ export default function HomePage() {
               <Link
                 href={`/product/${selectedProduct.id}`}
                 onClick={() => setSelectedProduct(null)}
-                className="block text-center text-xs sm:text-sm text-amber-400 hover:text-amber-200 underline font-semibold transition"
+                className="block text-center text-xs sm:text-sm text-[#C43B3D] hover:underline font-semibold transition"
               >
                 Xem toàn bộ trang chi tiết sản phẩm &rarr;
               </Link>

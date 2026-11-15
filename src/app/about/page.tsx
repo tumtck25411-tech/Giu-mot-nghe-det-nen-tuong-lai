@@ -118,43 +118,37 @@ export default function AboutPage() {
   return (
     <div className="w-full max-w-[1680px] mx-auto px-4 sm:px-8 lg:px-12 py-10 space-y-20">
       {/* 1. HERO BANNER: KẾ THỪA CÂU CHUYỆN KHỞI NGUỒN */}
-      <section className="bg-gradient-to-r from-[#231C18] via-[#1E1713] to-[#231C18] text-white p-8 sm:p-14 rounded-xl border border-amber-900/40 relative overflow-hidden shadow-sm">
-        <div
-          className="absolute inset-0 bg-cover bg-center opacity-25 mix-blend-luminosity"
-          style={{ backgroundImage: `url('/images/background/image6.jpg')` }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#181411] via-[#181411]/90 to-transparent" />
-
-        <div className="max-w-3xl space-y-5 relative z-10">
-          <div className="inline-flex items-center gap-2 bg-[#8B2522] text-amber-200 text-xs font-bold px-4 py-1.5 rounded-full border border-amber-500/40 uppercase tracking-wider shadow">
-            <Compass className="w-4 h-4 text-amber-300" />
+      <section className="bg-[#F2ECE1] p-8 sm:p-14 rounded-xl border border-[#E5DACB] border-b-2 border-b-[#EA8E23] relative overflow-hidden shadow-sm text-center">
+        <div className="max-w-3xl mx-auto space-y-5 relative z-10">
+          <span className="section-tag gold">
+            <Compass className="w-3.5 h-3.5 inline mr-1 text-[#EA8E23]" />
             <span>CÂU CHUYỆN KHỞI NGUỒN • DỰ ÁN DỆT NÊN TƯƠNG LAI</span>
-          </div>
+          </span>
 
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-black text-[#FFFDF9] leading-tight">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-black text-[#1F1D1B] leading-tight">
             Từ Câu Hỏi Về Sinh Kế <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-200 to-amber-500">
+            <span className="text-[#C43B3D]">
               Đến Khát Vọng Giữ Lửa Nghề
             </span>
           </h1>
 
-          <p className="text-stone-300 text-sm sm:text-base leading-relaxed italic border-l-4 border-[#B9383A] pl-4">
-            “Nếu một nghề truyền thống có giá trị nhưng người làm nghề không thể sống được từ nghề, thì làm thế nào để nghề ấy tiếp tục tồn tại?” — Câu hỏi trăn trở ấy đã đưa nhóm chúng tôi đặt chân đến buôn làng Ia Mơ Nông.
+          <p className="text-[#5D554D] text-sm sm:text-base leading-relaxed italic border-l-4 border-[#C43B3D] pl-4 max-w-2xl mx-auto text-left sm:text-center">
+            &ldquo;Nếu một nghề truyền thống có giá trị nhưng người làm nghề không thể sống được từ nghề, thì làm thế nào để nghề ấy tiếp tục tồn tại?&rdquo; — Câu hỏi trăn trở ấy đã đưa nhóm chúng tôi đặt chân đến buôn làng Ia Mơ Nông.
           </p>
 
-          <div className="flex flex-wrap gap-3 pt-2">
+          <div className="flex flex-wrap justify-center gap-3 pt-2">
             <Link
               href="/#products"
-              className="inline-flex items-center gap-2 bg-gradient-to-r from-[#B9383A] to-[#8B2522] hover:from-[#A83232] text-white font-bold text-xs sm:text-sm px-6 py-3 rounded-2xl shadow-xl border border-amber-500/30 transition hover:-translate-y-0.5"
+              className="inline-flex items-center gap-2 bg-[#C43B3D] hover:bg-[#8A2325] text-white font-bold text-xs sm:text-sm px-6 py-3 rounded-2xl shadow transition hover:-translate-y-0.5"
             >
-              <ShoppingBag className="w-4 h-4 text-amber-300" />
+              <ShoppingBag className="w-4 h-4" />
               <span>KHÁM PHÁ 57 TÁC PHẨM</span>
             </Link>
             <Link
               href="/#artisans"
-              className="inline-flex items-center gap-2 bg-[#231C18] hover:bg-[#32261E] text-amber-300 font-bold text-xs sm:text-sm px-5 py-3 rounded-2xl border border-amber-900/50 transition hover:-translate-y-0.5"
+              className="inline-flex items-center gap-2 bg-white hover:bg-[#F2ECE1] text-[#1F1D1B] font-bold text-xs sm:text-sm px-5 py-3 rounded-2xl border border-[#E5DACB] transition hover:-translate-y-0.5"
             >
-              <Users className="w-4 h-4" />
+              <Users className="w-4 h-4 text-[#EA8E23]" />
               <span>9 NGHỆ NHÂN GIỮ NGHỀ</span>
             </Link>
           </div>
@@ -163,13 +157,13 @@ export default function AboutPage() {
 
       {/* 2. HÀNH TRÌNH THỰC ĐỊA IA MƠ NÔNG */}
       <section className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        <div className="space-y-5 text-stone-300 text-sm leading-relaxed">
-          <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#E58A1F]">
-            <Sparkles className="w-4 h-4 text-amber-400" />
+        <div className="space-y-5 text-[#5D554D] text-sm leading-relaxed">
+          <span className="section-tag">
+            <Sparkles className="w-3.5 h-3.5 inline mr-1 text-[#C43B3D]" />
             <span>HÀNH TRÌNH THỰC ĐỊA IA MƠ NÔNG</span>
-          </div>
+          </span>
 
-          <h2 className="text-2xl sm:text-3xl font-serif font-black text-white leading-tight">
+          <h2 className="text-2xl sm:text-3xl font-serif font-black text-[#1F1D1B] leading-tight">
             Không chỉ là bảo tồn, mà là làm cho giá trị của nghề được nhìn thấy
           </h2>
 
@@ -181,27 +175,27 @@ export default function AboutPage() {
             Tại xã Ia Mơ Nông, huyện Chư Păh, chúng tôi ngồi cùng những người phụ nữ Jrai bên hiên nhà sàn, lắng nghe tiếng lách cách của thoi đưa và nhận ra: công nghệ số không phải để thay thế đôi bàn tay nghệ nhân, mà là chiếc cầu nối để đưa câu chuyện, công sức và tri thức văn hóa phía sau từng nếp dệt đến với những khách hàng trân quý.
           </p>
 
-          <div className="bg-[#231C18] border-l-4 border-[#B9383A] p-4 rounded-r-2xl border-y border-r border-amber-900/30">
-            <p className="font-serif italic font-bold text-amber-200 text-sm sm:text-base">
-              “Không thay đổi cái gốc của nghề, thay đổi cách giá trị của nghề được nhìn thấy.”
+          <div className="bg-[#F2ECE1] border-l-4 border-[#C43B3D] p-4 rounded-r-2xl border-y border-r border-[#E5DACB]">
+            <p className="font-serif italic font-bold text-[#1F1D1B] text-sm sm:text-base">
+              &ldquo;Không thay đổi cái gốc của nghề, thay đổi cách giá trị của nghề được nhìn thấy.&rdquo;
             </p>
           </div>
         </div>
 
         {/* Fieldwork Photo */}
         <div className="relative">
-          <div className="rounded-xl overflow-hidden border-2 border-amber-500/30 shadow-sm aspect-[4/3]">
+          <div className="rounded-xl overflow-hidden border border-[#E5DACB] shadow-sm aspect-[4/3]">
             <img
               src="/images/background/image6.jpg"
               alt="Sinh viên UEL và nghệ nhân gìn giữ nghề dệt tại Ia Mơ Nông"
               className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
             />
           </div>
-          <div className="absolute -bottom-5 -right-3 bg-[#1C1714] border border-amber-500/40 p-4 rounded-2xl shadow-xl max-w-xs text-xs text-stone-300">
-            <span className="text-xs font-extrabold uppercase text-[#E58A1F] block mb-1">
+          <div className="absolute -bottom-5 -right-3 bg-white border border-[#E5DACB] border-l-4 border-l-[#EA8E23] p-4 rounded-2xl shadow-xl max-w-xs text-xs text-[#5D554D]">
+            <span className="text-xs font-extrabold uppercase text-[#EA8E23] block mb-1">
               ĐỊA BÀN THÍ ĐIỂM
             </span>
-            <p className="font-serif font-bold text-white text-xs sm:text-sm">
+            <p className="font-serif font-bold text-[#1F1D1B] text-xs sm:text-sm">
               CLB Dệt Thổ Cẩm Ia Mơ Nông, Huyện Chư Păh, Tỉnh Gia Lai
             </p>
           </div>
@@ -384,38 +378,38 @@ export default function AboutPage() {
 
       {/* 5. 5 CAM KẾT VÀNG & ĐỊA BÀN TRIỂN KHAI */}
       <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="bg-[#231C18] p-8 rounded-xl border border-amber-900/40 space-y-5">
+        <div className="bg-white p-8 rounded-xl border border-[#E5DACB] space-y-5 shadow-sm">
           <div className="flex items-center gap-2">
-            <ShieldCheck className="w-6 h-6 text-amber-400" />
-            <h3 className="text-xl font-serif font-bold text-white">5 Cam Kết Vàng Của JRAI ƠI</h3>
+            <ShieldCheck className="w-6 h-6 text-[#EA8E23]" />
+            <h3 className="text-xl font-serif font-bold text-[#1F1D1B]">5 Cam Kết Vàng Của JRAI ƠI</h3>
           </div>
-          <ul className="space-y-3.5 text-xs text-stone-300">
+          <ul className="space-y-3.5 text-xs text-[#5D554D]">
             <li className="flex items-start gap-2.5">
-              <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+              <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
               <span>
                 <strong>100% Thủ công bản địa:</strong> Dệt cửi hông bởi các nghệ nhân làng Kép & làng Phung, Ia Mơ Nông.
               </span>
             </li>
             <li className="flex items-start gap-2.5">
-              <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+              <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
               <span>
                 <strong>Minh bạch tuyệt đối:</strong> Mỗi sản phẩm gắn một mã QR định danh số tra cứu người dệt và số giờ công.
               </span>
             </li>
             <li className="flex items-start gap-2.5">
-              <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+              <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
               <span>
                 <strong>Thương mại công bằng:</strong> 100% thù lao dệt công bằng và trích quỹ hỗ trợ nghệ nhân cao tuổi.
               </span>
             </li>
             <li className="flex items-start gap-2.5">
-              <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+              <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
               <span>
                 <strong>Bảo tồn tri thức mẫu hệ:</strong> Ghi chép và số hóa các bài ca, hoa văn truyền khẩu Jrai.
               </span>
             </li>
             <li className="flex items-start gap-2.5">
-              <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+              <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
               <span>
                 <strong>Giao nhận toàn quốc:</strong> Kiểm tra hàng thực tế trước khi thanh toán (COD).
               </span>
@@ -423,26 +417,26 @@ export default function AboutPage() {
           </ul>
         </div>
 
-        <div className="bg-[#231C18] p-8 rounded-xl border border-amber-900/40 space-y-5">
+        <div className="bg-white p-8 rounded-xl border border-[#E5DACB] space-y-5 shadow-sm">
           <div className="flex items-center gap-2">
-            <MapPin className="w-6 h-6 text-amber-400" />
-            <h3 className="text-xl font-serif font-bold text-white">Địa Bàn Triển Khai Thực Địa</h3>
+            <MapPin className="w-6 h-6 text-[#EA8E23]" />
+            <h3 className="text-xl font-serif font-bold text-[#1F1D1B]">Địa Bàn Triển Khai Thực Địa</h3>
           </div>
-          <p className="text-xs text-stone-300 leading-relaxed">
+          <p className="text-xs text-[#5D554D] leading-relaxed">
             Dự án nghiên cứu & thương mại điện tử di sản được bảo trợ và phối hợp thực hiện cùng cộng đồng dân cư địa phương:
           </p>
-          <div className="space-y-3 text-xs text-stone-400">
-            <div className="p-3.5 bg-[#1C1714] rounded-xl border border-stone-800">
-              <span className="font-bold text-amber-300 block mb-0.5">Hợp Tác Xã & CLB Dệt Thổ Cẩm:</span>
+          <div className="space-y-3 text-xs text-[#5D554D]">
+            <div className="p-3.5 bg-[#FBF8F3] rounded-xl border border-[#E5DACB]">
+              <span className="font-bold text-[#1F1D1B] block mb-0.5">Hợp Tác Xã & CLB Dệt Thổ Cẩm:</span>
               Làng Kép & Làng Phung, Xã Ia Mơ Nông, Huyện Chư Păh, Tỉnh Gia Lai.
             </div>
-            <div className="p-3.5 bg-[#1C1714] rounded-xl border border-stone-800">
-              <span className="font-bold text-amber-300 block mb-0.5">Đơn Vị Nghiên Cứu:</span>
+            <div className="p-3.5 bg-[#FBF8F3] rounded-xl border border-[#E5DACB]">
+              <span className="font-bold text-[#1F1D1B] block mb-0.5">Đơn Vị Nghiên Cứu:</span>
               Nhóm nghiên cứu sinh viên Trường Đại học Kinh tế - Luật (UEL), Đại học Quốc gia TP.HCM • Đề tài SVTHM 2026.
             </div>
-            <div className="p-3.5 bg-[#1C1714] rounded-xl border border-stone-800">
-              <span className="font-bold text-amber-300 block mb-0.5">Hotline / Zalo Dự Án:</span>
-              <strong>0383 451 929</strong> • Email: contact@jraioi.vn
+            <div className="p-3.5 bg-[#FBF8F3] rounded-xl border border-[#E5DACB]">
+              <span className="font-bold text-[#1F1D1B] block mb-0.5">Hotline / Zalo Dự Án:</span>
+              <strong className="text-[#C43B3D]">0383 451 929</strong> • Email: contact@jraioi.vn
             </div>
           </div>
         </div>

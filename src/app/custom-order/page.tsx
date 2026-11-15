@@ -298,7 +298,12 @@ export default function CustomOrderPage() {
       material: 'Sợi bông Kơpăh dệt tay 100% nhuộm tự nhiên',
       location: 'CLB Dệt Thổ Cẩm Ia Mơ Nông, Chư Păh, Gia Lai',
       artisan_name: selectedProduct.suggestedArtisan,
-      is_featured: false,
+      artisan_id: 'ro-cham-h-mut',
+      motif_ids: [selectedMotif.id],
+      story: `Sản phẩm được nghệ nhân ${selectedProduct.suggestedArtisan} dệt thủ công độc bản theo đơn đặt hàng riêng, phối sắc ${selectedColor.name} kết hợp cùng biểu tượng hoa văn ${selectedMotif.name}.`,
+      status: 'published',
+      in_stock: true,
+      featured: false,
       rating: 5,
       review_count: 1,
       stock_quantity: 1,
@@ -326,28 +331,25 @@ export default function CustomOrderPage() {
         </div>
       )}
 
-      {/* 1. HERO BANNER WITH DYNAMIC SHIMMER */}
-      <div className="bg-gradient-to-r from-[#231C18] via-[#1E1713] to-[#231C18] text-white p-8 sm:p-12 rounded-xl border border-amber-900/50 relative overflow-hidden shadow-sm text-center">
-        <div className="absolute -top-20 -left-20 w-64 h-64 bg-[#B9383A]/20 rounded-full blur-3xl pointer-events-none animate-pulse" />
-        <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-amber-500/15 rounded-full blur-3xl pointer-events-none animate-pulse" style={{ animationDelay: '1s' }} />
-
+      {/* 1. HERO BANNER */}
+      <div className="bg-[#F2ECE1] p-8 sm:p-12 rounded-xl border border-[#E5DACB] border-b-2 border-b-[#EA8E23] relative overflow-hidden shadow-sm text-center">
         <div className="max-w-3xl mx-auto space-y-3 relative z-10">
-          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#8B2522] via-[#B9383A] to-[#8B2522] text-amber-200 text-xs font-black px-4 py-1.5 rounded-full border border-amber-400/50 uppercase tracking-widest shadow-lg animate-pulse">
-            <Sparkles className="w-4 h-4 text-amber-300 animate-bounce" />
+          <span className="section-tag gold">
+            <Sparkles className="w-3.5 h-3.5 inline mr-1 text-[#EA8E23]" />
             <span>AI STUDIO • ĐẶT DỆT THỔ CẨM THEO YÊU CẦU</span>
-          </div>
+          </span>
 
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-black bg-gradient-to-r from-[#FFFDF9] via-amber-200 to-[#FFFDF9] bg-clip-text text-transparent animate-shimmer-glow tracking-tight leading-tight">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-black text-[#1F1D1B] tracking-tight leading-tight">
             TỰ TAY THIẾT KẾ DI SẢN CỦA RIÊNG BẠN
           </h1>
 
-          <p className="text-stone-300 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
+          <p className="text-[#5D554D] text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
             Chọn sản phẩm bạn muốn làm theo yêu cầu, phối sắc màu tự nhiên, chọn hoa văn thổ cẩm Jrai và ngắm nhìn bản demo mô phỏng bằng công nghệ AI cùng báo giá chi tiết minh bạch.
           </p>
         </div>
 
         {/* 4-STEP WIZARD PROGRESS BAR */}
-        <div className="mt-8 pt-6 border-t border-stone-800/80 max-w-3xl mx-auto">
+        <div className="mt-8 pt-6 border-t border-[#E5DACB] max-w-3xl mx-auto">
           <div className="grid grid-cols-4 gap-2 text-center text-xs">
             {[
               { num: 1, title: '1. Chọn sản phẩm' },
@@ -363,10 +365,10 @@ export default function CustomOrderPage() {
                   onClick={() => setCurrentStep(step.num)}
                   className={`py-2 px-1 rounded-xl transition font-bold flex flex-col items-center gap-1 ${
                     isCurrent
-                      ? 'bg-[#B9383A] text-white shadow-md border border-amber-400/50'
+                      ? 'bg-[#C43B3D] text-white shadow-md'
                       : isPast
-                      ? 'bg-[#2A211B] text-amber-300 border border-amber-900/40 hover:bg-[#342921]'
-                      : 'bg-[#181411] text-stone-500 hover:text-stone-300'
+                      ? 'bg-[#F2ECE1] text-[#1F1D1B] border border-[#E5DACB] hover:bg-[#E5DACB]'
+                      : 'bg-[#FBF8F3] text-[#8A7E72] border border-[#E5DACB] hover:text-[#1F1D1B]'
                   }`}
                 >
                   <span className="text-xs opacity-80">BƯỚC 0{step.num}</span>
@@ -385,17 +387,17 @@ export default function CustomOrderPage() {
         <div className="lg:col-span-7 space-y-6">
           {/* STEP 1: CHỌN LOẠI SẢN PHẨM */}
           {currentStep === 1 && (
-            <div className="bg-[#1C1714] p-6 sm:p-8 rounded-xl border border-amber-900/40 shadow-xl space-y-6 animate-in fade-in duration-300">
-              <div className="flex items-center justify-between border-b border-stone-800 pb-4">
+            <div className="bg-white p-6 sm:p-8 rounded-xl border border-[#E5DACB] shadow-sm space-y-6 animate-in fade-in duration-300">
+              <div className="flex items-center justify-between border-b border-[#E5DACB] pb-4">
                 <div>
-                  <span className="text-xs font-mono font-bold text-amber-500 uppercase tracking-wider">
+                  <span className="text-xs font-mono font-bold text-[#EA8E23] uppercase tracking-wider">
                     BƯỚC 1 TRÊN 4
                   </span>
-                  <h2 className="text-xl font-serif font-black text-white mt-0.5">
+                  <h2 className="text-xl font-serif font-black text-[#1F1D1B] mt-0.5">
                     Chọn loại sản phẩm muốn làm theo yêu cầu
                   </h2>
                 </div>
-                <span className="text-xs text-stone-400">8 phân loại</span>
+                <span className="text-xs text-[#5D554D]">8 phân loại</span>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -407,12 +409,12 @@ export default function CustomOrderPage() {
                       onClick={() => setSelectedProduct(prod)}
                       className={`p-4 rounded-2xl border transition-all cursor-pointer flex flex-col justify-between space-y-3 group ${
                         isSelected
-                          ? 'bg-[#281E19] border-amber-400 shadow-xl ring-2 ring-amber-400/20'
-                          : 'bg-[#211B17] border-stone-800 hover:border-amber-700/60 hover:bg-[#251F1A]'
+                          ? 'bg-[#FDF6ED] border-[#EA8E23] shadow-md ring-2 ring-[#EA8E23]/20'
+                          : 'bg-[#FBF8F3] border-[#E5DACB] hover:border-[#C43B3D] hover:bg-white'
                       }`}
                     >
                       <div className="flex gap-3">
-                        <div className="w-20 h-20 rounded-xl overflow-hidden bg-stone-900 shrink-0 border border-stone-800">
+                        <div className="w-20 h-20 rounded-xl overflow-hidden bg-white shrink-0 border border-[#E5DACB]">
                           <img
                             src={prod.image}
                             alt={prod.name}
@@ -421,28 +423,28 @@ export default function CustomOrderPage() {
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center justify-between gap-1">
-                            <span className="text-xs font-bold uppercase text-amber-400 bg-amber-950/80 px-2 py-0.5 rounded border border-amber-900/60">
+                            <span className="text-xs font-bold uppercase text-white bg-[#C43B3D] px-2 py-0.5 rounded">
                               {prod.category}
                             </span>
                             {isSelected && (
-                              <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />
+                              <CheckCircle2 className="w-4 h-4 text-[#EA8E23] shrink-0" />
                             )}
                           </div>
-                          <h3 className="font-serif font-bold text-sm text-white mt-1 line-clamp-1">
+                          <h3 className="font-serif font-bold text-sm text-[#1F1D1B] mt-1 line-clamp-1">
                             {prod.name}
                           </h3>
-                          <p className="text-xs text-stone-400 line-clamp-2 mt-1">
+                          <p className="text-xs text-[#5D554D] line-clamp-2 mt-1">
                             {prod.desc}
                           </p>
                         </div>
                       </div>
 
-                      <div className="pt-2 border-t border-stone-800/80 flex items-center justify-between text-xs">
-                        <span className="text-stone-400 text-xs flex items-center gap-1">
-                          <Clock className="w-3 h-3 text-amber-400" />
+                      <div className="pt-2 border-t border-[#E5DACB] flex items-center justify-between text-xs">
+                        <span className="text-[#5D554D] text-xs flex items-center gap-1">
+                          <Clock className="w-3 h-3 text-[#EA8E23]" />
                           <span>{prod.days}</span>
                         </span>
-                        <span className="font-bold text-amber-400 font-mono text-sm">
+                        <span className="font-bold text-[#C43B3D] font-mono text-sm">
                           {prod.basePrice.toLocaleString('vi-VN')}₫
                         </span>
                       </div>
@@ -451,10 +453,10 @@ export default function CustomOrderPage() {
                 })}
               </div>
 
-              <div className="flex justify-end pt-4 border-t border-stone-800">
+              <div className="flex justify-end pt-4 border-t border-[#E5DACB]">
                 <button
                   onClick={() => setCurrentStep(2)}
-                  className="px-6 py-3 rounded-xl bg-[#B9383A] hover:bg-[#A83232] text-white font-bold text-xs shadow-lg flex items-center gap-2"
+                  className="px-6 py-3 rounded-xl bg-[#C43B3D] hover:bg-[#8A2325] text-white font-bold text-xs shadow-md flex items-center gap-2"
                 >
                   <span>Tiếp tục: Chọn màu sắc</span>
                   <ArrowRight className="w-4 h-4" />
@@ -465,17 +467,17 @@ export default function CustomOrderPage() {
 
           {/* STEP 2: CHỌN MÀU SẮC */}
           {currentStep === 2 && (
-            <div className="bg-[#1C1714] p-6 sm:p-8 rounded-xl border border-amber-900/40 shadow-xl space-y-6 animate-in fade-in duration-300">
-              <div className="flex items-center justify-between border-b border-stone-800 pb-4">
+            <div className="bg-white p-6 sm:p-8 rounded-xl border border-[#E5DACB] shadow-sm space-y-6 animate-in fade-in duration-300">
+              <div className="flex items-center justify-between border-b border-[#E5DACB] pb-4">
                 <div>
-                  <span className="text-xs font-mono font-bold text-amber-500 uppercase tracking-wider">
+                  <span className="text-xs font-mono font-bold text-[#EA8E23] uppercase tracking-wider">
                     BƯỚC 2 TRÊN 4
                   </span>
-                  <h2 className="text-xl font-serif font-black text-white mt-0.5">
+                  <h2 className="text-xl font-serif font-black text-[#1F1D1B] mt-0.5">
                     Chọn màu sắc chủ đạo (Nhuộm tự nhiên di sản)
                   </h2>
                 </div>
-                <span className="text-xs text-stone-400">6 sắc màu rừng</span>
+                <span className="text-xs text-[#5D554D]">6 sắc màu rừng</span>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -487,30 +489,30 @@ export default function CustomOrderPage() {
                       onClick={() => setSelectedColor(col)}
                       className={`p-4 rounded-2xl border transition-all cursor-pointer space-y-2.5 ${
                         isSelected
-                          ? 'bg-[#281E19] border-amber-400 shadow-xl ring-2 ring-amber-400/20'
-                          : 'bg-[#211B17] border-stone-800 hover:border-amber-700/60 hover:bg-[#251F1A]'
+                          ? 'bg-[#FDF6ED] border-[#EA8E23] shadow-md ring-2 ring-[#EA8E23]/20'
+                          : 'bg-[#FBF8F3] border-[#E5DACB] hover:border-[#C43B3D] hover:bg-white'
                       }`}
                     >
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
                           <div
-                            className="w-8 h-8 rounded-full border-2 border-white/40 shadow-md shrink-0"
+                            className="w-8 h-8 rounded-full border-2 border-white shadow-md shrink-0"
                             style={{ backgroundColor: col.code }}
                           />
                           <div>
-                            <h3 className="font-bold text-xs text-white">{col.name}</h3>
-                            <span className="text-xs text-amber-300 font-medium">{col.badge}</span>
+                            <h3 className="font-bold text-xs text-[#1F1D1B]">{col.name}</h3>
+                            <span className="text-xs text-[#EA8E23] font-medium">{col.badge}</span>
                           </div>
                         </div>
-                        {isSelected && <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />}
+                        {isSelected && <CheckCircle2 className="w-4 h-4 text-[#EA8E23] shrink-0" />}
                       </div>
 
-                      <p className="text-xs text-stone-300 leading-relaxed">{col.origin}</p>
-                      <p className="text-xs text-stone-400 italic">“{col.meaning}”</p>
+                      <p className="text-xs text-[#5D554D] leading-relaxed">{col.origin}</p>
+                      <p className="text-xs text-[#8A7E72] italic">&ldquo;{col.meaning}&rdquo;</p>
 
-                      <div className="pt-2 border-t border-stone-800/80 flex items-center justify-between text-xs">
-                        <span className="text-stone-400 text-xs">Phụ thu nhuộm:</span>
-                        <span className="font-bold text-amber-400 font-mono">
+                      <div className="pt-2 border-t border-[#E5DACB] flex items-center justify-between text-xs">
+                        <span className="text-[#5D554D] text-xs">Phụ thu nhuộm:</span>
+                        <span className="font-bold text-[#C43B3D] font-mono">
                           {col.fee === 0 ? 'Miễn phí di sản' : `+${col.fee.toLocaleString('vi-VN')}₫`}
                         </span>
                       </div>
@@ -519,17 +521,17 @@ export default function CustomOrderPage() {
                 })}
               </div>
 
-              <div className="flex items-center justify-between pt-4 border-t border-stone-800">
+              <div className="flex items-center justify-between pt-4 border-t border-[#E5DACB]">
                 <button
                   onClick={() => setCurrentStep(1)}
-                  className="px-5 py-2.5 rounded-xl bg-stone-900 hover:bg-stone-800 text-stone-300 font-bold text-xs flex items-center gap-1.5"
+                  className="px-5 py-2.5 rounded-xl bg-[#F2ECE1] hover:bg-[#E5DACB] text-[#1F1D1B] font-bold text-xs flex items-center gap-1.5 border border-[#E5DACB]"
                 >
                   <ArrowLeft className="w-4 h-4" />
                   <span>Quay lại</span>
                 </button>
                 <button
                   onClick={() => setCurrentStep(3)}
-                  className="px-6 py-3 rounded-xl bg-[#B9383A] hover:bg-[#A83232] text-white font-bold text-xs shadow-lg flex items-center gap-2"
+                  className="px-6 py-3 rounded-xl bg-[#C43B3D] hover:bg-[#8A2325] text-white font-bold text-xs shadow-md flex items-center gap-2"
                 >
                   <span>Tiếp tục: Chọn hoa văn</span>
                   <ArrowRight className="w-4 h-4" />
@@ -540,17 +542,17 @@ export default function CustomOrderPage() {
 
           {/* STEP 3: CHỌN HOA VĂN THỔ CẨM */}
           {currentStep === 3 && (
-            <div className="bg-[#1C1714] p-6 sm:p-8 rounded-xl border border-amber-900/40 shadow-xl space-y-6 animate-in fade-in duration-300">
-              <div className="flex items-center justify-between border-b border-stone-800 pb-4">
+            <div className="bg-white p-6 sm:p-8 rounded-xl border border-[#E5DACB] shadow-sm space-y-6 animate-in fade-in duration-300">
+              <div className="flex items-center justify-between border-b border-[#E5DACB] pb-4">
                 <div>
-                  <span className="text-xs font-mono font-bold text-amber-500 uppercase tracking-wider">
+                  <span className="text-xs font-mono font-bold text-[#EA8E23] uppercase tracking-wider">
                     BƯỚC 3 TRÊN 4
                   </span>
-                  <h2 className="text-xl font-serif font-black text-white mt-0.5">
+                  <h2 className="text-xl font-serif font-black text-[#1F1D1B] mt-0.5">
                     Chọn hoa văn thổ cẩm Jrai thủ công
                   </h2>
                 </div>
-                <span className="text-xs text-stone-400">6 hoa văn di sản</span>
+                <span className="text-xs text-[#5D554D]">6 hoa văn di sản</span>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -562,37 +564,37 @@ export default function CustomOrderPage() {
                       onClick={() => setSelectedMotif(mot)}
                       className={`p-4 rounded-2xl border transition-all cursor-pointer space-y-3 group ${
                         isSelected
-                          ? 'bg-[#281E19] border-amber-400 shadow-xl ring-2 ring-amber-400/20'
-                          : 'bg-[#211B17] border-stone-800 hover:border-amber-700/60 hover:bg-[#251F1A]'
+                          ? 'bg-[#FDF6ED] border-[#EA8E23] shadow-md ring-2 ring-[#EA8E23]/20'
+                          : 'bg-[#FBF8F3] border-[#E5DACB] hover:border-[#C43B3D] hover:bg-white'
                       }`}
                     >
                       <div className="flex gap-3">
-                        <div className="w-16 h-16 rounded-xl overflow-hidden bg-black/60 p-2 shrink-0 border border-amber-900/40 flex items-center justify-center">
+                        <div className="w-16 h-16 rounded-xl overflow-hidden bg-[#FBF8F3] p-1.5 shrink-0 border border-[#E5DACB] flex items-center justify-center">
                           <img
                             src={mot.image}
                             alt={mot.name}
-                            className="max-h-full max-w-full object-contain filter invert contrast-200"
+                            className="max-h-full max-w-full object-contain"
                           />
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center justify-between">
-                            <h3 className="font-serif font-bold text-sm text-white">{mot.name}</h3>
-                            {isSelected && <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />}
+                            <h3 className="font-serif font-bold text-sm text-[#1F1D1B]">{mot.name}</h3>
+                            {isSelected && <CheckCircle2 className="w-4 h-4 text-[#EA8E23] shrink-0" />}
                           </div>
-                          <span className="text-xs text-amber-400 font-mono block mt-0.5">
+                          <span className="text-xs text-[#EA8E23] font-mono block mt-0.5">
                             {mot.codeName}
                           </span>
-                          <p className="text-xs text-stone-300 line-clamp-2 mt-1">
+                          <p className="text-xs text-[#5D554D] line-clamp-2 mt-1">
                             {mot.meaning}
                           </p>
                         </div>
                       </div>
 
-                      <div className="pt-2 border-t border-stone-800/80 flex items-center justify-between text-xs">
-                        <span className="text-stone-400 text-xs truncate max-w-[150px]">
+                      <div className="pt-2 border-t border-[#E5DACB] flex items-center justify-between text-xs">
+                        <span className="text-[#8A7E72] text-xs truncate max-w-[150px]">
                           {mot.provenance}
                         </span>
-                        <span className="font-bold text-amber-400 font-mono">
+                        <span className="font-bold text-[#C43B3D] font-mono">
                           +{mot.fee.toLocaleString('vi-VN')}₫
                         </span>
                       </div>
@@ -602,8 +604,8 @@ export default function CustomOrderPage() {
               </div>
 
               {/* Custom Note input */}
-              <div className="pt-4 border-t border-stone-800 space-y-2">
-                <label className="text-xs font-bold text-amber-300 block">
+              <div className="pt-4 border-t border-[#E5DACB] space-y-2">
+                <label className="text-xs font-bold text-[#1F1D1B] block">
                   Ghi chú riêng cho nghệ nhân dệt (kích thước, thêu chữ, yêu cầu đặc biệt):
                 </label>
                 <textarea
@@ -611,21 +613,21 @@ export default function CustomOrderPage() {
                   onChange={(e) => setCustomNote(e.target.value)}
                   placeholder="Ví dụ: Vòng eo 68cm, quai túi dài 105cm, thêu thêm chữ viết tắt tên Cẩm Tú..."
                   rows={2}
-                  className="w-full p-3 bg-[#120F0D] border border-amber-900/60 rounded-xl text-xs text-white placeholder-stone-600 focus:outline-none focus:border-amber-400"
+                  className="w-full p-3 bg-[#FBF8F3] border border-[#E5DACB] rounded-xl text-xs text-[#1F1D1B] placeholder-[#8A7E72] focus:outline-none focus:border-[#C43B3D] focus:bg-white"
                 />
               </div>
 
-              <div className="flex items-center justify-between pt-4 border-t border-stone-800">
+              <div className="flex items-center justify-between pt-4 border-t border-[#E5DACB]">
                 <button
                   onClick={() => setCurrentStep(2)}
-                  className="px-5 py-2.5 rounded-xl bg-stone-900 hover:bg-stone-800 text-stone-300 font-bold text-xs flex items-center gap-1.5"
+                  className="px-5 py-2.5 rounded-xl bg-[#F2ECE1] hover:bg-[#E5DACB] text-[#1F1D1B] font-bold text-xs flex items-center gap-1.5 border border-[#E5DACB]"
                 >
                   <ArrowLeft className="w-4 h-4" />
                   <span>Quay lại</span>
                 </button>
                 <button
                   onClick={() => setCurrentStep(4)}
-                  className="px-6 py-3 rounded-xl bg-[#B9383A] hover:bg-[#A83232] text-white font-bold text-xs shadow-lg flex items-center gap-2"
+                  className="px-6 py-3 rounded-xl bg-[#C43B3D] hover:bg-[#8A2325] text-white font-bold text-xs shadow-md flex items-center gap-2"
                 >
                   <span>Xem Demo AI & Báo giá</span>
                   <ArrowRight className="w-4 h-4" />
@@ -636,54 +638,54 @@ export default function CustomOrderPage() {
 
           {/* STEP 4: XEM BẢN DEMO AI & ĐẶT HÀNG */}
           {currentStep === 4 && (
-            <div className="bg-[#1C1714] p-6 sm:p-8 rounded-xl border border-amber-900/40 shadow-xl space-y-6 animate-in fade-in duration-300">
-              <div className="flex items-center justify-between border-b border-stone-800 pb-4">
+            <div className="bg-white p-6 sm:p-8 rounded-xl border border-[#E5DACB] shadow-sm space-y-6 animate-in fade-in duration-300">
+              <div className="flex items-center justify-between border-b border-[#E5DACB] pb-4">
                 <div>
-                  <span className="text-xs font-mono font-bold text-amber-500 uppercase tracking-wider">
+                  <span className="text-xs font-mono font-bold text-[#EA8E23] uppercase tracking-wider">
                     BƯỚC 4 TRÊN 4 • HOÀN THIỆN
                   </span>
-                  <h2 className="text-xl font-serif font-black text-white mt-0.5">
+                  <h2 className="text-xl font-serif font-black text-[#1F1D1B] mt-0.5">
                     Xác nhận cấu hình & Thông tin đặt dệt
                   </h2>
                 </div>
-                <span className="text-xs text-emerald-400 font-bold flex items-center gap-1">
-                  <Check className="w-4 h-4" /> Bản vẽ AI Đã Khóa
+                <span className="text-xs text-emerald-700 font-bold flex items-center gap-1 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">
+                  <Check className="w-4 h-4 text-emerald-600" /> Bản vẽ AI Đã Khóa
                 </span>
               </div>
 
               {/* Summary Specs */}
-              <div className="bg-[#241D18] p-5 rounded-2xl border border-amber-900/50 space-y-3">
-                <div className="flex justify-between items-center text-xs text-stone-300 border-b border-stone-800 pb-2">
+              <div className="bg-[#FBF8F3] p-5 rounded-2xl border border-[#E5DACB] space-y-3">
+                <div className="flex justify-between items-center text-xs text-[#5D554D] border-b border-[#E5DACB] pb-2">
                   <span>Sản phẩm:</span>
-                  <span className="font-bold text-white">{selectedProduct.name}</span>
+                  <span className="font-bold text-[#1F1D1B]">{selectedProduct.name}</span>
                 </div>
-                <div className="flex justify-between items-center text-xs text-stone-300 border-b border-stone-800 pb-2">
+                <div className="flex justify-between items-center text-xs text-[#5D554D] border-b border-[#E5DACB] pb-2">
                   <span>Màu sắc chủ đạo:</span>
-                  <span className="font-bold flex items-center gap-1.5 text-white">
+                  <span className="font-bold flex items-center gap-1.5 text-[#1F1D1B]">
                     <span
-                      className="w-3.5 h-3.5 rounded-full inline-block border border-white/50"
+                      className="w-3.5 h-3.5 rounded-full inline-block border border-[#E5DACB]"
                       style={{ backgroundColor: selectedColor.code }}
                     />
                     {selectedColor.name}
                   </span>
                 </div>
-                <div className="flex justify-between items-center text-xs text-stone-300 border-b border-stone-800 pb-2">
+                <div className="flex justify-between items-center text-xs text-[#5D554D] border-b border-[#E5DACB] pb-2">
                   <span>Hoa văn dệt tay:</span>
-                  <span className="font-bold text-amber-300">{selectedMotif.name}</span>
+                  <span className="font-bold text-[#EA8E23]">{selectedMotif.name}</span>
                 </div>
-                <div className="flex justify-between items-center text-xs text-stone-300 border-b border-stone-800 pb-2">
+                <div className="flex justify-between items-center text-xs text-[#5D554D] border-b border-[#E5DACB] pb-2">
                   <span>Nghệ nhân phụ trách:</span>
-                  <span className="font-bold text-stone-200">{selectedProduct.suggestedArtisan}</span>
+                  <span className="font-bold text-[#1F1D1B]">{selectedProduct.suggestedArtisan}</span>
                 </div>
-                <div className="flex justify-between items-center text-xs text-stone-300">
+                <div className="flex justify-between items-center text-xs text-[#5D554D]">
                   <span>Thời gian dệt ước tính:</span>
-                  <span className="font-bold text-amber-400">{selectedProduct.days}</span>
+                  <span className="font-bold text-[#EA8E23]">{selectedProduct.days}</span>
                 </div>
               </div>
 
               {/* Orderer Contact Info */}
               <div className="space-y-3 pt-2">
-                <h3 className="text-xs font-bold text-amber-300 uppercase tracking-wider">
+                <h3 className="text-xs font-bold text-[#1F1D1B] uppercase tracking-wider">
                   Thông tin người đặt (để gửi cập nhật tiến độ dệt):
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -692,31 +694,31 @@ export default function CustomOrderPage() {
                     placeholder="Họ tên của bạn *"
                     value={customerName}
                     onChange={(e) => setCustomerName(e.target.value)}
-                    className="p-3 bg-[#120F0D] border border-amber-900/60 rounded-xl text-xs text-white placeholder-stone-600 focus:outline-none focus:border-amber-400"
+                    className="p-3 bg-[#FBF8F3] border border-[#E5DACB] rounded-xl text-xs text-[#1F1D1B] placeholder-[#8A7E72] focus:outline-none focus:border-[#C43B3D] focus:bg-white"
                   />
                   <input
                     type="tel"
                     placeholder="Số điện thoại nhận hàng *"
                     value={customerPhone}
                     onChange={(e) => setCustomerPhone(e.target.value)}
-                    className="p-3 bg-[#120F0D] border border-amber-900/60 rounded-xl text-xs text-white placeholder-stone-600 focus:outline-none focus:border-amber-400"
+                    className="p-3 bg-[#FBF8F3] border border-[#E5DACB] rounded-xl text-xs text-[#1F1D1B] placeholder-[#8A7E72] focus:outline-none focus:border-[#C43B3D] focus:bg-white"
                   />
                 </div>
               </div>
 
               {/* Action Buttons */}
-              <div className="pt-4 border-t border-stone-800 flex flex-col sm:flex-row gap-3">
+              <div className="pt-4 border-t border-[#E5DACB] flex flex-col sm:flex-row gap-3">
                 <button
                   onClick={handleAddCustomToCart}
-                  className="flex-1 py-3.5 rounded-xl bg-[#B9383A] hover:bg-[#A83232] text-white font-bold text-xs shadow-xl flex items-center justify-center gap-2 transition"
+                  className="flex-1 py-3.5 rounded-xl bg-[#C43B3D] hover:bg-[#8A2325] text-white font-bold text-xs shadow-md flex items-center justify-center gap-2 transition"
                 >
-                  <ShoppingBag className="w-4 h-4 text-amber-300" />
+                  <ShoppingBag className="w-4 h-4 text-amber-200" />
                   <span>THÊM VÀO GIỎ HÀNG ({totalPrice.toLocaleString('vi-VN')}₫)</span>
                 </button>
 
                 <Link
                   href="/cart"
-                  className="py-3.5 px-6 rounded-xl bg-stone-900 hover:bg-stone-800 text-amber-300 font-bold text-xs border border-amber-900/60 flex items-center justify-center gap-2 text-center"
+                  className="py-3.5 px-6 rounded-xl bg-[#F2ECE1] hover:bg-[#E5DACB] text-[#1F1D1B] font-bold text-xs border border-[#E5DACB] flex items-center justify-center gap-2 text-center transition"
                 >
                   <span>Đi tới Giỏ Hàng</span>
                   <ArrowRight className="w-4 h-4" />
@@ -726,13 +728,13 @@ export default function CustomOrderPage() {
               <div className="flex justify-between items-center text-xs pt-2">
                 <button
                   onClick={() => setCurrentStep(3)}
-                  className="text-stone-400 hover:text-white underline"
+                  className="text-[#5D554D] hover:text-[#C43B3D] underline"
                 >
                   &larr; Chỉnh sửa hoa văn
                 </button>
                 <button
                   onClick={() => setCurrentStep(1)}
-                  className="text-stone-400 hover:text-white underline"
+                  className="text-[#5D554D] hover:text-[#C43B3D] underline"
                 >
                   Chọn lại từ đầu
                 </button>
@@ -743,20 +745,20 @@ export default function CustomOrderPage() {
 
         {/* RIGHT COLUMN: AI PREVIEW VISUALIZER CARD (5 COLS) */}
         <div className="lg:col-span-5 sticky top-28 space-y-6">
-          <div className="bg-[#1C1714] p-6 rounded-xl border-2 border-amber-500/50 shadow-sm relative overflow-hidden">
+          <div className="bg-white p-6 rounded-xl border-2 border-[#EA8E23] shadow-sm relative overflow-hidden">
             {/* Visualizer Badge */}
             <div className="flex items-center justify-between mb-4">
-              <div className="inline-flex items-center gap-2 bg-[#8B2522] text-amber-200 text-xs font-black px-3 py-1 rounded-full border border-amber-500/40 uppercase tracking-wider">
-                <Sparkles className="w-3.5 h-3.5 text-amber-300 animate-spin" style={{ animationDuration: '6s' }} />
+              <div className="inline-flex items-center gap-2 bg-[#C43B3D] text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
+                <Sparkles className="w-3.5 h-3.5 text-amber-300" />
                 <span>BẢN DEMO MÔ PHỎNG AI</span>
               </div>
-              <span className="text-xs font-mono text-amber-400/80 bg-stone-900 px-2 py-0.5 rounded border border-stone-800">
+              <span className="text-xs font-mono text-[#5D554D] bg-[#FBF8F3] px-2 py-0.5 rounded border border-[#E5DACB]">
                 {customSku}
               </span>
             </div>
 
             {/* AI COMPOSITE VISUALIZATION CANVAS */}
-            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-black border border-amber-900/40 shadow-inner group">
+            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-black border border-[#E5DACB] shadow-inner group">
               {/* Base Product Image */}
               <img
                 src={selectedProduct.image}
@@ -774,93 +776,93 @@ export default function CustomOrderPage() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30 pointer-events-none" />
 
               {/* Motif Overlay Pill Badge on Top Right */}
-              <div className="absolute top-3 right-3 bg-[#181411]/90 backdrop-blur-md rounded-xl p-2 border border-amber-500/50 flex items-center gap-2 shadow-lg max-w-[170px]">
-                <div className="w-8 h-8 rounded-lg overflow-hidden bg-black/60 p-1 shrink-0 flex items-center justify-center">
+              <div className="absolute top-3 right-3 bg-white/95 backdrop-blur-md rounded-xl p-2 border border-[#EA8E23] flex items-center gap-2 shadow-lg max-w-[170px]">
+                <div className="w-8 h-8 rounded-lg overflow-hidden bg-[#FBF8F3] p-1 shrink-0 flex items-center justify-center border border-[#E5DACB]">
                   <img
                     src={selectedMotif.image}
                     alt={selectedMotif.name}
-                    className="max-h-full max-w-full object-contain filter invert contrast-200"
+                    className="max-h-full max-w-full object-contain"
                   />
                 </div>
                 <div className="min-w-0">
-                  <div className="text-[9px] uppercase tracking-wider text-amber-400 font-bold truncate">
+                  <div className="text-[9px] uppercase tracking-wider text-[#EA8E23] font-bold truncate">
                     Hoa văn dệt
                   </div>
-                  <div className="text-xs font-bold text-white truncate">
+                  <div className="text-xs font-bold text-[#1F1D1B] truncate">
                     {selectedMotif.name}
                   </div>
                 </div>
               </div>
 
               {/* Live Swatch Badge on Top Left */}
-              <div className="absolute top-3 left-3 flex items-center gap-1.5 bg-[#181411]/90 backdrop-blur-md px-2.5 py-1 rounded-full border border-stone-800 text-xs text-white">
+              <div className="absolute top-3 left-3 flex items-center gap-1.5 bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-full border border-[#E5DACB] text-xs text-[#1F1D1B] shadow-sm">
                 <span
-                  className="w-3 h-3 rounded-full border border-white/60"
+                  className="w-3 h-3 rounded-full border border-[#E5DACB]"
                   style={{ backgroundColor: selectedColor.code }}
                 />
                 <span className="font-bold">{selectedColor.badge}</span>
               </div>
 
               {/* Bottom Canvas Caption */}
-              <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white text-xs bg-black/60 backdrop-blur-sm px-3 py-1.5 rounded-xl border border-stone-800">
+              <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white text-xs bg-black/60 backdrop-blur-sm px-3 py-1.5 rounded-xl border border-white/20">
                 <span className="font-medium truncate max-w-[200px]">
                   ✨ Mô phỏng tỷ lệ dệt 100% sợi cửi hông
                 </span>
-                <span className="text-amber-400 font-bold font-mono">
+                <span className="text-amber-300 font-bold font-mono">
                   {selectedProduct.days.split(' ')[0]} NGÀY
                 </span>
               </div>
             </div>
 
             {/* LIVE PRICE BREAKDOWN */}
-            <div className="mt-5 pt-4 border-t border-stone-800 space-y-2.5">
-              <div className="text-xs font-bold text-amber-500 uppercase tracking-wider">
+            <div className="mt-5 pt-4 border-t border-[#E5DACB] space-y-2.5">
+              <div className="text-xs font-bold text-[#EA8E23] uppercase tracking-wider">
                 Bảng Kê Chi Phí Minh Bạch:
               </div>
 
-              <div className="space-y-1.5 text-xs text-stone-300">
+              <div className="space-y-1.5 text-xs text-[#5D554D]">
                 <div className="flex justify-between">
                   <span>Phôi dệt & công thợ ({selectedProduct.name}):</span>
-                  <span className="font-mono text-white">
+                  <span className="font-mono font-bold text-[#1F1D1B]">
                     {selectedProduct.basePrice.toLocaleString('vi-VN')}₫
                   </span>
                 </div>
                 <div className="flex justify-between">
                   <span>Kỹ thuật dệt hoa văn ({selectedMotif.name}):</span>
-                  <span className="font-mono text-white">
+                  <span className="font-mono font-bold text-[#1F1D1B]">
                     +{selectedMotif.fee.toLocaleString('vi-VN')}₫
                   </span>
                 </div>
                 <div className="flex justify-between">
                   <span>Chi phí nhuộm tự nhiên ({selectedColor.name.split(' ')[0]}):</span>
-                  <span className="font-mono text-white">
+                  <span className="font-mono font-bold text-[#1F1D1B]">
                     {selectedColor.fee === 0 ? '0₫ (Miễn phí)' : `+${selectedColor.fee.toLocaleString('vi-VN')}₫`}
                   </span>
                 </div>
               </div>
 
-              <div className="pt-3 border-t border-amber-900/60 flex items-baseline justify-between">
+              <div className="pt-3 border-t border-[#E5DACB] flex items-baseline justify-between">
                 <div>
-                  <span className="text-xs text-stone-400 uppercase tracking-wider block font-bold">
+                  <span className="text-xs text-[#8A7E72] uppercase tracking-wider block font-bold">
                     TỔNG GIÁ TIỀN HOÀN THIỆN:
                   </span>
-                  <span className="text-xs text-emerald-400">
+                  <span className="text-xs text-emerald-700 font-medium">
                     Đã bao gồm tem mã QR & bảo chứng nghệ nhân
                   </span>
                 </div>
-                <div className="text-2xl font-black text-amber-400 font-serif">
+                <div className="text-2xl font-black text-[#C43B3D] font-serif">
                   {totalPrice.toLocaleString('vi-VN')}₫
                 </div>
               </div>
             </div>
 
             {/* ARTISAN COMMITMENT BADGE */}
-            <div className="mt-5 p-3.5 bg-[#251D18] rounded-xl border border-amber-900/40 text-xs text-stone-300 space-y-1.5">
-              <div className="flex items-center gap-2 text-amber-300 font-bold">
-                <ShieldCheck className="w-4 h-4 text-amber-400 shrink-0" />
+            <div className="mt-5 p-3.5 bg-[#FBF8F3] rounded-xl border border-[#E5DACB] text-xs text-[#5D554D] space-y-1.5">
+              <div className="flex items-center gap-2 text-[#EA8E23] font-bold">
+                <ShieldCheck className="w-4 h-4 text-[#EA8E23] shrink-0" />
                 <span>Cam kết chuẩn di sản SVTHM 2026:</span>
               </div>
-              <p className="text-xs text-stone-400 leading-relaxed">
+              <p className="text-xs text-[#5D554D] leading-relaxed">
                 Mỗi sản phẩm cá nhân hóa đều được cấp 01 tem mã QR số hóa truy xuất trực tiếp tên nghệ nhân làng nghề, số giờ dệt và chứng thực nguồn gốc bông Kơpăh tự nhiên tại Chư Păh, Gia Lai.
               </p>
             </div>

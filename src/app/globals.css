@@ -93,26 +93,17 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
-  color: inherit;
+  color: #1F1D1B;
   font-weight: 800;
   line-height: 1.25;
 }
 
-/* Đảm bảo toàn bộ chữ và tiêu đề trên nền tối luôn sáng rõ rực rỡ */
-[class*="bg-[#1"], [class*="bg-[#2"], [class*="bg-[#3"], [class*="bg-[#8"], [class*="bg-stone"], [class*="bg-black"], .dark, .text-white {
-  color: #FFFDF9;
-}
-[class*="bg-[#1"] h1, [class*="bg-[#1"] h2, [class*="bg-[#1"] h3, [class*="bg-[#1"] h4,
-[class*="bg-[#2"] h1, [class*="bg-[#2"] h2, [class*="bg-[#2"] h3, [class*="bg-[#2"] h4,
-[class*="bg-stone"] h1, [class*="bg-stone"] h2, [class*="bg-stone"] h3, [class*="bg-stone"] h4,
-.text-white h1, .text-white h2, .text-white h3, .text-white h4 {
-  color: #FFFDF9 !important;
-}
-
 .hero-section h1, .hero-section h2, .hero-section h3, .hero-section h4, .hero-section h5, .hero-section h6,
 .team-section-container h2, .team-section-container h3, .team-section-container h4,
+.journey-section-bg h1, .journey-section-bg h2, .journey-section-bg h3, .journey-section-bg h4,
 .main-footer h1, .main-footer h2, .main-footer h3,
-.top-bar, .main-header {
+.top-bar, .main-header,
+.dark-section h1, .dark-section h2, .dark-section h3, .dark-section h4 {
   color: #FFFFFF !important;
 }
 
