@@ -591,27 +591,80 @@ export default function HomePage() {
       </section>
 
       {/* MARQUEE CHẠY CHỮ VÔ TẬN: KẾ THỪA NGUYÊN BẢN DETNENTUONGLAI */}
-      <div className="bg-[#1C1714] border-y border-[#3D2C1F] py-3.5 overflow-hidden text-xs font-bold uppercase tracking-wider text-[#E58A1F] shadow-inner">
-        <div className="flex items-center gap-8 whitespace-nowrap animate-marquee">
-          <span className="text-amber-400 font-black">“GIỮ MỘT NGHỀ, DỆT NÊN TƯƠNG LAI”</span>
-          <span className="text-amber-400">✦</span>
-          <span className="text-white">DI SẢN THỔ CẨM JRAI</span>
-          <span className="text-amber-400">✦</span>
-          <span>XÃ IA MƠ NÔNG, HUYỆN CHƯ PĂH, GIA LAI</span>
-          <span className="text-amber-400">✦</span>
-          <span className="text-amber-300 font-bold">TRƯỜNG ĐẠI HỌC KINH TẾ - LUẬT, ĐHQG-HCM</span>
-          <span className="text-amber-400">✦</span>
-          <span>THƯƠNG HIỆU THỔ CẨM JRAI ƠI</span>
-          <span className="text-amber-400">✦</span>
-          <span className="text-white">100% ĐỊNH DANH QR ĐỘC BẢN</span>
-          <span className="text-amber-400">✦</span>
-          <span>BẢO TỒN NGUYÊN BẢN CỬI HÔNG</span>
-          <span className="text-amber-400">✦</span>
-          <span className="text-amber-400 font-black">“GIỮ MỘT NGHỀ, DỆT NÊN TƯƠNG LAI”</span>
-          <span className="text-amber-400">✦</span>
-          <span className="text-white">DI SẢN THỔ CẨM JRAI</span>
-          <span className="text-amber-400">✦</span>
-          <span>XÃ IA MƠ NÔNG, HUYỆN CHƯ PĂH, GIA LAI</span>
+      <div className="marquee-strip" aria-hidden="true">
+        <div className="marquee-track">
+          <div className="marquee-item">
+            <span className="highlight-gold">“GIỮ MỘT NGHỀ, DỆT NÊN TƯƠNG LAI”</span>
+            <span className="separator-symbol">✦</span>
+            <span>DI SẢN THỔ CẨM JRAI</span>
+            <span className="separator-symbol">✦</span>
+            <span>XÃ IA MƠ NÔNG, HUYỆN CHƯ PĂH, GIA LAI</span>
+            <span className="separator-symbol">✦</span>
+            <span className="highlight-gold">TRƯỜNG ĐẠI HỌC KINH TẾ - LUẬT, ĐHQG-HCM</span>
+            <span className="separator-symbol">✦</span>
+            <span>THƯƠNG HIỆU THỔ CẨM JRAI ƠI</span>
+            <span className="separator-symbol">✦</span>
+            <span className="text-white">100% ĐỊNH DANH QR ĐỘC BẢN</span>
+            <span className="separator-symbol">✦</span>
+            <span>BẢO TỒN NGUYÊN BẢN CỬI HÔNG</span>
+            <span className="separator-symbol">✦</span>
+            <span className="highlight-gold">LAN TỎA BẢN SẮC ĐẠI NGÀN</span>
+            <span className="separator-symbol">✦</span>
+          </div>
+          <div className="marquee-item">
+            <span className="highlight-gold">“GIỮ MỘT NGHỀ, DỆT NÊN TƯƠNG LAI”</span>
+            <span className="separator-symbol">✦</span>
+            <span>DI SẢN THỔ CẨM JRAI</span>
+            <span className="separator-symbol">✦</span>
+            <span>XÃ IA MƠ NÔNG, HUYỆN CHƯ PĂH, GIA LAI</span>
+            <span className="separator-symbol">✦</span>
+            <span className="highlight-gold">TRƯỜNG ĐẠI HỌC KINH TẾ - LUẬT, ĐHQG-HCM</span>
+            <span className="separator-symbol">✦</span>
+            <span>THƯƠNG HIỆU THỔ CẨM JRAI ƠI</span>
+            <span className="separator-symbol">✦</span>
+            <span className="text-white">100% ĐỊNH DANH QR ĐỘC BẢN</span>
+            <span className="separator-symbol">✦</span>
+            <span>BẢO TỒN NGUYÊN BẢN CỬI HÔNG</span>
+            <span className="separator-symbol">✦</span>
+            <span className="highlight-gold">LAN TỎA BẢN SẮC ĐẠI NGÀN</span>
+            <span className="separator-symbol">✦</span>
+          </div>
+          <div className="marquee-item">
+            <span className="highlight-gold">“GIỮ MỘT NGHỀ, DỆT NÊN TƯƠNG LAI”</span>
+            <span className="separator-symbol">✦</span>
+            <span>DI SẢN THỔ CẨM JRAI</span>
+            <span className="separator-symbol">✦</span>
+            <span>XÃ IA MƠ NÔNG, HUYỆN CHƯ PĂH, GIA LAI</span>
+            <span className="separator-symbol">✦</span>
+            <span className="highlight-gold">TRƯỜNG ĐẠI HỌC KINH TẾ - LUẬT, ĐHQG-HCM</span>
+            <span className="separator-symbol">✦</span>
+            <span>THƯƠNG HIỆU THỔ CẨM JRAI ƠI</span>
+            <span className="separator-symbol">✦</span>
+            <span className="text-white">100% ĐỊNH DANH QR ĐỘC BẢN</span>
+            <span className="separator-symbol">✦</span>
+            <span>BẢO TỒN NGUYÊN BẢN CỬI HÔNG</span>
+            <span className="separator-symbol">✦</span>
+            <span className="highlight-gold">LAN TỎA BẢN SẮC ĐẠI NGÀN</span>
+            <span className="separator-symbol">✦</span>
+          </div>
+          <div className="marquee-item">
+            <span className="highlight-gold">“GIỮ MỘT NGHỀ, DỆT NÊN TƯƠNG LAI”</span>
+            <span className="separator-symbol">✦</span>
+            <span>DI SẢN THỔ CẨM JRAI</span>
+            <span className="separator-symbol">✦</span>
+            <span>XÃ IA MƠ NÔNG, HUYỆN CHƯ PĂH, GIA LAI</span>
+            <span className="separator-symbol">✦</span>
+            <span className="highlight-gold">TRƯỜNG ĐẠI HỌC KINH TẾ - LUẬT, ĐHQG-HCM</span>
+            <span className="separator-symbol">✦</span>
+            <span>THƯƠNG HIỆU THỔ CẨM JRAI ƠI</span>
+            <span className="separator-symbol">✦</span>
+            <span className="text-white">100% ĐỊNH DANH QR ĐỘC BẢN</span>
+            <span className="separator-symbol">✦</span>
+            <span>BẢO TỒN NGUYÊN BẢN CỬI HÔNG</span>
+            <span className="separator-symbol">✦</span>
+            <span className="highlight-gold">LAN TỎA BẢN SẮC ĐẠI NGÀN</span>
+            <span className="separator-symbol">✦</span>
+          </div>
         </div>
       </div>
 
