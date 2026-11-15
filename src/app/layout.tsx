@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     'Ví thổ cẩm',
     'Nghệ nhân Jrai',
     'Hoa văn thổ cẩm',
-    'SVTHM 2026',
+    'Thương mại điện tử thổ cẩm',
   ],
   openGraph: {
     title: 'DỆT NÊN TƯƠNG LAI — Giữ Một Nghề, Dệt Nên Tương Lai | JRAI ƠI',

@@ -150,7 +150,7 @@ const WEAVING_STAGES_FULL = [
   {
     step: '06',
     stage: 'CHẶNG 06 • MINH BẠCH SỐ HÓA',
-    numLabel: 'BƯỚC 06 / ĐỊNH DANH SỐ SVTHM 2026',
+    numLabel: 'BƯỚC 06 / ĐỊNH DANH SỐ HÓA JRAI ƠI',
     title: 'Cấp Tem Mã QR Định Danh Di Sản',
     subtitle: 'Minh bạch nghệ nhân • Số giờ dệt • Ý nghĩa hoa văn',
     image: '/images/background/image5.jpg',
@@ -511,7 +511,7 @@ export default function HomePage() {
         <div className="container hero-content animate-fade-in-up z-20 flex flex-col items-center justify-center text-center">
           <div className="hero-tagline">
             <Sparkles className="w-4 h-4 text-amber-300 animate-pulse" />
-            <span>ĐỀ TÀI NCKH & KHỞI NGHIỆP • UEL - ĐHQG-HCM</span>
+            <span>ĐỒ ÁN THƯƠNG MẠI ĐIỆN TỬ • UEL - ĐHQG-HCM</span>
           </div>
 
           <div className="text-center" style={{ marginBottom: '14px' }}>
@@ -601,7 +601,7 @@ export default function HomePage() {
           <span className="text-amber-400">✦</span>
           <span className="text-amber-300 font-bold">TRƯỜNG ĐẠI HỌC KINH TẾ - LUẬT, ĐHQG-HCM</span>
           <span className="text-amber-400">✦</span>
-          <span>ĐỀ TÀI SVTHM 2026</span>
+          <span>THƯƠNG HIỆU THỔ CẨM JRAI ƠI</span>
           <span className="text-amber-400">✦</span>
           <span className="text-white">100% ĐỊNH DANH QR ĐỘC BẢN</span>
           <span className="text-amber-400">✦</span>
@@ -616,7 +616,7 @@ export default function HomePage() {
       </div>
 
       {/* ========================================================
-          BÀI TOÁN & LỜI GIẢI ĐỔI MỚI (TÍNH MỚI TRONG SVTHM 2026)
+          BÀI TOÁN & LỜI GIẢI ĐỔI MỚI (MÔ HÌNH THƯƠNG MẠI ĐIỆN TỬ BỀN VỮNG)
       ======================================================== */}
       <section className="section section-watermark-hearth reveal-on-scroll">
         <div className="container">
@@ -1244,7 +1244,7 @@ export default function HomePage() {
             </h3>
 
             <p>
-              Từ vòng casting đến vòng đấu chính thức của cuộc thi SVTHM, dự án đã chuyển mình mạnh mẽ: từ một ý tưởng trên trang giấy thành một dự án có <strong>địa bàn thật, người làm nghề thật, sản phẩm thật</strong> và bước đầu được kiểm chứng trong thực tế.
+              Từ những ngày đầu nghiên cứu thực địa đến khi hoàn thiện nền tảng thương mại điện tử, dự án đã chuyển mình mạnh mẽ: từ một ý tưởng kết nối văn hóa thành một hệ sinh thái bán hàng có <strong>địa bàn thật, người làm nghề thật, sản phẩm thật</strong> và mang lại nguồn sinh kế bền vững trong thực tế.
             </p>
 
             <p>
@@ -1377,13 +1377,13 @@ export default function HomePage() {
         <div className="team-section-container reveal-on-scroll" style={{ borderRadius: '16px', padding: '50px 24px 70px', margin: '20px 0' }}>
           <div className="text-center" style={{ maxWidth: '760px', margin: '0 auto 30px' }}>
             <span className="section-tag" style={{ color: '#F59E0B', backgroundColor: 'rgba(229, 138, 31, 0.15)', borderColor: 'rgba(229, 138, 31, 0.35)' }}>
-              CỐ VẤN KHOA HỌC & ĐỘI NGŨ DỰ ÁN
+              ĐỘI NGŨ SÁNG LẬP & VẬN HÀNH DỰ ÁN
             </span>
             <h2 className="section-title" style={{ color: '#FFFFFF' }}>
               The People Behind The Weave
             </h2>
             <p className="section-desc" style={{ color: '#E2D9D0', margin: '0 auto 30px' }}>
-              Những người gieo khát vọng số hóa và kết nối sinh kế bền vững cho buôn làng Jrai tại cuộc thi SVTHM 2026.
+              Những người gieo khát vọng số hóa và xây dựng cầu nối thương mại điện tử đưa thổ cẩm Jrai vươn xa.
             </p>
           </div>
 

@@ -235,7 +235,7 @@ function TraceabilityContent() {
 
           <div className="flex items-center justify-center gap-2 text-xs text-[#EA8E23] font-bold uppercase tracking-wider mx-auto">
             <Sparkles className="w-3.5 h-3.5 text-[#EA8E23]" />
-            <span>100% Sản Phẩm Mang Mã Định Danh Độc Bản SVTHM 2026</span>
+            <span>100% Sản Phẩm Mang Mã Định Danh Số Hóa Độc Bản</span>
             <Sparkles className="w-3.5 h-3.5 text-[#EA8E23]" />
           </div>
 

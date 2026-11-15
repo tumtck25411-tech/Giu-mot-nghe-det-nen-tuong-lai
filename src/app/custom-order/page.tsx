@@ -943,7 +943,7 @@ export default function CustomOrderPage() {
             <div className="mt-5 p-3.5 bg-[#FBF8F3] rounded-xl border border-[#E5DACB] text-xs text-[#5D554D] space-y-1.5">
               <div className="flex items-center gap-2 text-[#EA8E23] font-bold">
                 <ShieldCheck className="w-4 h-4 text-[#EA8E23] shrink-0" />
-                <span>Cam kết chuẩn di sản SVTHM 2026:</span>
+                <span>Cam kết chất lượng & chứng thực nguồn gốc:</span>
               </div>
               <p className="text-xs text-[#5D554D] leading-relaxed">
                 Mỗi sản phẩm cá nhân hóa đều được cấp 01 tem mã QR số hóa truy xuất trực tiếp tên nghệ nhân làng nghề, số giờ dệt và chứng thực nguồn gốc bông Kơpăh tự nhiên tại Chư Păh, Gia Lai.

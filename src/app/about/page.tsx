@@ -105,7 +105,7 @@ const weavingStages = [
   {
     step: '06',
     stage: 'CHẶNG 06 • MINH BẠCH SỐ HÓA',
-    numLabel: 'BƯỚC 06 / ĐỊNH DANH SỐ SVTHM 2026',
+    numLabel: 'BƯỚC 06 / ĐỊNH DANH SỐ HÓA JRAI ƠI',
     title: 'Cấp Tem Mã QR Định Danh Di Sản',
     subtitle: 'Minh bạch nghệ nhân • Số giờ dệt • Ý nghĩa hoa văn',
     image: '/images/background/image5.jpg',
@@ -168,7 +168,7 @@ export default function AboutPage() {
           </h2>
 
           <p>
-            Từ vòng casting đến vòng đấu chính thức của cuộc thi SVTHM, dự án đã chuyển mình mạnh mẽ: từ một ý tưởng trên trang giấy thành một dự án có <strong>địa bàn thật, người làm nghề thật, sản phẩm thật</strong> và bước đầu được kiểm chứng trong thực tế.
+            Từ những ngày đầu khảo sát thực tế đến khi hoàn thiện nền tảng thương mại điện tử, dự án đã chuyển mình mạnh mẽ: từ một ý tưởng kết nối văn hóa thành một hệ sinh thái bán hàng có <strong>địa bàn thật, người làm nghề thật, sản phẩm thật</strong> và mang lại nguồn sinh kế bền vững trong thực tế.
           </p>
 
           <p>
@@ -303,13 +303,13 @@ export default function AboutPage() {
       <section className="space-y-12 bg-gradient-to-b from-[#1E1713] to-[#14110F] p-8 sm:p-12 rounded-xl border border-amber-900/40 shadow-sm">
         <div className="text-center max-w-2xl mx-auto space-y-2">
           <span className="text-xs font-bold uppercase tracking-widest text-[#E58A1F] bg-[#231C18] px-3.5 py-1 rounded-full border border-amber-900/40 inline-block">
-            CỐ VẤN KHOA HỌC & ĐỘI NGŨ DỰ ÁN
+            ĐỘI NGŨ SÁNG LẬP & VẬN HÀNH DỰ ÁN
           </span>
           <h2 className="text-3xl sm:text-4xl font-serif font-black text-white">
             The People Behind The Weave
           </h2>
           <p className="text-xs sm:text-sm text-stone-400">
-            Những người gieo khát vọng số hóa và kết nối sinh kế bền vững cho buôn làng Jrai tại cuộc thi SVTHM 2026.
+            Những người gieo khát vọng số hóa và xây dựng cầu nối thương mại điện tử đưa thổ cẩm Jrai vươn xa.
           </p>
         </div>
 
@@ -423,7 +423,7 @@ export default function AboutPage() {
             <h3 className="text-xl font-serif font-bold text-[#1F1D1B]">Địa Bàn Triển Khai Thực Địa</h3>
           </div>
           <p className="text-xs text-[#5D554D] leading-relaxed">
-            Dự án nghiên cứu & thương mại điện tử di sản được bảo trợ và phối hợp thực hiện cùng cộng đồng dân cư địa phương:
+            Website thương mại điện tử thổ cẩm di sản JRAI ƠI được phối hợp thực hiện cùng cộng đồng dân cư địa phương:
           </p>
           <div className="space-y-3 text-xs text-[#5D554D]">
             <div className="p-3.5 bg-[#FBF8F3] rounded-xl border border-[#E5DACB]">
@@ -431,8 +431,8 @@ export default function AboutPage() {
               Làng Kép & Làng Phung, Xã Ia Mơ Nông, Huyện Chư Păh, Tỉnh Gia Lai.
             </div>
             <div className="p-3.5 bg-[#FBF8F3] rounded-xl border border-[#E5DACB]">
-              <span className="font-bold text-[#1F1D1B] block mb-0.5">Đơn Vị Nghiên Cứu:</span>
-              Nhóm nghiên cứu sinh viên Trường Đại học Kinh tế - Luật (UEL), Đại học Quốc gia TP.HCM • Đề tài SVTHM 2026.
+              <span className="font-bold text-[#1F1D1B] block mb-0.5">Đơn Vị Thực Hiện:</span>
+              Nhóm sinh viên Trường Đại học Kinh tế - Luật (UEL), Đại học Quốc gia TP.HCM • Đồ án Thương mại Điện tử.
             </div>
             <div className="p-3.5 bg-[#FBF8F3] rounded-xl border border-[#E5DACB]">
               <span className="font-bold text-[#1F1D1B] block mb-0.5">Hotline / Zalo Dự Án:</span>

@@ -127,7 +127,7 @@ export default function Header() {
           <div className="max-w-5xl mx-auto flex items-center justify-center gap-3 text-center flex-wrap">
             <span className="inline-flex items-center gap-1.5 text-stone-200">
               <ShieldCheck className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-              <span>✨ Đề tài NCKH & Khởi nghiệp SVTHM 2026 — Trường ĐH Kinh tế - Luật, ĐHQG-HCM</span>
+              <span>✨ Đồ án Thương mại Điện tử — Trường ĐH Kinh tế - Luật, ĐHQG-HCM</span>
             </span>
             <span className="hidden sm:inline text-amber-400">•</span>
             <span className="inline-flex items-center gap-1.5 text-amber-300 font-bold">

@@ -162,7 +162,7 @@ function ProductsContent() {
         <div className="max-w-4xl mx-auto space-y-3.5 relative z-10 flex flex-col items-center justify-center text-center w-full">
           <div className="inline-flex items-center justify-center gap-2 bg-[#C43B3D]/10 text-[#C43B3D] text-xs font-black px-4 py-1.5 rounded-full border border-[#C43B3D]/30 uppercase tracking-wider mx-auto">
             <Sparkles className="w-4 h-4 text-[#C43B3D]" />
-            <span>THỦ CÔNG BẢN ĐỊA ĐỘC BẢN • SVTHM 2026</span>
+            <span>THỦ CÔNG BẢN ĐỊA ĐỘC BẢN • JRAI ƠI</span>
           </div>
 
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-black text-[#1F1D1B] tracking-tight leading-tight text-center mx-auto">
