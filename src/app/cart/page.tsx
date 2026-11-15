@@ -113,8 +113,8 @@ export default function CartPage() {
         </div>
       </div>
 
-      <div className="border-b border-[#E5DACB] pb-4">
-        <h1 className="text-2xl sm:text-3xl font-serif font-black text-[#1F1D1B] flex items-center gap-3">
+      <div className="border-b border-[#E5DACB] pb-4 text-center max-w-2xl mx-auto">
+        <h1 className="text-2xl sm:text-3xl font-serif font-black text-[#1F1D1B] flex items-center justify-center gap-3">
           <ShoppingBag className="w-7 h-7 text-[#EA8E23]" />
           <span>Giỏ Hàng Của Bạn ({cart.reduce((a, c) => a + c.quantity, 0)} sản phẩm)</span>
         </h1>

@@ -194,12 +194,12 @@ function ProductsContent() {
       {/* 2. BỘ LỌC KHOA HỌC THEO FORM GIỮ MỘT NGHỀ */}
       <div className="bg-white p-5 sm:p-7 rounded-xl border border-[#E5DACB] shadow-sm space-y-5">
         {/* Category Filter Pills Bar */}
-        <div>
-          <div className="text-xs font-bold text-[#8A7E72] uppercase tracking-wider mb-3 flex items-center gap-2">
+        <div className="text-center space-y-3">
+          <div className="text-xs font-bold text-[#8A7E72] uppercase tracking-wider flex items-center justify-center gap-2">
             <Tag className="w-4 h-4 text-[#C43B3D]" />
             <span>LỌC THEO DANH MỤC SẢN PHẨM:</span>
           </div>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap justify-center gap-2">
             {CATEGORIES.map((cat) => {
               const isActive = selectedCategory === cat.filterKey;
               return (

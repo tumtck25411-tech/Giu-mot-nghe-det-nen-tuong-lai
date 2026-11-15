@@ -122,19 +122,20 @@ export default function Header() {
   return (
     <>
       <header className="sticky top-0 z-50 bg-[#1A1412]/95 backdrop-blur-md border-b border-[#3D2C1F] text-[#F4EFEB] shadow-lg transition-all">
-        {/* Top Heritage Notice Bar - Preserving exact detnentuonglai wording */}
+        {/* Top Heritage Notice Bar - Clean, Centered & Balanced */}
         <div className="bg-gradient-to-r from-[#8B2522] via-[#231C18] to-[#8B2522] py-2 px-4 text-center text-xs font-semibold text-[#FDE68A] border-b border-[#B9383A]/30">
-          <div className="max-w-7xl mx-auto flex items-center justify-between">
-            <span className="hidden sm:inline-flex items-center gap-1.5 text-stone-200">
-              <ShieldCheck className="w-3.5 h-3.5 text-amber-400" />
-              <span>✨ Đây là dự án được thực hiện bởi nhóm sinh viên Trường Đại học Kinh tế - Luật, ĐHQG-HCM • SVTHM 2026</span>
+          <div className="max-w-5xl mx-auto flex items-center justify-center gap-3 text-center flex-wrap">
+            <span className="inline-flex items-center gap-1.5 text-stone-200">
+              <ShieldCheck className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+              <span>✨ Đề tài NCKH & Khởi nghiệp SVTHM 2026 — Trường ĐH Kinh tế - Luật, ĐHQG-HCM</span>
             </span>
-            <span className="mx-auto sm:mx-0 flex items-center gap-1.5">
-              <Sparkles className="w-3.5 h-3.5 text-amber-400 animate-pulse" />
-              <span>JRAI ƠI — “Giữ một nghề, dệt nên tương lai.”</span>
+            <span className="hidden sm:inline text-amber-400">•</span>
+            <span className="inline-flex items-center gap-1.5 text-amber-300 font-bold">
+              <Sparkles className="w-3.5 h-3.5 text-amber-400 animate-pulse shrink-0" />
+              <span>JRAI ƠI: “Giữ một nghề, dệt nên tương lai.”</span>
             </span>
-            <span className="hidden md:inline-flex items-center gap-2 text-stone-300">
-              <span className="bg-[#B9383A]/60 border border-amber-400/40 text-amber-300 px-2 py-0.5 rounded text-xs font-bold">100% QR Độc Bản</span>
+            <span className="hidden md:inline-flex items-center gap-1.5 bg-[#B9383A]/70 border border-amber-400/40 text-amber-200 px-2.5 py-0.5 rounded-full text-[11px] font-bold shadow-xs">
+              100% Mã QR Độc Bản
             </span>
           </div>
         </div>

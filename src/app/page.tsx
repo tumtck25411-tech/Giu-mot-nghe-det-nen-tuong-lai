@@ -701,25 +701,22 @@ export default function HomePage() {
       ======================================================== */}
       <section className="section section-watermark-weave reveal-on-scroll" id="products" style={{ scrollMarginTop: '80px' }}>
         <div className="container space-y-8">
-          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '20px', gap: '16px' }}>
-            <div>
-              <span className="section-tag">
-                Bộ sưu tập tiêu biểu
-              </span>
-              <h2 className="section-title">
-                Sản Phẩm Thổ Cẩm Ứng Dụng Đời Sống
-              </h2>
-              <p className="section-desc">
-                100% sản phẩm dệt cửi hông thủ công bởi bàn tay của các nghệ nhân làng Kép và làng Phung. Khi mua sản phẩm, bạn nhận kèm một mã định danh số QR giúp tra cứu tên thợ dệt, thời gian hoàn thành và ý nghĩa hoa văn.
-              </p>
-            </div>
-
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <div className="text-center max-w-3xl mx-auto space-y-3.5 mb-8">
+            <span className="section-tag">
+              Bộ sưu tập tiêu biểu
+            </span>
+            <h2 className="section-title text-center">
+              Sản Phẩm Thổ Cẩm Ứng Dụng Đời Sống
+            </h2>
+            <p className="section-desc text-center mx-auto">
+              100% sản phẩm dệt cửi hông thủ công bởi bàn tay của các nghệ nhân làng Kép và làng Phung. Khi mua sản phẩm, bạn nhận kèm một mã định danh số QR giúp tra cứu tên thợ dệt, thời gian hoàn thành và ý nghĩa hoa văn.
+            </p>
+            <div className="flex items-center justify-center gap-3 pt-2">
               <span className="text-xs font-bold text-amber-900 bg-amber-100/90 px-3.5 py-1.5 rounded-full border border-amber-300">
                 Hiển thị {filteredProducts.length} / 57 tác phẩm
               </span>
               <Link href="/products" className="btn btn-outline-dark btn-sm">
-                Xem tất cả &rarr;
+                Xem toàn bộ 57 mẫu &rarr;
               </Link>
             </div>
           </div>
@@ -985,24 +982,22 @@ export default function HomePage() {
     ======================================================== */}
     <section className="section section-watermark-gathering reveal-on-scroll" id="artisans" style={{ scrollMarginTop: '80px' }}>
       <div className="container space-y-8">
-        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '24px', gap: '16px' }}>
-          <div>
-            <span className="section-tag">
-              Con người & Bàn tay vàng
-            </span>
-            <h2 className="section-title">
-              Nghệ Nhân Giữ Nghề Xã Ia Mơ Nông
-            </h2>
-            <p className="section-desc">
-              Gặp gỡ 9 nghệ nhân dệt cửi hông tiêu biểu tại làng Kép và làng Phung, những người phụ nữ Jrai gìn giữ linh hồn thổ cẩm qua nhiều thế hệ.
-            </p>
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+        <div className="text-center max-w-3xl mx-auto space-y-3.5 mb-8">
+          <span className="section-tag gold">
+            Con người & Bàn tay vàng
+          </span>
+          <h2 className="section-title text-center">
+            Nghệ Nhân Giữ Nghề Xã Ia Mơ Nông
+          </h2>
+          <p className="section-desc text-center mx-auto">
+            Gặp gỡ 9 nghệ nhân dệt cửi hông tiêu biểu tại làng Kép và làng Phung, những người phụ nữ Jrai gìn giữ linh hồn thổ cẩm qua nhiều thế hệ.
+          </p>
+          <div className="flex items-center justify-center gap-3 pt-2">
             <span className="text-xs font-bold text-amber-900 bg-amber-100/90 px-3.5 py-1.5 rounded-full border border-amber-300">
               09 / 09 nghệ nhân giữ nghề
             </span>
             <Link href="/artisans" className="btn btn-outline-dark btn-sm">
-              Xem tất cả &rarr;
+              Xem toàn bộ nghệ nhân &rarr;
             </Link>
           </div>
         </div>

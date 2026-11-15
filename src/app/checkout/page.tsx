@@ -172,11 +172,11 @@ export default function CheckoutPage() {
         </div>
       </div>
 
-      <div className="border-b border-[#E5DACB] pb-4">
-        <h1 className="text-2xl sm:text-3xl font-serif font-black text-[#1F1D1B]">
+      <div className="border-b border-[#E5DACB] pb-4 text-center max-w-2xl mx-auto space-y-1">
+        <h1 className="text-2xl sm:text-3xl font-serif font-black text-[#1F1D1B] text-center">
           Thông Tin Giao Hàng & Thanh Toán
         </h1>
-        <p className="text-xs text-[#5D554D] mt-1">
+        <p className="text-xs text-[#5D554D] text-center">
           Vui lòng kiểm tra địa chỉ và chọn phương thức thanh toán phù hợp.
         </p>
       </div>

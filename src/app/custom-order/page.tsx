@@ -255,6 +255,18 @@ const CUSTOM_MOTIFS: CustomMotifType[] = [
   },
 ];
 
+// BẢN DỰNG 3D STUDIO DO AI TẠO CHO TỪNG PHÂN LOẠI (RAY-TRACED 3D CGI - KHÔNG ÁM MÀU FILTER)
+const PRODUCT_3D_RENDERS: Record<string, string> = {
+  'tui-deo-cheo': '/images/custom/3d_bag_studio.jpg',
+  'khan-quang-co': '/images/custom/3d_scarf_studio.jpg',
+  'vi-cam-tay': '/images/custom/3d_wallet_studio.jpg',
+  'ao-tho-cam': '/images/custom/3d_vest_studio.jpg',
+  'vay-tho-cam': '/images/custom/3d_skirt_studio.jpg',
+  'tap-de': '/images/custom/3d_apron_studio.jpg',
+  'tui-tote': '/images/custom/3d_tote_studio.jpg',
+  'bau-nuoc': '/images/custom/3d_gourd_studio.jpg',
+};
+
 export default function CustomOrderPage() {
   // Step state (1 -> 2 -> 3 -> 4)
   const [currentStep, setCurrentStep] = useState<number>(1);
@@ -266,6 +278,28 @@ export default function CustomOrderPage() {
   const [customNote, setCustomNote] = useState<string>('');
   const [customerName, setCustomerName] = useState<string>('');
   const [customerPhone, setCustomerPhone] = useState<string>('');
+
+  // 3D AI Studio Mode: '3d' (Bản dựng 3D AI Studio) | 'real' (Ảnh thực địa)
+  const [previewMode, setPreviewMode] = useState<'3d' | 'real'>('3d');
+  const [isRendering, setIsRendering] = useState<boolean>(false);
+
+  const handleSelectProduct = (prod: CustomProductType) => {
+    setSelectedProduct(prod);
+    setIsRendering(true);
+    setTimeout(() => setIsRendering(false), 300);
+  };
+
+  const handleSelectColor = (col: CustomColorType) => {
+    setSelectedColor(col);
+    setIsRendering(true);
+    setTimeout(() => setIsRendering(false), 250);
+  };
+
+  const handleSelectMotif = (mot: CustomMotifType) => {
+    setSelectedMotif(mot);
+    setIsRendering(true);
+    setTimeout(() => setIsRendering(false), 250);
+  };
 
   // Cart Notice
   const [addedNotice, setAddedNotice] = useState<string | null>(null);
@@ -406,7 +440,7 @@ export default function CustomOrderPage() {
                   return (
                     <div
                       key={prod.id}
-                      onClick={() => setSelectedProduct(prod)}
+                      onClick={() => handleSelectProduct(prod)}
                       className={`p-4 rounded-2xl border transition-all cursor-pointer flex flex-col justify-between space-y-3 group ${
                         isSelected
                           ? 'bg-[#FDF6ED] border-[#EA8E23] shadow-md ring-2 ring-[#EA8E23]/20'
@@ -486,7 +520,7 @@ export default function CustomOrderPage() {
                   return (
                     <div
                       key={col.id}
-                      onClick={() => setSelectedColor(col)}
+                      onClick={() => handleSelectColor(col)}
                       className={`p-4 rounded-2xl border transition-all cursor-pointer space-y-2.5 ${
                         isSelected
                           ? 'bg-[#FDF6ED] border-[#EA8E23] shadow-md ring-2 ring-[#EA8E23]/20'
@@ -561,7 +595,7 @@ export default function CustomOrderPage() {
                   return (
                     <div
                       key={mot.id}
-                      onClick={() => setSelectedMotif(mot)}
+                      onClick={() => handleSelectMotif(mot)}
                       className={`p-4 rounded-2xl border transition-all cursor-pointer space-y-3 group ${
                         isSelected
                           ? 'bg-[#FDF6ED] border-[#EA8E23] shadow-md ring-2 ring-[#EA8E23]/20'
@@ -746,36 +780,67 @@ export default function CustomOrderPage() {
         {/* RIGHT COLUMN: AI PREVIEW VISUALIZER CARD (5 COLS) */}
         <div className="lg:col-span-5 sticky top-28 space-y-6">
           <div className="bg-white p-6 rounded-xl border-2 border-[#EA8E23] shadow-sm relative overflow-hidden">
-            {/* Visualizer Badge */}
-            <div className="flex items-center justify-between mb-4">
-              <div className="inline-flex items-center gap-2 bg-[#C43B3D] text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
-                <Sparkles className="w-3.5 h-3.5 text-amber-300" />
-                <span>BẢN DEMO MÔ PHỎNG AI</span>
+            {/* Visualizer Header: Mode Switcher & Sku */}
+            <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
+              <div className="flex items-center gap-1 bg-[#F2ECE1] p-1 rounded-xl border border-[#E5DACB]">
+                <button
+                  type="button"
+                  onClick={() => setPreviewMode('3d')}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 ${
+                    previewMode === '3d'
+                      ? 'bg-[#C43B3D] text-white shadow-xs'
+                      : 'text-[#5D554D] hover:text-[#1F1D1B]'
+                  }`}
+                >
+                  <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+                  <span>Ảnh 3D AI Studio</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setPreviewMode('real')}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 ${
+                    previewMode === 'real'
+                      ? 'bg-[#C43B3D] text-white shadow-xs'
+                      : 'text-[#5D554D] hover:text-[#1F1D1B]'
+                  }`}
+                >
+                  <Layers className="w-3.5 h-3.5" />
+                  <span>Ảnh Mẫu Thật</span>
+                </button>
               </div>
-              <span className="text-xs font-mono text-[#5D554D] bg-[#FBF8F3] px-2 py-0.5 rounded border border-[#E5DACB]">
+
+              <span className="text-xs font-mono text-[#5D554D] bg-[#FBF8F3] px-2.5 py-1 rounded-lg border border-[#E5DACB]">
                 {customSku}
               </span>
             </div>
 
-            {/* AI COMPOSITE VISUALIZATION CANVAS */}
-            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-black border border-[#E5DACB] shadow-inner group">
-              {/* Base Product Image */}
+            {/* AI 3D STUDIO VISUALIZATION CANVAS - CHUẨN 3D DO AI TẠO, KHÔNG ÁM MÀU */}
+            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-[#181411] border border-[#E5DACB] shadow-md group">
+              {/* Product Visual: 3D Studio Render or Real Photo */}
               <img
-                src={selectedProduct.image}
-                alt={selectedProduct.name}
-                className="w-full h-full object-cover transition-all duration-700"
+                src={previewMode === '3d' ? (PRODUCT_3D_RENDERS[selectedProduct.id] || selectedProduct.image) : selectedProduct.image}
+                alt={`${selectedProduct.name} - Mô phỏng 3D AI`}
+                className={`w-full h-full object-cover transition-all duration-500 ${isRendering ? 'opacity-40 scale-95 blur-xs' : 'opacity-100 scale-100'}`}
               />
 
-              {/* Color Blend Tint Overlay */}
-              <div
-                className="absolute inset-0 mix-blend-color opacity-45 pointer-events-none transition-colors duration-500"
-                style={{ backgroundColor: selectedColor.code }}
-              />
+              {/* Rendering State Overlay */}
+              {isRendering && (
+                <div className="absolute inset-0 bg-black/60 backdrop-blur-xs flex flex-col items-center justify-center gap-2 text-white z-20">
+                  <Sparkles className="w-6 h-6 text-amber-400 animate-spin" />
+                  <span className="text-xs font-bold text-amber-200">Đang dựng mô phỏng 3D AI Studio...</span>
+                </div>
+              )}
 
-              {/* Ambient Vignette */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30 pointer-events-none" />
+              {/* Subtle Studio Vignette */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30 pointer-events-none" />
 
-              {/* Motif Overlay Pill Badge on Top Right */}
+              {/* Top Left: 3D Engine Badge */}
+              <div className="absolute top-3 left-3 flex items-center gap-1.5 bg-black/75 backdrop-blur-md px-3 py-1 rounded-full border border-amber-400/40 text-[11px] text-amber-200 font-bold shadow-md">
+                <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+                <span>{previewMode === '3d' ? '3D AI Studio Render' : 'Ảnh Phôi Sản Phẩm'}</span>
+              </div>
+
+              {/* Top Right: Motif Overlay Pill Badge */}
               <div className="absolute top-3 right-3 bg-white/95 backdrop-blur-md rounded-xl p-2 border border-[#EA8E23] flex items-center gap-2 shadow-lg max-w-[170px]">
                 <div className="w-8 h-8 rounded-lg overflow-hidden bg-[#FBF8F3] p-1 shrink-0 flex items-center justify-center border border-[#E5DACB]">
                   <img
@@ -786,7 +851,7 @@ export default function CustomOrderPage() {
                 </div>
                 <div className="min-w-0">
                   <div className="text-[9px] uppercase tracking-wider text-[#EA8E23] font-bold truncate">
-                    Hoa văn dệt
+                    Hoa văn đã chọn
                   </div>
                   <div className="text-xs font-bold text-[#1F1D1B] truncate">
                     {selectedMotif.name}
@@ -794,24 +859,42 @@ export default function CustomOrderPage() {
                 </div>
               </div>
 
-              {/* Live Swatch Badge on Top Left */}
-              <div className="absolute top-3 left-3 flex items-center gap-1.5 bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-full border border-[#E5DACB] text-xs text-[#1F1D1B] shadow-sm">
+              {/* Selected Color Pill on Canvas */}
+              <div className="absolute bottom-11 left-3 flex items-center gap-2 bg-black/75 backdrop-blur-md px-3 py-1 rounded-full border border-white/20 text-xs text-white shadow-md">
                 <span
-                  className="w-3 h-3 rounded-full border border-[#E5DACB]"
+                  className="w-3.5 h-3.5 rounded-full border border-white shadow-sm shrink-0"
                   style={{ backgroundColor: selectedColor.code }}
                 />
-                <span className="font-bold">{selectedColor.badge}</span>
+                <span className="font-semibold text-stone-200">{selectedColor.name.split(' (')[0]}</span>
               </div>
 
               {/* Bottom Canvas Caption */}
-              <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white text-xs bg-black/60 backdrop-blur-sm px-3 py-1.5 rounded-xl border border-white/20">
-                <span className="font-medium truncate max-w-[200px]">
-                  ✨ Mô phỏng tỷ lệ dệt 100% sợi cửi hông
+              <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white text-xs bg-black/70 backdrop-blur-sm px-3.5 py-1.5 rounded-xl border border-white/20">
+                <span className="font-medium truncate max-w-[210px] text-stone-200">
+                  ✨ Mô phỏng tỷ lệ dệt cửi hông 100%
                 </span>
                 <span className="text-amber-300 font-bold font-mono">
                   {selectedProduct.days.split(' ')[0]} NGÀY
                 </span>
               </div>
+            </div>
+
+            {/* AI Render Re-generate trigger button */}
+            <div className="mt-3 flex justify-between items-center text-xs">
+              <button
+                type="button"
+                onClick={() => {
+                  setIsRendering(true);
+                  setTimeout(() => setIsRendering(false), 400);
+                }}
+                className="text-xs font-bold text-[#C43B3D] hover:underline flex items-center gap-1.5"
+              >
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>Tạo lại bản dựng 3D AI</span>
+              </button>
+              <span className="text-[11px] text-[#8A7E72]">
+                Công nghệ: Octane 3D Studio Mockup
+              </span>
             </div>
 
             {/* LIVE PRICE BREAKDOWN */}

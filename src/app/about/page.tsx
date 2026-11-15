@@ -132,7 +132,7 @@ export default function AboutPage() {
             </span>
           </h1>
 
-          <p className="text-[#5D554D] text-sm sm:text-base leading-relaxed italic border-l-4 border-[#C43B3D] pl-4 max-w-2xl mx-auto text-left sm:text-center">
+          <p className="text-[#5D554D] text-sm sm:text-base leading-relaxed italic border-y border-[#C43B3D]/30 py-3.5 px-6 max-w-2xl mx-auto text-center">
             &ldquo;Nếu một nghề truyền thống có giá trị nhưng người làm nghề không thể sống được từ nghề, thì làm thế nào để nghề ấy tiếp tục tồn tại?&rdquo; — Câu hỏi trăn trở ấy đã đưa nhóm chúng tôi đặt chân đến buôn làng Ia Mơ Nông.
           </p>
 
