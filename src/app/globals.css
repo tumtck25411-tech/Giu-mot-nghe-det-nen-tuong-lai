@@ -2252,21 +2252,62 @@ main {
   text-align: center !important;
 }
 
-.text-center .section-tag {
+.text-center h1,
+.text-center h2,
+.text-center h3,
+.text-center h4,
+.text-center h5,
+.text-center h6,
+.text-center p {
+  text-align: center !important;
+}
+
+.text-center .section-tag,
+.text-center [class*="section-tag"] {
   margin-left: auto !important;
   margin-right: auto !important;
   display: inline-flex !important;
+  justify-content: center !important;
+  align-items: center !important;
 }
 
-.text-center .section-title {
+.text-center .section-title,
+.text-center h1,
+.text-center h2 {
   text-align: center !important;
   margin-left: auto !important;
   margin-right: auto !important;
 }
 
-.text-center .section-desc {
+.text-center .section-desc,
+.text-center p {
   margin-left: auto !important;
   margin-right: auto !important;
+  text-align: center !important;
+}
+
+.header-banner-box {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+}
+
+.header-banner-box > div {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.header-banner-box h1,
+.header-banner-box h2,
+.header-banner-box p,
+.header-banner-box span {
   text-align: center !important;
 }
 

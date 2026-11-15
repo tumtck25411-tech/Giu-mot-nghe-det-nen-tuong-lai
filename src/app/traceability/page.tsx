@@ -221,25 +221,25 @@ function TraceabilityContent() {
 
   return (
     <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-8 lg:px-12 py-10 space-y-10">
-      {/* Hero Header With Dynamic Animated Text */}
-      <div className="bg-[#F2ECE1] p-8 sm:p-14 rounded-xl border border-[#E5DACB] border-b-2 border-b-[#EA8E23] relative overflow-hidden shadow-sm text-center">
-        <div className="max-w-3xl mx-auto space-y-4 relative z-10">
-          <span className="section-tag gold">
+      {/* Hero Header - Centered Flex & Text */}
+      <div className="bg-[#F2ECE1] p-8 sm:p-14 rounded-xl border border-[#E5DACB] border-b-2 border-b-[#EA8E23] relative overflow-hidden shadow-sm flex flex-col items-center justify-center text-center header-banner-box">
+        <div className="max-w-3xl mx-auto space-y-4 relative z-10 flex flex-col items-center justify-center text-center w-full">
+          <span className="section-tag gold inline-flex items-center justify-center mx-auto">
             <QrCode className="w-3.5 h-3.5 inline mr-1 text-[#EA8E23]" />
             <span>MINH BẠCH NGUỒN GỐC SỐ HÓA • DIGITAL PASSPORT</span>
           </span>
 
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-black text-[#1F1D1B] tracking-tight leading-tight">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-black text-[#1F1D1B] tracking-tight leading-tight text-center mx-auto">
             TRUY XUẤT NGUỒN GỐC SẢN PHẨM
           </h1>
 
-          <div className="flex items-center justify-center gap-2 text-xs text-[#EA8E23] font-bold uppercase tracking-wider">
+          <div className="flex items-center justify-center gap-2 text-xs text-[#EA8E23] font-bold uppercase tracking-wider mx-auto">
             <Sparkles className="w-3.5 h-3.5 text-[#EA8E23]" />
             <span>100% Sản Phẩm Mang Mã Định Danh Độc Bản SVTHM 2026</span>
             <Sparkles className="w-3.5 h-3.5 text-[#EA8E23]" />
           </div>
 
-          <p className="text-[#5D554D] text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
+          <p className="text-[#5D554D] text-sm sm:text-base leading-relaxed max-w-2xl mx-auto text-center">
             Mỗi sản phẩm thổ cẩm thủ công JRAI ƠI đều gắn liền với một nghệ nhân buôn làng. Quét mã QR bằng camera hoặc nhập mã trên tem để chứng thực giờ dệt, phôi sợi tự nhiên và thông điệp văn hóa mẫu hệ.
           </p>
         </div>

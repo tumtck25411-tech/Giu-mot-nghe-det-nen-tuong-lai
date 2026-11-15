@@ -365,19 +365,19 @@ export default function CustomOrderPage() {
         </div>
       )}
 
-      {/* 1. HERO BANNER */}
-      <div className="bg-[#F2ECE1] p-8 sm:p-12 rounded-xl border border-[#E5DACB] border-b-2 border-b-[#EA8E23] relative overflow-hidden shadow-sm text-center">
-        <div className="max-w-3xl mx-auto space-y-3 relative z-10">
-          <span className="section-tag gold">
+      {/* 1. HERO BANNER - Centered Flex & Text */}
+      <div className="bg-[#F2ECE1] p-8 sm:p-14 rounded-xl border border-[#E5DACB] border-b-2 border-b-[#EA8E23] relative overflow-hidden shadow-sm flex flex-col items-center justify-center text-center header-banner-box">
+        <div className="max-w-3xl mx-auto space-y-3.5 relative z-10 flex flex-col items-center justify-center text-center w-full">
+          <span className="section-tag gold inline-flex items-center justify-center mx-auto">
             <Sparkles className="w-3.5 h-3.5 inline mr-1 text-[#EA8E23]" />
             <span>AI STUDIO • ĐẶT DỆT THỔ CẨM THEO YÊU CẦU</span>
           </span>
 
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-black text-[#1F1D1B] tracking-tight leading-tight">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-black text-[#1F1D1B] tracking-tight leading-tight text-center mx-auto">
             TỰ TAY THIẾT KẾ DI SẢN CỦA RIÊNG BẠN
           </h1>
 
-          <p className="text-[#5D554D] text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
+          <p className="text-[#5D554D] text-sm sm:text-base leading-relaxed max-w-2xl mx-auto text-center">
             Chọn sản phẩm bạn muốn làm theo yêu cầu, phối sắc màu tự nhiên, chọn hoa văn thổ cẩm Jrai và ngắm nhìn bản demo mô phỏng bằng công nghệ AI cùng báo giá chi tiết minh bạch.
           </p>
         </div>

@@ -157,19 +157,19 @@ function ProductsContent() {
         </div>
       )}
 
-      {/* 1. HERO HEADER: TONE SÁNG BE SOLID ĐẶC TRƯNG GIỮ MỘT NGHỀ */}
-      <div className="bg-[#F2ECE1] border-b-2 border-[#EA8E23] p-8 sm:p-12 rounded-xl text-center shadow-sm relative overflow-hidden">
-        <div className="max-w-4xl mx-auto space-y-3.5 relative z-10">
-          <div className="inline-flex items-center gap-2 bg-[#C43B3D]/10 text-[#C43B3D] text-xs font-black px-4 py-1.5 rounded-full border border-[#C43B3D]/30 uppercase tracking-wider">
+      {/* 1. HERO HEADER: TONE SÁNG BE SOLID ĐẶC TRƯNG GIỮ MỘT NGHỀ - Centered Flex & Text */}
+      <div className="bg-[#F2ECE1] border-b-2 border-[#EA8E23] p-8 sm:p-14 rounded-xl shadow-sm relative overflow-hidden flex flex-col items-center justify-center text-center header-banner-box">
+        <div className="max-w-4xl mx-auto space-y-3.5 relative z-10 flex flex-col items-center justify-center text-center w-full">
+          <div className="inline-flex items-center justify-center gap-2 bg-[#C43B3D]/10 text-[#C43B3D] text-xs font-black px-4 py-1.5 rounded-full border border-[#C43B3D]/30 uppercase tracking-wider mx-auto">
             <Sparkles className="w-4 h-4 text-[#C43B3D]" />
             <span>THỦ CÔNG BẢN ĐỊA ĐỘC BẢN • SVTHM 2026</span>
           </div>
 
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-black text-[#1F1D1B] tracking-tight leading-tight">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-black text-[#1F1D1B] tracking-tight leading-tight text-center mx-auto">
             Bộ Sưu Tập Thổ Cẩm Jrai Ứng Dụng (57 Mẫu)
           </h1>
 
-          <p className="text-[#5D554D] text-sm sm:text-base leading-relaxed max-w-3xl mx-auto">
+          <p className="text-[#5D554D] text-sm sm:text-base leading-relaxed max-w-3xl mx-auto text-center">
             Mỗi sản phẩm đều được dệt thủ công bởi các nghệ nhân làng Kép và làng Phung (Ia Mơ Nông, Gia Lai). Khi mua sản phẩm, bạn nhận kèm một mã định danh số QR giúp tra cứu tên thợ dệt, thời gian hoàn thành và ý nghĩa hoa văn truyền thừa.
           </p>
 

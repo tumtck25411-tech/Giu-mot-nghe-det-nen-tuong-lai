@@ -44,17 +44,17 @@ export default function MotifsPage() {
 
   return (
     <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-8 lg:px-12 py-10 space-y-8">
-      {/* Header Banner */}
-      <div className="bg-[#F2ECE1] p-8 sm:p-12 rounded-xl border border-[#E5DACB] border-b-2 border-b-[#EA8E23] relative overflow-hidden shadow-sm text-center">
-        <div className="max-w-3xl mx-auto space-y-4 relative z-10">
-          <span className="section-tag gold">
+      {/* Header Banner - Centered Flex & Text */}
+      <div className="bg-[#F2ECE1] p-8 sm:p-14 rounded-xl border border-[#E5DACB] border-b-2 border-b-[#EA8E23] relative overflow-hidden shadow-sm flex flex-col items-center justify-center text-center header-banner-box">
+        <div className="max-w-3xl mx-auto space-y-4 relative z-10 flex flex-col items-center justify-center text-center w-full">
+          <span className="section-tag gold inline-flex items-center justify-center mx-auto">
             <Grid className="w-3.5 h-3.5 inline mr-1 text-[#EA8E23]" />
             <span>Kho Tri Thức Di Sản Bản Địa Jrai</span>
           </span>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-black text-[#1F1D1B] leading-tight">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-black text-[#1F1D1B] leading-tight text-center mx-auto">
             Ngân Hàng Số Hoa Văn Thổ Cẩm Jrai (20 Hoa Văn)
           </h1>
-          <p className="text-[#5D554D] text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
+          <p className="text-[#5D554D] text-sm sm:text-base leading-relaxed max-w-2xl mx-auto text-center">
             Hệ thống số hóa 20 hoa văn cổ truyền người Jrai tại Gia Lai. Mỗi hoa văn là một ký hiệu văn hóa ước lệ khắc họa thiên nhiên, vũ trụ quan và đời sống tâm linh đại ngàn, được giải mã và lưu trữ cẩn trọng.
           </p>
         </div>

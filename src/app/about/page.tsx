@@ -117,15 +117,15 @@ const weavingStages = [
 export default function AboutPage() {
   return (
     <div className="w-full max-w-[1680px] mx-auto px-4 sm:px-8 lg:px-12 py-10 space-y-20">
-      {/* 1. HERO BANNER: KẾ THỪA CÂU CHUYỆN KHỞI NGUỒN */}
-      <section className="bg-[#F2ECE1] p-8 sm:p-14 rounded-xl border border-[#E5DACB] border-b-2 border-b-[#EA8E23] relative overflow-hidden shadow-sm text-center">
-        <div className="max-w-3xl mx-auto space-y-5 relative z-10">
-          <span className="section-tag gold">
+      {/* 1. HERO BANNER: KẾ THỪA CÂU CHUYỆN KHỞI NGUỒN - Centered Flex & Text */}
+      <section className="bg-[#F2ECE1] p-8 sm:p-14 rounded-xl border border-[#E5DACB] border-b-2 border-b-[#EA8E23] relative overflow-hidden shadow-sm flex flex-col items-center justify-center text-center header-banner-box">
+        <div className="max-w-3xl mx-auto space-y-5 relative z-10 flex flex-col items-center justify-center text-center w-full">
+          <span className="section-tag gold inline-flex items-center justify-center mx-auto">
             <Compass className="w-3.5 h-3.5 inline mr-1 text-[#EA8E23]" />
             <span>CÂU CHUYỆN KHỞI NGUỒN • DỰ ÁN DỆT NÊN TƯƠNG LAI</span>
           </span>
 
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-black text-[#1F1D1B] leading-tight">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-black text-[#1F1D1B] leading-tight text-center mx-auto">
             Từ Câu Hỏi Về Sinh Kế <br />
             <span className="text-[#C43B3D]">
               Đến Khát Vọng Giữ Lửa Nghề

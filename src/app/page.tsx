@@ -508,7 +508,7 @@ export default function HomePage() {
         </div>
 
         {/* Hero Content with Authentic Typography and Animated Counter */}
-        <div className="container hero-content animate-fade-in-up z-20">
+        <div className="container hero-content animate-fade-in-up z-20 flex flex-col items-center justify-center text-center">
           <div className="hero-tagline">
             <Sparkles className="w-4 h-4 text-amber-300 animate-pulse" />
             <span>ĐỀ TÀI NCKH & KHỞI NGHIỆP • UEL - ĐHQG-HCM</span>
