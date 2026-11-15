@@ -416,7 +416,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="space-y-24 pb-24 overflow-hidden relative">
+    <div className="w-full space-y-24 pb-24 overflow-hidden relative">
       {/* Toast Notification */}
       {addedNotice && (
         <div className="fixed bottom-6 right-6 z-50 bg-[#B9383A] text-white px-5 py-3.5 rounded-2xl shadow-2xl border border-amber-400/40 flex items-center gap-3 animate-in slide-in-from-bottom duration-300">
@@ -431,10 +431,10 @@ export default function HomePage() {
         </div>
       )}
 
-      {/* Floating Cart Button */}
+      {/* Floating Cart Button (Balanced Position) */}
       <button
         onClick={() => setCartOpen(true)}
-        className="fixed bottom-6 left-6 z-40 bg-gradient-to-r from-[#B9383A] to-[#8B2522] hover:from-[#A83232] hover:to-[#7A1F1C] text-white px-4 py-3 rounded-full shadow-2xl border border-amber-400/40 flex items-center gap-2.5 transition-transform hover:scale-105"
+        className="fixed bottom-6 right-6 z-40 bg-gradient-to-r from-[#B9383A] to-[#8B2522] hover:from-[#A83232] hover:to-[#7A1F1C] text-white px-4 py-3 rounded-full shadow-2xl border border-amber-400/40 flex items-center gap-2.5 transition-transform hover:scale-105"
         title="Mở giỏ hàng"
       >
         <ShoppingBag className="w-5 h-5 text-amber-300" />
@@ -447,7 +447,7 @@ export default function HomePage() {
       {/* ========================================================
           1. MỤC 1: TRANG CHỦ (#home) - HERO CAROUSEL SLIDER KẾ THỪA DETNENTUONGLAI
       ======================================================== */}
-      <section id="home" className="relative min-h-[680px] lg:min-h-[760px] bg-[#120F0D] text-white overflow-hidden flex items-center border-b border-[#3D2C1F] scroll-mt-20">
+      <section id="home" className="relative min-h-[680px] lg:min-h-[760px] bg-[#120F0D] text-white overflow-hidden flex items-center justify-center w-full border-b border-[#3D2C1F] scroll-mt-20">
         {/* Background Slider with 5 Authentic Slides */}
         {HERO_SLIDES.map((slide, idx) => (
           <div
@@ -465,10 +465,9 @@ export default function HomePage() {
           </div>
         ))}
 
-        {/* Ambient Overlays to Guarantee Text Legibility */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#120F0D] via-[#120F0D]/90 to-transparent lg:w-3/4" />
-        <div className="absolute inset-0 bg-[#120F0D]/40" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#120F0D] via-transparent to-black/30" />
+        {/* Ambient Overlays to Guarantee Text Legibility Across Whole Width */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#120F0D] via-[#120F0D]/75 to-black/40" />
+        <div className="absolute inset-0 bg-[#120F0D]/45 backdrop-blur-[0.5px]" />
 
         {/* Hero Slider Caption Badge */}
         <div className="absolute bottom-6 right-6 z-20 hidden md:block">
@@ -832,11 +831,14 @@ export default function HomePage() {
                   <span className="product-category">
                     {p.category_name} • MÃ: {p.product_code}
                   </span>
-                  <h3
-                    className="product-title cursor-pointer"
-                    onClick={() => setSelectedProduct(p)}
-                  >
-                    <a>{p.name}</a>
+                  <h3 className="product-title">
+                    <Link
+                      href={`/product/${p.id}`}
+                      className="hover:text-[#B9383A] transition-colors"
+                      title="Xem trang chi tiết sản phẩm & mua ngay"
+                    >
+                      {p.name}
+                    </Link>
                   </h3>
 
                   {p.story && (
@@ -1559,31 +1561,41 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="pt-4 border-t border-stone-800 flex gap-3">
-              <button
-                onClick={() => {
-                  handleAddToCart(selectedProduct);
-                  setSelectedProduct(null);
-                  setCartOpen(true);
-                }}
-                className="flex-1 py-3 rounded-xl bg-[#B9383A] hover:bg-[#A83232] text-white font-bold text-xs shadow-lg flex items-center justify-center gap-2"
-              >
-                <ShoppingBag className="w-4 h-4" />
-                <span>MUA NGAY / THÊM GIỎ HÀNG</span>
-              </button>
+            <div className="pt-4 border-t border-stone-800 space-y-3">
+              <div className="flex gap-3">
+                <button
+                  onClick={() => {
+                    handleAddToCart(selectedProduct);
+                    setSelectedProduct(null);
+                    setCartOpen(true);
+                  }}
+                  className="flex-1 py-3 rounded-xl bg-[#B9383A] hover:bg-[#A83232] text-white font-bold text-xs shadow-lg flex items-center justify-center gap-2"
+                >
+                  <ShoppingBag className="w-4 h-4" />
+                  <span>MUA NGAY / THÊM GIỎ HÀNG</span>
+                </button>
 
-              <button
-                onClick={() => {
-                  setPassportCode(selectedProduct.product_code);
-                  setSelectedProduct(null);
-                  const el = document.getElementById('traceability');
-                  if (el) el.scrollIntoView({ behavior: 'smooth' });
-                }}
-                className="px-4 py-3 rounded-xl bg-[#231C18] hover:bg-[#32261E] text-amber-400 text-xs font-bold border border-amber-900/50 flex items-center gap-1.5"
+                <button
+                  onClick={() => {
+                    setPassportCode(selectedProduct.product_code);
+                    setSelectedProduct(null);
+                    const el = document.getElementById('traceability');
+                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="px-4 py-3 rounded-xl bg-[#231C18] hover:bg-[#32261E] text-amber-400 text-xs font-bold border border-amber-900/50 flex items-center gap-1.5"
+                >
+                  <QrCode className="w-4 h-4" />
+                  <span>Xem mã QR</span>
+                </button>
+              </div>
+
+              <Link
+                href={`/product/${selectedProduct.id}`}
+                onClick={() => setSelectedProduct(null)}
+                className="block text-center text-xs text-amber-400 hover:text-amber-200 underline font-semibold transition"
               >
-                <QrCode className="w-4 h-4" />
-                <span>Xem mã QR</span>
-              </button>
+                Xem toàn bộ trang chi tiết sản phẩm &rarr;
+              </Link>
             </div>
           </div>
         </div>

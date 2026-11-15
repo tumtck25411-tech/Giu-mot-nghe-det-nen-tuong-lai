@@ -49,6 +49,9 @@ function TraceabilityContent() {
   const [motif, setMotif] = useState<Motif | null>(null);
   const [notFound, setNotFound] = useState(false);
   const [cameraActive, setCameraActive] = useState(false);
+  const [stream, setStream] = useState<MediaStream | null>(null);
+  const [cameraError, setCameraError] = useState<string | null>(null);
+  const [scanSuccessCode, setScanSuccessCode] = useState<string | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
@@ -61,6 +64,66 @@ function TraceabilityContent() {
       handleLookup(initialCode);
     }
   }, [initialCode]);
+
+  // Connect stream to video element when both are ready
+  useEffect(() => {
+    if (cameraActive && stream && videoRef.current) {
+      videoRef.current.srcObject = stream;
+      videoRef.current.play().catch((err) => {
+        console.warn('Video auto-play warning:', err);
+      });
+    }
+  }, [cameraActive, stream]);
+
+  // Cleanup stream on unmount
+  useEffect(() => {
+    return () => {
+      if (stream) {
+        stream.getTracks().forEach((track) => track.stop());
+      }
+    };
+  }, [stream]);
+
+  // QR Barcode Auto-detection loop
+  useEffect(() => {
+    if (!cameraActive || !stream) return;
+
+    let scanTimer: any = null;
+    if (typeof window !== 'undefined' && 'BarcodeDetector' in window) {
+      try {
+        const detector = new (window as any).BarcodeDetector({ formats: ['qr_code'] });
+        scanTimer = setInterval(async () => {
+          if (videoRef.current && videoRef.current.readyState >= 2) {
+            try {
+              const barcodes = await detector.detect(videoRef.current);
+              if (barcodes && barcodes.length > 0) {
+                const raw = barcodes[0].rawValue;
+                let parsed = raw;
+                if (raw.includes('code=')) {
+                  parsed = raw.split('code=')[1].split('&')[0];
+                } else if (raw.includes('/product/')) {
+                  parsed = raw.split('/product/')[1].split('?')[0];
+                }
+                setScanSuccessCode(parsed);
+                setInputCode(parsed);
+                handleLookup(parsed);
+                if (typeof navigator !== 'undefined' && 'vibrate' in navigator) {
+                  navigator.vibrate(100);
+                }
+                setTimeout(() => {
+                  stopCamera();
+                }, 800);
+              }
+            } catch (_) {}
+          }
+        }, 350);
+      } catch (_) {}
+    }
+
+    return () => {
+      if (scanTimer) clearInterval(scanTimer);
+    };
+  }, [cameraActive, stream]);
 
   const handleLookup = (codeToSearch: string) => {
     const cleanCode = codeToSearch.trim();
@@ -98,27 +161,58 @@ function TraceabilityContent() {
     handleLookup(inputCode);
   };
 
-  // Optional Camera Scanner Demo toggle
-  const toggleCamera = async () => {
-    if (cameraActive) {
-      if (videoRef.current && videoRef.current.srcObject) {
-        const stream = videoRef.current.srcObject as MediaStream;
-        stream.getTracks().forEach((track) => track.stop());
-        videoRef.current.srcObject = null;
+  // Robust Camera Scanner handler
+  const startCamera = async () => {
+    setCameraError(null);
+    setScanSuccessCode(null);
+    try {
+      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        throw new Error('Thiết bị hoặc trình duyệt không hỗ trợ mở camera trực tiếp.');
       }
+      const mediaStream = await navigator.mediaDevices.getUserMedia({
+        video: {
+          facingMode: { ideal: 'environment' },
+          width: { ideal: 1280 },
+          height: { ideal: 720 },
+        },
+        audio: false,
+      });
+      setStream(mediaStream);
+      setCameraActive(true);
+    } catch (err: any) {
+      console.error('Camera start error:', err);
+      setCameraError(
+        err.name === 'NotAllowedError'
+          ? 'Quyền truy cập Camera đã bị từ chối. Vui lòng cho phép quyền Camera trên trình duyệt để quét trực tiếp.'
+          : 'Không thể mở Camera trên thiết bị này. Bạn có thể bấm chọn một mã mẫu bên dưới để xem kết quả ngay.'
+      );
       setCameraActive(false);
-    } else {
-      try {
-        const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
-        if (videoRef.current) {
-          videoRef.current.srcObject = stream;
-          videoRef.current.play();
-        }
-        setCameraActive(true);
-      } catch (err) {
-        alert('Không thể mở camera trên thiết bị hoặc quyền truy cập bị từ chối.');
-      }
     }
+  };
+
+  const stopCamera = () => {
+    if (stream) {
+      stream.getTracks().forEach((track) => track.stop());
+      setStream(null);
+    }
+    setCameraActive(false);
+  };
+
+  const toggleCamera = () => {
+    if (cameraActive) {
+      stopCamera();
+    } else {
+      startCamera();
+    }
+  };
+
+  const simulateScan = (code: string) => {
+    setScanSuccessCode(code);
+    setInputCode(code);
+    handleLookup(code);
+    setTimeout(() => {
+      stopCamera();
+    }, 600);
   };
 
   const productUrl = product
@@ -127,20 +221,30 @@ function TraceabilityContent() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10">
-      {/* Hero Header */}
-      <div className="bg-gradient-to-r from-[#231C18] via-[#1E1713] to-[#231C18] text-white p-8 sm:p-12 rounded-3xl border border-amber-900/40 relative overflow-hidden shadow-2xl text-center">
-        <div className="max-w-3xl mx-auto space-y-3 relative z-10">
-          <div className="inline-flex items-center gap-2 bg-[#8B2522] text-amber-200 text-xs font-bold px-4 py-1.5 rounded-full border border-amber-500/40 uppercase tracking-wider">
-            <QrCode className="w-4 h-4 text-amber-300" />
-            <span>MINH BẠCH NGUỒN GỐC SỐ HÓA (DIGITAL PASSPORT)</span>
+      {/* Hero Header With Dynamic Animated Text */}
+      <div className="bg-gradient-to-r from-[#231C18] via-[#1E1713] to-[#231C18] text-white p-8 sm:p-14 rounded-3xl border border-amber-900/50 relative overflow-hidden shadow-2xl text-center">
+        {/* Decorative background glows */}
+        <div className="absolute -top-24 -left-24 w-72 h-72 bg-[#B9383A]/20 rounded-full blur-3xl pointer-events-none animate-pulse" />
+        <div className="absolute -bottom-24 -right-24 w-72 h-72 bg-amber-500/15 rounded-full blur-3xl pointer-events-none animate-pulse" style={{ animationDelay: '1s' }} />
+
+        <div className="max-w-3xl mx-auto space-y-4 relative z-10">
+          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#8B2522] via-[#B9383A] to-[#8B2522] text-amber-200 text-xs font-black px-4 py-1.5 rounded-full border border-amber-400/50 uppercase tracking-widest shadow-lg animate-pulse">
+            <QrCode className="w-4 h-4 text-amber-300 animate-spin" style={{ animationDuration: '8s' }} />
+            <span>MINH BẠCH NGUỒN GỐC SỐ HÓA • DIGITAL PASSPORT</span>
           </div>
 
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-black text-[#FFFDF9]">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-black bg-gradient-to-r from-[#FFFDF9] via-amber-200 to-[#FFFDF9] bg-clip-text text-transparent animate-shimmer-glow tracking-tight leading-tight">
             TRUY XUẤT NGUỒN GỐC SẢN PHẨM
           </h1>
 
+          <div className="flex items-center justify-center gap-2 text-xs text-amber-400/90 font-bold uppercase tracking-wider">
+            <Sparkles className="w-3.5 h-3.5 text-amber-400 animate-bounce" />
+            <span>100% Sản Phẩm Mang Mã Định Danh Độc Bản SVTHM 2026</span>
+            <Sparkles className="w-3.5 h-3.5 text-amber-400 animate-bounce" />
+          </div>
+
           <p className="text-stone-300 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
-            Mỗi sản phẩm thổ cẩm thủ công JRAI ƠI đều mang một mã QR định danh độc bản. Quét mã hoặc nhập mã in trên tem để tra cứu nghệ nhân dệt, địa phương, số giờ công và ý nghĩa thiêng liêng sau nếp dệt.
+            Mỗi sản phẩm thổ cẩm thủ công JRAI ƠI đều gắn liền với một nghệ nhân buôn làng. Quét mã QR bằng camera hoặc nhập mã trên tem để chứng thực giờ dệt, phôi sợi tự nhiên và thông điệp văn hóa mẫu hệ.
           </p>
         </div>
       </div>
@@ -152,7 +256,7 @@ function TraceabilityContent() {
             Nhập mã tem sản phẩm hoặc quét mã QR
           </h2>
           <p className="text-xs text-stone-400">
-            Mã in trên mác vải hoặc nhãn giấy sản phẩm (Định dạng: K001, B001, hoặc JRAI-IMN-001...)
+            Mã in trên mác vải hoặc nhãn giấy sản phẩm (Định dạng: K001, B001, V001, hoặc JRAI-IMN-001...)
           </p>
         </div>
 
@@ -164,7 +268,7 @@ function TraceabilityContent() {
               type="text"
               value={inputCode}
               onChange={(e) => setInputCode(e.target.value)}
-              placeholder="Nhập mã: K001, B001, C001, VI001..."
+              placeholder="Nhập mã: V001, K001, B001, C001, VI001..."
               className="w-full pl-10 pr-4 py-3 bg-[#120F0D] border border-amber-700/60 rounded-xl text-sm text-white placeholder-stone-600 focus:outline-none focus:border-amber-400 font-mono tracking-wider"
             />
           </div>
@@ -188,20 +292,92 @@ function TraceabilityContent() {
           </button>
         </form>
 
-        {/* Camera Live Stream Drawer */}
+        {/* Camera Live Stream Drawer with Laser Scanner */}
         {cameraActive && (
-          <div className="max-w-md mx-auto p-4 bg-stone-950 rounded-2xl border border-amber-900/50 text-center space-y-3">
-            <p className="text-xs text-amber-300 font-bold">Hướng camera vào mã QR in trên sản phẩm:</p>
-            <div className="aspect-square rounded-xl overflow-hidden bg-black relative">
-              <video ref={videoRef} className="w-full h-full object-cover" />
-              <div className="absolute inset-8 border-2 border-dashed border-amber-400 rounded-lg pointer-events-none animate-pulse" />
+          <div className="max-w-md mx-auto p-5 bg-stone-950 rounded-2xl border-2 border-amber-500/60 text-center space-y-4 shadow-2xl relative">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <span className="w-3 h-3 rounded-full bg-red-500 animate-ping" />
+                <span className="text-xs font-bold text-amber-300 uppercase tracking-wider">Camera Quét Live</span>
+              </div>
+              <button
+                type="button"
+                onClick={stopCamera}
+                className="text-xs text-stone-400 hover:text-white bg-stone-900 px-2.5 py-1 rounded-lg border border-stone-800 transition"
+              >
+                Đóng &times;
+              </button>
             </div>
-            <button
-              onClick={toggleCamera}
-              className="text-xs text-stone-400 hover:text-white underline"
-            >
-              Đóng camera
-            </button>
+
+            <div className="aspect-square rounded-2xl overflow-hidden bg-black relative border border-amber-900/40 shadow-inner">
+              <video
+                ref={videoRef}
+                autoPlay
+                playsInline
+                muted
+                className="w-full h-full object-cover"
+              />
+
+              {/* Viewfinder Target Overlay */}
+              <div className="absolute inset-8 border-2 border-dashed border-amber-400/80 rounded-xl pointer-events-none flex items-center justify-center">
+                <div className="w-8 h-8 border-t-2 border-l-2 border-amber-300 absolute -top-1 -left-1" />
+                <div className="w-8 h-8 border-t-2 border-r-2 border-amber-300 absolute -top-1 -right-1" />
+                <div className="w-8 h-8 border-b-2 border-l-2 border-amber-300 absolute -bottom-1 -left-1" />
+                <div className="w-8 h-8 border-b-2 border-r-2 border-amber-300 absolute -bottom-1 -right-1" />
+              </div>
+
+              {/* Animated Laser Scanning Beam */}
+              <div className="absolute inset-x-4 top-0 h-1 bg-gradient-to-r from-transparent via-red-500 to-transparent shadow-[0_0_15px_#EF4444] animate-laser-scan pointer-events-none" />
+
+              {/* Scanning status pill */}
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-stone-900/90 backdrop-blur-sm text-amber-300 text-[11px] px-3.5 py-1 rounded-full border border-amber-500/40 pointer-events-none whitespace-nowrap shadow-lg">
+                Đang quét mã QR... Hướng camera vào tem
+              </div>
+            </div>
+
+            {/* Quick Testing Triggers for Smooth Demo */}
+            <div className="space-y-1.5 pt-1 text-left bg-stone-900/60 p-3 rounded-xl border border-stone-800">
+              <p className="text-[11px] text-stone-400 font-medium">Bấm nhanh để quét thử mẫu:</p>
+              <div className="flex flex-wrap gap-1.5">
+                <button
+                  type="button"
+                  onClick={() => simulateScan('V001')}
+                  className="text-[11px] font-mono bg-[#8B2522] hover:bg-[#B9383A] text-amber-200 px-2.5 py-1 rounded-lg border border-amber-500/40 transition font-bold"
+                >
+                  ⚡ Quét V001 (Váy)
+                </button>
+                <button
+                  type="button"
+                  onClick={() => simulateScan('K001')}
+                  className="text-[11px] font-mono bg-stone-800 hover:bg-stone-700 text-stone-200 px-2.5 py-1 rounded-lg border border-stone-700 transition font-bold"
+                >
+                  ⚡ Quét K001 (Khăn)
+                </button>
+                <button
+                  type="button"
+                  onClick={() => simulateScan('C001')}
+                  className="text-[11px] font-mono bg-stone-800 hover:bg-stone-700 text-stone-200 px-2.5 py-1 rounded-lg border border-stone-700 transition font-bold"
+                >
+                  ⚡ Quét C001 (Túi)
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Camera Error Message */}
+        {cameraError && (
+          <div className="max-w-md mx-auto p-4 bg-red-950/60 border border-red-800/80 rounded-2xl text-center space-y-2">
+            <p className="text-xs text-red-300">{cameraError}</p>
+            <p className="text-[11px] text-stone-400">Bạn có thể chọn nhanh các mã mẫu bên dưới để xem kết quả tức thì.</p>
+          </div>
+        )}
+
+        {/* Scan Success Notice */}
+        {scanSuccessCode && (
+          <div className="max-w-md mx-auto p-3 bg-emerald-950/70 border border-emerald-700 rounded-xl text-center text-xs text-emerald-300 font-bold flex items-center justify-center gap-2">
+            <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+            <span>Đã nhận diện mã QR thành công: {scanSuccessCode}</span>
           </div>
         )}
 

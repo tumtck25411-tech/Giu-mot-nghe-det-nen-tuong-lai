@@ -18,10 +18,11 @@ import {
 import { getCartTotal, getProducts, getArtisans, getMotifs, getCustomerSession } from '@/lib/data-store';
 import { Product, Artisan, Motif, CustomerUser } from '@/types';
 
-// STRICT RULE: EXACTLY 6 MENU ITEMS IN SPECIFIED ORDER
+// NAV ITEMS INCLUDING NEW BESPOKE AI STUDIO FEATURE
 const NAV_ITEMS = [
   { label: 'TRANG CHỦ', href: '/' },
   { label: 'SẢN PHẨM', href: '/products' },
+  { label: 'ĐẶT THEO YÊU CẦU', href: '/custom-order', badge: 'AI Studio' },
   { label: 'NGÂN HÀNG HOA VĂN', href: '/motifs', badge: 'Central' },
   { label: 'NGHỆ NHÂN', href: '/artisans' },
   { label: 'TRA CỨU QR', href: '/traceability' },
@@ -138,7 +139,7 @@ export default function Header() {
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
             {/* Logo DỆT NÊN TƯƠNG LAI & JRAI ƠI */}
             <Link href="/" className="flex items-center gap-3.5 group">

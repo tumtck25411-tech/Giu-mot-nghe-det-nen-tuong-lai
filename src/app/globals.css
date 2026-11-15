@@ -133,13 +133,66 @@ body.lang-vi .lang-en { display: none !important; }
 body.lang-en .lang-vi { display: none !important; }
 
 /* --- TIỆN ÍCH DÙNG CHUNG --- */
-.container {
+.container,
+div.container,
+section.container {
+  width: 100% !important;
+  max-width: var(--container-max) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+}
+
+/* Đảm bảo toàn bộ layout full màn hình và căn giữa chuẩn mực */
+html, body {
   width: 100%;
-  max-width: var(--container-max);
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 20px;
-  padding-right: 20px;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+main {
+  width: 100% !important;
+  max-width: 100% !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Hiệu ứng tia quét laser camera QR */
+@keyframes qr-laser-scan {
+  0% {
+    top: 6%;
+    opacity: 0.7;
+  }
+  50% {
+    top: 92%;
+    opacity: 1;
+  }
+  100% {
+    top: 6%;
+    opacity: 0.7;
+  }
+}
+
+.animate-laser-scan {
+  animation: qr-laser-scan 2.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* Hiệu ứng chữ phát sáng động (Shimmer Text) */
+@keyframes text-shimmer-glow {
+  0%, 100% {
+    background-size: 200% 200%;
+    background-position: left center;
+  }
+  50% {
+    background-size: 200% 200%;
+    background-position: right center;
+  }
+}
+
+.animate-shimmer-glow {
+  animation: text-shimmer-glow 4s ease infinite;
 }
 
 .section {

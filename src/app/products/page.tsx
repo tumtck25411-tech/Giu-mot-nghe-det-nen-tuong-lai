@@ -307,14 +307,18 @@ function ProductsContent() {
                 key={p.id}
                 className="group bg-[#231C18] rounded-2xl border border-amber-900/30 hover:border-amber-500/60 overflow-hidden shadow-lg transition-all duration-300 flex flex-col justify-between hover:-translate-y-1.5"
               >
-                {/* Image & Quick Info */}
-                <div className="relative aspect-[4/3] bg-stone-900 overflow-hidden">
+                {/* Image & Quick Info - Fully Clickable */}
+                <Link
+                  href={`/product/${p.id}`}
+                  className="relative aspect-[4/3] bg-stone-900 overflow-hidden block cursor-pointer group/thumb"
+                  title={`Xem chi tiết sản phẩm ${p.name}`}
+                >
                   <img
                     src={p.image_url}
                     alt={p.name}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute top-3 left-3 flex flex-col gap-1.5">
+                  <div className="absolute top-3 left-3 flex flex-col gap-1.5 pointer-events-none">
                     <span className="bg-[#B9383A] text-white text-[10px] font-black uppercase px-2 py-0.5 rounded-full shadow">
                       {p.category_name}
                     </span>
@@ -325,14 +329,18 @@ function ProductsContent() {
 
                   {/* Wishlist Button */}
                   <button
-                    onClick={() => toggleWishlist(p.id)}
-                    className="absolute top-3 right-3 p-2 rounded-full bg-stone-950/70 hover:bg-stone-950 text-stone-300 hover:text-red-400 backdrop-blur-sm transition border border-stone-800"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      toggleWishlist(p.id);
+                    }}
+                    className="absolute top-3 right-3 p-2 rounded-full bg-stone-950/70 hover:bg-stone-950 text-stone-300 hover:text-red-400 backdrop-blur-sm transition border border-stone-800 z-10"
                     title={inWish ? 'Bỏ yêu thích' : 'Thêm vào yêu thích'}
                   >
                     <Heart className={`w-4 h-4 ${inWish ? 'fill-red-500 text-red-500' : ''}`} />
                   </button>
 
-                  <div className="absolute bottom-2 left-2 right-2 bg-stone-950/80 backdrop-blur-sm rounded-lg px-2.5 py-1 text-[11px] text-stone-300 flex items-center justify-between border border-stone-800">
+                  <div className="absolute bottom-2 left-2 right-2 bg-stone-950/85 backdrop-blur-sm rounded-lg px-2.5 py-1 text-[11px] text-stone-300 flex items-center justify-between border border-stone-800">
                     <span className="flex items-center gap-1 text-amber-300">
                       <Clock className="w-3 h-3" />
                       <span>{p.production_time}</span>
@@ -341,22 +349,20 @@ function ProductsContent() {
                       {p.artisan_name || 'Làng Kép'}
                     </span>
                   </div>
-                </div>
+                </Link>
 
-                {/* Info & Buy Action */}
+                {/* Info & Buy Action - Fully Clickable */}
                 <div className="p-4 flex-1 flex flex-col justify-between space-y-3">
-                  <div>
-                    <Link href={`/product/${p.id}`}>
-                      <h3 className="font-serif font-bold text-sm text-[#F4EFEB] group-hover:text-amber-400 transition-colors line-clamp-2 leading-snug">
-                        {p.name}
-                      </h3>
-                    </Link>
+                  <Link href={`/product/${p.id}`} className="block group/link cursor-pointer">
+                    <h3 className="font-serif font-bold text-sm text-[#F4EFEB] group-hover/link:text-amber-400 transition-colors line-clamp-2 leading-snug">
+                      {p.name}
+                    </h3>
                     <p className="text-[11px] text-stone-400 mt-1 line-clamp-2 leading-relaxed">
                       {p.description}
                     </p>
-                  </div>
+                  </Link>
 
-                  <div className="pt-2 border-t border-stone-800/80 flex items-center justify-between">
+                  <div className="pt-2 border-t border-stone-800/80 flex items-center justify-between gap-2">
                     <div>
                       <div className="text-base font-black text-amber-400">
                         {p.price.toLocaleString('vi-VN')}₫
@@ -368,7 +374,7 @@ function ProductsContent() {
                       )}
                     </div>
 
-                    <div className="flex items-center gap-1.5">
+                    <div className="flex items-center gap-1.5 shrink-0">
                       <Link
                         href={`/traceability?code=${p.product_code}`}
                         className="p-2 rounded-xl bg-stone-900 hover:bg-stone-800 text-amber-400 border border-amber-900/40 transition"
@@ -377,12 +383,21 @@ function ProductsContent() {
                         <QrCode className="w-4 h-4" />
                       </Link>
 
+                      <Link
+                        href={`/product/${p.id}`}
+                        className="px-3 py-1.5 rounded-xl bg-[#8B2522] hover:bg-[#A83232] text-white text-[11px] font-bold transition flex items-center gap-1.5 shadow"
+                        title="Xem chi tiết & Mua ngay"
+                      >
+                        <ShoppingBag className="w-3.5 h-3.5 text-amber-300" />
+                        <span className="hidden sm:inline">Chi tiết & Mua</span>
+                      </Link>
+
                       <button
                         onClick={(e) => handleAddToCart(p, e)}
                         className="p-2 rounded-xl bg-[#B9383A] hover:bg-[#A83232] text-white shadow transition flex items-center gap-1"
-                        title="Thêm vào giỏ hàng"
+                        title="Thêm nhanh vào giỏ hàng"
                       >
-                        <ShoppingBag className="w-4 h-4" />
+                        <span className="text-xs font-black">+</span>
                       </button>
                     </div>
                   </div>
