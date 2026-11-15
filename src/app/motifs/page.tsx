@@ -74,25 +74,38 @@ export default function MotifsPage() {
             />
           </div>
 
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2.5 sm:gap-3.5">
             {[
-              { id: 'all', label: 'Tất cả' },
-              { id: 'nature', label: 'Thiên nhiên & Muông thú' },
-              { id: 'life', label: 'Đời sống & Con người' },
-              { id: 'spiritual', label: 'Tâm linh & Vũ trụ' },
-            ].map((th) => (
-              <button
-                key={th.id}
-                onClick={() => setSelectedTheme(th.id)}
-                className={`px-3.5 py-2 rounded-xl text-xs font-bold transition ${
-                  selectedTheme === th.id
-                    ? 'bg-[#C43B3D] text-white shadow-sm'
-                    : 'bg-[#FBF8F3] text-[#5D554D] hover:text-[#1F1D1B] border border-[#E5DACB]'
-                }`}
-              >
-                {th.label}
-              </button>
-            ))}
+              { id: 'all', label: 'Tất cả chủ đề', count: 20 },
+              { id: 'nature', label: 'Thiên nhiên & Muông thú', count: 8 },
+              { id: 'life', label: 'Đời sống & Con người', count: 7 },
+              { id: 'spiritual', label: 'Tâm linh & Vũ trụ', count: 5 },
+            ].map((th) => {
+              const isActive = selectedTheme === th.id;
+              return (
+                <button
+                  key={th.id}
+                  onClick={() => setSelectedTheme(th.id)}
+                  type="button"
+                  className={`px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl text-sm font-bold transition-all duration-200 flex items-center gap-2.5 cursor-pointer select-none ${
+                    isActive
+                      ? 'bg-gradient-to-r from-[#C43B3D] to-[#A3292B] text-white border-2 border-[#8A2325] shadow-md shadow-red-950/20 scale-[1.02]'
+                      : 'bg-white hover:bg-[#FFF6F5] text-[#2B221D] hover:text-[#C43B3D] border-2 border-[#D9CBB8] hover:border-[#C43B3D] hover:-translate-y-0.5 shadow-xs'
+                  }`}
+                >
+                  <span className="tracking-wide">{th.label}</span>
+                  <span
+                    className={`text-xs px-2.5 py-0.5 rounded-full font-mono font-extrabold transition-colors ${
+                      isActive
+                        ? 'bg-white/25 text-white shadow-inner'
+                        : 'bg-[#F2ECE1] text-[#7A4B29] border border-[#E5DACB]'
+                    }`}
+                  >
+                    {th.count}
+                  </span>
+                </button>
+              );
+            })}
           </div>
         </div>
 

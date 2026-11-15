@@ -194,26 +194,33 @@ function ProductsContent() {
       {/* 2. BỘ LỌC KHOA HỌC THEO FORM GIỮ MỘT NGHỀ */}
       <div className="bg-white p-5 sm:p-7 rounded-xl border border-[#E5DACB] shadow-sm space-y-5">
         {/* Category Filter Pills Bar */}
-        <div className="text-center space-y-3">
+        <div className="text-center space-y-3.5">
           <div className="text-xs font-bold text-[#8A7E72] uppercase tracking-wider flex items-center justify-center gap-2">
-            <Tag className="w-4 h-4 text-[#C43B3D]" />
+            <Tag className="w-3.5 h-3.5 text-[#C43B3D]" />
             <span>LỌC THEO DANH MỤC SẢN PHẨM:</span>
           </div>
-          <div className="flex flex-wrap justify-center gap-2">
+          <div className="flex flex-wrap justify-center gap-2.5 sm:gap-3.5">
             {CATEGORIES.map((cat) => {
               const isActive = selectedCategory === cat.filterKey;
               return (
                 <button
                   key={cat.id}
                   onClick={() => setSelectedCategory(cat.filterKey)}
-                  className={`px-4 py-2 rounded-lg text-sm font-bold transition-all flex items-center gap-2 ${
+                  type="button"
+                  className={`px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl text-sm font-bold transition-all duration-200 flex items-center gap-2.5 cursor-pointer select-none ${
                     isActive
-                      ? 'bg-[#C43B3D] text-white shadow-sm border border-[#C43B3D]'
-                      : 'bg-[#FBF8F3] hover:bg-[#F2ECE1] text-[#5D554D] hover:text-[#1F1D1B] border border-[#E5DACB]'
+                      ? 'bg-gradient-to-r from-[#C43B3D] to-[#A3292B] text-white border-2 border-[#8A2325] shadow-md shadow-red-950/20 scale-[1.02]'
+                      : 'bg-white hover:bg-[#FFF6F5] text-[#2B221D] hover:text-[#C43B3D] border-2 border-[#D9CBB8] hover:border-[#C43B3D] hover:-translate-y-0.5 shadow-xs'
                   }`}
                 >
-                  <span>{cat.name}</span>
-                  <span className={`text-xs px-1.5 py-0.5 rounded font-mono ${isActive ? 'bg-black/25 text-white' : 'bg-[#E5DACB]/60 text-[#5D554D]'}`}>
+                  <span className="tracking-wide">{cat.name}</span>
+                  <span
+                    className={`text-xs px-2.5 py-0.5 rounded-full font-mono font-extrabold transition-colors ${
+                      isActive
+                        ? 'bg-white/25 text-white shadow-inner'
+                        : 'bg-[#F2ECE1] text-[#7A4B29] border border-[#E5DACB]'
+                    }`}
+                  >
                     {cat.count}
                   </span>
                 </button>

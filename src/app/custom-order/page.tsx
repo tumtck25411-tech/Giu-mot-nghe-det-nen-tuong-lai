@@ -434,17 +434,17 @@ export default function CustomOrderPage() {
                 <span className="text-xs text-[#5D554D]">8 phân loại</span>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
                 {CUSTOM_PRODUCTS.map((prod) => {
                   const isSelected = selectedProduct.id === prod.id;
                   return (
                     <div
                       key={prod.id}
                       onClick={() => handleSelectProduct(prod)}
-                      className={`p-4 rounded-2xl border transition-all cursor-pointer flex flex-col justify-between space-y-3 group ${
+                      className={`p-4 sm:p-5 rounded-2xl border-2 transition-all cursor-pointer flex flex-col justify-between space-y-3 group ${
                         isSelected
-                          ? 'bg-[#FDF6ED] border-[#EA8E23] shadow-md ring-2 ring-[#EA8E23]/20'
-                          : 'bg-[#FBF8F3] border-[#E5DACB] hover:border-[#C43B3D] hover:bg-white'
+                          ? 'bg-[#FFF8F6] border-[#C43B3D] shadow-md ring-2 ring-[#C43B3D]/25 scale-[1.01]'
+                          : 'bg-white border-[#D9CBB8] hover:border-[#C43B3D] hover:bg-[#FFFDFB] shadow-xs hover:-translate-y-0.5'
                       }`}
                     >
                       <div className="flex gap-3">
@@ -514,17 +514,17 @@ export default function CustomOrderPage() {
                 <span className="text-xs text-[#5D554D]">6 sắc màu rừng</span>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
                 {CUSTOM_COLORS.map((col) => {
                   const isSelected = selectedColor.id === col.id;
                   return (
                     <div
                       key={col.id}
                       onClick={() => handleSelectColor(col)}
-                      className={`p-4 rounded-2xl border transition-all cursor-pointer space-y-2.5 ${
+                      className={`p-4 sm:p-5 rounded-2xl border-2 transition-all cursor-pointer space-y-2.5 ${
                         isSelected
-                          ? 'bg-[#FDF6ED] border-[#EA8E23] shadow-md ring-2 ring-[#EA8E23]/20'
-                          : 'bg-[#FBF8F3] border-[#E5DACB] hover:border-[#C43B3D] hover:bg-white'
+                          ? 'bg-[#FFF8F6] border-[#C43B3D] shadow-md ring-2 ring-[#C43B3D]/25 scale-[1.01]'
+                          : 'bg-white border-[#D9CBB8] hover:border-[#C43B3D] hover:bg-[#FFFDFB] shadow-xs hover:-translate-y-0.5'
                       }`}
                     >
                       <div className="flex items-center justify-between">
@@ -589,17 +589,17 @@ export default function CustomOrderPage() {
                 <span className="text-xs text-[#5D554D]">6 hoa văn di sản</span>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
                 {CUSTOM_MOTIFS.map((mot) => {
                   const isSelected = selectedMotif.id === mot.id;
                   return (
                     <div
                       key={mot.id}
                       onClick={() => handleSelectMotif(mot)}
-                      className={`p-4 rounded-2xl border transition-all cursor-pointer space-y-3 group ${
+                      className={`p-4 sm:p-5 rounded-2xl border-2 transition-all cursor-pointer space-y-3 group ${
                         isSelected
-                          ? 'bg-[#FDF6ED] border-[#EA8E23] shadow-md ring-2 ring-[#EA8E23]/20'
-                          : 'bg-[#FBF8F3] border-[#E5DACB] hover:border-[#C43B3D] hover:bg-white'
+                          ? 'bg-[#FFF8F6] border-[#C43B3D] shadow-md ring-2 ring-[#C43B3D]/25 scale-[1.01]'
+                          : 'bg-white border-[#D9CBB8] hover:border-[#C43B3D] hover:bg-[#FFFDFB] shadow-xs hover:-translate-y-0.5'
                       }`}
                     >
                       <div className="flex gap-3">

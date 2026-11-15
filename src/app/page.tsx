@@ -31,6 +31,7 @@ import {
   Copy,
   Check,
   Filter,
+  Tag,
 } from 'lucide-react';
 import {
   getProducts,
@@ -54,15 +55,15 @@ import QRCodeGenerator from '@/components/QRCodeGenerator';
 import CustomerAuthModal from '@/components/CustomerAuthModal';
 
 const CATEGORIES_METADATA = [
-  { id: 'all', name: 'Tất cả (57)', filterKey: 'all' },
-  { id: 'scarf', name: 'Khăn quàng cổ (28)', filterKey: 'scarf' },
-  { id: 'crossbag', name: 'Túi đeo chéo (9)', filterKey: 'crossbag' },
-  { id: 'wallet', name: 'Ví cầm tay (7)', filterKey: 'wallet' },
-  { id: 'apron', name: 'Tạp dề (5)', filterKey: 'apron' },
-  { id: 'tote', name: 'Túi tote (3)', filterKey: 'tote' },
-  { id: 'dress', name: 'Váy nữ (2)', filterKey: 'dress' },
-  { id: 'shirt', name: 'Áo nam (2)', filterKey: 'shirt' },
-  { id: 'gourd', name: 'Bầu nước (1)', filterKey: 'gourd' },
+  { id: 'all', name: 'Tất cả (57)', label: 'Tất cả', count: 57, filterKey: 'all' },
+  { id: 'scarf', name: 'Khăn quàng cổ (28)', label: 'Khăn quàng cổ', count: 28, filterKey: 'scarf' },
+  { id: 'crossbag', name: 'Túi đeo chéo (9)', label: 'Túi đeo chéo', count: 9, filterKey: 'crossbag' },
+  { id: 'wallet', name: 'Ví cầm tay (7)', label: 'Ví cầm tay', count: 7, filterKey: 'wallet' },
+  { id: 'apron', name: 'Tạp dề (5)', label: 'Tạp dề', count: 5, filterKey: 'apron' },
+  { id: 'tote', name: 'Túi tote (3)', label: 'Túi tote', count: 3, filterKey: 'tote' },
+  { id: 'dress', name: 'Váy nữ (2)', label: 'Váy nữ', count: 2, filterKey: 'dress' },
+  { id: 'shirt', name: 'Áo nam (2)', label: 'Áo nam', count: 2, filterKey: 'shirt' },
+  { id: 'gourd', name: 'Bầu nước (1)', label: 'Bầu nước', count: 1, filterKey: 'gourd' },
 ];
 
 const FOUNDING_TEAM = [
@@ -815,21 +816,40 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* 8 Category Filter Pills */}
-          <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
-            {CATEGORIES_METADATA.map((cat) => (
-              <button
-                key={cat.id}
-                onClick={() => setSelectedCategory(cat.id)}
-                className={`px-3.5 py-2 rounded-lg text-sm font-semibold whitespace-nowrap transition flex items-center gap-1.5 ${
-                  selectedCategory === cat.id
-                    ? 'bg-[#C43B3D] text-white shadow-xs border border-[#C43B3D]'
-                    : 'bg-[#FBF8F3] hover:bg-[#F2ECE1] text-[#5D554D] hover:text-[#1F1D1B] border border-[#E5DACB]'
-                }`}
-              >
-                <span>{cat.name}</span>
-              </button>
-            ))}
+          {/* Phân loại sản phẩm: Các nút bấm nổi bật, khoảng cách thoáng rộng rãi */}
+          <div className="pt-3 border-t border-[#E5DACB]">
+            <div className="text-xs font-bold text-[#8A7E72] uppercase tracking-wider mb-3 flex items-center justify-center sm:justify-start gap-2">
+              <Tag className="w-3.5 h-3.5 text-[#C43B3D]" />
+              <span>CHỌN PHÂN LOẠI SẢN PHẨM:</span>
+            </div>
+            <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2.5 sm:gap-3.5">
+              {CATEGORIES_METADATA.map((cat) => {
+                const isActive = selectedCategory === cat.id;
+                return (
+                  <button
+                    key={cat.id}
+                    onClick={() => setSelectedCategory(cat.id)}
+                    type="button"
+                    className={`px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl text-sm font-bold transition-all duration-200 flex items-center gap-2.5 cursor-pointer select-none ${
+                      isActive
+                        ? 'bg-gradient-to-r from-[#C43B3D] to-[#A3292B] text-white border-2 border-[#8A2325] shadow-md shadow-red-950/20 scale-[1.02]'
+                        : 'bg-white hover:bg-[#FFF6F5] text-[#2B221D] hover:text-[#C43B3D] border-2 border-[#D9CBB8] hover:border-[#C43B3D] hover:-translate-y-0.5 shadow-xs'
+                    }`}
+                  >
+                    <span className="tracking-wide">{cat.label || cat.name}</span>
+                    <span
+                      className={`text-xs px-2.5 py-0.5 rounded-full font-mono font-extrabold transition-colors ${
+                        isActive
+                          ? 'bg-white/25 text-white shadow-inner'
+                          : 'bg-[#F2ECE1] text-[#7A4B29] border border-[#E5DACB]'
+                      }`}
+                    >
+                      {cat.count}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
 
