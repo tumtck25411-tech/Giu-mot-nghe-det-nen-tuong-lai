@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import ChatBox from '@/components/ChatBox';
 
 export const metadata: Metadata = {
   title: 'DỆT NÊN TƯƠNG LAI — Giữ Một Nghề, Dệt Nên Tương Lai | JRAI ƠI',
@@ -44,6 +45,7 @@ export default function RootLayout({
         <Header />
         <main className="w-full flex-1 flex flex-col">{children}</main>
         <Footer />
+        <ChatBox />
       </body>
     </html>
   );

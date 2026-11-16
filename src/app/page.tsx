@@ -489,22 +489,22 @@ export default function HomePage() {
     <div className="w-full space-y-24 pb-24 overflow-hidden relative">
       {/* Toast Notification */}
       {addedNotice && (
-        <div className="fixed bottom-6 right-6 z-50 bg-[#B9383A] text-white px-5 py-3.5 rounded-lg shadow-md border border-amber-400/40 flex items-center gap-3 animate-in slide-in-from-bottom duration-300">
+        <div className="fixed bottom-22 sm:bottom-24 right-6 z-50 bg-[#B9383A] text-white px-5 py-3.5 rounded-xl shadow-xl border border-amber-400/40 flex items-center gap-3 animate-in slide-in-from-bottom duration-300">
           <CheckCircle2 className="w-5 h-5 text-amber-300 shrink-0" />
           <span className="text-sm font-bold">{addedNotice}</span>
           <button
             onClick={() => setCartOpen(true)}
-            className="text-xs underline font-bold ml-2 text-amber-200 hover:text-white"
+            className="text-xs underline font-bold ml-2 text-amber-200 hover:text-white cursor-pointer"
           >
             Mở giỏ hàng &rarr;
           </button>
         </div>
       )}
 
-      {/* Floating Cart Button (Balanced Position) */}
+      {/* Floating Cart Button (Balanced Position above Chatbot) */}
       <button
         onClick={() => setCartOpen(true)}
-        className="fixed bottom-6 right-6 z-40 bg-[#B9383A] hover:bg-[#A83232] text-white px-4 py-3 rounded-full shadow-md border border-amber-400/40 flex items-center gap-2.5 transition-transform hover:scale-105"
+        className="fixed bottom-22 sm:bottom-24 right-6 z-30 bg-[#B9383A] hover:bg-[#A83232] text-white px-4 py-3 rounded-full shadow-lg border border-amber-400/40 flex items-center gap-2.5 transition-all hover:scale-105 cursor-pointer"
         title="Mở giỏ hàng"
       >
         <ShoppingBag className="w-5 h-5 text-amber-300" />
