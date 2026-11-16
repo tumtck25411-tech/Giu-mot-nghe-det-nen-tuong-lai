@@ -6,6 +6,7 @@ import {
   Search,
   Grid,
   Users,
+  User,
   ChevronRight,
   Sparkles,
   ShieldCheck,
