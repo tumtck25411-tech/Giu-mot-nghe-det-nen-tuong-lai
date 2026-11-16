@@ -194,7 +194,7 @@ export default function AboutPage() {
           <div className="rounded-xl overflow-hidden border border-[#E5DACB] shadow-sm aspect-[4/3]">
             <img
               src="/images/background/image6.jpg"
-              alt="Sinh viên UEL và nghệ nhân gìn giữ nghề dệt tại Ia Mơ Nông"
+              alt="Đội ngũ JRAI ƠI và nghệ nhân gìn giữ nghề dệt tại Ia Mơ Nông"
               className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
             />
           </div>
@@ -451,8 +451,8 @@ export default function AboutPage() {
               Làng Kép & Làng Phung, Xã Ia Mơ Nông, Huyện Chư Păh, Tỉnh Gia Lai.
             </div>
             <div className="p-3.5 bg-[#FBF8F3] rounded-xl border border-[#E5DACB]">
-              <span className="font-bold text-[#1F1D1B] block mb-0.5">Đơn Vị Thực Hiện:</span>
-              Nhóm sinh viên Trường Đại học Kinh tế - Luật (UEL), Đại học Quốc gia TP.HCM • Đồ án Thương mại Điện tử.
+              <span className="font-bold text-[#1F1D1B] block mb-0.5">Đơn Vị Quản Trị & Vận Hành:</span>
+              Đội ngũ sáng lập & thương hiệu Thổ Cẩm Bản Địa JRAI ƠI • Dự án Bảo tồn & Thương mại hóa Di sản Tây Nguyên.
             </div>
             <div className="p-3.5 bg-[#FBF8F3] rounded-xl border border-[#E5DACB]">
               <span className="font-bold text-[#1F1D1B] block mb-0.5">Hotline / Zalo Dự Án:</span>

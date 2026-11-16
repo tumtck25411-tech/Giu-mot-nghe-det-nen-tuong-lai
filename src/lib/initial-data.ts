@@ -5371,7 +5371,7 @@ export const INITIAL_PAGE_CONTENTS: PageContent[] = [
     "id": "content-about-project",
     "page_key": "about_project",
     "title": "Về JRAI ƠI & Dự Án Dệt Nên Tương Lai",
-    "subtitle": "Hành trình khởi nghiệp bảo tồn di sản của sinh viên UEL - ĐHQG-HCM",
+    "subtitle": "Hành trình khởi nghiệp bảo tồn di sản thổ cẩm Jrai bản địa",
     "intro_text": "JRAI ƠI ra đời nhằm giải bài toán sinh kế cho các nghệ nhân lớn tuổi tại Ia Mơ Nông (Chư Păh, Gia Lai). Bằng cách kết hợp thương mại điện tử, công nghệ định danh số QR và ngôn ngữ thiết kế ứng dụng hiện đại, chúng tôi đưa thổ cẩm Jrai bước vào nhịp sống thường nhật.",
     "updated_at": "2026-03-01T00:00:00.000Z"
   }

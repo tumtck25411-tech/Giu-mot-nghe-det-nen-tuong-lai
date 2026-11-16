@@ -45,11 +45,11 @@ export default function MotifsPage() {
   return (
     <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-8 lg:px-12 py-10 space-y-8">
       {/* Header Banner - Centered Flex & Text */}
-      <div className="bg-[#F2ECE1] p-8 sm:p-14 rounded-xl border border-[#E5DACB] border-b-2 border-b-[#EA8E23] relative overflow-hidden shadow-sm flex flex-col items-center justify-center text-center header-banner-box">
+      <div className="bg-[#FAF8F5] p-8 sm:p-14 rounded-2xl border border-[#E8E2D9] relative overflow-hidden shadow-xs flex flex-col items-center justify-center text-center header-banner-box">
         <div className="max-w-3xl mx-auto space-y-4 relative z-10 flex flex-col items-center justify-center text-center w-full">
-          <span className="section-tag gold inline-flex items-center justify-center mx-auto">
-            <Grid className="w-3.5 h-3.5 inline mr-1 text-[#EA8E23]" />
-            <span>Kho Tri Thức Di Sản Bản Địa Jrai</span>
+          <span className="section-tag inline-flex items-center justify-center mx-auto text-xs font-semibold text-[#1E4D38] bg-[#FAF8F5] border border-[#E8E2D9] px-4 py-1.5 rounded-full">
+            <Grid className="w-3.5 h-3.5 inline mr-1 text-[#1E4D38]" />
+            <span>KHO TRI THỨC DI SẢN BẢN ĐỊA JRAI</span>
           </span>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-black text-[#1F1D1B] leading-tight text-center mx-auto">
             Ngân Hàng Số Hoa Văn Thổ Cẩm Jrai (20 Hoa Văn)
@@ -61,8 +61,8 @@ export default function MotifsPage() {
       </div>
 
       {/* SEARCH BAR & THEME FILTER */}
-      <div className="bg-white p-6 rounded-xl border border-[#E5DACB] shadow-sm space-y-4">
-        <div className="flex flex-col sm:flex-row gap-4">
+      <div className="bg-white p-6 rounded-2xl border border-[#E8E2D9] shadow-xs space-y-4">
+        <div className="flex flex-col lg:flex-row gap-4">
           <div className="flex-1 relative">
             <Search className="w-4 h-4 absolute left-3.5 top-3.5 text-[#8A7E72]" />
             <input
@@ -70,11 +70,11 @@ export default function MotifsPage() {
               placeholder="Tra cứu theo mã hoa văn (JRAI-001), tên hoa văn (Con gà, Hình học cổ), ý nghĩa..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 bg-[#FBF8F3] border border-[#E5DACB] rounded-xl text-xs text-[#1F1D1B] placeholder-[#8A7E72] focus:outline-none focus:border-[#C43B3D] focus:bg-white"
+              className="w-full pl-10 pr-4 py-2.5 bg-[#FAF8F5] border border-[#E8E2D9] rounded-xl text-xs sm:text-sm text-[#1F1D1B] placeholder-[#8A7E72] focus:outline-none focus:border-[#1E4D38] focus:bg-white"
             />
           </div>
 
-          <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2.5 sm:gap-3.5">
+          <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 sm:gap-3">
             {[
               { id: 'all', label: 'Tất cả chủ đề', count: 20 },
               { id: 'nature', label: 'Thiên nhiên & Muông thú', count: 8 },
@@ -87,18 +87,18 @@ export default function MotifsPage() {
                   key={th.id}
                   onClick={() => setSelectedTheme(th.id)}
                   type="button"
-                  className={`px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl text-sm font-bold transition-all duration-200 flex items-center gap-2.5 cursor-pointer select-none ${
+                  className={`px-4 py-2 sm:px-5 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 flex items-center gap-2 cursor-pointer select-none ${
                     isActive
-                      ? 'bg-gradient-to-r from-[#C43B3D] to-[#A3292B] text-white border-2 border-[#8A2325] shadow-md shadow-red-950/20 scale-[1.02]'
-                      : 'bg-white hover:bg-[#FFF6F5] text-[#2B221D] hover:text-[#C43B3D] border-2 border-[#D9CBB8] hover:border-[#C43B3D] hover:-translate-y-0.5 shadow-xs'
+                      ? 'bg-[#1E4D38] text-white shadow-xs border border-[#143527]'
+                      : 'bg-white hover:bg-[#FAF8F5] text-[#2B221D] hover:text-[#1E4D38] border border-[#E8E2D9] hover:border-[#1E4D38]/40'
                   }`}
                 >
                   <span className="tracking-wide">{th.label}</span>
                   <span
-                    className={`text-xs px-2.5 py-0.5 rounded-full font-mono font-extrabold transition-colors ${
+                    className={`text-xs px-2 py-0.5 rounded-full font-mono font-medium ${
                       isActive
-                        ? 'bg-white/25 text-white shadow-inner'
-                        : 'bg-[#F2ECE1] text-[#7A4B29] border border-[#E5DACB]'
+                        ? 'bg-white/20 text-white'
+                        : 'bg-[#FAF8F5] text-[#5A3E2D] border border-[#E8E2D9]'
                     }`}
                   >
                     {th.count}
@@ -109,9 +109,9 @@ export default function MotifsPage() {
           </div>
         </div>
 
-        <div className="flex items-center justify-between text-xs text-[#5D554D] pt-1 border-t border-[#E5DACB]/60">
+        <div className="flex items-center justify-between text-xs text-[#5D554D] pt-2 border-t border-[#E8E2D9]">
           <span>
-            Hiển thị <strong>{filteredMotifs.length}</strong> / {motifs.length} hoa văn số hóa.
+            Hiển thị <strong>{filteredMotifs.length}</strong> / {motifs.length} hoa văn di sản đã số hóa.
           </span>
           {searchTerm && (
             <button
@@ -124,8 +124,8 @@ export default function MotifsPage() {
         </div>
       </div>
 
-      {/* MOTIFS GRID */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {/* MOTIFS GRID - 3 columns on Desktop */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {filteredMotifs.map((motif) => {
           const usedProducts = products.filter(
             (p) =>
@@ -138,29 +138,29 @@ export default function MotifsPage() {
           return (
             <div
               key={motif.id}
-              className="bg-white rounded-xl overflow-hidden border border-[#E5DACB] hover:border-[#C43B3D] shadow-sm hover:shadow-md transition-all group flex flex-col justify-between hover:-translate-y-1"
+              className="bg-white rounded-2xl overflow-hidden border border-[#E8E2D9] hover:border-[#1E4D38] shadow-xs hover:shadow-md transition-all group flex flex-col justify-between hover:-translate-y-1"
             >
               <div>
-                <div className="relative aspect-4/3 overflow-hidden bg-[#FBF8F3] p-4 flex items-center justify-center border-b border-[#E5DACB]">
+                <div className="relative aspect-4/3 overflow-hidden bg-[#FAF8F5] p-5 flex items-center justify-center border-b border-[#E8E2D9]">
                   <img
                     src={motif.image_url}
                     alt={motif.name}
                     className="max-h-full object-contain group-hover:scale-105 transition-transform duration-300"
                   />
-                  <div className="absolute top-3 left-3 bg-[#C43B3D] text-white font-mono text-xs font-bold px-2.5 py-1 rounded-lg shadow-sm">
+                  <div className="absolute top-3.5 left-3.5 bg-[#1E4D38] text-white font-mono text-xs font-semibold px-2.5 py-1 rounded-md shadow-xs">
                     {motif.motif_code}
                   </div>
-                  <div className="absolute bottom-3 right-3 bg-white/95 text-[#1F1D1B] text-xs font-bold px-2.5 py-1 rounded-md border border-[#E5DACB] shadow-sm">
-                    {usedProducts.length} Sản phẩm ứng dụng
+                  <div className="absolute bottom-3.5 right-3.5 bg-white/95 text-[#1F1D1B] text-xs font-semibold px-2.5 py-1 rounded-md border border-[#E8E2D9] shadow-xs">
+                    {usedProducts.length} tác phẩm ứng dụng
                   </div>
                 </div>
 
-                <div className="p-5 space-y-3">
+                <div className="p-6 space-y-3">
                   <div>
-                    <span className="text-xs font-bold text-[#EA8E23] uppercase tracking-wider block">
+                    <span className="text-xs font-semibold text-[#1E4D38] uppercase tracking-wider block">
                       {motif.theme_name} {motif.name_jrai && `• ${motif.name_jrai}`}
                     </span>
-                    <h3 className="font-serif font-bold text-[#1F1D1B] text-base group-hover:text-[#C43B3D] transition-colors mt-0.5 line-clamp-1">
+                    <h3 className="font-serif font-bold text-[#1F1D1B] text-lg group-hover:text-[#1E4D38] transition-colors mt-1 line-clamp-1">
                       {motif.name}
                     </h3>
                   </div>
@@ -169,9 +169,9 @@ export default function MotifsPage() {
                     {motif.meaning || motif.philosophy}
                   </p>
 
-                  <div className="space-y-1 text-xs text-[#8A7E72] pt-2 border-t border-[#E5DACB]">
+                  <div className="space-y-1.5 text-xs text-[#6B5E51] pt-3 border-t border-[#E8E2D9]">
                     <p>
-                      <strong className="text-[#1F1D1B]">Kỹ thuật:</strong> {motif.technique}
+                      <strong className="text-[#1F1D1B]">Kỹ thuật dệt:</strong> {motif.technique}
                     </p>
                     {motif.artisan_verification && (
                       <p>
@@ -182,15 +182,15 @@ export default function MotifsPage() {
                 </div>
               </div>
 
-              <div className="p-4 bg-[#FBF8F3] border-t border-[#E5DACB] flex items-center justify-between">
+              <div className="p-4 bg-[#FAF8F5] border-t border-[#E8E2D9] flex items-center justify-between">
                 <Link
                   href={`/motif/${motif.id}`}
-                  className="text-xs font-bold text-[#C43B3D] hover:text-[#8A2325] flex items-center gap-1"
+                  className="text-xs font-semibold text-[#1E4D38] hover:text-[#143527] flex items-center gap-1.5"
                 >
-                  <span>Xem hồ sơ giải mã</span>
+                  <span>Xem hồ sơ giải mã hoa văn</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
-                <span className="text-xs text-[#8A7E72] font-mono">Làng Kép</span>
+                <span className="text-xs text-[#8A7E72] font-mono">Ia Mơ Nông</span>
               </div>
             </div>
           );

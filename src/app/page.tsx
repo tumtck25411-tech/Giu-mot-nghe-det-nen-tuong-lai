@@ -191,8 +191,8 @@ const HERO_SLIDES = [
   },
   {
     image: '/images/background/image6.jpg',
-    caption: '✦ Sinh viên UEL thực địa tại làng Kép, Gia Lai',
-    alt: 'Sinh viên UEL khảo sát thực tế tại làng nghề',
+    caption: '✦ Đội ngũ JRAI ƠI thực địa tại buôn làng Ia Mơ Nông, Gia Lai',
+    alt: 'Khảo sát thực tế kỹ thuật cửi hông tại làng nghề',
   },
 ];
 
@@ -518,60 +518,53 @@ export default function HomePage() {
         {/* Hero Content with Authentic Typography and Animated Counter */}
         <div className="container hero-content animate-fade-in-up z-20 flex flex-col items-center justify-center text-center">
           <div className="hero-tagline">
-            <Sparkles className="w-4 h-4 text-amber-300 animate-pulse" />
-            <span>ĐỒ ÁN THƯƠNG MẠI ĐIỆN TỬ • UEL - ĐHQG-HCM</span>
+            <span>DI SẢN THỔ CẨM DỆT CỬI HÔNG • IA MƠ NÔNG, GIA LAI</span>
           </div>
 
-          <div className="text-center" style={{ marginBottom: '14px' }}>
-            <div className="text-xs sm:text-sm font-sans font-black uppercase tracking-widest text-[#E58A1F] flex items-center justify-center gap-2 mb-2">
-              <span>DỆT NÊN TƯƠNG LAI</span>
-              <span className="text-xs font-bold bg-[#8B2522] px-2.5 py-0.5 rounded text-white border border-amber-500/40">
-                JRAI ƠI
-              </span>
-            </div>
+          <div className="text-center" style={{ marginBottom: '16px' }}>
             <h1 className="hero-title">
-              “Giữ một nghề, <br />
+              JRAI ƠI <br />
               <span className="hero-title-highlight">
-                dệt nên tương lai.”
+                Thổ Cẩm Bản Địa Tây Nguyên
               </span>
             </h1>
           </div>
 
           <p className="hero-desc">
-            Không thay đổi cái gốc của nghề, thay đổi cách giá trị của nghề được nhìn thấy. Chúng tôi kết hợp di sản thổ cẩm Jrai tại Ia Mơ Nông (Gia Lai) với công nghệ số và mã QR định danh để tạo sinh kế bền vững cho buôn làng.
+            Bảo tồn nguyên vẹn tri thức dệt cửi hông cổ truyền người Jrai tại buôn làng Ia Mơ Nông (Gia Lai). Mỗi tác phẩm dệt là một câu chuyện di sản, tích hợp mã số QR định danh minh bạch nghệ nhân và số giờ công dệt.
           </p>
 
-          {/* Quick Action CTAs matching detnentuonglai & E-commerce */}
+          {/* Quick Action CTAs */}
           <div className="hero-actions">
             <a
               href="#products"
-              className="inline-flex items-center gap-2 bg-[#B9383A] hover:bg-[#A83232] text-white font-bold text-xs sm:text-sm px-5 py-3 rounded-lg shadow-sm border border-amber-500/30 transition hover:-translate-y-0.5"
+              className="inline-flex items-center gap-2 bg-[#1E4D38] hover:bg-[#143527] text-white font-bold text-xs sm:text-sm px-6 py-3.5 rounded-xl shadow-xs transition hover:-translate-y-0.5"
             >
-              <ShoppingBag className="w-4 h-4 text-amber-300" />
-              <span>KHÁM PHÁ 57 SẢN PHẨM</span>
+              <ShoppingBag className="w-4 h-4 text-amber-200" />
+              <span>KHÁM PHÁ 57 TÁC PHẨM</span>
             </a>
 
             <a
               href="#artisans"
-              className="inline-flex items-center gap-2 bg-[#1C1613] hover:bg-[#2C211A] text-amber-300 hover:text-white font-bold text-xs sm:text-sm px-4.5 py-3 rounded-lg border border-amber-900/50 transition hover:-translate-y-0.5"
+              className="inline-flex items-center gap-2 bg-[#1C1613] hover:bg-[#2C211A] text-amber-200 hover:text-white font-bold text-xs sm:text-sm px-5 py-3.5 rounded-xl border border-amber-900/40 transition hover:-translate-y-0.5"
             >
-              <Users className="w-4 h-4 text-amber-400" />
-              <span>NGHỆ NHÂN LÀNG KÉP</span>
+              <Users className="w-4 h-4 text-amber-300" />
+              <span>NGHỆ NHÂN BUÔN LÀNG</span>
             </a>
 
             <a
               href="#motifs"
-              className="inline-flex items-center gap-2 bg-[#1C1613] hover:bg-[#2C211A] text-stone-300 hover:text-white font-bold text-xs sm:text-sm px-4.5 py-3 rounded-lg border border-stone-800 transition hover:-translate-y-0.5"
+              className="inline-flex items-center gap-2 bg-[#1C1613] hover:bg-[#2C211A] text-stone-200 hover:text-white font-bold text-xs sm:text-sm px-5 py-3.5 rounded-xl border border-stone-800 transition hover:-translate-y-0.5"
             >
-              <Grid className="w-4 h-4 text-amber-400" />
+              <Grid className="w-4 h-4 text-amber-300" />
               <span>NGÂN HÀNG HOA VĂN</span>
             </a>
 
             <a
               href="#traceability"
-              className="inline-flex items-center gap-2 bg-[#1C1613] hover:bg-[#2A201A] text-amber-400 hover:text-white font-bold text-xs sm:text-sm px-4 py-3 rounded-lg border border-amber-600/40 transition hover:-translate-y-0.5"
+              className="inline-flex items-center gap-2 bg-[#1C1613] hover:bg-[#2A201A] text-amber-300 hover:text-white font-bold text-xs sm:text-sm px-5 py-3.5 rounded-xl border border-amber-700/40 transition hover:-translate-y-0.5"
             >
-              <QrCode className="w-4 h-4 text-amber-400" />
+              <QrCode className="w-4 h-4 text-amber-300" />
               <span>TRA CỨU QR</span>
             </a>
           </div>
@@ -598,17 +591,15 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* MARQUEE CHẠY CHỮ VÔ TẬN: KẾ THỪA NGUYÊN BẢN DETNENTUONGLAI */}
+      {/* MARQUEE CHẠY CHỮ DI SẢN THỔ CẨM JRAI */}
       <div className="marquee-strip" aria-hidden="true">
         <div className="marquee-track">
           <div className="marquee-item">
-            <span className="highlight-gold">“GIỮ MỘT NGHỀ, DỆT NÊN TƯƠNG LAI”</span>
-            <span className="separator-symbol">✦</span>
-            <span>DI SẢN THỔ CẨM JRAI</span>
+            <span className="highlight-gold">DI SẢN THỔ CẨM JRAI</span>
             <span className="separator-symbol">✦</span>
             <span>XÃ IA MƠ NÔNG, HUYỆN CHƯ PĂH, GIA LAI</span>
             <span className="separator-symbol">✦</span>
-            <span className="highlight-gold">TRƯỜNG ĐẠI HỌC KINH TẾ - LUẬT, ĐHQG-HCM</span>
+            <span className="highlight-gold">100% SỢI BÔNG KƠPĂH TỰ NHIÊN</span>
             <span className="separator-symbol">✦</span>
             <span>THƯƠNG HIỆU THỔ CẨM JRAI ƠI</span>
             <span className="separator-symbol">✦</span>
@@ -620,13 +611,11 @@ export default function HomePage() {
             <span className="separator-symbol">✦</span>
           </div>
           <div className="marquee-item">
-            <span className="highlight-gold">“GIỮ MỘT NGHỀ, DỆT NÊN TƯƠNG LAI”</span>
-            <span className="separator-symbol">✦</span>
-            <span>DI SẢN THỔ CẨM JRAI</span>
+            <span className="highlight-gold">DI SẢN THỔ CẨM JRAI</span>
             <span className="separator-symbol">✦</span>
             <span>XÃ IA MƠ NÔNG, HUYỆN CHƯ PĂH, GIA LAI</span>
             <span className="separator-symbol">✦</span>
-            <span className="highlight-gold">TRƯỜNG ĐẠI HỌC KINH TẾ - LUẬT, ĐHQG-HCM</span>
+            <span className="highlight-gold">100% SỢI BÔNG KƠPĂH TỰ NHIÊN</span>
             <span className="separator-symbol">✦</span>
             <span>THƯƠNG HIỆU THỔ CẨM JRAI ƠI</span>
             <span className="separator-symbol">✦</span>
@@ -638,31 +627,11 @@ export default function HomePage() {
             <span className="separator-symbol">✦</span>
           </div>
           <div className="marquee-item">
-            <span className="highlight-gold">“GIỮ MỘT NGHỀ, DỆT NÊN TƯƠNG LAI”</span>
-            <span className="separator-symbol">✦</span>
-            <span>DI SẢN THỔ CẨM JRAI</span>
+            <span className="highlight-gold">DI SẢN THỔ CẨM JRAI</span>
             <span className="separator-symbol">✦</span>
             <span>XÃ IA MƠ NÔNG, HUYỆN CHƯ PĂH, GIA LAI</span>
             <span className="separator-symbol">✦</span>
-            <span className="highlight-gold">TRƯỜNG ĐẠI HỌC KINH TẾ - LUẬT, ĐHQG-HCM</span>
-            <span className="separator-symbol">✦</span>
-            <span>THƯƠNG HIỆU THỔ CẨM JRAI ƠI</span>
-            <span className="separator-symbol">✦</span>
-            <span className="text-white">100% ĐỊNH DANH QR ĐỘC BẢN</span>
-            <span className="separator-symbol">✦</span>
-            <span>BẢO TỒN NGUYÊN BẢN CỬI HÔNG</span>
-            <span className="separator-symbol">✦</span>
-            <span className="highlight-gold">LAN TỎA BẢN SẮC ĐẠI NGÀN</span>
-            <span className="separator-symbol">✦</span>
-          </div>
-          <div className="marquee-item">
-            <span className="highlight-gold">“GIỮ MỘT NGHỀ, DỆT NÊN TƯƠNG LAI”</span>
-            <span className="separator-symbol">✦</span>
-            <span>DI SẢN THỔ CẨM JRAI</span>
-            <span className="separator-symbol">✦</span>
-            <span>XÃ IA MƠ NÔNG, HUYỆN CHƯ PĂH, GIA LAI</span>
-            <span className="separator-symbol">✦</span>
-            <span className="highlight-gold">TRƯỜNG ĐẠI HỌC KINH TẾ - LUẬT, ĐHQG-HCM</span>
+            <span className="highlight-gold">100% SỢI BÔNG KƠPĂH TỰ NHIÊN</span>
             <span className="separator-symbol">✦</span>
             <span>THƯƠNG HIỆU THỔ CẨM JRAI ƠI</span>
             <span className="separator-symbol">✦</span>
@@ -824,12 +793,12 @@ export default function HomePage() {
           </div>
 
           {/* Phân loại sản phẩm: Các nút bấm nổi bật, khoảng cách thoáng rộng rãi */}
-          <div className="pt-3 border-t border-[#E5DACB]">
-            <div className="text-xs font-bold text-[#8A7E72] uppercase tracking-wider mb-3 flex items-center justify-center sm:justify-start gap-2">
-              <Tag className="w-3.5 h-3.5 text-[#C43B3D]" />
-              <span>CHỌN PHÂN LOẠI SẢN PHẨM:</span>
+          <div className="pt-4 border-t border-[#E8E2D9]">
+            <div className="text-xs font-bold text-[#5A3E2D] uppercase tracking-wider mb-3 flex items-center justify-center sm:justify-start gap-2">
+              <Tag className="w-3.5 h-3.5 text-[#1E4D38]" />
+              <span>PHÂN LOẠI TÁC PHẨM THỔ CẨM:</span>
             </div>
-            <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2.5 sm:gap-3.5">
+            <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 sm:gap-3">
               {CATEGORIES_METADATA.map((cat) => {
                 const isActive = selectedCategory === cat.id;
                 return (
@@ -837,18 +806,18 @@ export default function HomePage() {
                     key={cat.id}
                     onClick={() => setSelectedCategory(cat.id)}
                     type="button"
-                    className={`px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl text-sm font-bold transition-all duration-200 flex items-center gap-2.5 cursor-pointer select-none ${
+                    className={`px-4 py-2 sm:px-5 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 flex items-center gap-2 cursor-pointer select-none ${
                       isActive
-                        ? 'bg-gradient-to-r from-[#C43B3D] to-[#A3292B] text-white border-2 border-[#8A2325] shadow-md shadow-red-950/20 scale-[1.02]'
-                        : 'bg-white hover:bg-[#FFF6F5] text-[#2B221D] hover:text-[#C43B3D] border-2 border-[#D9CBB8] hover:border-[#C43B3D] hover:-translate-y-0.5 shadow-xs'
+                        ? 'bg-[#1E4D38] text-white shadow-xs border border-[#143527]'
+                        : 'bg-white hover:bg-[#FAF8F5] text-[#2B221D] hover:text-[#1E4D38] border border-[#E8E2D9] hover:border-[#1E4D38]/40'
                     }`}
                   >
-                    <span className="tracking-wide">{cat.label || cat.name}</span>
+                    <span>{cat.label || cat.name}</span>
                     <span
-                      className={`text-xs px-2.5 py-0.5 rounded-full font-mono font-extrabold transition-colors ${
+                      className={`text-xs px-2 py-0.5 rounded-full font-mono font-medium ${
                         isActive
-                          ? 'bg-white/25 text-white shadow-inner'
-                          : 'bg-[#F2ECE1] text-[#7A4B29] border border-[#E5DACB]'
+                          ? 'bg-white/20 text-white'
+                          : 'bg-[#FAF8F5] text-[#5A3E2D] border border-[#E8E2D9]'
                       }`}
                     >
                       {cat.count}
@@ -860,7 +829,7 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* 57 Products Grid - Authentic detnentuonglai styling + tuquygarden e-commerce */}
+        {/* 57 Products Grid - 3 sản phẩm/hàng trên Desktop */}
         <div className="products-grid">
           {filteredProducts.map((p) => {
             const inWish = isInWishlist(p.id);
@@ -877,7 +846,7 @@ export default function HomePage() {
                     loading="lazy"
                   />
                   <span className="product-hours-badge">
-                    ⏱️ {p.production_time || '40h dệt tay'}
+                    {p.production_time || '40h dệt tay'}
                   </span>
                   <span
                     className="product-qr-badge"
@@ -887,9 +856,9 @@ export default function HomePage() {
                       const el = document.getElementById('traceability');
                       if (el) el.scrollIntoView({ behavior: 'smooth' });
                     }}
-                    title="Xem mã QR độc bản"
+                    title="Xem mã định danh QR độc bản"
                   >
-                    QR CODE
+                    MÃ QR
                   </span>
 
                   <button
@@ -897,7 +866,7 @@ export default function HomePage() {
                       e.stopPropagation();
                       toggleWishlist(p.id);
                     }}
-                    className="absolute top-3 left-3 p-1.5 rounded-full bg-white/80 hover:bg-white text-stone-700 hover:text-red-500 shadow-sm transition"
+                    className="absolute top-3 left-3 p-1.5 rounded-full bg-white/90 hover:bg-white text-stone-700 hover:text-red-500 shadow-xs border border-[#E8E2D9] transition"
                     title={inWish ? 'Bỏ yêu thích' : 'Thêm vào yêu thích'}
                   >
                     <Heart className={`w-3.5 h-3.5 ${inWish ? 'fill-red-500 text-red-500' : ''}`} />
@@ -905,22 +874,23 @@ export default function HomePage() {
                 </div>
 
                 <div className="product-body">
-                  <span className="product-category">
-                    {p.category_name} • MÃ: {p.product_code}
-                  </span>
+                  <div className="flex items-center justify-between text-xs text-[#1E4D38] font-semibold mb-1">
+                    <span>{p.category_name}</span>
+                    <span className="font-mono text-[#8A7E72]">{p.product_code}</span>
+                  </div>
                   <h3 className="product-title">
                     <Link
                       href={`/product/${p.id}`}
-                      className="hover:text-[#B9383A] transition-colors"
-                      title="Xem trang chi tiết sản phẩm & mua ngay"
+                      className="hover:text-[#1E4D38] transition-colors"
+                      title="Xem trang chi tiết sản phẩm"
                     >
                       {p.name}
                     </Link>
                   </h3>
 
                   {p.story && (
-                    <div className="text-xs font-semibold text-amber-800 line-clamp-1 mb-1">
-                      📖 {p.story}
+                    <div className="text-xs text-[#6B5E51] line-clamp-1 mb-1 italic">
+                      {p.story}
                     </div>
                   )}
 
@@ -933,7 +903,7 @@ export default function HomePage() {
                       if (el) el.scrollIntoView({ behavior: 'smooth' });
                     }}
                   >
-                    👤 {p.artisan_name || 'Nghệ nhân Ia Mơ Nông'} • Làng Kép
+                    Nghệ nhân: <strong className="font-medium text-[#1F1D1B]">{p.artisan_name || 'Nghệ nhân Jrai'}</strong> ({p.artisan_village || 'Làng Kép'})
                   </a>
 
                   <div className="product-footer">
@@ -955,7 +925,7 @@ export default function HomePage() {
                           const el = document.getElementById('traceability');
                           if (el) el.scrollIntoView({ behavior: 'smooth' });
                         }}
-                        title="Mở mã QR tem mác"
+                        title="Mở mã QR định danh"
                       >
                         Mã QR
                       </button>
@@ -990,24 +960,24 @@ export default function HomePage() {
       ======================================================== */}
       <section className="section section-watermark-mist reveal-on-scroll" id="motifs" style={{ scrollMarginTop: '80px' }}>
         <div className="container space-y-8">
-          <div className="text-center" style={{ maxWidth: '720px', margin: '0 auto 48px' }}>
+          <div className="text-center" style={{ maxWidth: '780px', margin: '0 auto 48px' }}>
             <span className="section-tag gold">
-              Kho tri thức văn hoá số
+              Kho tri thức di sản bản địa Jrai
             </span>
             <h2 className="section-title">
-              Ngân Hàng Số Hoa Văn Jrai Central
+              Ngân Hàng Số Hoa Văn Thổ Cẩm Jrai (20 Hoa Văn)
             </h2>
             <p className="section-desc">
-              Không tự bịa đặt ý nghĩa — mỗi hoa văn lưu trữ tại đây đều được xác minh minh bạch từ nghệ nhân và già làng tại Ia Mơ Nông, Chư Păh.
+              Hệ thống số hóa 20 hoa văn cổ truyền người Jrai tại Gia Lai. Mỗi hoa văn là một ký hiệu văn hóa ước lệ khắc họa thiên nhiên, vũ trụ quan và đời sống tâm linh đại ngàn, được giải mã và lưu trữ cẩn trọng.
             </p>
-            <div style={{ marginTop: '14px' }}>
-              <span className="text-xs font-bold text-amber-900 bg-amber-100/90 px-3.5 py-1.5 rounded-full border border-amber-300">
-                20 / 20 biểu tượng số hóa di sản
+            <div style={{ marginTop: '16px' }}>
+              <span className="text-xs font-semibold text-[#1E4D38] bg-[#FAF8F5] px-4 py-1.5 rounded-full border border-[#E8E2D9]">
+                20 / 20 biểu tượng hoa văn di sản đã xác minh
               </span>
             </div>
           </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {motifs.map((m) => (
             <div
               key={m.id}
@@ -1342,7 +1312,7 @@ export default function HomePage() {
             <div className="rounded-xl overflow-hidden border border-[#E5DACB] shadow-sm aspect-[4/3]">
               <img
                 src="/images/background/image6.jpg"
-                alt="Sinh viên UEL và nghệ nhân gìn giữ nghề dệt tại Ia Mơ Nông"
+                alt="Đội ngũ JRAI ƠI và nghệ nhân gìn giữ nghề dệt tại Ia Mơ Nông"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
               />
             </div>
@@ -1467,7 +1437,7 @@ export default function HomePage() {
             </p>
           </div>
 
-          {/* Tiêu đề khối sinh viên sáng lập */}
+          {/* Tiêu đề khối đội ngũ sáng lập */}
           <div style={{ marginTop: '30px', marginBottom: '10px', textAlign: 'center' }}>
             <span style={{ fontSize: '0.85rem', fontWeight: 800, color: '#FFA726', textTransform: 'uppercase', letterSpacing: '1.5px' }}>
               BAN ĐIỀU HÀNH & PHÁT TRIỂN DỰ ÁN (5 THÀNH VIÊN)

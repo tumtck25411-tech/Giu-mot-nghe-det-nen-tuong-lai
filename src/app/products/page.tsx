@@ -5,17 +5,10 @@ import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import {
   Search,
-  Filter,
   Clock,
-  MapPin,
-  ChevronRight,
   QrCode,
   ShoppingBag,
   Heart,
-  SlidersHorizontal,
-  CheckCircle2,
-  Sparkles,
-  ArrowUpDown,
   Tag,
   ShieldCheck,
   Check,
@@ -31,7 +24,7 @@ import {
 } from '@/lib/data-store';
 import { Product, Artisan, Motif } from '@/types';
 
-// Danh mục sản phẩm kế thừa định chuẩn Dệt Nên Tương Lai & Tứ Quý Garden
+// Danh mục sản phẩm thổ cẩm Jrai
 const CATEGORIES = [
   { id: 'all', name: 'Tất cả', filterKey: 'all', count: 57 },
   { id: 'scarf', name: 'Khăn quàng cổ', filterKey: 'scarf', count: 28 },
@@ -98,107 +91,99 @@ function ProductsContent() {
   const filteredProducts = useMemo(() => {
     return products
       .filter((p) => {
-        // Search
-        const q = searchTerm.toLowerCase().trim();
-        const matchesSearch =
-          !q ||
-          p.name.toLowerCase().includes(q) ||
-          p.product_code.toLowerCase().includes(q) ||
-          p.category_name.toLowerCase().includes(q) ||
-          (p.artisan_name && p.artisan_name.toLowerCase().includes(q)) ||
-          (p.motif_name && p.motif_name.toLowerCase().includes(q));
-
-        // Category
-        const matchesCategory =
-          selectedCategory === 'all' ||
-          p.category === selectedCategory ||
-          (selectedCategory === 'dress' && p.category.includes('dress')) ||
-          (selectedCategory === 'scarf' && p.category.includes('scarf'));
-
-        // Artisan
-        const matchesArtisan =
-          selectedArtisan === 'all' ||
-          p.artisan_id === selectedArtisan ||
-          p.artisan_name?.includes(selectedArtisan);
-
-        // Price Range
-        let matchesPrice = true;
-        if (priceRange === 'under300') {
-          matchesPrice = p.price < 300000;
-        } else if (priceRange === '300to500') {
-          matchesPrice = p.price >= 300000 && p.price <= 500000;
-        } else if (priceRange === '500to1m') {
-          matchesPrice = p.price > 500000 && p.price <= 1000000;
-        } else if (priceRange === 'over1m') {
-          matchesPrice = p.price > 1000000;
+        // 1. Category Filter
+        if (selectedCategory !== 'all') {
+          if (p.category !== selectedCategory) return false;
         }
 
-        return matchesSearch && matchesCategory && matchesArtisan && matchesPrice;
+        // 2. Artisan Filter
+        if (selectedArtisan !== 'all') {
+          if (p.artisan_id !== selectedArtisan && p.artisan_name !== selectedArtisan) {
+            return false;
+          }
+        }
+
+        // 3. Price Filter
+        if (priceRange === 'under300' && p.price >= 300000) return false;
+        if (priceRange === '300to500' && (p.price < 300000 || p.price > 500000)) return false;
+        if (priceRange === '500to1m' && (p.price < 500000 || p.price > 1000000)) return false;
+        if (priceRange === 'over1m' && p.price <= 1000000) return false;
+
+        // 4. Keyword Search
+        if (searchTerm.trim()) {
+          const q = searchTerm.toLowerCase().trim();
+          const matchName = p.name.toLowerCase().includes(q);
+          const matchCode = p.product_code.toLowerCase().includes(q);
+          const matchCat = p.category_name?.toLowerCase().includes(q);
+          const matchArt = p.artisan_name?.toLowerCase().includes(q);
+          const matchStory = p.story?.toLowerCase().includes(q);
+          if (!matchName && !matchCode && !matchCat && !matchArt && !matchStory) {
+            return false;
+          }
+        }
+
+        return true;
       })
       .sort((a, b) => {
         if (sortBy === 'priceAsc') return a.price - b.price;
         if (sortBy === 'priceDesc') return b.price - a.price;
         if (sortBy === 'newest') return b.id.localeCompare(a.id);
-        return 0; // default featured
+        return 0; // featured default
       });
-  }, [products, searchTerm, selectedCategory, selectedArtisan, priceRange, sortBy]);
+  }, [products, selectedCategory, selectedArtisan, priceRange, searchTerm, sortBy]);
 
   return (
-    <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-10 py-10 space-y-10">
-      {/* Toast Notification */}
+    <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-12 py-10 space-y-8">
+      {/* Toast Notice Added to Cart */}
       {addedNotice && (
-        <div className="fixed bottom-6 right-6 z-50 bg-[#C43B3D] text-white px-5 py-3.5 rounded-lg shadow-lg border border-amber-300/40 flex items-center gap-3 animate-in slide-in-from-bottom duration-300">
-          <CheckCircle2 className="w-5 h-5 text-amber-200 shrink-0" />
+        <div className="fixed bottom-6 right-6 z-50 bg-[#1E4D38] text-white px-5 py-3 rounded-xl shadow-xl flex items-center gap-3 border border-[#2D6A4F] animate-in slide-in-from-bottom duration-200">
+          <Check className="w-5 h-5 text-amber-300" />
           <span className="text-sm font-bold">{addedNotice}</span>
-          <Link href="/cart" className="text-xs underline font-bold ml-2 text-amber-100 hover:text-white">
-            Xem giỏ hàng &rarr;
-          </Link>
         </div>
       )}
 
-      {/* 1. HERO HEADER: TONE SÁNG BE SOLID ĐẶC TRƯNG GIỮ MỘT NGHỀ - Centered Flex & Text */}
-      <div className="bg-[#F2ECE1] border-b-2 border-[#EA8E23] p-8 sm:p-14 rounded-xl shadow-sm relative overflow-hidden flex flex-col items-center justify-center text-center header-banner-box">
-        <div className="max-w-4xl mx-auto space-y-3.5 relative z-10 flex flex-col items-center justify-center text-center w-full">
-          <div className="inline-flex items-center justify-center gap-2 bg-[#C43B3D]/10 text-[#C43B3D] text-xs font-black px-4 py-1.5 rounded-full border border-[#C43B3D]/30 uppercase tracking-wider mx-auto">
-            <Sparkles className="w-4 h-4 text-[#C43B3D]" />
-            <span>THỦ CÔNG BẢN ĐỊA ĐỘC BẢN • JRAI ƠI</span>
-          </div>
+      {/* 1. HEADER BANNER */}
+      <div className="bg-[#FAF8F5] p-8 sm:p-12 rounded-2xl border border-[#E8E2D9] relative overflow-hidden shadow-xs flex flex-col items-center justify-center text-center">
+        <div className="max-w-3xl mx-auto space-y-4 relative z-10 flex flex-col items-center justify-center text-center w-full">
+          <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#1E4D38] bg-[#F5F1E8] px-3.5 py-1.5 rounded-full border border-[#E8E2D9]">
+            THỦ CÔNG BẢN ĐỊA ĐỘC BẢN • JRAI ƠI
+          </span>
 
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-black text-[#1F1D1B] tracking-tight leading-tight text-center mx-auto">
-            Bộ Sưu Tập Thổ Cẩm Jrai Ứng Dụng (57 Mẫu)
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-black text-[#1F1D1B] leading-tight text-center mx-auto">
+            Bộ Sưu Tập Thổ Cẩm Jrai (57 Mẫu)
           </h1>
 
-          <p className="text-[#5D554D] text-sm sm:text-base leading-relaxed max-w-3xl mx-auto text-center">
+          <p className="text-[#59524C] text-sm sm:text-base leading-relaxed max-w-2xl mx-auto text-center">
             Mỗi sản phẩm đều được dệt thủ công bởi các nghệ nhân làng Kép và làng Phung (Ia Mơ Nông, Gia Lai). Khi mua sản phẩm, bạn nhận kèm một mã định danh số QR giúp tra cứu tên thợ dệt, thời gian hoàn thành và ý nghĩa hoa văn truyền thừa.
           </p>
 
-          {/* Quick Commitments Badges */}
-          <div className="flex flex-wrap justify-center gap-2.5 pt-2 text-xs font-semibold text-[#5D554D]">
-            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/80 border border-[#E5DACB] text-[#1F1D1B] shadow-xs">
-              <Check className="w-3.5 h-3.5 text-[#C43B3D]" /> 100% Sợi Bông Kơpăh Tự Nhiên
+          <div className="flex flex-wrap items-center justify-center gap-3 pt-2 text-xs text-[#59524C]">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-[#E8E2D9] shadow-xs">
+              <span className="w-2 h-2 rounded-full bg-[#1E4D38]"></span>
+              100% Sợi Bông Kơpăh Tự Nhiên
             </span>
-            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/80 border border-[#E5DACB] text-[#1F1D1B] shadow-xs">
-              <QrCode className="w-3.5 h-3.5 text-[#EA8E23]" /> Mã QR Định Danh Độc Bản
+            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-[#E8E2D9] shadow-xs">
+              <QrCode className="w-3.5 h-3.5 text-[#1E4D38]" /> Mã QR Định Danh Độc Bản
             </span>
-            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/80 border border-[#E5DACB] text-[#1F1D1B] shadow-xs">
-              <Clock className="w-3.5 h-3.5 text-[#EA8E23]" /> 40h – 200h Dệt Cửi Hông
+            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-[#E8E2D9] shadow-xs">
+              <Clock className="w-3.5 h-3.5 text-[#6E4C38]" /> 40h – 200h Dệt Cửi Hông
             </span>
-            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/80 border border-[#E5DACB] text-[#3D7535] shadow-xs">
-              <ShieldCheck className="w-3.5 h-3.5 text-[#3D7535]" /> Miễn Phí Giao Hàng Từ 500k
+            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-[#E8E2D9] text-[#1E4D38] shadow-xs font-semibold">
+              <ShieldCheck className="w-3.5 h-3.5 text-[#1E4D38]" /> Miễn Phí Giao Hàng Từ 500k
             </span>
           </div>
         </div>
       </div>
 
-      {/* 2. BỘ LỌC KHOA HỌC THEO FORM GIỮ MỘT NGHỀ */}
-      <div className="bg-white p-5 sm:p-7 rounded-xl border border-[#E5DACB] shadow-sm space-y-5">
-        {/* Category Filter Pills Bar */}
-        <div className="text-center space-y-3.5">
-          <div className="text-xs font-bold text-[#8A7E72] uppercase tracking-wider flex items-center justify-center gap-2">
-            <Tag className="w-3.5 h-3.5 text-[#C43B3D]" />
-            <span>LỌC THEO DANH MỤC SẢN PHẨM:</span>
+      {/* 2. BỘ LỌC KHOA HỌC */}
+      <div className="bg-white p-5 sm:p-7 rounded-2xl border border-[#E8E2D9] shadow-xs space-y-5">
+        {/* Category Filter Chips Bar */}
+        <div className="text-center space-y-3">
+          <div className="text-xs font-bold text-[#6E4C38] uppercase tracking-wider flex items-center justify-center gap-1.5">
+            <Tag className="w-3.5 h-3.5 text-[#1E4D38]" />
+            <span>LỌC THEO PHÂN LOẠI SẢN PHẨM:</span>
           </div>
-          <div className="flex flex-wrap justify-center gap-2.5 sm:gap-3.5">
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-2.5">
             {CATEGORIES.map((cat) => {
               const isActive = selectedCategory === cat.filterKey;
               return (
@@ -206,18 +191,18 @@ function ProductsContent() {
                   key={cat.id}
                   onClick={() => setSelectedCategory(cat.filterKey)}
                   type="button"
-                  className={`px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl text-sm font-bold transition-all duration-200 flex items-center gap-2.5 cursor-pointer select-none ${
+                  className={`px-4 sm:px-4.5 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all duration-150 flex items-center gap-2 cursor-pointer select-none ${
                     isActive
-                      ? 'bg-gradient-to-r from-[#C43B3D] to-[#A3292B] text-white border-2 border-[#8A2325] shadow-md shadow-red-950/20 scale-[1.02]'
-                      : 'bg-white hover:bg-[#FFF6F5] text-[#2B221D] hover:text-[#C43B3D] border-2 border-[#D9CBB8] hover:border-[#C43B3D] hover:-translate-y-0.5 shadow-xs'
+                      ? 'bg-[#1E4D38] text-white shadow-xs scale-[1.02]'
+                      : 'bg-white hover:bg-[#FAF8F5] text-[#2C2623] hover:text-[#1E4D38] border border-[#E8E2D9] hover:border-[#1E4D38]'
                   }`}
                 >
-                  <span className="tracking-wide">{cat.name}</span>
+                  <span>{cat.name}</span>
                   <span
-                    className={`text-xs px-2.5 py-0.5 rounded-full font-mono font-extrabold transition-colors ${
+                    className={`text-[11px] px-2 py-0.5 rounded-full font-mono font-bold transition-colors ${
                       isActive
-                        ? 'bg-white/25 text-white shadow-inner'
-                        : 'bg-[#F2ECE1] text-[#7A4B29] border border-[#E5DACB]'
+                        ? 'bg-white/20 text-white'
+                        : 'bg-[#F5F1E8] text-[#6E4C38]'
                     }`}
                   >
                     {cat.count}
@@ -229,7 +214,7 @@ function ProductsContent() {
         </div>
 
         {/* Filter Controls Row: Search, Artisan, Price Range, Sort */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 pt-4 border-t border-[#E5DACB]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 pt-4 border-t border-[#E8E2D9]">
           {/* Keyword Search */}
           <div className="relative">
             <Search className="w-4 h-4 absolute left-3.5 top-3.5 text-[#8A7E72]" />
@@ -238,7 +223,7 @@ function ProductsContent() {
               placeholder="Tìm theo tên, mã (V001, K001)..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 bg-[#FBF8F3] border border-[#E5DACB] rounded-lg text-sm text-[#1F1D1B] placeholder-[#8A7E72] focus:outline-none focus:border-[#C43B3D] focus:bg-white"
+              className="w-full pl-10 pr-4 py-2.5 bg-[#FAF8F5] border border-[#E8E2D9] rounded-xl text-sm text-[#1F1D1B] placeholder-[#8A7E72] focus:outline-none focus:border-[#1E4D38] focus:bg-white transition-colors"
             />
           </div>
 
@@ -247,7 +232,7 @@ function ProductsContent() {
             <select
               value={selectedArtisan}
               onChange={(e) => setSelectedArtisan(e.target.value)}
-              className="w-full py-2.5 px-3 bg-[#FBF8F3] border border-[#E5DACB] rounded-lg text-sm text-[#1F1D1B] focus:outline-none focus:border-[#C43B3D] focus:bg-white"
+              className="w-full py-2.5 px-3 bg-[#FAF8F5] border border-[#E8E2D9] rounded-xl text-sm text-[#1F1D1B] focus:outline-none focus:border-[#1E4D38] focus:bg-white transition-colors cursor-pointer"
             >
               <option value="all">Tất cả nghệ nhân dệt</option>
               {artisans.map((a) => (
@@ -263,7 +248,7 @@ function ProductsContent() {
             <select
               value={priceRange}
               onChange={(e) => setPriceRange(e.target.value)}
-              className="w-full py-2.5 px-3 bg-[#FBF8F3] border border-[#E5DACB] rounded-lg text-sm text-[#1F1D1B] focus:outline-none focus:border-[#C43B3D] focus:bg-white"
+              className="w-full py-2.5 px-3 bg-[#FAF8F5] border border-[#E8E2D9] rounded-xl text-sm text-[#1F1D1B] focus:outline-none focus:border-[#1E4D38] focus:bg-white transition-colors cursor-pointer"
             >
               <option value="all">Mọi khoảng giá</option>
               <option value="under300">Dưới 300.000₫</option>
@@ -278,7 +263,7 @@ function ProductsContent() {
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="w-full py-2.5 px-3 bg-[#FBF8F3] border border-[#E5DACB] rounded-lg text-sm text-[#1F1D1B] focus:outline-none focus:border-[#C43B3D] focus:bg-white font-semibold"
+              className="w-full py-2.5 px-3 bg-[#FAF8F5] border border-[#E8E2D9] rounded-xl text-sm text-[#1F1D1B] focus:outline-none focus:border-[#1E4D38] focus:bg-white font-semibold transition-colors cursor-pointer"
             >
               <option value="featured">Sắp xếp: Nổi bật nhất</option>
               <option value="priceAsc">Giá: Thấp đến Cao</option>
@@ -289,9 +274,9 @@ function ProductsContent() {
         </div>
 
         {/* Results summary bar */}
-        <div className="flex flex-wrap items-center justify-between text-sm text-[#5D554D] pt-2 border-t border-[#E5DACB]/80 gap-2">
+        <div className="flex flex-wrap items-center justify-between text-xs sm:text-sm text-[#59524C] pt-2 border-t border-[#E8E2D9] gap-2">
           <span>
-            Đang hiển thị <strong className="text-[#C43B3D] font-bold">{filteredProducts.length}</strong> / {products.length} tác phẩm thổ cẩm
+            Đang hiển thị <strong className="text-[#1E4D38] font-bold">{filteredProducts.length}</strong> / {products.length} tác phẩm thổ cẩm
           </span>
           {(searchTerm || selectedCategory !== 'all' || selectedArtisan !== 'all' || priceRange !== 'all') && (
             <button
@@ -301,7 +286,7 @@ function ProductsContent() {
                 setSelectedArtisan('all');
                 setPriceRange('all');
               }}
-              className="text-[#C43B3D] hover:underline font-bold text-xs"
+              className="text-[#C43B3D] hover:underline font-bold text-xs cursor-pointer"
             >
               Xóa tất cả bộ lọc &times;
             </button>
@@ -309,14 +294,14 @@ function ProductsContent() {
         </div>
       </div>
 
-      {/* 3. LƯỚI SẢN PHẨM RỘNG RÃI, THẺ TRẮNG THANH LỊCH CHUẨN GIỮ MỘT NGHỀ */}
+      {/* 3. LƯỚI SẢN PHẨM: ĐÚNG 3 SẢN PHẨM/HÀNG TRÊN DESKTOP, 2 TRÊN TABLET, 1 TRÊN MOBILE */}
       {filteredProducts.length === 0 ? (
-        <div className="bg-white p-14 rounded-xl border border-[#E5DACB] text-center space-y-3 shadow-sm">
-          <div className="w-14 h-14 rounded-full bg-[#F2ECE1] flex items-center justify-center mx-auto text-[#C43B3D] border border-[#E5DACB]">
-            <Search className="w-7 h-7" />
+        <div className="bg-white p-14 rounded-2xl border border-[#E8E2D9] text-center space-y-3 shadow-xs">
+          <div className="w-14 h-14 rounded-full bg-[#FAF8F5] flex items-center justify-center mx-auto text-[#1E4D38] border border-[#E8E2D9]">
+            <Search className="w-6 h-6" />
           </div>
           <h3 className="text-lg font-serif font-bold text-[#1F1D1B]">Không tìm thấy sản phẩm phù hợp</h3>
-          <p className="text-sm text-[#5D554D] max-w-md mx-auto">
+          <p className="text-sm text-[#59524C] max-w-md mx-auto">
             Vui lòng thử tìm kiếm với từ khóa khác hoặc bấm nút xóa bộ lọc để hiển thị toàn bộ 57 sản phẩm.
           </p>
           <button
@@ -326,24 +311,24 @@ function ProductsContent() {
               setSelectedArtisan('all');
               setPriceRange('all');
             }}
-            className="bg-[#C43B3D] text-white text-xs font-bold px-6 py-2.5 rounded-lg shadow-sm hover:bg-[#8A2325] transition"
+            className="bg-[#1E4D38] hover:bg-[#143527] text-white text-xs font-bold px-6 py-2.5 rounded-xl shadow-xs transition cursor-pointer"
           >
             Xem tất cả 57 sản phẩm
           </button>
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-7">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-9">
           {filteredProducts.map((p) => {
             const inWish = isInWishlist(p.id);
             return (
               <div
                 key={p.id}
-                className="group bg-white hover:bg-white rounded-xl border border-[#E5DACB] hover:border-[#C43B3D] overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between hover:-translate-y-1"
+                className="group bg-white rounded-2xl border border-[#E8E2D9] hover:border-[#1E4D38] overflow-hidden shadow-[0_2px_12px_rgba(0,0,0,0.04)] hover:shadow-[0_12px_28px_rgba(30,77,56,0.12)] transition-all duration-300 flex flex-col justify-between hover:-translate-y-1"
               >
                 {/* 1. Large Aspect Image & Overlays */}
                 <Link
                   href={`/product/${p.id}`}
-                  className="relative aspect-[4/3] bg-[#F2ECE1] overflow-hidden block cursor-pointer group/thumb"
+                  className="relative aspect-[4/3] bg-[#FAF8F5] overflow-hidden block cursor-pointer group/thumb"
                   title={`Xem chi tiết sản phẩm ${p.name}`}
                 >
                   <img
@@ -352,12 +337,12 @@ function ProductsContent() {
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
 
-                  {/* Top-Left Category & Product Code Badges */}
-                  <div className="absolute top-3 left-3 flex flex-col gap-1.5 pointer-events-none">
-                    <span className="bg-[#C43B3D] text-white text-xs font-bold uppercase px-2.5 py-0.5 rounded shadow-sm">
+                  {/* Top-Left Category & Code */}
+                  <div className="absolute top-3 left-3 flex flex-wrap gap-1.5 pointer-events-none">
+                    <span className="bg-[#1E4D38] text-white text-[11px] font-bold uppercase px-2.5 py-0.5 rounded-md shadow-xs">
                       {p.category_name}
                     </span>
-                    <span className="bg-black/75 backdrop-blur-sm text-amber-300 text-xs font-mono px-2 py-0.5 rounded border border-amber-500/30">
+                    <span className="bg-white/95 text-[#6E4C38] text-[11px] font-mono font-bold px-2 py-0.5 rounded-md border border-[#E8E2D9] shadow-xs">
                       {p.product_code}
                     </span>
                   </div>
@@ -369,39 +354,39 @@ function ProductsContent() {
                       e.stopPropagation();
                       toggleWishlist(p.id);
                     }}
-                    className="absolute top-3 right-3 p-2 rounded-full bg-white/85 hover:bg-white text-stone-600 hover:text-red-500 shadow-sm transition border border-stone-200 z-10"
+                    className="absolute top-3 right-3 p-2 rounded-full bg-white/90 hover:bg-white text-[#59524C] hover:text-[#C43B3D] shadow-xs transition border border-[#E8E2D9] z-10 cursor-pointer"
                     title={inWish ? 'Bỏ yêu thích' : 'Thêm vào yêu thích'}
                   >
-                    <Heart className={`w-4 h-4 ${inWish ? 'fill-red-500 text-red-500' : ''}`} />
+                    <Heart className={`w-4 h-4 ${inWish ? 'fill-[#C43B3D] text-[#C43B3D]' : ''}`} />
                   </button>
 
-                  {/* Bottom Image Overlay Bar */}
-                  <div className="absolute bottom-2 left-2 right-2 bg-black/80 backdrop-blur-sm rounded-md px-2.5 py-1.5 text-xs text-stone-200 flex items-center justify-between border border-white/10">
-                    <span className="flex items-center gap-1 text-amber-300 font-medium">
-                      <Clock className="w-3.5 h-3.5" />
+                  {/* Bottom Image Badge Bar */}
+                  <div className="absolute bottom-2.5 left-2.5 right-2.5 bg-white/95 backdrop-blur-sm rounded-lg px-3 py-1.5 text-xs text-[#3E3834] flex items-center justify-between border border-[#E8E2D9] shadow-xs">
+                    <span className="flex items-center gap-1 text-[#6E4C38] font-semibold text-[11px]">
+                      <Clock className="w-3.5 h-3.5 text-[#1E4D38]" />
                       <span>{p.production_time || 'Dệt tay'}</span>
                     </span>
-                    <span className="text-xs text-stone-200 truncate max-w-[130px] font-medium">
+                    <span className="text-[11px] text-[#1F1D1B] truncate max-w-[140px] font-bold">
                       {p.artisan_name || 'Làng Kép'}
                     </span>
                   </div>
                 </Link>
 
                 {/* 2. Card Content & Title */}
-                <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-3">
+                <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between space-y-3">
                   <div>
                     <Link href={`/product/${p.id}`} className="block group/link cursor-pointer">
-                      <h3 className="font-serif font-bold text-base sm:text-lg text-[#1F1D1B] group-hover/link:text-[#C43B3D] transition-colors line-clamp-2 leading-snug">
+                      <h3 className="font-serif font-bold text-base sm:text-lg text-[#1F1D1B] group-hover/link:text-[#1E4D38] transition-colors line-clamp-1 leading-snug">
                         {p.name}
                       </h3>
-                      <p className="text-xs sm:text-sm text-[#5D554D] mt-2 line-clamp-2 leading-relaxed">
+                      <p className="text-xs sm:text-sm text-[#59524C] mt-2 line-clamp-2 leading-relaxed">
                         {p.description}
                       </p>
                     </Link>
                   </div>
 
                   {/* 3. Card Footer: Price & Direct Actions */}
-                  <div className="pt-3 border-t border-[#E5DACB] space-y-3">
+                  <div className="pt-3.5 border-t border-[#E8E2D9] space-y-3">
                     {/* Price Row */}
                     <div className="flex items-baseline justify-between">
                       <div className="text-xl sm:text-2xl font-black text-[#C43B3D] font-serif">
@@ -418,28 +403,28 @@ function ProductsContent() {
                     <div className="flex items-center gap-2">
                       <Link
                         href={`/product/${p.id}`}
-                        className="flex-1 py-2.5 px-3 rounded-lg bg-[#C43B3D] hover:bg-[#8A2325] text-white text-xs sm:text-sm font-bold shadow-sm flex items-center justify-center gap-1.5 transition"
-                        title="Xem chi tiết & Mua ngay"
+                        className="flex-1 py-2.5 px-3 rounded-xl bg-[#FAF8F5] hover:bg-[#F3EFEA] text-[#1F1D1B] text-xs sm:text-sm font-bold border border-[#E8E2D9] flex items-center justify-center transition"
+                        title="Xem chi tiết sản phẩm"
                       >
-                        <ShoppingBag className="w-4 h-4 text-amber-200 shrink-0" />
-                        <span>Xem chi tiết & Mua</span>
-                      </Link>
-
-                      <Link
-                        href={`/traceability?code=${p.product_code}`}
-                        className="p-2.5 rounded-lg bg-[#FBF8F3] hover:bg-[#F2ECE1] text-[#C43B3D] border border-[#E5DACB] transition shrink-0"
-                        title="Xem mã QR độc bản"
-                      >
-                        <QrCode className="w-4 h-4" />
+                        Chi tiết
                       </Link>
 
                       <button
                         onClick={(e) => handleAddToCart(p, e)}
-                        className="p-2.5 rounded-lg bg-[#FBF8F3] hover:bg-[#C43B3D] text-[#1F1D1B] hover:text-white border border-[#E5DACB] transition shrink-0 font-black text-sm"
-                        title="Thêm nhanh vào giỏ hàng"
+                        className="flex-1 py-2.5 px-3 rounded-xl bg-[#1E4D38] hover:bg-[#143527] text-white text-xs sm:text-sm font-bold shadow-xs flex items-center justify-center gap-1.5 transition cursor-pointer"
+                        title="Thêm vào giỏ hàng"
                       >
-                        +
+                        <ShoppingBag className="w-4 h-4 text-white" />
+                        <span>Thêm giỏ</span>
                       </button>
+
+                      <Link
+                        href={`/traceability?code=${p.product_code}`}
+                        className="p-2.5 rounded-xl bg-[#FAF8F5] hover:bg-[#F3EFEA] text-[#1E4D38] border border-[#E8E2D9] transition shrink-0"
+                        title="Xem mã QR tem mác"
+                      >
+                        <QrCode className="w-4 h-4" />
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -454,7 +439,7 @@ function ProductsContent() {
 
 export default function ProductsPage() {
   return (
-    <React.Suspense fallback={<div className="min-h-screen bg-[#14110F] py-20 text-center text-stone-400">Đang tải danh sách 57 sản phẩm thổ cẩm...</div>}>
+    <React.Suspense fallback={<div className="min-h-screen bg-[#FAF8F5] py-20 text-center text-[#59524C]">Đang tải danh sách 57 sản phẩm thổ cẩm...</div>}>
       <ProductsContent />
     </React.Suspense>
   );

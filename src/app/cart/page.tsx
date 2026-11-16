@@ -89,10 +89,10 @@ export default function CartPage() {
           
           {/* Step 1: Active */}
           <div className="relative z-10 flex flex-col items-center gap-1.5">
-            <div className="w-9 h-9 rounded-full bg-[#C43B3D] text-white font-bold text-xs flex items-center justify-center border-2 border-[#EA8E23] shadow-md">
+            <div className="w-9 h-9 rounded-full bg-[#1E4D38] text-white font-bold text-xs flex items-center justify-center border-2 border-[#143527] shadow-xs">
               1
             </div>
-            <span className="text-xs font-bold text-[#C43B3D]">GIỎ HÀNG</span>
+            <span className="text-xs font-bold text-[#1E4D38]">GIỎ HÀNG</span>
           </div>
 
           {/* Step 2 */}
@@ -251,7 +251,7 @@ export default function CartPage() {
                 />
                 <button
                   type="submit"
-                  className="bg-[#C43B3D] hover:bg-[#8A2325] text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow-sm transition"
+                  className="bg-[#1E4D38] hover:bg-[#143527] text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow-xs transition"
                 >
                   ÁP DỤNG
                 </button>
@@ -335,7 +335,7 @@ export default function CartPage() {
                     router.push('/checkout');
                   }
                 }}
-                className="w-full py-4 px-6 rounded-2xl bg-[#C43B3D] hover:bg-[#8A2325] text-white font-serif font-bold text-sm shadow-md transition flex items-center justify-center gap-2"
+                className="w-full py-4 px-6 rounded-2xl bg-[#1E4D38] hover:bg-[#143527] text-white font-serif font-bold text-sm shadow-xs transition flex items-center justify-center gap-2"
               >
                 <span>TIẾN HÀNH THANH TOÁN</span>
                 <ArrowRight className="w-4 h-4" />
