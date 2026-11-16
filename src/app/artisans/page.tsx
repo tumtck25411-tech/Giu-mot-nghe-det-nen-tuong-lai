@@ -47,7 +47,7 @@ export default function ArtisansPage() {
         aria-hidden="true"
       />
 
-      <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10 space-y-12">
+      <div className="w-full max-w-[1600px] xl:px-12 mx-auto px-4 sm:px-8 lg:px-12 relative z-10 space-y-12">
         {/* Header - Chuẩn Format Demo Hình 5 */}
         <div className="text-center max-w-3xl mx-auto space-y-3.5">
           <h1 className="text-3xl sm:text-4xl lg:text-[42px] font-bold text-[#174C38] tracking-tight font-serif">
@@ -68,7 +68,7 @@ export default function ArtisansPage() {
         </div>
 
         {/* ARTISANS GRID - Đầy đủ 9 nghệ nhân chuẩn format Demo Hình 5 */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 w-full max-w-[1600px] mx-auto">
           {artisans.map((artisan) => (
             <div
               key={artisan.id}

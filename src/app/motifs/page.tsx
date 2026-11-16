@@ -63,7 +63,7 @@ export default function MotifsPage() {
         aria-hidden="true"
       />
 
-      <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-8 lg:px-12 space-y-8 relative z-10">
+      <div className="w-full max-w-[1600px] xl:px-12 mx-auto px-4 sm:px-8 lg:px-12 space-y-8 relative z-10">
         
         {/* Header - Modern Ethnic Boutique Style */}
         <div className="bg-[#FFFDF9] p-8 sm:p-12 rounded-2xl border border-[#E8DFC8] shadow-xs text-center max-w-4xl mx-auto space-y-3">

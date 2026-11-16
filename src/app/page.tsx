@@ -579,7 +579,7 @@ export default function HomePage() {
         </div>
 
         {/* Hero Content with Authentic Typography and Animated Counter */}
-        <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-12 hero-content animate-fade-in-up z-20 flex flex-col items-center justify-center text-center">
+        <div className="w-full max-w-[1600px] xl:px-12 mx-auto px-4 sm:px-6 lg:px-12 hero-content animate-fade-in-up z-20 flex flex-col items-center justify-center text-center">
           <div className="hero-tagline">
             <span>DI SẢN THỔ CẨM DỆT CỬI HÔNG • IA MƠ NÔNG, GIA LAI</span>
           </div>
@@ -712,7 +712,7 @@ export default function HomePage() {
           BÀI TOÁN & LỜI GIẢI ĐỔI MỚI (MÔ HÌNH THƯƠNG MẠI ĐIỆN TỬ BỀN VỮNG)
       ======================================================== */}
       <section className="section section-watermark-hearth reveal-on-scroll">
-        <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-12">
+        <div className="w-full max-w-[1600px] xl:px-12 mx-auto px-4 sm:px-6 lg:px-12">
           <div className="innovation-grid w-full">
             <div className="space-y-6">
               <span className="section-tag">
@@ -793,7 +793,7 @@ export default function HomePage() {
           2. MỤC 2: SẢN PHẨM (#products) - TOÀN BỘ 57 SẢN PHẨM CĂN GIỮA
       ======================================================== */}
       <section className="section section-watermark-weave reveal-on-scroll w-full flex flex-col items-center" id="products" style={{ scrollMarginTop: '80px' }}>
-        <div className="w-full max-w-7xl 2xl:max-w-[1540px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8 flex flex-col items-center">
+        <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8 flex flex-col items-center">
           <div className="text-center max-w-3xl mx-auto space-y-3.5 mb-6 flex flex-col items-center justify-center">
             <span className="section-tag inline-flex items-center justify-center">
               Bộ sưu tập tiêu biểu
@@ -815,7 +815,7 @@ export default function HomePage() {
           </div>
 
         {/* Filter Controls: Search & Category Pills Căn giữa hoàn hảo */}
-        <div className="w-full max-w-7xl 2xl:max-w-[1540px] mx-auto space-y-4 bg-white p-5 sm:p-7 rounded-2xl border border-[#E5DACB] shadow-sm">
+        <div className="w-full max-w-[1600px] mx-auto space-y-4 bg-white p-5 sm:p-7 rounded-2xl border border-[#E5DACB] shadow-sm">
           <div className="flex flex-col sm:flex-row gap-3">
             <div className="relative flex-1">
               <Search className="w-4 h-4 absolute left-3.5 top-3.5 text-[#8A7E72]" />
@@ -893,7 +893,7 @@ export default function HomePage() {
         </div>
 
         {/* 57 Products Grid - 3 sản phẩm/hàng trên Desktop Căn giữa chuẩn */}
-        <div className="products-grid w-full max-w-7xl 2xl:max-w-[1540px] mx-auto">
+        <div className="products-grid w-full max-w-[1600px] mx-auto">
           {filteredProducts.map((p) => {
             const inWish = isInWishlist(p.id);
             return (
@@ -1022,7 +1022,7 @@ export default function HomePage() {
           3. MỤC 3: NGÂN HÀNG HOA VĂN (#motifs) - ĐẦY ĐỦ 20 HOA VĂN
       ======================================================== */}
       <section className="section section-watermark-mist reveal-on-scroll" id="motifs" style={{ scrollMarginTop: '80px' }}>
-        <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-12 space-y-8">
+        <div className="w-full max-w-[1600px] xl:px-12 mx-auto px-4 sm:px-6 lg:px-12 space-y-8">
           <div className="text-center" style={{ maxWidth: '780px', margin: '0 auto 48px' }}>
             <span className="section-tag gold">
               Kho tri thức di sản bản địa Jrai
@@ -1106,7 +1106,7 @@ export default function HomePage() {
         aria-hidden="true"
       />
 
-      <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-12 relative z-10 space-y-10">
+      <div className="w-full max-w-[1600px] xl:px-12 mx-auto px-4 sm:px-6 lg:px-12 relative z-10 space-y-10">
         {/* Header Format Chuẩn Demo Hình 5 */}
         <div className="text-center max-w-3xl mx-auto space-y-3.5">
           <h2 className="text-3xl sm:text-4xl lg:text-[40px] font-bold text-[#174C38] tracking-tight font-serif">
@@ -1127,7 +1127,7 @@ export default function HomePage() {
         </div>
 
         {/* 3 Featured Artisan Cards Chuẩn Format Demo Hình 5 */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 w-full max-w-[1600px] mx-auto">
           {artisans.slice(0, 3).map((a) => {
             const cleanAQuote = a.quote ? a.quote.replace(/^[“"«\s]+|[”"»\s]+$/g, '').trim() : '';
             return (
@@ -1206,7 +1206,7 @@ export default function HomePage() {
             href="/artisans"
             className="inline-flex items-center gap-2 px-7 sm:px-9 py-3 rounded-full bg-[#174C38] hover:bg-[#0E3626] text-white font-semibold text-sm shadow-md transition transform hover:scale-[1.02] cursor-pointer"
           >
-            <span>Khám phá các nghệ nhân khác</span>
+            <span>Khám phá thêm 6 nghệ nhân khác</span>
             <ArrowRight className="w-4 h-4" />
           </Link>
           <span className="h-px w-10 sm:w-24 bg-[#D4C4A8]"></span>
@@ -1220,7 +1220,7 @@ export default function HomePage() {
         5. MỤC 5: TRA CỨU QR (#traceability) - TƯƠNG TÁC NGAY TẠI CHỖ
     ======================================================== */}
     <section className="section section-watermark-stilt reveal-on-scroll" id="traceability" style={{ scrollMarginTop: '80px' }}>
-      <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-12 space-y-8">
+      <div className="w-full max-w-[1600px] xl:px-12 mx-auto px-4 sm:px-6 lg:px-12 space-y-8">
         <div className="text-center" style={{ maxWidth: '780px', margin: '0 auto 40px' }}>
           <span className="section-tag gold" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
             <QrCode className="w-3.5 h-3.5" />
@@ -1384,7 +1384,7 @@ export default function HomePage() {
           6. MỤC 6: VỀ CHÚNG TÔI (#about) - CÂU CHUYỆN & ĐỘI NGŨ KẾ THỪA
       ======================================================== */}
       <section className="section reveal-on-scroll" id="about" style={{ scrollMarginTop: '80px' }}>
-        <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-12 space-y-16">
+        <div className="w-full max-w-[1600px] xl:px-12 mx-auto px-4 sm:px-6 lg:px-12 space-y-16">
         {/* A. Hero Origin Story Banner */}
         <div className="bg-[#F2ECE1] p-8 sm:p-12 rounded-xl border border-[#E5DACB] border-b-2 border-b-[#EA8E23] relative overflow-hidden shadow-sm text-center">
           <div className="max-w-3xl mx-auto space-y-4 relative z-10">
@@ -1451,7 +1451,7 @@ export default function HomePage() {
 
         {/* C. 6 Weaving Stages with Actual Photos - Modern Ethnic Boutique Format */}
         <section className="section journey-section-bg py-16 px-4 sm:px-6 lg:px-8 rounded-3xl w-full border border-[#E8DFC8]" id="journey">
-          <div className="w-full max-w-7xl 2xl:max-w-[1540px] mx-auto px-2 sm:px-4">
+          <div className="w-full max-w-[1600px] mx-auto px-2 sm:px-4">
             <div className="text-center" style={{ maxWidth: '780px', margin: '0 auto 35px' }}>
               <span
                 className="section-tag inline-block mb-3 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider"
@@ -1708,7 +1708,7 @@ export default function HomePage() {
         className="section bg-[#F5F1E8] border-t border-[#E8E2D9] py-16 sm:py-20 lg:py-24 relative overflow-hidden reveal-on-scroll"
         style={{ scrollMarginTop: '80px' }}
       >
-        <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-12 space-y-10">
+        <div className="w-full max-w-[1600px] xl:px-12 mx-auto px-4 sm:px-6 lg:px-12 space-y-10">
           {/* Section Header (Tu Quy Garden section-header-flex) */}
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-5 pb-6 border-b border-[#E5DACB]">
             <div className="space-y-2.5">

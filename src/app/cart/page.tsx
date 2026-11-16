@@ -100,7 +100,7 @@ export default function CartPage() {
         aria-hidden="true"
       />
 
-      <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-8 lg:px-12 space-y-8 relative z-10">
+      <div className="w-full max-w-[1600px] xl:px-12 mx-auto px-4 sm:px-8 lg:px-12 space-y-8 relative z-10">
         
         {/* 3-Step Breadcrumb Progress Bar */}
         <div className="max-w-2xl mx-auto">
