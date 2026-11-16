@@ -1096,20 +1096,20 @@ export default function HomePage() {
     <section className="section relative overflow-hidden py-14 lg:py-20" id="artisans" style={{ scrollMarginTop: '80px', backgroundColor: '#FAF7F2', backgroundImage: "url('/images/custom/texture_paper_cotton.jpg')" }}>
       {/* Decorative Brocade Diamond Watermarks on Top Corners */}
       <div
-        className="absolute top-0 left-0 w-44 h-44 pointer-events-none opacity-10 bg-contain bg-no-repeat"
-        style={{ backgroundImage: "url('/images/custom/brocade_diamond_pattern.jpg')" }}
+        className="absolute top-0 left-0 w-64 sm:w-80 h-32 pointer-events-none opacity-25 bg-contain bg-no-repeat bg-top-left"
+        style={{ backgroundImage: "url('/images/custom/brocade_corner_left.png')" }}
         aria-hidden="true"
       />
       <div
-        className="absolute top-0 right-0 w-44 h-44 pointer-events-none opacity-10 bg-contain bg-no-repeat"
-        style={{ backgroundImage: "url('/images/custom/brocade_diamond_pattern.jpg')" }}
+        className="absolute top-0 right-0 w-64 sm:w-80 h-32 pointer-events-none opacity-25 bg-contain bg-no-repeat bg-top-right"
+        style={{ backgroundImage: "url('/images/custom/brocade_corner_right.png')" }}
         aria-hidden="true"
       />
 
       <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-12 relative z-10 space-y-10">
         {/* Header Format Chuẩn Demo Hình 5 */}
         <div className="text-center max-w-3xl mx-auto space-y-3.5">
-          <h2 className="text-3xl sm:text-4xl lg:text-[40px] font-bold text-[#174C38] tracking-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-[40px] font-bold text-[#174C38] tracking-tight font-serif">
             Nghệ nhân Dệt Thổ Cẩm
           </h2>
 
@@ -1128,69 +1128,74 @@ export default function HomePage() {
 
         {/* 3 Featured Artisan Cards Chuẩn Format Demo Hình 5 */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
-          {artisans.slice(0, 3).map((a) => (
-            <div
-              key={a.id}
-              className="artisan-demo-card group cursor-pointer"
-              onClick={() => setSelectedArtisanModal(a)}
-            >
-              <div>
-                {/* Photo with top-left badge and floating name pill */}
-                <div className="relative aspect-[16/11] sm:aspect-[4/3] w-full overflow-hidden bg-[#FAF5EC]">
-                  <img
-                    src={a.avatar || a.image_url}
-                    alt={a.name}
-                    loading="lazy"
-                    className="w-full h-full object-cover group-hover:scale-104 transition-transform duration-500"
-                  />
+          {artisans.slice(0, 3).map((a) => {
+            const cleanAQuote = a.quote ? a.quote.replace(/^[“"«\s]+|[”"»\s]+$/g, '').trim() : '';
+            return (
+              <div
+                key={a.id}
+                className="artisan-demo-card group cursor-pointer"
+                onClick={() => setSelectedArtisanModal(a)}
+              >
+                <div>
+                  {/* Photo with top-left badge and floating name pill */}
+                  <div className="relative aspect-[16/11] sm:aspect-[4/3] w-full overflow-hidden bg-[#FAF5EC] rounded-t-[19px]">
+                    <img
+                      src={a.avatar || a.image_url}
+                      alt={a.name}
+                      loading="lazy"
+                      className="w-full h-full object-cover group-hover:scale-104 transition-transform duration-500"
+                    />
 
-                  {/* Top-left: Star badge "★ X năm tuổi nghề" */}
-                  <div className="absolute top-3.5 left-3.5 z-10">
-                    <div className="artisan-badge-pill">
-                      <Star className="w-3.5 h-3.5 fill-white text-white" />
-                      <span>{a.experience_years ? `${a.experience_years} năm tuổi nghề` : a.experience}</span>
+                    {/* Top-left: Star badge "★ X năm tuổi nghề" */}
+                    <div className="absolute top-3.5 left-3.5 z-10">
+                      <div className="artisan-badge-pill">
+                        <Star className="w-3.5 h-3.5 fill-white text-white shrink-0" />
+                        <span>{a.experience_years ? `${a.experience_years} năm tuổi nghề` : a.experience}</span>
+                      </div>
+                    </div>
+
+                    {/* Floating Name Pill overlapping bottom edge of image */}
+                    <div className="absolute -bottom-4 left-4 z-10">
+                      <div className="artisan-name-pill">
+                        <User className="w-3.5 h-3.5 text-white shrink-0" />
+                        <span>{a.name}</span>
+                      </div>
                     </div>
                   </div>
 
-                  {/* Floating Name Pill overlapping bottom edge of image */}
-                  <div className="absolute -bottom-4 left-4 z-10">
-                    <div className="artisan-name-pill">
-                      <User className="w-3.5 h-3.5 text-white" />
-                      <span>{a.name}</span>
+                  {/* Card Body */}
+                  <div className="pt-7 px-5 pb-4 space-y-3">
+                    {/* Location Row with Map Pin - Full text, clean wrapping */}
+                    <div className="flex items-start gap-2 text-xs sm:text-[13px] text-[#4A453F] leading-snug">
+                      <MapPin className="w-4 h-4 text-[#174C38] shrink-0 mt-0.5" />
+                      <span>{a.village || a.location}</span>
                     </div>
+
+                    {/* Quote with Orange/Terracotta Left Border */}
+                    {cleanAQuote && (
+                      <div className="artisan-quote-accent">
+                        &ldquo;{cleanAQuote}&rdquo;
+                      </div>
+                    )}
                   </div>
                 </div>
 
-                {/* Card Body */}
-                <div className="pt-7 px-5 pb-4 space-y-3">
-                  {/* Location Row with Map Pin */}
-                  <div className="flex items-center gap-2 text-xs sm:text-[13px] text-[#5D554D]">
-                    <MapPin className="w-4 h-4 text-[#174C38] shrink-0" />
-                    <span className="truncate">{a.village || a.location}</span>
-                  </div>
-
-                  {/* Quote with Orange/Terracotta Left Border */}
-                  <div className="artisan-quote-accent">
-                    &ldquo;{a.quote}&rdquo;
-                  </div>
+                {/* Centered Outline Pill Button: Xem hồ sơ */}
+                <div className="px-5 pb-5 pt-1 text-center">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedArtisanModal(a);
+                    }}
+                    className="btn-artisan-outline w-full sm:w-auto"
+                  >
+                    <span>Xem hồ sơ</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
                 </div>
               </div>
-
-              {/* Centered Outline Pill Button: Xem hồ sơ */}
-              <div className="px-5 pb-5 pt-1 text-center">
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setSelectedArtisanModal(a);
-                  }}
-                  className="btn-artisan-outline w-full sm:w-auto"
-                >
-                  <span>Xem hồ sơ</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </button>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Section Bottom Button flanked by Diamond Motifs */}
@@ -1208,13 +1213,13 @@ export default function HomePage() {
           <span className="text-[#C97A3E] text-base select-none">❖</span>
         </div>
 
-        {/* Bottom Panoramic Landscape Strip (Hình 2 Núi Rừng Sương Mờ) */}
+        {/* Bottom Illustrated Landscape Strip (Lush Hills & Pine Trees) */}
         <div
-          className="w-full h-24 sm:h-32 bg-bottom bg-cover bg-no-repeat mt-6 rounded-2xl overflow-hidden opacity-90 border border-[#EAE3D2] shadow-2xs"
+          className="w-full h-24 sm:h-32 bg-bottom bg-contain sm:bg-cover bg-no-repeat mt-6 opacity-95 max-w-6xl mx-auto"
           style={{
-            backgroundImage: "url('/images/custom/tay_nguyen_misty_mountain.jpg')",
+            backgroundImage: "url('/images/custom/illustrated_mountain_footer.png')",
           }}
-          title="Toàn cảnh sương sớm thung lũng dệt thổ cẩm Ia Mơ Nông, Gia Lai"
+          title="Toàn cảnh thiên nhiên Tây Nguyên — JRAI ƠI"
         />
       </div>
     </section>

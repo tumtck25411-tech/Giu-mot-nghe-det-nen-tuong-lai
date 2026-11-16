@@ -325,8 +325,27 @@ export default function CustomOrderPage() {
   };
 
   return (
-    <div className="w-full bg-[#FAF5EC] min-h-screen py-10 lg:py-14">
-      <div className="w-full max-w-6xl 2xl:max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 flex flex-col items-center">
+    <div
+      className="w-full min-h-screen py-10 lg:py-14 relative overflow-hidden"
+      style={{
+        backgroundColor: '#FAF7F2',
+        backgroundImage: "url('/images/custom/texture_paper_cotton.jpg')",
+        backgroundRepeat: 'repeat',
+      }}
+    >
+      {/* Decorative Brocade Diamond Watermarks on Top Corners */}
+      <div
+        className="absolute top-0 left-0 w-64 sm:w-80 h-32 pointer-events-none opacity-20 bg-contain bg-no-repeat bg-top-left"
+        style={{ backgroundImage: "url('/images/custom/brocade_corner_left.png')" }}
+        aria-hidden="true"
+      />
+      <div
+        className="absolute top-0 right-0 w-64 sm:w-80 h-32 pointer-events-none opacity-20 bg-contain bg-no-repeat bg-top-right"
+        style={{ backgroundImage: "url('/images/custom/brocade_corner_right.png')" }}
+        aria-hidden="true"
+      />
+
+      <div className="w-full max-w-6xl 2xl:max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 flex flex-col items-center relative z-10">
         
         {/* Toast Notification */}
         {addedNotice && (
@@ -385,7 +404,7 @@ export default function CustomOrderPage() {
                   <div className={`text-xs sm:text-sm font-medium ${isCurrent ? 'text-[#FFFDF9]' : 'text-[#2D2926]'}`}>
                     {step.title}
                   </div>
-                  <div className={`text-[11px] truncate mt-0.5 ${isCurrent ? 'text-[#E8DFC8]' : 'text-[#8A7E72]'}`}>
+                  <div className={`text-[11px] leading-snug line-clamp-1 mt-0.5 ${isCurrent ? 'text-[#E8DFC8]' : 'text-[#8A7E72]'}`}>
                     {step.sub}
                   </div>
                 </button>
@@ -856,6 +875,15 @@ export default function CustomOrderPage() {
             </div>
           </div>
         )}
+
+        {/* Bottom Illustrated Mountain Landscape Strip */}
+        <div
+          className="w-full h-24 sm:h-32 bg-bottom bg-contain sm:bg-cover bg-no-repeat mt-12 opacity-95 max-w-6xl mx-auto"
+          style={{
+            backgroundImage: "url('/images/custom/illustrated_mountain_footer.png')",
+          }}
+          title="Toàn cảnh thiên nhiên Tây Nguyên — JRAI ƠI"
+        />
       </div>
     </div>
   );

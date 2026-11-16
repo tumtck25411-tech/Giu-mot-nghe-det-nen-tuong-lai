@@ -291,7 +291,27 @@ export default function CheckoutPage() {
   };
 
   return (
-    <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-8 lg:px-12 py-10 space-y-8">
+    <div
+      className="w-full min-h-screen py-10 relative overflow-hidden"
+      style={{
+        backgroundColor: '#FAF7F2',
+        backgroundImage: "url('/images/custom/texture_paper_cotton.jpg')",
+        backgroundRepeat: 'repeat',
+      }}
+    >
+      {/* Decorative Brocade Diamond Watermarks on Top Corners */}
+      <div
+        className="absolute top-0 left-0 w-64 sm:w-80 h-32 pointer-events-none opacity-20 bg-contain bg-no-repeat bg-top-left"
+        style={{ backgroundImage: "url('/images/custom/brocade_corner_left.png')" }}
+        aria-hidden="true"
+      />
+      <div
+        className="absolute top-0 right-0 w-64 sm:w-80 h-32 pointer-events-none opacity-20 bg-contain bg-no-repeat bg-top-right"
+        style={{ backgroundImage: "url('/images/custom/brocade_corner_right.png')" }}
+        aria-hidden="true"
+      />
+
+      <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-8 lg:px-12 space-y-8 relative z-10">
       {/* 3-Step Breadcrumb Progress Bar */}
       <div className="max-w-3xl mx-auto">
         <div className="flex items-center justify-between relative">
@@ -739,7 +759,7 @@ export default function CheckoutPage() {
                     className="w-12 h-12 object-cover rounded-xl border border-[#E5DACB] bg-[#FBF8F3] shrink-0"
                   />
                   <div className="flex-1 min-w-0">
-                    <p className="text-xs font-bold text-[#1F1D1B] truncate">{item.product?.name}</p>
+                    <p className="text-xs font-bold text-[#1F1D1B] line-clamp-2 leading-snug">{item.product?.name}</p>
                     <p className="text-xs text-[#5D554D]">
                       {item.quantity} x {item.product?.price.toLocaleString('vi-VN')}₫
                     </p>
@@ -828,6 +848,15 @@ export default function CheckoutPage() {
         }}
         title="Đăng Nhập Để Tiếp Tục Đặt Hàng"
         subtitle="Vui lòng đăng nhập qua Google hoặc Facebook để hoàn tất thông tin nhận hàng và bảo lưu quyền lợi đơn hàng."
+      />
+
+      {/* Bottom Illustrated Mountain Landscape Strip */}
+      <div
+        className="w-full h-24 sm:h-32 bg-bottom bg-contain sm:bg-cover bg-no-repeat mt-12 opacity-95 max-w-6xl mx-auto"
+        style={{
+          backgroundImage: "url('/images/custom/illustrated_mountain_footer.png')",
+        }}
+        title="Toàn cảnh thiên nhiên Tây Nguyên — JRAI ƠI"
       />
     </div>
   );

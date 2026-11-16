@@ -129,8 +129,27 @@ function ProductsContent() {
   }, [products, selectedCategory, selectedArtisan, priceRange, searchTerm, sortBy]);
 
   return (
-    <div className="w-full bg-[#FAF5EC] min-h-screen py-10 lg:py-14">
-      <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-8 lg:px-12 space-y-8">
+    <div
+      className="w-full min-h-screen py-10 lg:py-14 relative overflow-hidden"
+      style={{
+        backgroundColor: '#FAF7F2',
+        backgroundImage: "url('/images/custom/texture_paper_cotton.jpg')",
+        backgroundRepeat: 'repeat',
+      }}
+    >
+      {/* Decorative Brocade Diamond Watermarks on Top Corners */}
+      <div
+        className="absolute top-0 left-0 w-64 sm:w-80 h-32 pointer-events-none opacity-20 bg-contain bg-no-repeat bg-top-left"
+        style={{ backgroundImage: "url('/images/custom/brocade_corner_left.png')" }}
+        aria-hidden="true"
+      />
+      <div
+        className="absolute top-0 right-0 w-64 sm:w-80 h-32 pointer-events-none opacity-20 bg-contain bg-no-repeat bg-top-right"
+        style={{ backgroundImage: "url('/images/custom/brocade_corner_right.png')" }}
+        aria-hidden="true"
+      />
+
+      <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-8 lg:px-12 space-y-8 relative z-10">
         
         {/* Toast Notification */}
         {addedNotice && (
@@ -350,7 +369,7 @@ function ProductsContent() {
                         <Clock className="w-3 h-3 text-[#C99A45]" />
                         <span>{p.production_time || 'Dệt cửi hông'}</span>
                       </span>
-                      <span className="text-[11px] text-[#174C38] truncate max-w-[140px] font-medium">
+                      <span className="text-[11px] text-[#174C38] font-medium">
                         {p.artisan_name || 'Làng Kép'}
                       </span>
                     </div>
@@ -360,7 +379,7 @@ function ProductsContent() {
                   <div className="p-5 flex-1 flex flex-col justify-between space-y-3">
                     <div>
                       <Link href={`/product/${p.id}`} className="block group/link cursor-pointer">
-                        <h3 className="font-semibold text-base text-[#174C38] group-hover/link:text-[#C99A45] transition-colors line-clamp-1">
+                        <h3 className="font-semibold text-base text-[#174C38] group-hover/link:text-[#C99A45] transition-colors line-clamp-2 min-h-[44px]">
                           {p.name}
                         </h3>
                         <p className="text-xs text-[#59524C] mt-1.5 line-clamp-2 leading-relaxed font-normal">
@@ -417,6 +436,15 @@ function ProductsContent() {
             })}
           </div>
         )}
+
+        {/* Bottom Illustrated Mountain Landscape Strip */}
+        <div
+          className="w-full h-24 sm:h-32 bg-bottom bg-contain sm:bg-cover bg-no-repeat mt-12 opacity-95 max-w-6xl mx-auto"
+          style={{
+            backgroundImage: "url('/images/custom/illustrated_mountain_footer.png')",
+          }}
+          title="Toàn cảnh thiên nhiên Tây Nguyên — JRAI ƠI"
+        />
       </div>
     </div>
   );

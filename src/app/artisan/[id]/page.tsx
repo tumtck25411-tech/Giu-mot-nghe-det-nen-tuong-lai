@@ -72,16 +72,33 @@ export default function ArtisanDetailPage() {
     );
   }
 
+  const cleanQuote = (text?: string) => {
+    if (!text) return '';
+    return text.replace(/^[“"«\s]+|[”"»\s]+$/g, '').trim();
+  };
+
   return (
     <div
-      className="w-full min-h-screen py-8 lg:py-12 relative"
+      className="w-full min-h-screen py-8 lg:py-12 relative overflow-hidden"
       style={{
         backgroundColor: '#FAF7F2',
         backgroundImage: "url('/images/custom/texture_paper_cotton.jpg')",
         backgroundRepeat: 'repeat',
       }}
     >
-      <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-8 lg:px-12 space-y-8">
+      {/* Decorative Brocade Diamond Watermarks on Top Corners */}
+      <div
+        className="absolute top-0 left-0 w-64 sm:w-80 h-32 pointer-events-none opacity-20 bg-contain bg-no-repeat bg-top-left"
+        style={{ backgroundImage: "url('/images/custom/brocade_corner_left.png')" }}
+        aria-hidden="true"
+      />
+      <div
+        className="absolute top-0 right-0 w-64 sm:w-80 h-32 pointer-events-none opacity-20 bg-contain bg-no-repeat bg-top-right"
+        style={{ backgroundImage: "url('/images/custom/brocade_corner_right.png')" }}
+        aria-hidden="true"
+      />
+
+      <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-8 lg:px-12 space-y-8 relative z-10">
         
         {/* Breadcrumb */}
         <nav className="flex items-center gap-2 text-xs text-[#59524C]">
@@ -131,7 +148,7 @@ export default function ArtisanDetailPage() {
 
             {artisan.quote && (
               <div className="artisan-quote-accent bg-[#FAF7F2] p-4 rounded-xl">
-                &ldquo;{artisan.quote}&rdquo;
+                &ldquo;{cleanQuote(artisan.quote)}&rdquo;
               </div>
             )}
 
@@ -216,6 +233,14 @@ export default function ArtisanDetailPage() {
           )}
         </section>
 
+        {/* Bottom Illustrated Mountain Landscape Strip */}
+        <div
+          className="w-full h-24 sm:h-32 bg-bottom bg-contain sm:bg-cover bg-no-repeat mt-12 opacity-95 max-w-6xl mx-auto"
+          style={{
+            backgroundImage: "url('/images/custom/illustrated_mountain_footer.png')",
+          }}
+          title="Toàn cảnh thiên nhiên Tây Nguyên — JRAI ƠI"
+        />
       </div>
     </div>
   );

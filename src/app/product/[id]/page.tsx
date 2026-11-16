@@ -160,8 +160,27 @@ export default function ProductDetailPage() {
   const traceabilityUrl = `${getPublicDomain()}/traceability?code=${product.product_code}`;
 
   return (
-    <div className="w-full bg-[#FAF5EC] min-h-screen py-8 lg:py-12">
-      <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 space-y-10">
+    <div
+      className="w-full min-h-screen py-8 lg:py-12 relative overflow-hidden"
+      style={{
+        backgroundColor: '#FAF7F2',
+        backgroundImage: "url('/images/custom/texture_paper_cotton.jpg')",
+        backgroundRepeat: 'repeat',
+      }}
+    >
+      {/* Decorative Brocade Diamond Watermarks on Top Corners */}
+      <div
+        className="absolute top-0 left-0 w-64 sm:w-80 h-32 pointer-events-none opacity-20 bg-contain bg-no-repeat bg-top-left"
+        style={{ backgroundImage: "url('/images/custom/brocade_corner_left.png')" }}
+        aria-hidden="true"
+      />
+      <div
+        className="absolute top-0 right-0 w-64 sm:w-80 h-32 pointer-events-none opacity-20 bg-contain bg-no-repeat bg-top-right"
+        style={{ backgroundImage: "url('/images/custom/brocade_corner_right.png')" }}
+        aria-hidden="true"
+      />
+
+      <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 space-y-10 relative z-10">
         {/* Toast Feedback */}
         {addedNotice && (
           <div className="fixed bottom-6 right-6 z-50 bg-[#174C38] text-[#FFFDF9] px-5 py-3.5 rounded-2xl shadow-xl border border-[#C99A45] flex items-center gap-3 animate-in slide-in-from-bottom duration-300">
@@ -317,7 +336,7 @@ export default function ProductDetailPage() {
                 <MapPin className="w-4 h-4 text-[#C99A45] shrink-0" />
                 <div>
                   <span className="text-[11px] text-[#8A7E72] uppercase font-medium block">Địa bàn dệt</span>
-                  <span className="text-xs font-medium text-[#174C38] truncate block max-w-[140px]">
+                  <span className="text-xs font-medium text-[#174C38] block leading-snug">
                     {product.location || 'Ia Mơ Nông, Chư Păh'}
                   </span>
                 </div>
@@ -327,7 +346,7 @@ export default function ProductDetailPage() {
                 <Layers className="w-4 h-4 text-[#C99A45] shrink-0" />
                 <div>
                   <span className="text-[11px] text-[#8A7E72] uppercase font-medium block">Chất liệu</span>
-                  <span className="text-xs font-medium text-[#174C38] truncate block max-w-[140px]">
+                  <span className="text-xs font-medium text-[#174C38] block leading-snug">
                     {product.material}
                   </span>
                 </div>
@@ -337,7 +356,7 @@ export default function ProductDetailPage() {
                 <User className="w-4 h-4 text-[#C99A45] shrink-0" />
                 <div>
                   <span className="text-[11px] text-[#8A7E72] uppercase font-medium block">Nghệ nhân thực hiện</span>
-                  <span className="text-xs font-medium text-[#174C38] truncate block max-w-[140px]">
+                  <span className="text-xs font-medium text-[#174C38] block leading-snug">
                     {product.artisan_name || 'Nghệ nhân Jrai'}
                   </span>
                 </div>
@@ -712,6 +731,15 @@ export default function ProductDetailPage() {
           </div>
         </section>
       )}
+
+      {/* Bottom Illustrated Mountain Landscape Strip */}
+      <div
+        className="w-full h-24 sm:h-32 bg-bottom bg-contain sm:bg-cover bg-no-repeat mt-12 opacity-95 max-w-6xl mx-auto"
+        style={{
+          backgroundImage: "url('/images/custom/illustrated_mountain_footer.png')",
+        }}
+        title="Toàn cảnh thiên nhiên Tây Nguyên — JRAI ƠI"
+      />
     </div>
   );
 }

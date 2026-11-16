@@ -112,7 +112,27 @@ function OrderTrackingContent() {
   };
 
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10">
+    <div
+      className="w-full min-h-screen py-10 relative overflow-hidden"
+      style={{
+        backgroundColor: '#FAF7F2',
+        backgroundImage: "url('/images/custom/texture_paper_cotton.jpg')",
+        backgroundRepeat: 'repeat',
+      }}
+    >
+      {/* Decorative Brocade Diamond Watermarks on Top Corners */}
+      <div
+        className="absolute top-0 left-0 w-64 sm:w-80 h-32 pointer-events-none opacity-20 bg-contain bg-no-repeat bg-top-left"
+        style={{ backgroundImage: "url('/images/custom/brocade_corner_left.png')" }}
+        aria-hidden="true"
+      />
+      <div
+        className="absolute top-0 right-0 w-64 sm:w-80 h-32 pointer-events-none opacity-20 bg-contain bg-no-repeat bg-top-right"
+        style={{ backgroundImage: "url('/images/custom/brocade_corner_right.png')" }}
+        aria-hidden="true"
+      />
+
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 relative z-10">
       {/* Header Banner */}
       <div className="bg-gradient-to-r from-[#231C18] via-[#1E1713] to-[#231C18] text-white p-8 sm:p-12 rounded-2xl border border-amber-900/40 relative overflow-hidden shadow-sm text-center">
         <div className="max-w-2xl mx-auto space-y-3 relative z-10">
@@ -345,7 +365,7 @@ function OrderTrackingContent() {
               <div className="space-y-2 max-h-48 overflow-y-auto pr-1">
                 {order.items.map((it, idx) => (
                   <div key={idx} className="flex justify-between items-center py-1 border-b border-[#F5EFEB] text-[#1F1D1B]">
-                    <span className="truncate max-w-[200px] font-medium">
+                    <span className="font-medium leading-snug pr-2">
                       {it.quantity} x {it.productName}
                     </span>
                     <span className="font-mono font-bold text-[#C43B3D]">
@@ -363,6 +383,15 @@ function OrderTrackingContent() {
           </div>
         </div>
       )}
+
+      {/* Bottom Illustrated Mountain Landscape Strip */}
+      <div
+        className="w-full h-24 sm:h-32 bg-bottom bg-contain sm:bg-cover bg-no-repeat mt-12 opacity-95 max-w-6xl mx-auto"
+        style={{
+          backgroundImage: "url('/images/custom/illustrated_mountain_footer.png')",
+        }}
+        title="Toàn cảnh thiên nhiên Tây Nguyên — JRAI ƠI"
+      />
     </div>
   );
 }

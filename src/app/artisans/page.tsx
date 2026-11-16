@@ -21,9 +21,14 @@ export default function ArtisansPage() {
     return () => window.removeEventListener('jrai_store_updated', loadData);
   }, []);
 
+  const cleanQuote = (text?: string) => {
+    if (!text) return '';
+    return text.replace(/^[“"«\s]+|[”"»\s]+$/g, '').trim();
+  };
+
   return (
     <div
-      className="w-full min-h-screen py-10 lg:py-16 relative"
+      className="w-full min-h-screen py-10 lg:py-16 relative overflow-hidden"
       style={{
         backgroundColor: '#FAF7F2',
         backgroundImage: "url('/images/custom/texture_paper_cotton.jpg')",
@@ -32,20 +37,20 @@ export default function ArtisansPage() {
     >
       {/* Decorative Brocade Diamond Watermarks on Top Corners */}
       <div
-        className="absolute top-0 left-0 w-48 h-48 pointer-events-none opacity-10 bg-contain bg-no-repeat"
-        style={{ backgroundImage: "url('/images/custom/brocade_diamond_pattern.jpg')" }}
+        className="absolute top-0 left-0 w-64 sm:w-80 h-32 pointer-events-none opacity-25 bg-contain bg-no-repeat bg-top-left"
+        style={{ backgroundImage: "url('/images/custom/brocade_corner_left.png')" }}
         aria-hidden="true"
       />
       <div
-        className="absolute top-0 right-0 w-48 h-48 pointer-events-none opacity-10 bg-contain bg-no-repeat"
-        style={{ backgroundImage: "url('/images/custom/brocade_diamond_pattern.jpg')" }}
+        className="absolute top-0 right-0 w-64 sm:w-80 h-32 pointer-events-none opacity-25 bg-contain bg-no-repeat bg-top-right"
+        style={{ backgroundImage: "url('/images/custom/brocade_corner_right.png')" }}
         aria-hidden="true"
       />
 
       <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10 space-y-12">
         {/* Header - Chuẩn Format Demo Hình 5 */}
         <div className="text-center max-w-3xl mx-auto space-y-3.5">
-          <h1 className="text-3xl sm:text-4xl lg:text-[42px] font-bold text-[#174C38] tracking-tight">
+          <h1 className="text-3xl sm:text-4xl lg:text-[42px] font-bold text-[#174C38] tracking-tight font-serif">
             Nghệ nhân Dệt Thổ Cẩm
           </h1>
 
@@ -71,7 +76,7 @@ export default function ArtisansPage() {
             >
               <div>
                 {/* Photo with top-left badge and floating name pill */}
-                <div className="relative aspect-[16/11] sm:aspect-[4/3] w-full overflow-hidden bg-[#FAF5EC]">
+                <div className="relative aspect-[16/11] sm:aspect-[4/3] w-full overflow-hidden bg-[#FAF5EC] rounded-t-[19px]">
                   <img
                     src={artisan.avatar || artisan.image_url}
                     alt={artisan.name}
@@ -82,7 +87,7 @@ export default function ArtisansPage() {
                   {/* Top-left: Star badge "★ X năm tuổi nghề" */}
                   <div className="absolute top-3.5 left-3.5 z-10">
                     <div className="artisan-badge-pill">
-                      <Star className="w-3.5 h-3.5 fill-white text-white" />
+                      <Star className="w-3.5 h-3.5 fill-white text-white shrink-0" />
                       <span>{artisan.experience_years ? `${artisan.experience_years} năm tuổi nghề` : artisan.experience}</span>
                     </div>
                   </div>
@@ -90,7 +95,7 @@ export default function ArtisansPage() {
                   {/* Floating Name Pill overlapping bottom edge of image */}
                   <div className="absolute -bottom-4 left-4 z-10">
                     <div className="artisan-name-pill">
-                      <User className="w-3.5 h-3.5 text-white" />
+                      <User className="w-3.5 h-3.5 text-white shrink-0" />
                       <span>{artisan.name}</span>
                     </div>
                   </div>
@@ -98,23 +103,18 @@ export default function ArtisansPage() {
 
                 {/* Card Body */}
                 <div className="pt-7 px-5 pb-4 space-y-3">
-                  {/* Location Row with Map Pin */}
-                  <div className="flex items-center gap-2 text-xs sm:text-[13px] text-[#5D554D]">
-                    <MapPin className="w-4 h-4 text-[#174C38] shrink-0" />
-                    <span className="truncate">{artisan.village || artisan.location}</span>
+                  {/* Location Row with Map Pin - Full text, clean wrapping */}
+                  <div className="flex items-start gap-2 text-xs sm:text-[13px] text-[#4A453F] leading-snug">
+                    <MapPin className="w-4 h-4 text-[#174C38] shrink-0 mt-0.5" />
+                    <span>{artisan.village || artisan.location}</span>
                   </div>
 
                   {/* Quote with Orange/Terracotta Left Border */}
                   {artisan.quote && (
                     <div className="artisan-quote-accent">
-                      &ldquo;{artisan.quote}&rdquo;
+                      &ldquo;{cleanQuote(artisan.quote)}&rdquo;
                     </div>
                   )}
-
-                  {/* Specialty / Bio preview */}
-                  <p className="text-xs sm:text-[13px] text-[#59524C] leading-relaxed line-clamp-2 pt-1">
-                    {artisan.specialty || artisan.bio}
-                  </p>
                 </div>
               </div>
 
@@ -132,13 +132,13 @@ export default function ArtisansPage() {
           ))}
         </div>
 
-        {/* Bottom Panoramic Landscape Strip (Hình 2 Núi Rừng Sương Mờ) */}
+        {/* Bottom Illustrated Mountain Landscape Strip */}
         <div
-          className="w-full h-28 sm:h-40 bg-bottom bg-cover bg-no-repeat mt-10 rounded-2xl overflow-hidden opacity-90 border border-[#EAE3D2] shadow-2xs max-w-6xl mx-auto"
+          className="w-full h-24 sm:h-32 bg-bottom bg-contain sm:bg-cover bg-no-repeat mt-12 opacity-95 max-w-6xl mx-auto"
           style={{
-            backgroundImage: "url('/images/custom/tay_nguyen_misty_mountain.jpg')",
+            backgroundImage: "url('/images/custom/illustrated_mountain_footer.png')",
           }}
-          title="Toàn cảnh sương sớm thung lũng dệt thổ cẩm Ia Mơ Nông, Gia Lai"
+          title="Toàn cảnh thiên nhiên Tây Nguyên — JRAI ƠI"
         />
       </div>
     </div>

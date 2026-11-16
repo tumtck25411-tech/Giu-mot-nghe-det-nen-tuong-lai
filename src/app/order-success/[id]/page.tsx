@@ -52,7 +52,27 @@ export default function OrderSuccessPage() {
   )}&accountName=${encodeURIComponent('JRAI OI HANDICRAFT')}`;
 
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
+    <div
+      className="w-full min-h-screen py-10 relative overflow-hidden"
+      style={{
+        backgroundColor: '#FAF7F2',
+        backgroundImage: "url('/images/custom/texture_paper_cotton.jpg')",
+        backgroundRepeat: 'repeat',
+      }}
+    >
+      {/* Decorative Brocade Diamond Watermarks on Top Corners */}
+      <div
+        className="absolute top-0 left-0 w-64 sm:w-80 h-32 pointer-events-none opacity-20 bg-contain bg-no-repeat bg-top-left"
+        style={{ backgroundImage: "url('/images/custom/brocade_corner_left.png')" }}
+        aria-hidden="true"
+      />
+      <div
+        className="absolute top-0 right-0 w-64 sm:w-80 h-32 pointer-events-none opacity-20 bg-contain bg-no-repeat bg-top-right"
+        style={{ backgroundImage: "url('/images/custom/brocade_corner_right.png')" }}
+        aria-hidden="true"
+      />
+
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 relative z-10">
       {/* 3-Step Breadcrumb Progress Bar */}
       <div className="max-w-3xl mx-auto">
         <div className="flex items-center justify-between relative">
@@ -216,7 +236,7 @@ export default function OrderSuccessPage() {
           <div className="space-y-2.5 max-h-48 overflow-y-auto pr-1">
             {order.items.map((item, idx) => (
               <div key={idx} className="flex justify-between items-center py-1 border-b border-[#F5EFEB]">
-                <span className="truncate max-w-[220px] font-semibold text-[#1F1D1B]">
+                <span className="font-semibold text-[#1F1D1B] leading-snug pr-2">
                   {item.quantity} x {item.productName}
                 </span>
                 <span className="font-mono font-bold text-[#C43B3D]">
@@ -273,6 +293,15 @@ export default function OrderSuccessPage() {
           <ArrowRight className="w-4 h-4" />
         </Link>
       </div>
+
+      {/* Bottom Illustrated Mountain Landscape Strip */}
+      <div
+        className="w-full h-24 sm:h-32 bg-bottom bg-contain sm:bg-cover bg-no-repeat mt-12 opacity-95 max-w-6xl mx-auto"
+        style={{
+          backgroundImage: "url('/images/custom/illustrated_mountain_footer.png')",
+        }}
+        title="Toàn cảnh thiên nhiên Tây Nguyên — JRAI ƠI"
+      />
     </div>
   );
 }
