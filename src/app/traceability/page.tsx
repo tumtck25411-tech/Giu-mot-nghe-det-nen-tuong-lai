@@ -231,73 +231,73 @@ function TraceabilityContent() {
 
       <div className="w-full max-w-[1600px] xl:px-12 mx-auto px-4 sm:px-8 lg:px-12 space-y-8 relative z-10">
         
-        {/* Header - Modern Ethnic Boutique */}
-        <div className="bg-[#FFFDF9] p-8 sm:p-12 rounded-2xl border border-[#E8DFC8] shadow-xs text-center max-w-4xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#FAF5EC] border border-[#E8DFC8] text-xs font-medium text-[#C99A45]">
-            <span>◇</span>
+        {/* Header - Modern Ethnic Boutique (Full Width) */}
+        <div className="bg-[#FFFDF9] p-8 sm:p-12 rounded-2xl border border-[#E8DFC8] shadow-xs text-center w-full space-y-3.5">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FAF5EC] border border-[#E8DFC8] text-xs font-semibold text-[#C99A45]">
+            <span>❖</span>
             <span>Minh Bạch Nguồn Gốc Số Hóa</span>
-            <span>◇</span>
+            <span>❖</span>
           </div>
-          <h1 className="text-3xl sm:text-4xl font-semibold text-[#174C38] tracking-tight">
+          <h1 className="text-3xl sm:text-4xl lg:text-[40px] font-semibold text-[#174C38] tracking-tight font-serif">
             Tra cứu nguồn gốc sản phẩm
           </h1>
-          <p className="text-[#59524C] text-sm sm:text-base leading-relaxed max-w-xl mx-auto font-normal">
+          <p className="text-[#59524C] text-sm sm:text-base leading-relaxed max-w-2xl mx-auto font-normal">
             Mỗi sản phẩm thổ cẩm thủ công JRAI ƠI đều gắn liền với một nghệ nhân buôn làng. Quét mã QR hoặc nhập mã tem để chứng thực giờ dệt, phôi sợi tự nhiên và hoa văn bản địa.
           </p>
         </div>
 
-        {/* 3 STEPS INSTRUCTION GUIDE */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
-          <div className="bg-[#FFFDF9] p-5 rounded-2xl border border-[#E8DFC8] space-y-1.5 shadow-xs">
-            <span className="text-xs font-medium text-[#C99A45] uppercase tracking-wider block">Bước 01</span>
-            <h3 className="font-semibold text-sm text-[#174C38]">Tìm mã trên tem sản phẩm</h3>
-            <p className="text-xs text-[#59524C] leading-relaxed">
+        {/* 3 STEPS INSTRUCTION GUIDE - FULL WIDTH */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6 w-full">
+          <div className="bg-[#FFFDF9] p-6 sm:p-7 rounded-2xl border border-[#E8DFC8] space-y-2 shadow-xs hover:border-[#174C38]/40 transition">
+            <span className="text-xs font-bold text-[#C99A45] uppercase tracking-wider block">Bước 01</span>
+            <h3 className="font-semibold text-base sm:text-lg text-[#174C38]">Tìm mã trên tem sản phẩm</h3>
+            <p className="text-xs sm:text-sm text-[#59524C] leading-relaxed">
               Kiểm tra thẻ giấy hoặc mác vải đính kèm để lấy mã định danh (như K001, B001...).
             </p>
           </div>
-          <div className="bg-[#FFFDF9] p-5 rounded-2xl border border-[#E8DFC8] space-y-1.5 shadow-xs">
-            <span className="text-xs font-medium text-[#C99A45] uppercase tracking-wider block">Bước 02</span>
-            <h3 className="font-semibold text-sm text-[#174C38]">Quét QR hoặc nhập mã số</h3>
-            <p className="text-xs text-[#59524C] leading-relaxed">
+          <div className="bg-[#FFFDF9] p-6 sm:p-7 rounded-2xl border border-[#E8DFC8] space-y-2 shadow-xs hover:border-[#174C38]/40 transition">
+            <span className="text-xs font-bold text-[#C99A45] uppercase tracking-wider block">Bước 02</span>
+            <h3 className="font-semibold text-base sm:text-lg text-[#174C38]">Quét QR hoặc nhập mã số</h3>
+            <p className="text-xs sm:text-sm text-[#59524C] leading-relaxed">
               Mở camera quét mã QR trực tiếp hoặc điền mã vào khung tìm kiếm bên dưới.
             </p>
           </div>
-          <div className="bg-[#FFFDF9] p-5 rounded-2xl border border-[#E8DFC8] space-y-1.5 shadow-xs">
-            <span className="text-xs font-medium text-[#C99A45] uppercase tracking-wider block">Bước 03</span>
-            <h3 className="font-semibold text-sm text-[#174C38]">Nhận hộ chiếu số di sản</h3>
-            <p className="text-xs text-[#59524C] leading-relaxed">
+          <div className="bg-[#FFFDF9] p-6 sm:p-7 rounded-2xl border border-[#E8DFC8] space-y-2 shadow-xs hover:border-[#174C38]/40 transition">
+            <span className="text-xs font-bold text-[#C99A45] uppercase tracking-wider block">Bước 03</span>
+            <h3 className="font-semibold text-base sm:text-lg text-[#174C38]">Nhận hộ chiếu số di sản</h3>
+            <p className="text-xs sm:text-sm text-[#59524C] leading-relaxed">
               Xem hồ sơ nghệ nhân, thời gian dệt cửi hông, xuất xứ buôn làng và ý nghĩa hoa văn.
             </p>
           </div>
         </div>
 
-        {/* SEARCH CARD */}
-        <div className="bg-[#FFFDF9] p-6 sm:p-8 rounded-2xl border border-[#E8DFC8] shadow-xs space-y-5 max-w-4xl mx-auto">
-          <div className="text-center space-y-1">
-            <h2 className="text-base sm:text-lg font-semibold text-[#174C38]">
+        {/* SEARCH CARD - FULL WIDTH */}
+        <div className="bg-[#FFFDF9] p-6 sm:p-10 rounded-2xl border border-[#E8DFC8] shadow-xs space-y-6 w-full">
+          <div className="text-center space-y-1.5 max-w-2xl mx-auto">
+            <h2 className="text-xl sm:text-2xl font-semibold text-[#174C38]">
               Nhập mã tem sản phẩm hoặc quét mã QR
             </h2>
-            <p className="text-xs text-[#59524C]">
-              Định dạng: K001, B001, V001, C001, VI001...
+            <p className="text-xs sm:text-sm text-[#59524C]">
+              Định dạng: <span className="font-mono font-medium text-[#174C38]">K001, B001, V001, C001, VI001, TT001, TD001, A001...</span>
             </p>
           </div>
 
           {/* Search Input Bar */}
-          <form onSubmit={handleFormSubmit} className="flex flex-col sm:flex-row gap-3">
+          <form onSubmit={handleFormSubmit} className="flex flex-col sm:flex-row gap-3 max-w-3xl mx-auto w-full">
             <div className="relative flex-1">
-              <Search className="w-4 h-4 absolute left-3.5 top-3.5 text-[#8A7E72]" />
+              <Search className="w-5 h-5 absolute left-3.5 top-3.5 text-[#8A7E72]" />
               <input
                 type="text"
                 value={inputCode}
                 onChange={(e) => setInputCode(e.target.value)}
                 placeholder="Nhập mã: V001, K001, B001, C001, VI001..."
-                className="w-full pl-10 pr-4 py-2.5 bg-[#FAF5EC] border border-[#E8DFC8] rounded-xl text-xs sm:text-sm text-[#2D2926] placeholder-[#8A7E72] focus:outline-none focus:border-[#174C38] focus:bg-[#FFFDF9] font-mono"
+                className="w-full pl-11 pr-4 py-3 bg-[#FAF5EC] border border-[#E8DFC8] rounded-xl text-sm text-[#2D2926] placeholder-[#8A7E72] focus:outline-none focus:border-[#174C38] focus:bg-[#FFFDF9] font-mono shadow-2xs"
               />
             </div>
 
             <button
               type="submit"
-              className="bg-[#174C38] hover:bg-[#0E3626] text-[#FFFDF9] text-xs sm:text-sm font-medium px-6 py-2.5 rounded-xl shadow-xs transition-all flex items-center justify-center gap-2 cursor-pointer"
+              className="bg-[#174C38] hover:bg-[#0E3626] text-[#FFFDF9] text-sm font-semibold px-7 py-3 rounded-xl shadow-xs transition-all flex items-center justify-center gap-2 cursor-pointer shrink-0"
             >
               <Search className="w-4 h-4 text-[#C99A45]" />
               <span>Tra cứu ngay</span>
@@ -306,7 +306,7 @@ function TraceabilityContent() {
             <button
               type="button"
               onClick={toggleCamera}
-              className="bg-[#FAF5EC] hover:bg-[#E8DFC8] text-[#174C38] text-xs sm:text-sm font-medium px-4 py-2.5 rounded-xl border border-[#E8DFC8] transition-all flex items-center justify-center gap-1.5 cursor-pointer"
+              className="bg-[#FAF5EC] hover:bg-[#E8DFC8] text-[#174C38] text-sm font-semibold px-5 py-3 rounded-xl border border-[#E8DFC8] transition-all flex items-center justify-center gap-2 cursor-pointer shrink-0"
               title="Quét bằng camera"
             >
               <Camera className="w-4 h-4 text-[#174C38]" />
@@ -393,11 +393,11 @@ function TraceabilityContent() {
           )}
 
           {/* Sample Code Pills */}
-          <div className="pt-2 border-t border-[#E8DFC8] text-center space-y-2">
-            <span className="text-[11px] font-medium text-[#C99A45] uppercase tracking-wider block">
+          <div className="pt-4 border-t border-[#E8DFC8] text-center space-y-3">
+            <span className="text-xs font-semibold text-[#C99A45] uppercase tracking-wider block">
               Mã mẫu thử nghiệm:
             </span>
-            <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2">
+            <div className="flex flex-wrap justify-center gap-2 sm:gap-2.5 max-w-5xl mx-auto">
               {SAMPLE_CODES.map((s) => (
                 <button
                   key={s.code}
@@ -406,10 +406,10 @@ function TraceabilityContent() {
                     setInputCode(s.code);
                     handleLookup(s.code);
                   }}
-                  className={`text-xs px-3 py-1 rounded-full border transition-all font-mono cursor-pointer ${
+                  className={`text-xs sm:text-sm px-4 py-2 rounded-full border transition-all font-mono cursor-pointer font-medium ${
                     queriedCode.toUpperCase() === s.code
-                      ? 'bg-[#174C38] text-[#FFFDF9] border-[#174C38] font-medium shadow-xs'
-                      : 'bg-[#FAF5EC] text-[#59524C] hover:text-[#174C38] border-[#E8DFC8]'
+                      ? 'bg-[#174C38] text-[#FFFDF9] border-[#174C38] font-semibold shadow-xs'
+                      : 'bg-[#FAF5EC] hover:bg-[#EFE8DC] text-[#2D2926] hover:text-[#174C38] border-[#E8DFC8]'
                   }`}
                 >
                   {s.label}
@@ -419,35 +419,35 @@ function TraceabilityContent() {
           </div>
         </div>
 
-        {/* RESULT SECTION: DIGITAL PRODUCT PASSPORT */}
+        {/* RESULT SECTION: DIGITAL PRODUCT PASSPORT - FULL WIDTH */}
         {notFound && (
-          <div className="bg-[#FFFDF9] p-8 sm:p-12 rounded-2xl border border-[#E8DFC8] text-center space-y-3 shadow-xs max-w-4xl mx-auto">
-            <div className="w-12 h-12 rounded-full bg-[#FAF5EC] border border-[#E8DFC8] flex items-center justify-center mx-auto text-[#A94335]">
-              <AlertCircle className="w-6 h-6" />
+          <div className="bg-[#FFFDF9] p-10 sm:p-14 rounded-2xl border border-[#E8DFC8] text-center space-y-3.5 shadow-xs w-full">
+            <div className="w-14 h-14 rounded-full bg-[#FAF5EC] border border-[#E8DFC8] flex items-center justify-center mx-auto text-[#A94335] shadow-2xs">
+              <AlertCircle className="w-7 h-7" />
             </div>
-            <h3 className="text-lg font-semibold text-[#174C38]">
+            <h3 className="text-lg sm:text-xl font-semibold text-[#174C38]">
               Không tìm thấy dữ liệu cho mã &quot;{queriedCode}&quot;
             </h3>
-            <p className="text-xs text-[#59524C] max-w-md mx-auto">
+            <p className="text-xs sm:text-sm text-[#59524C] max-w-lg mx-auto leading-relaxed">
               Vui lòng kiểm tra lại mã in trên tem nhãn hoặc chọn một trong các mã mẫu thử nghiệm (K001, B001, VI001, C001...) ở phía trên.
             </p>
           </div>
         )}
 
         {!product && !notFound && (
-          <div className="bg-[#FFFDF9] p-8 sm:p-12 rounded-2xl border border-[#E8DFC8] text-center space-y-3 shadow-xs max-w-4xl mx-auto">
-            <div className="w-14 h-14 rounded-full bg-[#FAF5EC] border border-[#E8DFC8] flex items-center justify-center mx-auto text-xl">
+          <div className="bg-[#FFFDF9] p-12 sm:p-16 rounded-2xl border border-[#E8DFC8] text-center space-y-3.5 shadow-xs w-full">
+            <div className="w-16 h-16 rounded-full bg-[#FAF5EC] border border-[#E8DFC8] flex items-center justify-center mx-auto text-2xl shadow-2xs">
               📱
             </div>
-            <h3 className="text-base font-semibold text-[#174C38]">Chưa có mã tra cứu nào được chọn</h3>
-            <p className="text-xs text-[#59524C] max-w-md mx-auto">
+            <h3 className="text-lg sm:text-xl font-semibold text-[#174C38]">Chưa có mã tra cứu nào được chọn</h3>
+            <p className="text-xs sm:text-sm text-[#59524C] max-w-lg mx-auto leading-relaxed">
               Nhập mã tem sản phẩm vào ô tìm kiếm hoặc bấm vào các nút mã mẫu thử nghiệm để mở ra hộ chiếu số di sản của tác phẩm.
             </p>
           </div>
         )}
 
         {product && (
-          <div className="space-y-6 max-w-5xl mx-auto animate-in fade-in duration-300">
+          <div className="space-y-6 w-full animate-in fade-in duration-300">
             {/* Passport Banner Card */}
             <div className="bg-[#FFFDF9] rounded-2xl border border-[#E8DFC8] p-6 sm:p-8 shadow-xs relative overflow-hidden space-y-6">
               {/* Top Seal */}

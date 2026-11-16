@@ -65,17 +65,17 @@ export default function MotifsPage() {
 
       <div className="w-full max-w-[1600px] xl:px-12 mx-auto px-4 sm:px-8 lg:px-12 space-y-8 relative z-10">
         
-        {/* Header - Modern Ethnic Boutique Style */}
-        <div className="bg-[#FFFDF9] p-8 sm:p-12 rounded-2xl border border-[#E8DFC8] shadow-xs text-center max-w-4xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#FAF5EC] border border-[#E8DFC8] text-xs font-medium text-[#C99A45]">
-            <span>◇</span>
+        {/* Header - Modern Ethnic Boutique Style (Full Width) */}
+        <div className="bg-[#FFFDF9] p-8 sm:p-12 rounded-2xl border border-[#E8DFC8] shadow-xs text-center w-full space-y-3.5">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FAF5EC] border border-[#E8DFC8] text-xs font-semibold text-[#C99A45]">
+            <span>❖</span>
             <span>Kho Di Sản 20 Hoa Văn Bản Địa</span>
-            <span>◇</span>
+            <span>❖</span>
           </div>
-          <h1 className="text-3xl sm:text-4xl font-semibold text-[#174C38] tracking-tight">
+          <h1 className="text-3xl sm:text-4xl lg:text-[40px] font-semibold text-[#174C38] tracking-tight font-serif">
             Ngân hàng hoa văn thổ cẩm Jrai
           </h1>
-          <p className="text-[#59524C] text-sm sm:text-base leading-relaxed max-w-xl mx-auto font-normal">
+          <p className="text-[#59524C] text-sm sm:text-base leading-relaxed max-w-2xl mx-auto font-normal">
             Hệ thống số hóa 20 hoa văn cổ truyền người Jrai tại Gia Lai. Mỗi hoa văn là một ký hiệu văn hóa ước lệ khắc họa thiên nhiên, vũ trụ quan và đời sống tâm linh đại ngàn.
           </p>
         </div>

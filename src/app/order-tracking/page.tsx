@@ -132,7 +132,7 @@ function OrderTrackingContent() {
         aria-hidden="true"
       />
 
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 relative z-10">
+      <div className="w-full max-w-[1600px] xl:px-12 mx-auto px-4 sm:px-8 lg:px-12 space-y-10 relative z-10">
       {/* Header Banner */}
       <div className="bg-gradient-to-r from-[#231C18] via-[#1E1713] to-[#231C18] text-white p-8 sm:p-12 rounded-2xl border border-amber-900/40 relative overflow-hidden shadow-sm text-center">
         <div className="max-w-2xl mx-auto space-y-3 relative z-10">
