@@ -32,7 +32,9 @@ import {
   Check,
   Filter,
   Tag,
+  Eye,
 } from 'lucide-react';
+import { INITIAL_PRODUCTS } from '@/lib/initial-data';
 import {
   getProducts,
   getMotifs,
@@ -196,6 +198,52 @@ const HERO_SLIDES = [
   },
 ];
 
+// 6 Curated Featured Brocade Products (Tu Quy Garden Inspired Showcase)
+const FEATURED_SHOWCASE_CONFIG = [
+  {
+    code: 'K001',
+    badge: { icon: '🔥', text: 'Bán chạy', bg: 'bg-[#B9383A]' },
+    artisanNote: "Nghệ nhân H' Uyên Niê • Làng Kép",
+    reviewCount: 48,
+    rating: 5.0,
+  },
+  {
+    code: 'C001',
+    badge: { icon: '✨', text: 'Tiêu biểu', bg: 'bg-[#1E4D38]' },
+    artisanNote: "Nghệ nhân Rơ Châm H'Mút • Làng Kép",
+    reviewCount: 52,
+    rating: 5.0,
+  },
+  {
+    code: 'VI001',
+    badge: { icon: '🔥', text: 'Bán chạy', bg: 'bg-[#B9383A]' },
+    artisanNote: "Nghệ nhân Siu H'Blang • Làng Phung",
+    reviewCount: 36,
+    rating: 4.9,
+  },
+  {
+    code: 'A001',
+    badge: { icon: '👑', text: 'Tinh hoa', bg: 'bg-[#8A2325]' },
+    artisanNote: "Nghệ nhân Rơ Châm H'Mút • Làng Kép",
+    reviewCount: 29,
+    rating: 5.0,
+  },
+  {
+    code: 'V001',
+    badge: { icon: '🌟', text: 'Kiệt tác', bg: 'bg-[#C59B27]' },
+    artisanNote: "Nghệ nhân Siu H'Blang • Làng Phung",
+    reviewCount: 31,
+    rating: 5.0,
+  },
+  {
+    code: 'B001',
+    badge: { icon: '🌿', text: 'Bản địa', bg: 'bg-[#1E4D38]' },
+    artisanNote: "Nghệ nhân Ksor H'Búp • Làng Kép",
+    reviewCount: 24,
+    rating: 4.9,
+  },
+];
+
 export default function HomePage() {
   const [allProducts, setAllProducts] = useState<Product[]>([]);
   const [motifs, setMotifs] = useState<Motif[]>([]);
@@ -225,6 +273,20 @@ export default function HomePage() {
   const [cartOpen, setCartOpen] = useState(false);
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [addedNotice, setAddedNotice] = useState<string | null>(null);
+
+  // Curated Featured Products list for Tu Quy Garden style bottom section
+  const featuredShowcaseList = React.useMemo(() => {
+    const source = allProducts.length > 0 ? allProducts : INITIAL_PRODUCTS;
+    return FEATURED_SHOWCASE_CONFIG.map((cfg) => {
+      const product = source.find(
+        (p) => p.product_code === cfg.code || p.id === cfg.code
+      );
+      return {
+        ...cfg,
+        product,
+      };
+    }).filter((item): item is typeof item & { product: Product } => Boolean(item.product));
+  }, [allProducts]);
 
   // Checkout modal
   const [checkoutOpen, setCheckoutOpen] = useState(false);
@@ -1569,6 +1631,207 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ========================================================
+          9. SẢN PHẨM NỔI BẬT (TU QUY GARDEN STYLE SHOWCASE)
+          Curated 6 Standout Brocade Pieces at Bottom of Homepage
+      ======================================================== */}
+      <section
+        id="featured-products"
+        className="section bg-[#F5F1E8] border-t border-[#E8E2D9] py-16 sm:py-20 lg:py-24 relative overflow-hidden reveal-on-scroll"
+        style={{ scrollMarginTop: '80px' }}
+      >
+        <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-12 space-y-10">
+          {/* Section Header (Tu Quy Garden section-header-flex) */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-5 pb-6 border-b border-[#E5DACB]">
+            <div className="space-y-2.5">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#1E4D38]/10 text-[#1E4D38] text-xs font-bold tracking-wider uppercase">
+                <Sparkles className="w-3.5 h-3.5 text-[#C59B27]" />
+                <span>Tuyển chọn tiêu biểu • Độc bản Jrai Ơi</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold text-[#1F1D1B] tracking-tight">
+                  Sản Phẩm Thổ Cẩm Nổi Bật
+                </h2>
+                <span className="text-2xl sm:text-3xl" role="img" aria-label="sparkles">✨</span>
+              </div>
+              <p className="text-sm sm:text-base text-[#5D554D] max-w-2xl leading-relaxed">
+                Những tác phẩm dệt cửi hông thủ công tiêu biểu nhất được tuyển chọn từ nghệ nhân làng Kép và làng Phung — kết tinh kỹ thuật đếm sợi truyền thống, định danh số QR độc bản.
+              </p>
+            </div>
+
+            <Link
+              href="/products"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#1E4D38] hover:bg-[#153828] text-white text-xs sm:text-sm font-bold transition-all shadow-xs hover:shadow-md group self-start md:self-auto shrink-0 cursor-pointer"
+            >
+              <span>Xem tất cả (57 tác phẩm)</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </div>
+
+          {/* 6 Curated Featured Product Cards - 3 columns on Desktop, 2 on Tablet, 1 on Mobile */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            {featuredShowcaseList.map(({ product, badge, artisanNote, reviewCount, rating }) => {
+              const inWish = isInWishlist(product.id);
+              return (
+                <div
+                  key={product.id}
+                  className="group bg-white rounded-2xl border border-[#E8E2D9] hover:border-[#1E4D38]/40 shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden"
+                >
+                  {/* Image Wrapper */}
+                  <div
+                    className="relative aspect-[4/3] bg-[#FAF8F5] overflow-hidden cursor-pointer"
+                    onClick={() => setSelectedProduct(product)}
+                  >
+                    <img
+                      src={product.image_url}
+                      alt={product.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      loading="lazy"
+                    />
+
+                    {/* Top-left: Badges */}
+                    <div className="absolute top-3 left-3 flex flex-wrap gap-1.5 z-10">
+                      <span className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-white text-[11px] font-bold shadow-xs ${badge.bg}`}>
+                        <span>{badge.icon}</span>
+                        <span>{badge.text}</span>
+                      </span>
+                      <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-stone-900/80 backdrop-blur-xs text-amber-300 text-[11px] font-medium shadow-xs">
+                        <Clock className="w-3 h-3 text-amber-400" />
+                        <span>{product.production_time || '40h dệt tay'}</span>
+                      </span>
+                    </div>
+
+                    {/* Top-right: Wishlist & QR */}
+                    <div className="absolute top-3 right-3 flex flex-col gap-1.5 z-10">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          toggleWishlist(product.id);
+                        }}
+                        className="w-8 h-8 rounded-full bg-white/90 hover:bg-white text-stone-700 hover:text-red-500 flex items-center justify-center shadow-xs border border-[#E8E2D9] transition cursor-pointer"
+                        title={inWish ? 'Bỏ yêu thích' : 'Yêu thích'}
+                      >
+                        <Heart className={`w-4 h-4 ${inWish ? 'fill-red-500 text-red-500' : ''}`} />
+                      </button>
+
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setPassportCode(product.product_code);
+                          const el = document.getElementById('traceability');
+                          if (el) el.scrollIntoView({ behavior: 'smooth' });
+                        }}
+                        className="px-2 py-1 rounded-md bg-[#1E4D38]/90 hover:bg-[#1E4D38] text-amber-300 text-[10px] font-mono font-bold flex items-center gap-1 shadow-xs border border-amber-400/30 transition cursor-pointer"
+                        title="Xem mã định danh số QR độc bản"
+                      >
+                        <QrCode className="w-3 h-3 text-amber-300" />
+                        <span>QR</span>
+                      </button>
+                    </div>
+
+                    {/* Quick View Button on Hover (Tu Quy Garden style) */}
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setSelectedProduct(product);
+                      }}
+                      className="absolute bottom-3 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full bg-white/95 hover:bg-white text-[#1F1D1B] text-xs font-bold shadow-md border border-[#E5DACB] opacity-0 group-hover:opacity-100 transition-all duration-200 flex items-center gap-1.5 z-10 cursor-pointer"
+                    >
+                      <Eye className="w-3.5 h-3.5 text-[#1E4D38]" />
+                      <span>Xem nhanh</span>
+                    </button>
+                  </div>
+
+                  {/* Card Body */}
+                  <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between space-y-4">
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between text-xs">
+                        <span className="font-semibold text-[#1E4D38] tracking-wide uppercase">
+                          {product.category_name}
+                        </span>
+                        <span className="font-mono text-[#8A7E72] text-[11px] font-medium">
+                          {product.product_code}
+                        </span>
+                      </div>
+
+                      <h3 className="font-serif font-bold text-lg text-[#1F1D1B] group-hover:text-[#1E4D38] transition-colors line-clamp-1">
+                        <Link href={`/product/${product.id}`}>{product.name}</Link>
+                      </h3>
+
+                      <p className="text-xs text-[#5D554D] line-clamp-2 leading-relaxed">
+                        {product.description}
+                      </p>
+
+                      <div className="text-[11px] text-[#8A7E72] flex items-center gap-1.5 pt-1">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 shrink-0"></span>
+                        <span className="truncate">{artisanNote}</span>
+                      </div>
+                    </div>
+
+                    {/* Rating Row (Tu Quy Garden style) */}
+                    <div className="flex items-center gap-2 pt-2 border-t border-[#F2ECE1]">
+                      <div className="flex text-amber-400">
+                        {[...Array(5)].map((_, i) => (
+                          <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                        ))}
+                      </div>
+                      <span className="text-xs font-semibold text-[#5D554D]">
+                        {rating.toFixed(1)} ({reviewCount} đánh giá)
+                      </span>
+                    </div>
+
+                    {/* Bottom Row: Price & Action */}
+                    <div className="flex items-center justify-between pt-1">
+                      <div className="flex flex-col">
+                        <span className="text-lg sm:text-xl font-bold font-mono text-[#B9383A]">
+                          {product.price.toLocaleString('vi-VN')}₫
+                        </span>
+                        {product.original_price && product.original_price > product.price && (
+                          <span className="text-xs text-[#8A7E72] line-through font-mono">
+                            {product.original_price.toLocaleString('vi-VN')}₫
+                          </span>
+                        )}
+                      </div>
+
+                      <button
+                        onClick={(e) => handleAddToCart(product, e)}
+                        className="px-4 py-2.5 rounded-xl bg-[#1E4D38] hover:bg-[#153828] text-white text-xs font-bold transition-all shadow-xs flex items-center gap-1.5 cursor-pointer select-none"
+                        title="Thêm vào giỏ hàng"
+                      >
+                        <ShoppingBag className="w-3.5 h-3.5" />
+                        <span>Thêm giỏ</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Bottom Callout Banner: Custom Order */}
+          <div className="mt-8 bg-white rounded-2xl border border-[#E5DACB] p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xs">
+            <div className="space-y-1.5 text-center md:text-left">
+              <span className="text-xs font-bold text-[#1E4D38] uppercase tracking-wider flex items-center justify-center md:justify-start gap-1.5">
+                <Sparkles className="w-3.5 h-3.5 text-[#C59B27]" />
+                <span>Dịch vụ dệt may độc bản theo yêu cầu</span>
+              </span>
+              <h4 className="text-lg sm:text-xl font-serif font-bold text-[#1F1D1B]">
+                Bạn muốn may đo sản phẩm riêng theo kích thước và phối màu yêu thích?
+              </h4>
+              <p className="text-xs sm:text-sm text-[#5D554D] max-w-2xl">
+                Tự do chọn hoa văn hộ thân Jrai, phối màu nhuộm thảo mộc tự nhiên và kích thước riêng cùng các nghệ nhân bản địa.
+              </p>
+            </div>
+            <Link
+              href="/custom-order"
+              className="px-6 py-3 rounded-full bg-[#1E4D38] hover:bg-[#153828] text-white text-xs sm:text-sm font-bold transition-all shadow-xs hover:shadow whitespace-nowrap flex items-center gap-2 shrink-0 cursor-pointer"
+            >
+              <span>Khám phá Đặt May Riêng</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
 
       {/* ========================================================
           MODAL: PRODUCT QUICK VIEW
