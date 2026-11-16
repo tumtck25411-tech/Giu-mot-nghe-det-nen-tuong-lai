@@ -259,6 +259,37 @@ export default function CustomOrderPage() {
     return `JRAI-BESPOKE-${selectedProduct.id.slice(0, 3).toUpperCase()}-${selectedColor.id.slice(0, 2).toUpperCase()}`;
   }, [selectedProduct, selectedColor]);
 
+  // Tự động nhảy bước thông minh khi khách hàng bấm chọn (Auto-advance UX)
+  const handleSelectProduct = (prod: CustomProductType) => {
+    setSelectedProduct(prod);
+    setTimeout(() => {
+      setCurrentStep(2);
+      if (typeof window !== 'undefined') {
+        window.scrollTo({ top: 140, behavior: 'smooth' });
+      }
+    }, 280);
+  };
+
+  const handleSelectColor = (col: CustomColorType) => {
+    setSelectedColor(col);
+    setTimeout(() => {
+      setCurrentStep(3);
+      if (typeof window !== 'undefined') {
+        window.scrollTo({ top: 140, behavior: 'smooth' });
+      }
+    }, 280);
+  };
+
+  const handleSelectMotif = (mot: CustomMotifType) => {
+    setSelectedMotif(mot);
+    setTimeout(() => {
+      setCurrentStep(4);
+      if (typeof window !== 'undefined') {
+        window.scrollTo({ top: 140, behavior: 'smooth' });
+      }
+    }, 300);
+  };
+
   // Handle Add to Cart
   const handleAddCustomToCart = () => {
     const bespokeProduct: Product = {
@@ -295,167 +326,174 @@ export default function CustomOrderPage() {
   };
 
   return (
-    <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12 space-y-8">
-      {/* Toast Notification */}
-      {addedNotice && (
-        <div className="fixed bottom-6 right-6 z-50 bg-[#B9383A] text-white px-6 py-4 rounded-2xl shadow-xl border-2 border-amber-300 flex items-center gap-3 animate-in slide-in-from-bottom duration-300">
-          <CheckCircle2 className="w-6 h-6 text-amber-300 shrink-0" />
-          <div className="text-sm font-bold">{addedNotice}</div>
-        </div>
-      )}
-
-      {/* HEADER: TIÊU ĐỀ RÕ RÀNG */}
-      <div className="text-center space-y-3">
-        <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider text-[#C43B3D] bg-red-100 border border-red-300">
-          <Sparkles className="w-4 h-4 text-[#C43B3D]" />
-          <span>Dịch Vụ Đặt Làm Theo Yêu Cầu</span>
-        </span>
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-black text-[#1F1D1B] tracking-tight">
-          Đặt Dệt Thổ Cẩm Theo Ý Muốn
-        </h1>
-        <p className="text-base sm:text-lg text-[#5D554D] max-w-2xl mx-auto leading-relaxed">
-          Tự do chọn loại sản phẩm, sắc màu thổ cẩm và hoa văn di sản. Nghệ nhân làng nghề sẽ trực tiếp dệt thủ công theo cấu hình riêng của bạn.
-        </p>
-      </div>
-
-      {/* 4-STEP WIZARD PROGRESS BAR (RÕ RÀNG, CHỮ TO DỄ NHÌN) */}
-      <div className="bg-white p-4 sm:p-5 rounded-2xl border-2 border-[#D9CBB8] shadow-sm">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-          {[
-            { num: 1, title: 'Bước 1: Loại sản phẩm', sub: selectedProduct.name },
-            { num: 2, title: 'Bước 2: Màu sắc', sub: selectedColor.name },
-            { num: 3, title: 'Bước 3: Hoa văn', sub: selectedMotif.name },
-            { num: 4, title: 'Bước 4: Báo giá & Đặt', sub: `${totalPrice.toLocaleString('vi-VN')}₫` },
-          ].map((step) => {
-            const isCurrent = currentStep === step.num;
-            const isPast = currentStep > step.num;
-            return (
-              <button
-                key={step.num}
-                type="button"
-                onClick={() => setCurrentStep(step.num)}
-                className={`p-3.5 sm:p-4 rounded-xl text-left transition-all duration-200 flex flex-col justify-between cursor-pointer border-2 ${
-                  isCurrent
-                    ? 'bg-gradient-to-r from-[#C43B3D] to-[#A3292B] text-white border-[#8A2325] shadow-md scale-[1.02]'
-                    : isPast
-                    ? 'bg-[#FDF8F3] text-[#1F1D1B] border-[#C43B3D]/40 hover:bg-[#FFF5F3]'
-                    : 'bg-[#FBF8F3] text-[#5D554D] border-[#E5DACB] hover:border-[#C43B3D] hover:bg-white'
-                }`}
-              >
-                <div className="flex items-center justify-between mb-1.5">
-                  <span className={`text-xs font-mono font-bold uppercase tracking-wider ${isCurrent ? 'text-amber-200' : 'text-[#C43B3D]'}`}>
-                    BƯỚC 0{step.num}
-                  </span>
-                  {isPast && <CheckCircle2 className="w-4 h-4 text-[#C43B3D]" />}
-                  {isCurrent && <CircleDot className="w-4 h-4 text-amber-300" />}
-                </div>
-                <div className={`text-sm sm:text-base font-bold ${isCurrent ? 'text-white' : 'text-[#1F1D1B]'}`}>
-                  {step.title}
-                </div>
-                <div className={`text-xs truncate mt-1 ${isCurrent ? 'text-stone-200' : 'text-[#8A7E72]'}`}>
-                  {step.sub}
-                </div>
-              </button>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* ========================================================
-          BƯỚC 1: CHỌN LOẠI SẢN PHẨM (KHÔNG HÌNH - CHỮ TO RÕ RÀNG)
-      ======================================================== */}
-      {currentStep === 1 && (
-        <div className="bg-white p-6 sm:p-10 rounded-2xl border-2 border-[#D9CBB8] shadow-sm space-y-6 animate-in fade-in duration-300">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b-2 border-[#E5DACB] pb-4">
-            <div>
-              <span className="text-xs font-bold text-[#C43B3D] uppercase tracking-wider">
-                BƯỚC 1 TRÊN 4
-              </span>
-              <h2 className="text-2xl sm:text-3xl font-serif font-black text-[#1F1D1B] mt-1">
-                Chọn Loại Sản Phẩm Bạn Muốn May Dệt
-              </h2>
-            </div>
-            <span className="text-sm font-bold text-[#5D554D] bg-[#F2ECE1] px-3.5 py-1.5 rounded-full border border-[#E5DACB] self-start sm:self-auto">
-              8 lựa chọn sản phẩm
-            </span>
+    <div className="w-full flex justify-center py-10 sm:py-12 px-4 sm:px-6 lg:px-8">
+      <div className="w-full max-w-6xl 2xl:max-w-7xl space-y-8 flex flex-col items-center">
+        {/* Toast Notification */}
+        {addedNotice && (
+          <div className="fixed bottom-6 right-6 z-50 bg-[#B9383A] text-white px-6 py-4 rounded-2xl shadow-xl border-2 border-amber-300 flex items-center gap-3 animate-in slide-in-from-bottom duration-300">
+            <CheckCircle2 className="w-6 h-6 text-amber-300 shrink-0" />
+            <div className="text-sm font-bold">{addedNotice}</div>
           </div>
+        )}
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
-            {CUSTOM_PRODUCTS.map((prod) => {
-              const isSelected = selectedProduct.id === prod.id;
+        {/* HEADER: TIÊU ĐỀ RÕ RÀNG */}
+        <div className="text-center space-y-3 w-full">
+          <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider text-[#C43B3D] bg-red-100 border border-red-300">
+            <Sparkles className="w-4 h-4 text-[#C43B3D]" />
+            <span>Dịch Vụ Đặt Làm Theo Yêu Cầu</span>
+          </span>
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-black text-[#1F1D1B] tracking-tight">
+            Đặt Dệt Thổ Cẩm Theo Ý Muốn
+          </h1>
+          <p className="text-base sm:text-lg text-[#5D554D] max-w-2xl mx-auto leading-relaxed">
+            Tự do chọn loại sản phẩm, sắc màu thổ cẩm và hoa văn di sản. Nghệ nhân làng nghề sẽ trực tiếp dệt thủ công theo cấu hình riêng của bạn.
+          </p>
+        </div>
+
+        {/* 4-STEP WIZARD PROGRESS BAR (RÕ RÀNG, CHỮ TO DỄ NHÌN) */}
+        <div className="w-full bg-white p-4 sm:p-5 rounded-2xl border-2 border-[#D9CBB8] shadow-sm">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            {[
+              { num: 1, title: 'Bước 1: Loại sản phẩm', sub: selectedProduct.name },
+              { num: 2, title: 'Bước 2: Màu sắc', sub: selectedColor.name },
+              { num: 3, title: 'Bước 3: Hoa văn', sub: selectedMotif.name },
+              { num: 4, title: 'Bước 4: Báo giá & Đặt', sub: `${totalPrice.toLocaleString('vi-VN')}₫` },
+            ].map((step) => {
+              const isCurrent = currentStep === step.num;
+              const isPast = currentStep > step.num;
               return (
-                <div
-                  key={prod.id}
-                  onClick={() => setSelectedProduct(prod)}
-                  className={`p-5 sm:p-6 rounded-2xl border-2 transition-all duration-200 cursor-pointer flex flex-col justify-between space-y-4 ${
-                    isSelected
-                      ? 'bg-[#FFF8F6] border-[#C43B3D] shadow-md ring-2 ring-[#C43B3D]/25 scale-[1.01]'
-                      : 'bg-white border-[#D9CBB8] hover:border-[#C43B3D] hover:bg-[#FFFDFB] shadow-xs hover:-translate-y-0.5'
+                <button
+                  key={step.num}
+                  type="button"
+                  onClick={() => setCurrentStep(step.num)}
+                  className={`p-3.5 sm:p-4 rounded-xl text-left transition-all duration-200 flex flex-col justify-between cursor-pointer border-2 ${
+                    isCurrent
+                      ? 'bg-gradient-to-r from-[#C43B3D] to-[#A3292B] text-white border-[#8A2325] shadow-md scale-[1.02]'
+                      : isPast
+                      ? 'bg-[#FDF8F3] text-[#1F1D1B] border-[#C43B3D]/40 hover:bg-[#FFF5F3]'
+                      : 'bg-[#FBF8F3] text-[#5D554D] border-[#E5DACB] hover:border-[#C43B3D] hover:bg-white'
                   }`}
                 >
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-between gap-2">
-                      <span className="text-xs font-bold uppercase text-white bg-[#C43B3D] px-3 py-1 rounded-full">
-                        {prod.category}
-                      </span>
-                      {isSelected ? (
-                        <div className="flex items-center gap-1.5 text-xs font-bold text-[#C43B3D]">
-                          <CheckCircle2 className="w-5 h-5 text-[#C43B3D]" />
-                          <span>Đang chọn</span>
-                        </div>
-                      ) : (
-                        <div className="w-5 h-5 rounded-full border-2 border-[#D9CBB8]" />
-                      )}
-                    </div>
-
-                    <h3 className="font-serif font-black text-lg sm:text-xl text-[#1F1D1B] pt-1">
-                      {prod.name}
-                    </h3>
-                    <p className="text-sm sm:text-base text-[#5D554D] leading-relaxed">
-                      {prod.desc}
-                    </p>
+                  <div className="flex items-center justify-between mb-1.5">
+                    <span className={`text-xs font-mono font-bold uppercase tracking-wider ${isCurrent ? 'text-amber-200' : 'text-[#C43B3D]'}`}>
+                      BƯỚC 0{step.num}
+                    </span>
+                    {isPast && <CheckCircle2 className="w-4 h-4 text-[#C43B3D]" />}
+                    {isCurrent && <CircleDot className="w-4 h-4 text-amber-300" />}
                   </div>
-
-                  <div className="pt-3 border-t-2 border-[#F2ECE1] flex items-center justify-between">
-                    <div className="text-xs sm:text-sm text-[#5D554D] flex items-center gap-1.5">
-                      <Clock className="w-4 h-4 text-[#EA8E23]" />
-                      <span>{prod.days}</span>
-                    </div>
-                    <div className="font-black text-xl sm:text-2xl text-[#C43B3D] font-mono">
-                      {prod.basePrice.toLocaleString('vi-VN')}₫
-                    </div>
+                  <div className={`text-sm sm:text-base font-bold ${isCurrent ? 'text-white' : 'text-[#1F1D1B]'}`}>
+                    {step.title}
                   </div>
-                </div>
+                  <div className={`text-xs truncate mt-1 ${isCurrent ? 'text-stone-200' : 'text-[#8A7E72]'}`}>
+                    {step.sub}
+                  </div>
+                </button>
               );
             })}
           </div>
-
-          <div className="flex justify-end pt-4 border-t-2 border-[#E5DACB]">
-            <button
-              type="button"
-              onClick={() => setCurrentStep(2)}
-              className="px-8 py-3.5 rounded-xl bg-[#C43B3D] hover:bg-[#8A2325] text-white font-bold text-base shadow-md flex items-center gap-2 cursor-pointer transition"
-            >
-              <span>Tiếp tục: Bước 2 (Chọn màu sắc)</span>
-              <ArrowRight className="w-5 h-5" />
-            </button>
-          </div>
         </div>
-      )}
+
+        {/* ========================================================
+            BƯỚC 1: CHỌN LOẠI SẢN PHẨM (TỰ ĐỘNG CHUYỂN BƯỚC KHI CHỌN)
+        ======================================================== */}
+        {currentStep === 1 && (
+          <div className="w-full bg-white p-6 sm:p-10 rounded-2xl border-2 border-[#D9CBB8] shadow-sm space-y-6 animate-in fade-in duration-300">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b-2 border-[#E5DACB] pb-4">
+              <div>
+                <span className="text-xs font-bold text-[#C43B3D] uppercase tracking-wider">
+                  BƯỚC 1 TRÊN 4 • CHỌN SẢN PHẨM
+                </span>
+                <h2 className="text-2xl sm:text-3xl font-serif font-black text-[#1F1D1B] mt-1">
+                  Chọn Loại Sản Phẩm Bạn Muốn May Dệt
+                </h2>
+                <p className="text-xs text-stone-500 mt-1">
+                  ⚡ Chọn một sản phẩm sẽ tự động chuyển sang Bước 2 (chọn màu sắc)
+                </p>
+              </div>
+              <span className="text-sm font-bold text-[#5D554D] bg-[#F2ECE1] px-3.5 py-1.5 rounded-full border border-[#E5DACB] self-start sm:self-auto">
+                8 lựa chọn sản phẩm
+              </span>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+              {CUSTOM_PRODUCTS.map((prod) => {
+                const isSelected = selectedProduct.id === prod.id;
+                return (
+                  <div
+                    key={prod.id}
+                    onClick={() => handleSelectProduct(prod)}
+                    className={`p-5 sm:p-6 rounded-2xl border-2 transition-all duration-200 cursor-pointer flex flex-col justify-between space-y-4 hover:shadow-lg ${
+                      isSelected
+                        ? 'bg-[#FFF8F6] border-[#C43B3D] shadow-md ring-2 ring-[#C43B3D]/25 scale-[1.01]'
+                        : 'bg-white border-[#D9CBB8] hover:border-[#C43B3D] hover:bg-[#FFFDFB] shadow-xs hover:-translate-y-0.5'
+                    }`}
+                  >
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="text-xs font-bold uppercase text-white bg-[#C43B3D] px-3 py-1 rounded-full">
+                          {prod.category}
+                        </span>
+                        {isSelected ? (
+                          <div className="flex items-center gap-1.5 text-xs font-bold text-[#C43B3D]">
+                            <CheckCircle2 className="w-5 h-5 text-[#C43B3D]" />
+                            <span>Đang chọn</span>
+                          </div>
+                        ) : (
+                          <div className="w-5 h-5 rounded-full border-2 border-[#D9CBB8]" />
+                        )}
+                      </div>
+
+                      <h3 className="font-serif font-black text-lg sm:text-xl text-[#1F1D1B] pt-1">
+                        {prod.name}
+                      </h3>
+                      <p className="text-sm sm:text-base text-[#5D554D] leading-relaxed">
+                        {prod.desc}
+                      </p>
+                    </div>
+
+                    <div className="pt-3 border-t-2 border-[#F2ECE1] flex items-center justify-between">
+                      <div className="text-xs sm:text-sm text-[#5D554D] flex items-center gap-1.5">
+                        <Clock className="w-4 h-4 text-[#EA8E23]" />
+                        <span>{prod.days}</span>
+                      </div>
+                      <div className="font-black text-xl sm:text-2xl text-[#C43B3D] font-mono">
+                        {prod.basePrice.toLocaleString('vi-VN')}₫
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            <div className="flex justify-end pt-4 border-t-2 border-[#E5DACB]">
+              <button
+                type="button"
+                onClick={() => setCurrentStep(2)}
+                className="px-8 py-3.5 rounded-xl bg-[#C43B3D] hover:bg-[#8A2325] text-white font-bold text-base shadow-md flex items-center gap-2 cursor-pointer transition"
+              >
+                <span>Tiếp tục: Bước 2 (Chọn màu sắc)</span>
+                <ArrowRight className="w-5 h-5" />
+              </button>
+            </div>
+          </div>
+        )}
 
       {/* ========================================================
-          BƯỚC 2: CHỌN MÀU SẮC (KHÔNG HÌNH - CHỮ TO RÕ RÀNG)
+          BƯỚC 2: CHỌN MÀU SẮC (TỰ ĐỘNG CHUYỂN BƯỚC KHI CHỌN)
       ======================================================== */}
       {currentStep === 2 && (
-        <div className="bg-white p-6 sm:p-10 rounded-2xl border-2 border-[#D9CBB8] shadow-sm space-y-6 animate-in fade-in duration-300">
+        <div className="w-full bg-white p-6 sm:p-10 rounded-2xl border-2 border-[#D9CBB8] shadow-sm space-y-6 animate-in fade-in duration-300">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b-2 border-[#E5DACB] pb-4">
             <div>
               <span className="text-xs font-bold text-[#C43B3D] uppercase tracking-wider">
-                BƯỚC 2 TRÊN 4
+                BƯỚC 2 TRÊN 4 • CHỌN MÀU SẮC
               </span>
               <h2 className="text-2xl sm:text-3xl font-serif font-black text-[#1F1D1B] mt-1">
                 Chọn Màu Sắc Chủ Đạo (Nhuộm Tự Nhiên)
               </h2>
+              <p className="text-xs text-stone-500 mt-1">
+                ⚡ Chọn một sắc màu sẽ tự động chuyển sang Bước 3 (chọn hoa văn)
+              </p>
             </div>
             <span className="text-sm font-bold text-[#5D554D] bg-[#F2ECE1] px-3.5 py-1.5 rounded-full border border-[#E5DACB] self-start sm:self-auto">
               6 sắc màu di sản
@@ -468,8 +506,8 @@ export default function CustomOrderPage() {
               return (
                 <div
                   key={col.id}
-                  onClick={() => setSelectedColor(col)}
-                  className={`p-5 sm:p-6 rounded-2xl border-2 transition-all duration-200 cursor-pointer space-y-3 ${
+                  onClick={() => handleSelectColor(col)}
+                  className={`p-5 sm:p-6 rounded-2xl border-2 transition-all duration-200 cursor-pointer space-y-3 hover:shadow-lg ${
                     isSelected
                       ? 'bg-[#FFF8F6] border-[#C43B3D] shadow-md ring-2 ring-[#C43B3D]/25 scale-[1.01]'
                       : 'bg-white border-[#D9CBB8] hover:border-[#C43B3D] hover:bg-[#FFFDFB] shadow-xs hover:-translate-y-0.5'
@@ -531,18 +569,21 @@ export default function CustomOrderPage() {
       )}
 
       {/* ========================================================
-          BƯỚC 3: CHỌN HOA VĂN (KHÔNG HÌNH - CHỮ TO RÕ RÀNG)
+          BƯỚC 3: CHỌN HOA VĂN (TỰ ĐỘNG CHUYỂN BƯỚC KHI CHỌN)
       ======================================================== */}
       {currentStep === 3 && (
-        <div className="bg-white p-6 sm:p-10 rounded-2xl border-2 border-[#D9CBB8] shadow-sm space-y-6 animate-in fade-in duration-300">
+        <div className="w-full bg-white p-6 sm:p-10 rounded-2xl border-2 border-[#D9CBB8] shadow-sm space-y-6 animate-in fade-in duration-300">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b-2 border-[#E5DACB] pb-4">
             <div>
               <span className="text-xs font-bold text-[#C43B3D] uppercase tracking-wider">
-                BƯỚC 3 TRÊN 4
+                BƯỚC 3 TRÊN 4 • CHỌN HOA VĂN
               </span>
               <h2 className="text-2xl sm:text-3xl font-serif font-black text-[#1F1D1B] mt-1">
                 Chọn Hoa Văn Thổ Cẩm Jrai Thủ Công
               </h2>
+              <p className="text-xs text-stone-500 mt-1">
+                ⚡ Chọn một hoa văn sẽ tự động chuyển sang Bước 4 (xác nhận & báo giá)
+              </p>
             </div>
             <span className="text-sm font-bold text-[#5D554D] bg-[#F2ECE1] px-3.5 py-1.5 rounded-full border border-[#E5DACB] self-start sm:self-auto">
               6 hoa văn di sản
@@ -555,8 +596,8 @@ export default function CustomOrderPage() {
               return (
                 <div
                   key={mot.id}
-                  onClick={() => setSelectedMotif(mot)}
-                  className={`p-5 sm:p-6 rounded-2xl border-2 transition-all duration-200 cursor-pointer space-y-3 ${
+                  onClick={() => handleSelectMotif(mot)}
+                  className={`p-5 sm:p-6 rounded-2xl border-2 transition-all duration-200 cursor-pointer space-y-3 hover:shadow-lg ${
                     isSelected
                       ? 'bg-[#FFF8F6] border-[#C43B3D] shadow-md ring-2 ring-[#C43B3D]/25 scale-[1.01]'
                       : 'bg-white border-[#D9CBB8] hover:border-[#C43B3D] hover:bg-[#FFFDFB] shadow-xs hover:-translate-y-0.5'
@@ -689,12 +730,20 @@ export default function CustomOrderPage() {
               </div>
             </div>
 
-            {customNote && (
-              <div className="p-4 bg-white rounded-xl border border-[#E5DACB]">
-                <span className="text-xs text-[#8A7E72] uppercase block font-bold">Ghi chú riêng:</span>
-                <p className="text-sm text-[#1F1D1B] mt-1 font-medium italic">&ldquo;{customNote}&rdquo;</p>
+            {/* Khối xem và sửa ghi chú may đo riêng */}
+            <div className="p-4 bg-white rounded-xl border border-[#E5DACB] space-y-2">
+              <div className="flex items-center justify-between">
+                <span className="text-xs text-[#8A7E72] uppercase font-bold">Ghi chú riêng cho nghệ nhân:</span>
+                <span className="text-xs text-[#C43B3D] italic">Có thể bổ sung hoặc chỉnh sửa trực tiếp</span>
               </div>
-            )}
+              <textarea
+                value={customNote}
+                onChange={(e) => setCustomNote(e.target.value)}
+                placeholder="Ví dụ: Vòng eo 68cm, quai túi dài 100cm, thêu chữ cái C.T..."
+                rows={2}
+                className="w-full p-3 bg-[#FBF8F3] border border-[#D9CBB8] rounded-lg text-sm text-[#1F1D1B] placeholder-[#8A7E72] focus:outline-none focus:border-[#C43B3D] focus:bg-white"
+              />
+            </div>
           </div>
 
           {/* BẢNG KÊ CHI PHÍ MINH BẠCH */}
@@ -806,6 +855,7 @@ export default function CustomOrderPage() {
           </div>
         </div>
       )}
+      </div>
     </div>
   );
 }

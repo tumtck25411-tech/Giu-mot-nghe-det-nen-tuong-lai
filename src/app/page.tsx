@@ -784,12 +784,12 @@ export default function HomePage() {
       </section>
 
       {/* ========================================================
-          2. MỤC 2: SẢN PHẨM (#products) - TOÀN BỘ 57 SẢN PHẨM
+          2. MỤC 2: SẢN PHẨM (#products) - TOÀN BỘ 57 SẢN PHẨM CĂN GIỮA
       ======================================================== */}
-      <section className="section section-watermark-weave reveal-on-scroll" id="products" style={{ scrollMarginTop: '80px' }}>
-        <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-12 space-y-8">
-          <div className="text-center max-w-3xl mx-auto space-y-3.5 mb-8">
-            <span className="section-tag">
+      <section className="section section-watermark-weave reveal-on-scroll w-full flex flex-col items-center" id="products" style={{ scrollMarginTop: '80px' }}>
+        <div className="w-full max-w-7xl 2xl:max-w-[1540px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8 flex flex-col items-center">
+          <div className="text-center max-w-3xl mx-auto space-y-3.5 mb-6 flex flex-col items-center justify-center">
+            <span className="section-tag inline-flex items-center justify-center">
               Bộ sưu tập tiêu biểu
             </span>
             <h2 className="section-title text-center">
@@ -802,14 +802,14 @@ export default function HomePage() {
               <span className="text-xs font-bold text-amber-900 bg-amber-100/90 px-3.5 py-1.5 rounded-full border border-amber-300">
                 Hiển thị {filteredProducts.length} / 57 tác phẩm
               </span>
-              <Link href="/products" className="btn btn-outline-dark btn-sm">
+              <Link href="/products" className="btn btn-outline-dark btn-sm font-bold">
                 Xem toàn bộ 57 mẫu &rarr;
               </Link>
             </div>
           </div>
 
-        {/* Filter Controls: Search & Category Pills */}
-        <div className="space-y-4 bg-white p-5 sm:p-6 rounded-xl border border-[#E5DACB] shadow-sm">
+        {/* Filter Controls: Search & Category Pills Căn giữa hoàn hảo */}
+        <div className="w-full max-w-7xl 2xl:max-w-[1540px] mx-auto space-y-4 bg-white p-5 sm:p-7 rounded-2xl border border-[#E5DACB] shadow-sm">
           <div className="flex flex-col sm:flex-row gap-3">
             <div className="relative flex-1">
               <Search className="w-4 h-4 absolute left-3.5 top-3.5 text-[#8A7E72]" />
@@ -849,13 +849,13 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Phân loại sản phẩm: Các nút bấm nổi bật, khoảng cách thoáng rộng rãi */}
+          {/* Phân loại sản phẩm: Các nút bấm nổi bật, căn giữa, khoảng cách thoáng rộng rãi */}
           <div className="pt-4 border-t border-[#E8E2D9]">
-            <div className="text-xs font-bold text-[#5A3E2D] uppercase tracking-wider mb-3 flex items-center justify-center sm:justify-start gap-2">
+            <div className="text-xs font-bold text-[#5A3E2D] uppercase tracking-wider mb-3 flex items-center justify-center gap-2 text-center">
               <Tag className="w-3.5 h-3.5 text-[#1E4D38]" />
               <span>PHÂN LOẠI TÁC PHẨM THỔ CẨM:</span>
             </div>
-            <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 sm:gap-3">
+            <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5">
               {CATEGORIES_METADATA.map((cat) => {
                 const isActive = selectedCategory === cat.id;
                 return (
@@ -886,8 +886,8 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* 57 Products Grid - 3 sản phẩm/hàng trên Desktop */}
-        <div className="products-grid">
+        {/* 57 Products Grid - 3 sản phẩm/hàng trên Desktop Căn giữa chuẩn */}
+        <div className="products-grid w-full max-w-7xl 2xl:max-w-[1540px] mx-auto">
           {filteredProducts.map((p) => {
             const inWish = isInWishlist(p.id);
             return (
@@ -1384,10 +1384,10 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* C. 6 Weaving Stages with Actual Photos - Winding Trail Kế Thừa Giữ Một Nghề */}
+        {/* C. 6 Weaving Stages with Actual Photos - Bố cục Lưới Đối Xứng Toàn Màn Hình Cân Đối */}
         <section className="section journey-section-bg py-16 px-4 sm:px-6 lg:px-8 rounded-3xl w-full" id="journey">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center" style={{ maxWidth: '720px', margin: '0 auto 35px' }}>
+          <div className="w-full max-w-7xl 2xl:max-w-[1540px] mx-auto px-2 sm:px-4">
+            <div className="text-center" style={{ maxWidth: '780px', margin: '0 auto 35px' }}>
               <span
                 className="section-tag inline-block mb-3 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider"
                 style={{
@@ -1409,73 +1409,85 @@ export default function HomePage() {
               </p>
             </div>
 
-            {/* KHUNG HÀNH TRÌNH ĐƯỜNG CONG TÂY NGUYÊN (WINDING S-CURVE JOURNEY) */}
-            <div className="journey-winding-wrapper">
-              <svg
-                className="journey-winding-svg"
-                viewBox="0 0 1000 1750"
-                preserveAspectRatio="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <defs>
-                  <linearGradient id="trailGradientHome" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" stopColor="#9E2A2B" />
-                    <stop offset="50%" stopColor="#D97706" />
-                    <stop offset="100%" stopColor="#9E2A2B" />
-                  </linearGradient>
-                </defs>
-                <path
-                  d="M 500,70 
-                     C 420,170 580,260 500,360 
-                     C 420,460 580,550 500,650 
-                     C 420,750 580,840 500,940 
-                     C 420,1040 580,1130 500,1230 
-                     C 420,1330 580,1430 500,1530
-                     L 500,1650"
-                  fill="none"
-                  stroke="url(#trailGradientHome)"
-                  strokeWidth="4"
-                  strokeDasharray="10 8"
-                  strokeLinecap="round"
-                />
-              </svg>
-
-              {WEAVING_STAGES_FULL.map((stage, index) => {
-                const isEven = index % 2 === 0;
-                const stepClass = isEven ? 'journey-trail-step step-left' : 'journey-trail-step step-right';
-
-                return (
-                  <div key={stage.step} className={stepClass}>
-                    <div className="journey-trail-content">
-                      <div className="journey-trail-thumb">
-                        <img src={stage.image} alt={stage.title} />
-                        <span className="journey-milestone-tag">{stage.stage}</span>
+            {/* LƯỚI 6 CÔNG ĐOẠN DỆT THỔ CẨM ĐỐI XỨNG CÂN ĐỐI FULL MÀN HÌNH (Symmetrical 3-Column Responsive Grid) */}
+            <div className="w-full my-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                {WEAVING_STAGES_FULL.map((stage) => (
+                  <div
+                    key={stage.step}
+                    className="bg-[#241C18] rounded-2xl border border-amber-900/40 hover:border-[#EA8E23] transition-all duration-300 overflow-hidden shadow-xl flex flex-col justify-between hover:-translate-y-1.5 group"
+                  >
+                    {/* Ảnh thực tế công đoạn với tỷ lệ chuẩn & huy hiệu */}
+                    <div className="relative h-56 sm:h-64 overflow-hidden bg-stone-900">
+                      <img
+                        src={stage.image}
+                        alt={stage.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#241C18] via-transparent to-black/30" />
+                      <div className="absolute top-3.5 left-3.5 z-10">
+                        <span className="bg-[#120F0D]/85 backdrop-blur-md text-[#F59E0B] border border-amber-500/40 text-[11px] sm:text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow">
+                          {stage.stage}
+                        </span>
                       </div>
-                      <div className="journey-trail-body">
-                        <div className="journey-watermark-num">{stage.step}</div>
-                        <div className="journey-trail-num">{stage.numLabel}</div>
-                        <h4 className="journey-trail-title">{stage.title}</h4>
-                        <div className="journey-trail-subtitle">{stage.subtitle}</div>
-                        <div className="journey-specs-pills">
+                      <div className="absolute top-3.5 right-3.5 z-10">
+                        <span className="bg-[#B9383A] text-white font-mono font-black text-xs px-2.5 py-1 rounded-lg shadow-md border border-amber-300/30">
+                          {stage.step}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Nội dung chi tiết */}
+                    <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
+                      <div className="space-y-2">
+                        <div className="text-xs font-bold uppercase tracking-wider text-[#EA8E23]">
+                          {stage.numLabel}
+                        </div>
+                        <h4 className="font-serif font-black text-xl text-white group-hover:text-amber-200 transition-colors">
+                          {stage.title}
+                        </h4>
+                        <div className="text-xs text-amber-200/80 italic font-medium">
+                          {stage.subtitle}
+                        </div>
+                        <div className="flex flex-wrap gap-1.5 pt-2">
                           {stage.pills.map((pill, pIdx) => (
-                            <span key={pIdx} className="journey-spec-pill">
+                            <span
+                              key={pIdx}
+                              className="text-[11px] font-medium px-2.5 py-1 rounded-full bg-[#181310] text-stone-300 border border-stone-800"
+                            >
                               {pill}
                             </span>
                           ))}
                         </div>
-                        <p className="journey-trail-text">{stage.desc}</p>
-                        <Link href="/weaving-process" className="journey-trail-link">
-                          Xem chi tiết công đoạn ➔
+                        <p className="text-sm text-stone-300/90 leading-relaxed pt-2">
+                          {stage.desc}
+                        </p>
+                      </div>
+
+                      <div className="pt-4 border-t border-stone-800/80">
+                        <Link
+                          href="/weaving-process"
+                          className="inline-flex items-center gap-2 text-xs font-bold text-amber-400 hover:text-amber-300 group/link transition-colors"
+                        >
+                          <span>Xem chi tiết công đoạn</span>
+                          <span className="group-hover/link:translate-x-1 transition-transform">➔</span>
                         </Link>
                       </div>
                     </div>
-                    <div className="journey-trail-center">
-                      <div className="journey-pin-node">{stage.step}</div>
-                    </div>
-                    <div className="journey-trail-spacer" />
                   </div>
-                );
-              })}
+                ))}
+              </div>
+
+              {/* Nút xem toàn bộ công đoạn dệt */}
+              <div className="text-center mt-12">
+                <Link
+                  href="/weaving-process"
+                  className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[#EA8E23] hover:bg-[#D97706] text-white font-bold text-sm sm:text-base shadow-xl hover:shadow-2xl transition-all transform hover:scale-[1.02]"
+                >
+                  <span>Khám Phá Trọn Vẹn 6 Công Đoạn Dệt Cửi Hông</span>
+                  <span>➔</span>
+                </Link>
+              </div>
             </div>
           </div>
         </section>
