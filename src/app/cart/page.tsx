@@ -383,14 +383,6 @@ export default function CartPage() {
           subtitle="Vui lòng đăng nhập qua Google hoặc Facebook để tiếp tục xác nhận địa chỉ và hoàn tất đơn hàng thổ cẩm Jrai."
         />
 
-        {/* Bottom Illustrated Mountain Landscape Strip */}
-        <div
-          className="w-full h-24 sm:h-32 bg-bottom bg-contain sm:bg-cover bg-no-repeat mt-12 opacity-95 max-w-6xl mx-auto"
-          style={{
-            backgroundImage: "url('/images/custom/illustrated_mountain_footer.png')",
-          }}
-          title="Toàn cảnh thiên nhiên Tây Nguyên — JRAI ƠI"
-        />
       </div>
     </div>
   );

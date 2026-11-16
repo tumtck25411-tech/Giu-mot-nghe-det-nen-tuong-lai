@@ -4,16 +4,26 @@ import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Phone, Mail, MapPin } from 'lucide-react';
+import FooterContextCTA from './FooterContextCTA';
+import TayNguyenLandscapeBanner from './TayNguyenLandscapeBanner';
 
 export default function Footer() {
-  const pathname = usePathname();
+  const pathname = usePathname() || '';
 
-  if (pathname?.startsWith('/admin')) {
+  if (pathname.startsWith('/admin')) {
     return null;
   }
 
   return (
-    <footer className="main-footer bg-[#0B1E15] text-[#D1CCC4] border-t border-[#193A2A]">
+    <>
+      {/* 1. Context-Aware Footer Call-to-Action (Dynamic per page route) */}
+      <FooterContextCTA />
+
+      {/* 2. Dải phong cảnh núi rừng Tây Nguyên kích thước lớn (180–240px trên desktop, 120–160px trên mobile) */}
+      <TayNguyenLandscapeBanner />
+
+      {/* 3. Main Footer */}
+      <footer className="main-footer bg-[#0B1E15] text-[#D1CCC4] border-t border-[#193A2A]">
       <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-12 py-14 sm:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12">
           {/* Column 1: Slogan & Intro (4 Cols) */}
@@ -206,5 +216,6 @@ export default function Footer() {
         </div>
       </div>
     </footer>
+    </>
   );
 }

@@ -1206,21 +1206,13 @@ export default function HomePage() {
             href="/artisans"
             className="inline-flex items-center gap-2 px-7 sm:px-9 py-3 rounded-full bg-[#174C38] hover:bg-[#0E3626] text-white font-semibold text-sm shadow-md transition transform hover:scale-[1.02] cursor-pointer"
           >
-            <span>Khám phá thêm 6 nghệ nhân khác</span>
+            <span>Khám phá các nghệ nhân khác</span>
             <ArrowRight className="w-4 h-4" />
           </Link>
           <span className="h-px w-10 sm:w-24 bg-[#D4C4A8]"></span>
           <span className="text-[#C97A3E] text-base select-none">❖</span>
         </div>
 
-        {/* Bottom Illustrated Landscape Strip (Lush Hills & Pine Trees) */}
-        <div
-          className="w-full h-24 sm:h-32 bg-bottom bg-contain sm:bg-cover bg-no-repeat mt-6 opacity-95 max-w-6xl mx-auto"
-          style={{
-            backgroundImage: "url('/images/custom/illustrated_mountain_footer.png')",
-          }}
-          title="Toàn cảnh thiên nhiên Tây Nguyên — JRAI ƠI"
-        />
       </div>
     </section>
 
