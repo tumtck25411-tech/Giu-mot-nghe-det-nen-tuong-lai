@@ -153,17 +153,18 @@ export default function Header() {
     <>
       <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-[#E8E2D9] text-[#1F1D1B] shadow-[0_2px_12px_rgba(0,0,0,0.04)] transition-all overflow-x-clip">
         <div className="w-full max-w-[1720px] mx-auto px-3 sm:px-6 lg:px-8 xl:px-12">
-          <div className="flex items-center justify-between h-[60px] sm:h-[64px]">
-            {/* LOGO THƯƠNG HIỆU CHÍNH THỨC JRAI ƠI Ở GÓC TRÁI MÀN HÌNH (THU NHỎ 50%) */}
+          <div className="flex items-center justify-between h-[64px] sm:h-[68px]">
+            {/* LOGO THƯƠNG HIỆU CHÍNH THỨC JRAI ƠI (CHUẨN KÍCH CỠ TỨ QUÝ GARDEN: GỌN GÀNG, KHÔNG BỊ KHUẤT) */}
             <Link
               href="/"
-              className="flex items-center gap-2 group shrink-0 py-1"
+              className="flex items-center group shrink-0 py-1.5 focus:outline-none"
               title="JRAI ƠI — Đồ Thổ Cẩm Bản Địa Tây Nguyên"
             >
               <img
                 src="/images/logo/logo-jrai-oi.png"
                 alt="JRAI ƠI — Đồ Thổ Cẩm Jrai"
-                className="h-6 sm:h-7 lg:h-8 w-auto max-w-[85px] sm:max-w-[105px] lg:max-w-[125px] object-contain transition-transform duration-300 group-hover:scale-105"
+                className="h-8 sm:h-9 lg:h-10 w-auto object-contain transition-transform duration-200 group-hover:scale-105"
+                style={{ maxHeight: '40px', width: 'auto' }}
                 loading="eager"
               />
             </Link>
