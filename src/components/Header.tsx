@@ -29,13 +29,13 @@ const PRODUCT_CATEGORIES = [
 ];
 
 const NAV_ITEMS = [
-  { label: 'TRANG CHỦ', shortLabel: 'TRANG CHỦ', href: '/' },
-  { label: 'SẢN PHẨM', shortLabel: 'SẢN PHẨM', href: '/products', hasDropdown: true },
-  { label: 'ĐẶT THEO YÊU CẦU', shortLabel: 'ĐẶT MAY RIÊNG', href: '/custom-order' },
-  { label: 'NGÂN HÀNG HOA VĂN', shortLabel: 'HOA VĂN', href: '/motifs' },
-  { label: 'NGHỆ NHÂN', shortLabel: 'NGHỆ NHÂN', href: '/artisans' },
-  { label: 'TRA CỨU QR', shortLabel: 'TRA CỨU QR', href: '/traceability' },
-  { label: 'VỀ CHÚNG TÔI', shortLabel: 'VỀ CHÚNG TÔI', href: '/about' },
+  { label: 'Trang chủ', shortLabel: 'Trang chủ', href: '/' },
+  { label: 'Sản phẩm', shortLabel: 'Sản phẩm', href: '/products', hasDropdown: true },
+  { label: 'Đặt theo yêu cầu', shortLabel: 'Đặt may riêng', href: '/custom-order' },
+  { label: 'Ngân hàng hoa văn', shortLabel: 'Hoa văn', href: '/motifs' },
+  { label: 'Nghệ nhân', shortLabel: 'Nghệ nhân', href: '/artisans' },
+  { label: 'Tra cứu QR', shortLabel: 'Tra cứu QR', href: '/traceability' },
+  { label: 'Về chúng tôi', shortLabel: 'Về chúng tôi', href: '/about' },
 ];
 
 export default function Header() {
@@ -153,31 +153,31 @@ export default function Header() {
     <>
       <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-[#E8E2D9] text-[#1F1D1B] shadow-[0_2px_12px_rgba(0,0,0,0.04)] transition-all overflow-x-clip">
         <div className="w-full max-w-[1720px] mx-auto px-3 sm:px-6 lg:px-8 xl:px-12">
-          <div className="flex items-center justify-between h-[64px] sm:h-[68px]">
-            {/* LOGO THƯƠNG HIỆU CHÍNH THỨC JRAI ƠI (CHUẨN KÍCH CỠ TỨ QUÝ GARDEN: GỌN GÀNG, KHÔNG BỊ KHUẤT) */}
+          <div className="flex items-center justify-between h-[74px] sm:h-[78px]">
+            {/* LOGO THƯƠNG HIỆU CHÍNH THỨC JRAI ƠI (CHUẨN KÍCH CỠ TỨ QUÝ GARDEN: 54PX, RÕ NÉT, THOÁNG ĐÃNG) */}
             <Link
               href="/"
-              className="flex items-center group shrink-0 py-1.5 focus:outline-none"
+              className="flex items-center group shrink-0 py-1 focus:outline-none"
               title="JRAI ƠI — Đồ Thổ Cẩm Bản Địa Tây Nguyên"
             >
               <img
                 src="/images/logo/logo-jrai-oi.png"
                 alt="JRAI ƠI — Đồ Thổ Cẩm Jrai"
-                className="h-8 sm:h-9 lg:h-10 w-auto object-contain transition-transform duration-200 group-hover:scale-105"
-                style={{ maxHeight: '40px', width: 'auto' }}
+                className="h-[48px] sm:h-[52px] lg:h-[56px] w-auto object-contain transition-transform duration-200 group-hover:scale-105"
+                style={{ height: '54px', maxHeight: '56px', width: 'auto' }}
                 loading="eager"
               />
             </Link>
 
-            {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center gap-0.5 xl:gap-1.5 shrink-0">
+            {/* Desktop Navigation - Tứ Quý Garden Style: Chữ to rõ (15-16px), Title Case, Giãn cách rộng rãi, Gạch chân active xanh */}
+            <nav className="hidden lg:flex items-center gap-5 xl:gap-7 2xl:gap-8 shrink-0">
               {NAV_ITEMS.map((item) => {
                 const isActive =
                   item.href === '/'
                     ? pathname === '/'
                     : pathname.startsWith(item.href);
 
-                // Menu "SẢN PHẨM" có menu sổ xuống (Dropdown Menu)
+                // Menu "Sản phẩm" có menu sổ xuống (Dropdown Menu)
                 if (item.href === '/products') {
                   return (
                     <div
@@ -189,18 +189,21 @@ export default function Header() {
                       <Link
                         href="/products"
                         onClick={() => setProductDropdownOpen(false)}
-                        className={`px-2 xl:px-2.5 py-1.5 xl:py-2 rounded-lg text-xs xl:text-[13px] font-bold tracking-wide transition-all inline-flex items-center gap-1 cursor-pointer whitespace-nowrap ${
+                        className={`relative py-2 text-[15px] xl:text-[16px] font-semibold tracking-normal transition-colors inline-flex items-center gap-1.5 cursor-pointer whitespace-nowrap group ${
                           isActive
-                            ? 'text-[#1E4D38] bg-[#F3EFEA] font-extrabold border border-[#E8E2D9]'
-                            : 'text-[#3E3834] hover:text-[#1E4D38] hover:bg-[#FAF8F5]'
+                            ? 'text-[#1E4D38] font-bold'
+                            : 'text-[#243329] hover:text-[#1E4D38]'
                         }`}
                       >
                         <span>{item.label}</span>
                         <ChevronDown
-                          className={`w-3.5 h-3.5 transition-transform duration-200 shrink-0 ${
-                            productDropdownOpen ? 'rotate-180 text-[#1E4D38]' : 'text-stone-400'
+                          className={`w-4 h-4 transition-transform duration-200 shrink-0 ${
+                            productDropdownOpen ? 'rotate-180 text-[#1E4D38]' : 'text-[#6C7B70] group-hover:text-[#1E4D38]'
                           }`}
                         />
+                        {isActive && (
+                          <span className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-[#1E4D38] rounded-full transition-all" />
+                        )}
                       </Link>
 
                       {/* DROPDOWN MENU SỔ XUỐNG CÁC PHÂN LOẠI SẢN PHẨM */}
@@ -266,63 +269,96 @@ export default function Header() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`px-2 xl:px-2.5 py-1.5 xl:py-2 rounded-lg text-xs xl:text-[13px] font-bold tracking-wide transition-all inline-flex items-center whitespace-nowrap shrink-0 ${
+                    className={`relative py-2 text-[15px] xl:text-[16px] font-semibold tracking-normal transition-colors whitespace-nowrap shrink-0 group ${
                       isActive
-                        ? 'text-[#1E4D38] bg-[#F3EFEA] font-extrabold border border-[#E8E2D9]'
-                        : 'text-[#3E3834] hover:text-[#1E4D38] hover:bg-[#FAF8F5]'
+                        ? 'text-[#1E4D38] font-bold'
+                        : 'text-[#243329] hover:text-[#1E4D38]'
                     }`}
                   >
                     <span>
-                      <span className="hidden 2xl:inline">{item.label}</span>
-                      <span className="2xl:hidden">{item.shortLabel || item.label}</span>
+                      <span className="hidden xl:inline">{item.label}</span>
+                      <span className="xl:hidden">{item.shortLabel || item.label}</span>
                     </span>
+                    {isActive && (
+                      <span className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-[#1E4D38] rounded-full transition-all" />
+                    )}
                   </Link>
                 );
               })}
             </nav>
 
-            {/* Header Right Actions: Search, Account, Cart */}
-            <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
-              {/* Search Trigger Button */}
+            {/* Header Right Actions - Tứ Quý Garden Style: Thanh tìm kiếm bo tròn, Tài khoản, Giỏ hàng có nhãn */}
+            <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+              {/* Search Pill Input (Tứ Quý Garden Style) */}
+              <div className="relative hidden xl:block w-44 2xl:w-52">
+                <input
+                  type="text"
+                  placeholder="Tìm sản phẩm..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' && searchQuery.trim()) {
+                      window.location.href = `/products?q=${encodeURIComponent(searchQuery.trim())}`;
+                    }
+                  }}
+                  className="w-full bg-[#F4EFEA]/80 hover:bg-[#F0EAE3] focus:bg-white border border-[#E0D7CC] rounded-full pl-3.5 pr-8 py-1.5 text-xs text-[#2D2A26] placeholder-[#8A8177] focus:outline-none focus:border-[#1E4D38] transition-all"
+                />
+                <button
+                  onClick={() => setSearchOpen(true)}
+                  className="absolute right-2.5 top-1/2 -translate-y-1/2 text-stone-500 hover:text-[#1E4D38] transition-colors"
+                  title="Tìm kiếm"
+                >
+                  <Search className="w-3.5 h-3.5" />
+                </button>
+              </div>
+
+              {/* Mobile / Tablet Search Trigger Button */}
               <button
                 onClick={() => setSearchOpen(true)}
-                className="p-2 sm:p-2.5 rounded-xl bg-[#FAF8F5] text-[#3E3834] hover:text-[#1E4D38] hover:bg-[#F3EFEA] border border-[#E8E2D9] transition shadow-xs flex items-center justify-center cursor-pointer shrink-0"
+                className="xl:hidden p-2 rounded-xl bg-[#FAF8F5] text-[#3E3834] hover:text-[#1E4D38] hover:bg-[#F3EFEA] border border-[#E8E2D9] transition shadow-xs flex items-center justify-center cursor-pointer shrink-0"
                 title="Tìm kiếm sản phẩm"
                 aria-label="Tìm kiếm sản phẩm"
               >
                 <Search className="w-4 h-4 text-[#1E4D38] shrink-0" />
               </button>
 
-              {/* Account Button */}
+              {/* Account Button with User Name (Tứ Quý Garden Style) */}
               <Link
                 href="/account"
-                className="p-2 sm:p-2.5 rounded-xl bg-[#FAF8F5] text-[#3E3834] hover:text-[#1E4D38] hover:bg-[#F3EFEA] border border-[#E8E2D9] transition shadow-xs flex items-center justify-center shrink-0"
+                className="flex items-center gap-1.5 py-1.5 px-2.5 rounded-full hover:bg-[#F3EFEA] text-[#243329] hover:text-[#1E4D38] transition font-semibold text-sm shrink-0"
                 title={customer ? `Tài khoản: ${customer.name}` : 'Tài khoản khách hàng'}
               >
                 {customer?.avatar ? (
                   <img
                     src={customer.avatar}
                     alt={customer.name}
-                    className="w-4 h-4 sm:w-5 sm:h-5 rounded-full object-cover border border-[#1E4D38] shrink-0"
+                    className="w-5 h-5 rounded-full object-cover border border-[#1E4D38] shrink-0"
                   />
                 ) : (
                   <User className="w-4 h-4 text-[#1E4D38] shrink-0" />
                 )}
+                <span className="hidden sm:inline text-xs font-bold text-[#243329]">
+                  {customer ? customer.name.split(' ')[0] : 'Tài khoản'}
+                </span>
               </Link>
 
-              {/* Cart Button with Counter - Enhanced Size per User Request */}
+              {/* Cart Button with Badge + "Cart" Label (Tứ Quý Garden Style) */}
               <Link
                 href="/cart"
-                className="relative p-2 sm:p-2.5 px-3 sm:px-3.5 rounded-xl bg-[#1E4D38] hover:bg-[#143527] text-white transition shadow-sm flex items-center gap-2 group shrink-0 whitespace-nowrap cursor-pointer"
+                className="relative flex items-center gap-1.5 py-1.5 px-3 rounded-full hover:bg-[#F3EFEA] text-[#243329] hover:text-[#1E4D38] transition font-semibold text-sm shrink-0 group cursor-pointer"
                 title="Xem giỏ hàng JRAI ƠI"
               >
-                <ShoppingBag className="w-5 h-5 sm:w-6 sm:h-6 text-white group-hover:scale-110 transition-transform shrink-0" />
-                <span className="hidden 2xl:inline text-xs font-bold text-white whitespace-nowrap">Giỏ hàng</span>
-                {cartCount > 0 && (
-                  <span className="inline-flex items-center justify-center min-w-[20px] sm:min-w-[22px] h-5 sm:h-5 px-1.5 text-[11px] sm:text-xs font-black rounded-full bg-[#C43B3D] text-white shadow-xs border border-white/20">
-                    {cartCount}
-                  </span>
-                )}
+                <div className="relative">
+                  <ShoppingBag className="w-5 h-5 text-[#1E4D38] group-hover:scale-110 transition-transform" />
+                  {cartCount > 0 && (
+                    <span className="absolute -top-1.5 -right-2 bg-amber-400 text-stone-900 text-[10px] font-black min-w-[16px] h-4 px-1 rounded-full flex items-center justify-center border border-white shadow-xs">
+                      {cartCount}
+                    </span>
+                  )}
+                </div>
+                <span className="hidden sm:inline text-xs font-bold text-[#243329]">
+                  Giỏ hàng
+                </span>
               </Link>
 
               {/* Mobile Hamburger Toggle */}
