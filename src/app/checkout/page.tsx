@@ -345,11 +345,11 @@ export default function CheckoutPage() {
             {/* Header: Biểu tượng JRAI ƠI + Tiêu đề + Họa tiết thổ cẩm */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-[#E5DACB]/80">
               <div className="flex items-center gap-3">
-                <div className="w-11 h-11 rounded-xl bg-[#174C38] flex items-center justify-center shadow-xs shrink-0 border border-[#C99A45]/40">
+                <div className="h-11 px-2.5 py-1 rounded-xl bg-white flex items-center justify-center shadow-xs shrink-0 border border-[#E5DACB]">
                   <img
-                    src="/images/logo/logo-jrai-oi-footer.png"
+                    src="/images/logo/logo-jrai-oi-transparent.png"
                     alt="JRAI ƠI"
-                    className="w-8 h-8 object-contain brightness-0 invert"
+                    className="h-8 w-auto object-contain"
                   />
                 </div>
                 <div>
@@ -364,9 +364,9 @@ export default function CheckoutPage() {
 
               {/* Họa tiết hình thoi thổ cẩm trang trí góc phải header */}
               <div className="hidden sm:flex items-center gap-1.5 text-[#C99A45] select-none" aria-hidden="true">
-                <span className="text-[10px]">◇</span>
-                <span className="text-xs font-bold text-[#174C38]">◈</span>
-                <span className="text-[10px]">◇</span>
+                <span className="text-xs">◇</span>
+                <span className="text-sm font-bold text-[#174C38]">◈</span>
+                <span className="text-xs">◇</span>
               </div>
             </div>
 
@@ -390,7 +390,8 @@ export default function CheckoutPage() {
                         if (errors.customerName) setErrors((prev) => ({ ...prev, customerName: '' }));
                       }}
                       onBlur={() => validateField('customerName')}
-                      className={`w-full bg-white border rounded-xl pl-10 pr-4 py-2.5 sm:py-3 text-xs text-[#1F1D1B] placeholder-[#A39686] transition-all duration-200 focus:outline-none focus:bg-white ${
+                      style={{ paddingLeft: '44px', minHeight: '44px' }}
+                      className={`w-full bg-white border rounded-xl pr-4 text-xs sm:text-sm text-[#1F1D1B] placeholder-[#A39686] transition-all duration-200 focus:outline-none focus:bg-white ${
                         errors.customerName
                           ? 'border-[#B9383A] ring-1 ring-[#B9383A]/20'
                           : 'border-[#E2D8C7] focus:border-[#174C38] focus:ring-2 focus:ring-[#174C38]/10'
@@ -421,7 +422,8 @@ export default function CheckoutPage() {
                         if (errors.customerPhone) setErrors((prev) => ({ ...prev, customerPhone: '' }));
                       }}
                       onBlur={() => validateField('customerPhone')}
-                      className={`w-full bg-white border rounded-xl pl-10 pr-4 py-2.5 sm:py-3 text-xs text-[#1F1D1B] placeholder-[#A39686] font-mono transition-all duration-200 focus:outline-none focus:bg-white ${
+                      style={{ paddingLeft: '44px', minHeight: '44px' }}
+                      className={`w-full bg-white border rounded-xl pr-4 text-xs sm:text-sm text-[#1F1D1B] placeholder-[#A39686] font-mono transition-all duration-200 focus:outline-none focus:bg-white ${
                         errors.customerPhone
                           ? 'border-[#B9383A] ring-1 ring-[#B9383A]/20'
                           : 'border-[#E2D8C7] focus:border-[#174C38] focus:ring-2 focus:ring-[#174C38]/10'
@@ -454,7 +456,8 @@ export default function CheckoutPage() {
                       if (errors.customerEmail) setErrors((prev) => ({ ...prev, customerEmail: '' }));
                     }}
                     onBlur={() => validateField('customerEmail')}
-                    className={`w-full bg-white border rounded-xl pl-10 pr-4 py-2.5 sm:py-3 text-xs text-[#1F1D1B] placeholder-[#A39686] transition-all duration-200 focus:outline-none focus:bg-white ${
+                    style={{ paddingLeft: '44px', minHeight: '44px' }}
+                    className={`w-full bg-white border rounded-xl pr-4 text-xs sm:text-sm text-[#1F1D1B] placeholder-[#A39686] transition-all duration-200 focus:outline-none focus:bg-white ${
                       errors.customerEmail
                         ? 'border-[#B9383A] ring-1 ring-[#B9383A]/20'
                         : 'border-[#E2D8C7] focus:border-[#174C38] focus:ring-2 focus:ring-[#174C38]/10'
@@ -476,7 +479,7 @@ export default function CheckoutPage() {
               {/* Hàng 3: Địa chỉ nhận hàng (bắt buộc) */}
               <div>
                 <label className="text-xs text-[#3D2E24] font-bold block mb-1.5">
-                  Địa chỉ nhận hàng (Số nhà, tên đường) <span className="text-[#C99A45] font-black">*</span>
+                  Địa chỉ nhận hàng (Số nhà, tên đường, thôn/buôn) <span className="text-[#C99A45] font-black">*</span>
                 </label>
                 <div className="relative">
                   <MapPin className="w-4 h-4 text-[#96704B] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
@@ -489,7 +492,8 @@ export default function CheckoutPage() {
                       if (errors.shippingAddress) setErrors((prev) => ({ ...prev, shippingAddress: '' }));
                     }}
                     onBlur={() => validateField('shippingAddress')}
-                    className={`w-full bg-white border rounded-xl pl-10 pr-4 py-2.5 sm:py-3 text-xs text-[#1F1D1B] placeholder-[#A39686] transition-all duration-200 focus:outline-none focus:bg-white ${
+                    style={{ paddingLeft: '44px', minHeight: '44px' }}
+                    className={`w-full bg-white border rounded-xl pr-4 text-xs sm:text-sm text-[#1F1D1B] placeholder-[#A39686] transition-all duration-200 focus:outline-none focus:bg-white ${
                       errors.shippingAddress
                         ? 'border-[#B9383A] ring-1 ring-[#B9383A]/20'
                         : 'border-[#E2D8C7] focus:border-[#174C38] focus:ring-2 focus:ring-[#174C38]/10'
@@ -522,7 +526,8 @@ export default function CheckoutPage() {
                         if (errors.province) setErrors((prev) => ({ ...prev, province: '' }));
                       }}
                       onBlur={() => validateField('province')}
-                      className={`w-full bg-white border rounded-xl px-3.5 py-2.5 sm:py-3 text-xs text-[#1F1D1B] placeholder-[#A39686] transition-all duration-200 focus:outline-none focus:bg-white ${
+                      style={{ minHeight: '44px' }}
+                      className={`w-full bg-white border rounded-xl px-3.5 text-xs sm:text-sm text-[#1F1D1B] placeholder-[#A39686] transition-all duration-200 focus:outline-none focus:bg-white ${
                         errors.province
                           ? 'border-[#B9383A] ring-1 ring-[#B9383A]/20'
                           : 'border-[#E2D8C7] focus:border-[#174C38] focus:ring-2 focus:ring-[#174C38]/10'
@@ -555,7 +560,8 @@ export default function CheckoutPage() {
                       if (errors.district) setErrors((prev) => ({ ...prev, district: '' }));
                     }}
                     onBlur={() => validateField('district')}
-                    className={`w-full bg-white border rounded-xl px-3.5 py-2.5 sm:py-3 text-xs text-[#1F1D1B] placeholder-[#A39686] transition-all duration-200 focus:outline-none focus:bg-white ${
+                    style={{ minHeight: '44px' }}
+                    className={`w-full bg-white border rounded-xl px-3.5 text-xs sm:text-sm text-[#1F1D1B] placeholder-[#A39686] transition-all duration-200 focus:outline-none focus:bg-white ${
                       errors.district
                         ? 'border-[#B9383A] ring-1 ring-[#B9383A]/20'
                         : 'border-[#E2D8C7] focus:border-[#174C38] focus:ring-2 focus:ring-[#174C38]/10'
@@ -582,7 +588,8 @@ export default function CheckoutPage() {
                       if (errors.ward) setErrors((prev) => ({ ...prev, ward: '' }));
                     }}
                     onBlur={() => validateField('ward')}
-                    className={`w-full bg-white border rounded-xl px-3.5 py-2.5 sm:py-3 text-xs text-[#1F1D1B] placeholder-[#A39686] transition-all duration-200 focus:outline-none focus:bg-white ${
+                    style={{ minHeight: '44px' }}
+                    className={`w-full bg-white border rounded-xl px-3.5 text-xs sm:text-sm text-[#1F1D1B] placeholder-[#A39686] transition-all duration-200 focus:outline-none focus:bg-white ${
                       errors.ward
                         ? 'border-[#B9383A] ring-1 ring-[#B9383A]/20'
                         : 'border-[#E2D8C7] focus:border-[#174C38] focus:ring-2 focus:ring-[#174C38]/10'
@@ -609,7 +616,8 @@ export default function CheckoutPage() {
                     placeholder="Ghi chú thêm về thời gian nhận, bọc gói quà thủ công, thông điệp kèm theo..."
                     value={orderNotes}
                     onChange={(e) => setOrderNotes(e.target.value)}
-                    className="w-full bg-white border border-[#E2D8C7] rounded-xl pl-10 pr-4 py-2.5 sm:py-3 text-xs text-[#1F1D1B] placeholder-[#A39686] transition-all duration-200 focus:outline-none focus:border-[#174C38] focus:ring-2 focus:ring-[#174C38]/10 focus:bg-white"
+                    style={{ paddingLeft: '44px', paddingTop: '12px' }}
+                    className="w-full bg-white border border-[#E2D8C7] rounded-xl pr-4 text-xs sm:text-sm text-[#1F1D1B] placeholder-[#A39686] transition-all duration-200 focus:outline-none focus:border-[#174C38] focus:ring-2 focus:ring-[#174C38]/10 focus:bg-white"
                   />
                 </div>
               </div>
@@ -617,18 +625,18 @@ export default function CheckoutPage() {
 
             {/* Footer của phiếu: Lời tri ân + Họa tiết hình thoi thổ cẩm hai bên */}
             <div className="pt-4 border-t border-[#E5DACB]/80 flex flex-col sm:flex-row items-center justify-center gap-2 text-center text-xs text-[#96704B]">
-              <div className="flex items-center gap-1.5 text-[#C99A45] select-none" aria-hidden="true">
-                <span className="text-[10px]">◇</span>
+              <div className="flex items-center gap-1 text-[#C99A45] select-none" aria-hidden="true">
+                <span className="text-[11px]">◇</span>
                 <span className="text-xs font-bold text-[#174C38]">◈</span>
-                <span className="text-[10px]">◇</span>
+                <span className="text-[11px]">◇</span>
               </div>
               <p className="font-serif italic font-medium text-[#7D5B3A]">
                 Cảm ơn bạn đã lựa chọn và đồng hành cùng những nghệ nhân Jrai.
               </p>
-              <div className="flex items-center gap-1.5 text-[#C99A45] select-none" aria-hidden="true">
-                <span className="text-[10px]">◇</span>
+              <div className="flex items-center gap-1 text-[#C99A45] select-none" aria-hidden="true">
+                <span className="text-[11px]">◇</span>
                 <span className="text-xs font-bold text-[#174C38]">◈</span>
-                <span className="text-[10px]">◇</span>
+                <span className="text-[11px]">◇</span>
               </div>
             </div>
           </div>
