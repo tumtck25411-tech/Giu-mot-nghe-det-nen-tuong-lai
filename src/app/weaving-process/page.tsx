@@ -136,5 +136,6 @@ export default function WeavingProcessPage() {
         title="Toàn cảnh thiên nhiên Tây Nguyên — JRAI ƠI"
       />
     </div>
+  </div>
   );
 }

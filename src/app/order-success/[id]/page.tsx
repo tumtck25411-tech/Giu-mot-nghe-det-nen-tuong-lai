@@ -303,5 +303,6 @@ export default function OrderSuccessPage() {
         title="Toàn cảnh thiên nhiên Tây Nguyên — JRAI ƠI"
       />
     </div>
+  </div>
   );
 }
