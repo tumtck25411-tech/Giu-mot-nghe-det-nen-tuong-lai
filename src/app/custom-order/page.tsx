@@ -26,6 +26,7 @@ interface CustomProductType {
   basePrice: number;
   days: string;
   desc: string;
+  image: string;
   suggestedArtisan: string;
 }
 
@@ -36,7 +37,8 @@ const CUSTOM_PRODUCTS: CustomProductType[] = [
     category: 'Túi',
     basePrice: 450000,
     days: '7 - 10 ngày dệt cửi hông',
-    desc: 'Thiết kế phom gọn thanh lịch, quai dệt sợi đôi chắc chắn, nắp gài nút gỗ thông rừng.',
+    desc: 'Phom gọn, quai dệt sợi đôi',
+    image: '/images/products/c001.jpg',
     suggestedArtisan: 'Nghệ nhân Rơ Châm Mril (Làng Kép)',
   },
   {
@@ -45,7 +47,8 @@ const CUSTOM_PRODUCTS: CustomProductType[] = [
     category: 'Khăn',
     basePrice: 380000,
     days: '5 - 7 ngày dệt tay',
-    desc: 'Sợi bông Kơpăh mềm mại giữ ấm, hai đầu viền tua rua dệt sợi bazan truyền thống.',
+    desc: 'Bông Kơpăh mềm mại giữ ấm',
+    image: '/images/products/k001.jpg',
     suggestedArtisan: 'Nghệ nhân Puih H’Lâm (Làng Phung)',
   },
   {
@@ -54,7 +57,8 @@ const CUSTOM_PRODUCTS: CustomProductType[] = [
     category: 'Ví',
     basePrice: 280000,
     days: '3 - 5 ngày dệt tay',
-    desc: 'Kích thước vừa vặn đựng điện thoại và thẻ tiền, khóa kéo đồng mộc bền chắc.',
+    desc: 'Vừa vặn điện thoại và thẻ',
+    image: '/images/products/vi001.jpg',
     suggestedArtisan: 'Nghệ nhân Siu H’Poi (Làng Kép)',
   },
   {
@@ -63,7 +67,8 @@ const CUSTOM_PRODUCTS: CustomProductType[] = [
     category: 'Áo',
     basePrice: 850000,
     days: '10 - 15 ngày dệt cửi hông',
-    desc: 'Phom áo cổ tròn xẻ ngực Jrai nguyên bản, dệt viền hoa văn bảo vệ trước ngực và vạt áo.',
+    desc: 'Phom cổ tròn xẻ ngực Jrai',
+    image: '/images/products/a001.jpg',
     suggestedArtisan: 'Nghệ nhân Ksor H’Bia (Làng Mrông Yố)',
   },
   {
@@ -72,7 +77,8 @@ const CUSTOM_PRODUCTS: CustomProductType[] = [
     category: 'Váy',
     basePrice: 1200000,
     days: '12 - 18 ngày dệt cửi hông',
-    desc: 'Váy quấn nguyên khổ may đo theo vòng eo, kết tinh tinh hoa mẫu hệ và sợi chỉ tình yêu.',
+    desc: 'Váy quấn may đo theo eo',
+    image: '/images/products/v001.jpg',
     suggestedArtisan: 'Nghệ nhân Rơ Châm Mril (Làng Kép)',
   },
   {
@@ -81,7 +87,8 @@ const CUSTOM_PRODUCTS: CustomProductType[] = [
     category: 'Tạp dề',
     basePrice: 320000,
     days: '4 - 6 ngày dệt tay',
-    desc: 'Vải dệt dày dặn chống bám bụi, túi ngực tiện dụng cho barista, nghệ nhân, làm bếp.',
+    desc: 'Vải dày dặn, tiện làm bếp',
+    image: '/images/products/td001.jpg',
     suggestedArtisan: 'Nghệ nhân Rơ Lan H’Ngọc (Làng Phung)',
   },
   {
@@ -90,7 +97,8 @@ const CUSTOM_PRODUCTS: CustomProductType[] = [
     category: 'Túi tote',
     basePrice: 350000,
     days: '6 - 8 ngày dệt tay',
-    desc: 'Sức chứa rộng rãi đựng vừa tài liệu và laptop 14 inch, đáy túi dệt gia cố sợi đôi.',
+    desc: 'Rộng rãi, đựng vừa laptop 14"',
+    image: '/images/products/tt001.jpg',
     suggestedArtisan: 'Nghệ nhân Siu H’Poi (Làng Kép)',
   },
   {
@@ -99,7 +107,8 @@ const CUSTOM_PRODUCTS: CustomProductType[] = [
     category: 'Bầu nước',
     basePrice: 250000,
     days: '3 - 4 ngày đan dệt',
-    desc: 'Quả bầu rừng phơi khô phủ sáp ong tự nhiên, quàng đai thổ cẩm phong thủy may mắn.',
+    desc: 'Bầu khô phủ sáp ong tự nhiên',
+    image: '/images/products/b001.jpg',
     suggestedArtisan: 'Nghệ nhân Puih H’Lâm (Làng Phung)',
   },
 ];
@@ -300,7 +309,7 @@ export default function CustomOrderPage() {
       category_name: selectedProduct.category,
       price: totalPrice,
       original_price: totalPrice + 80000,
-      image_url: '/images/products/c001.jpg',
+      image_url: selectedProduct.image,
       production_time: selectedProduct.days,
       description: `Sản phẩm đặt làm theo yêu cầu riêng: Màu ${selectedColor.name} • Hoa văn ${selectedMotif.name} • Ghi chú: ${customNote || 'May đo tiêu chuẩn'}.`,
       material: 'Sợi bông Kơpăh dệt tay 100% nhuộm tự nhiên',
@@ -371,13 +380,13 @@ export default function CustomOrderPage() {
         </div>
 
         {/* 4-STEP WIZARD PROGRESS BAR */}
-        <div className="w-full bg-[#FFFDF9] p-3 sm:p-4 rounded-2xl border border-[#E8DFC8] shadow-xs">
+        <div className="w-full bg-[#FFFDF9] p-2.5 sm:p-3.5 rounded-2xl border border-[#E8DFC8] shadow-xs">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-3">
             {[
-              { num: 1, title: 'Bước 1: Loại sản phẩm', sub: selectedProduct.name },
-              { num: 2, title: 'Bước 2: Màu sắc', sub: selectedColor.name },
-              { num: 3, title: 'Bước 3: Hoa văn', sub: selectedMotif.name },
-              { num: 4, title: 'Bước 4: Báo giá & Đặt', sub: `${totalPrice.toLocaleString('vi-VN')}₫` },
+              { num: 1, title: '1. Loại sản phẩm', sub: selectedProduct.name },
+              { num: 2, title: '2. Màu sắc', sub: selectedColor.name },
+              { num: 3, title: '3. Hoa văn', sub: selectedMotif.name },
+              { num: 4, title: '4. Báo giá & Đặt hàng', sub: `${totalPrice.toLocaleString('vi-VN')}₫` },
             ].map((step) => {
               const isCurrent = currentStep === step.num;
               const isPast = currentStep > step.num;
@@ -388,23 +397,37 @@ export default function CustomOrderPage() {
                   onClick={() => setCurrentStep(step.num)}
                   className={`p-3 sm:p-3.5 rounded-xl text-left transition-all duration-200 flex flex-col justify-between cursor-pointer border ${
                     isCurrent
-                      ? 'bg-[#174C38] text-[#FFFDF9] border-[#174C38] shadow-xs'
-                      : isPast
-                      ? 'bg-[#FFFDF9] text-[#174C38] border-[#174C38]/40 hover:bg-[#FAF5EC]'
-                      : 'bg-[#FAF5EC] text-[#59524C] border-[#E8DFC8] hover:border-[#174C38]/50'
+                      ? 'bg-[#174C38] text-white border-[#174C38] shadow-sm'
+                      : 'bg-[#FAF5EC] text-[#174C38] border-[#E8DFC8] hover:border-[#174C38]/40 hover:bg-[#F4ECE1]'
                   }`}
                 >
                   <div className="flex items-center justify-between mb-1">
-                    <span className={`text-[11px] font-medium uppercase tracking-wider ${isCurrent ? 'text-[#C99A45]' : isPast ? 'text-[#174C38]' : 'text-[#8A7E72]'}`}>
+                    <span
+                      className={`text-[11px] font-semibold uppercase tracking-wider ${
+                        isCurrent ? 'text-[#C99A45]' : 'text-[#8A7E72]'
+                      }`}
+                    >
                       BƯỚC 0{step.num}
                     </span>
-                    {isPast && <CheckCircle2 className="w-4 h-4 text-[#174C38]" />}
+                    {isPast && (
+                      <span className="w-4 h-4 rounded-full bg-[#174C38] text-white flex items-center justify-center text-[10px] font-bold">
+                        ✓
+                      </span>
+                    )}
                     {isCurrent && <CircleDot className="w-4 h-4 text-[#C99A45]" />}
                   </div>
-                  <div className={`text-xs sm:text-sm font-medium ${isCurrent ? 'text-[#FFFDF9]' : 'text-[#2D2926]'}`}>
+                  <div
+                    className={`text-xs sm:text-sm font-semibold ${
+                      isCurrent ? 'text-white' : 'text-[#174C38]'
+                    }`}
+                  >
                     {step.title}
                   </div>
-                  <div className={`text-[11px] leading-snug line-clamp-1 mt-0.5 ${isCurrent ? 'text-[#E8DFC8]' : 'text-[#8A7E72]'}`}>
+                  <div
+                    className={`text-[11px] leading-snug truncate mt-0.5 ${
+                      isCurrent ? 'text-[#FAF5EC]/85' : 'text-[#7A7265]'
+                    }`}
+                  >
                     {step.sub}
                   </div>
                 </button>
@@ -435,49 +458,59 @@ export default function CustomOrderPage() {
               </span>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
               {CUSTOM_PRODUCTS.map((prod) => {
                 const isSelected = selectedProduct.id === prod.id;
                 return (
                   <div
                     key={prod.id}
                     onClick={() => handleSelectProduct(prod)}
-                    className={`p-5 rounded-2xl border transition-all duration-200 cursor-pointer flex flex-col justify-between space-y-3 ${
+                    className={`group p-3.5 sm:p-4 rounded-2xl transition-all duration-200 cursor-pointer flex items-center gap-3.5 sm:gap-4 relative ${
                       isSelected
-                        ? 'bg-[#FAF5EC]/60 border-2 border-[#174C38] shadow-xs'
-                        : 'bg-[#FFFDF9] border-[#E8DFC8] hover:border-[#174C38]/60 hover:bg-[#FAF5EC]/30'
+                        ? 'bg-[#F2F8F5] border-2 border-[#174C38] shadow-sm'
+                        : 'bg-[#FFFDF9] border border-[#E8DFC8] hover:border-[#174C38]/40 hover:bg-[#FAF7F2]'
                     }`}
                   >
-                    <div className="space-y-2">
-                      <div className="flex items-center justify-between gap-2">
-                        <span className="text-xs font-medium text-[#174C38] bg-[#FAF5EC] border border-[#E8DFC8] px-2.5 py-0.5 rounded-full">
-                          {prod.category}
-                        </span>
+                    {/* Ảnh sản phẩm thực tế (25–30% card width, vuông, bo góc nhẹ) */}
+                    <div className="w-24 h-24 sm:w-28 sm:h-28 aspect-square rounded-xl overflow-hidden shrink-0 border border-[#E8DFC8]/70 bg-[#FAF5EC] relative">
+                      <img
+                        src={prod.image}
+                        alt={prod.name}
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                        loading="lazy"
+                      />
+                    </div>
+
+                    {/* Thông tin sản phẩm bên phải */}
+                    <div className="flex-1 min-w-0 flex flex-col justify-between h-full py-0.5 space-y-1.5">
+                      {/* Hàng 1: Tên sản phẩm & Nút chọn góc phải */}
+                      <div className="flex items-start justify-between gap-2">
+                        <h3 className="font-semibold text-[15px] sm:text-base text-[#174C38] leading-snug line-clamp-1">
+                          {prod.name}
+                        </h3>
                         {isSelected ? (
-                          <div className="flex items-center gap-1 text-xs font-medium text-[#174C38]">
-                            <CheckCircle2 className="w-4 h-4 text-[#174C38]" />
-                            <span>Đã chọn</span>
+                          <div className="w-5 h-5 rounded-full bg-[#174C38] text-white flex items-center justify-center shrink-0 mt-0.5 shadow-xs">
+                            <Check className="w-3 h-3 stroke-[3]" />
                           </div>
                         ) : (
-                          <div className="w-4 h-4 rounded-full border border-[#E8DFC8]" />
+                          <div className="w-5 h-5 rounded-full border-2 border-[#D4C4A8] bg-white shrink-0 mt-0.5 group-hover:border-[#174C38]/50" />
                         )}
                       </div>
 
-                      <h3 className="font-semibold text-base sm:text-lg text-[#174C38] pt-0.5">
-                        {prod.name}
-                      </h3>
-                      <p className="text-xs sm:text-sm text-[#59524C] leading-relaxed font-normal">
+                      {/* Hàng 2: Một câu mô tả ngắn (3-6 từ) */}
+                      <p className="text-xs sm:text-[13px] text-[#59524C] font-normal leading-relaxed line-clamp-1">
                         {prod.desc}
                       </p>
-                    </div>
 
-                    <div className="pt-3 border-t border-[#E8DFC8] flex items-center justify-between">
-                      <div className="text-xs text-[#59524C] flex items-center gap-1.5">
-                        <Clock className="w-3.5 h-3.5 text-[#C99A45]" />
-                        <span>{prod.days}</span>
-                      </div>
-                      <div className="font-semibold text-base sm:text-lg text-[#A94335]">
-                        {prod.basePrice.toLocaleString('vi-VN')}₫
+                      {/* Hàng 3: Thời gian dệt có icon đồng hồ vàng đất & Giá bán màu đỏ đất */}
+                      <div className="flex items-center justify-between gap-2 pt-1 border-t border-[#E8DFC8]/60">
+                        <div className="flex items-center gap-1.5 text-[11px] sm:text-xs text-[#7A7265]">
+                          <Clock className="w-3.5 h-3.5 text-[#C99A45] shrink-0" />
+                          <span className="truncate">{prod.days}</span>
+                        </div>
+                        <div className="font-bold text-base sm:text-lg text-[#A94335] shrink-0">
+                          {prod.basePrice.toLocaleString('vi-VN')}₫
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -716,10 +749,15 @@ export default function CustomOrderPage() {
               </h3>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-1">
-                <div className="p-3.5 bg-[#FFFDF9] rounded-xl border border-[#E8DFC8]">
-                  <span className="text-[11px] text-[#8A7E72] uppercase block font-medium">1. Loại sản phẩm:</span>
-                  <span className="text-base font-semibold text-[#174C38] block mt-0.5">{selectedProduct.name}</span>
-                  <span className="text-xs text-[#59524C] mt-0.5 block">{selectedProduct.desc}</span>
+                <div className="p-3.5 bg-[#FFFDF9] rounded-xl border border-[#E8DFC8] flex items-center gap-3">
+                  <div className="w-14 h-14 rounded-lg overflow-hidden shrink-0 border border-[#E8DFC8]/60 bg-[#FAF5EC]">
+                    <img src={selectedProduct.image} alt={selectedProduct.name} className="w-full h-full object-cover" />
+                  </div>
+                  <div className="min-w-0">
+                    <span className="text-[11px] text-[#8A7E72] uppercase block font-medium">1. Loại sản phẩm:</span>
+                    <span className="text-base font-semibold text-[#174C38] block mt-0.5 truncate">{selectedProduct.name}</span>
+                    <span className="text-xs text-[#59524C] mt-0.5 block truncate">{selectedProduct.desc}</span>
+                  </div>
                 </div>
 
                 <div className="p-3.5 bg-[#FFFDF9] rounded-xl border border-[#E8DFC8]">
