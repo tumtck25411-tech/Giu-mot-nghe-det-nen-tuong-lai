@@ -134,9 +134,6 @@ export default function ArtisanDetailPage() {
                 &ldquo;{artisan.quote}&rdquo;
               </div>
             )}
-                &ldquo;{artisan.quote}&rdquo;
-              </div>
-            )}
 
             <div className="space-y-2 text-xs sm:text-sm text-[#59524C] leading-relaxed">
               <p>

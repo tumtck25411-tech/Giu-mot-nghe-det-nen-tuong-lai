@@ -426,7 +426,6 @@ export default function ProductDetailPage() {
             </div>
           </div>
         </div>
-        </div>
       </div>
 
       {/* SECTION: CÂU CHUYỆN ĐẰNG SAU SẢN PHẨM (DEDICATED SECTION) */}
