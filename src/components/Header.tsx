@@ -153,8 +153,8 @@ export default function Header() {
     <>
       <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-[#E8E2D9] text-[#1F1D1B] shadow-[0_2px_12px_rgba(0,0,0,0.04)] transition-all overflow-x-clip">
         <div className="w-full max-w-[1720px] mx-auto px-3 sm:px-6 lg:px-8 xl:px-12">
-          <div className="flex items-center justify-between h-[74px] sm:h-[78px]">
-            {/* LOGO THƯƠNG HIỆU CHÍNH THỨC JRAI ƠI Ở GÓC TRÁI MÀN HÌNH */}
+          <div className="flex items-center justify-between h-[60px] sm:h-[64px]">
+            {/* LOGO THƯƠNG HIỆU CHÍNH THỨC JRAI ƠI Ở GÓC TRÁI MÀN HÌNH (THU NHỎ 50%) */}
             <Link
               href="/"
               className="flex items-center gap-2 group shrink-0 py-1"
@@ -163,7 +163,7 @@ export default function Header() {
               <img
                 src="/images/logo/logo-jrai-oi.png"
                 alt="JRAI ƠI — Đồ Thổ Cẩm Jrai"
-                className="h-12 sm:h-14 lg:h-16 w-auto max-w-[170px] sm:max-w-[210px] lg:max-w-[250px] object-contain transition-transform duration-300 group-hover:scale-105"
+                className="h-6 sm:h-7 lg:h-8 w-auto max-w-[85px] sm:max-w-[105px] lg:max-w-[125px] object-contain transition-transform duration-300 group-hover:scale-105"
                 loading="eager"
               />
             </Link>

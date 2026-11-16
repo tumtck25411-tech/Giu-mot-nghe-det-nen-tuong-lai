@@ -22,7 +22,7 @@ export default function Footer() {
               <img
                 src="/images/logo/logo-jrai-oi-white.png"
                 alt="JRAI ƠI — Đồ Thổ Cẩm Jrai"
-                className="h-14 sm:h-16 w-auto object-contain rounded-xl p-1.5 bg-white/95 shadow-md transition-transform duration-300 group-hover:scale-105"
+                className="h-8 sm:h-9 w-auto object-contain rounded-lg p-1 bg-white/95 shadow-md transition-transform duration-300 group-hover:scale-105"
               />
             </Link>
             <h3 className="font-serif font-black text-xl sm:text-2xl text-[#E58A1F] leading-snug">
