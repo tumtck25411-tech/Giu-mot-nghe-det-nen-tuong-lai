@@ -595,34 +595,34 @@ export default function HomePage() {
           <div className="hero-actions">
             <a
               href="#products"
-              className="inline-flex items-center gap-2 bg-[#1E4D38] hover:bg-[#143527] text-white font-bold text-xs sm:text-sm px-6 py-3.5 rounded-xl shadow-xs transition hover:-translate-y-0.5"
+              className="inline-flex items-center gap-2 bg-[#174C38] hover:bg-[#123829] text-white font-semibold text-xs sm:text-sm px-6 py-3.5 rounded-xl shadow-sm transition hover:-translate-y-0.5"
             >
-              <ShoppingBag className="w-4 h-4 text-amber-200" />
-              <span>KHÁM PHÁ 57 TÁC PHẨM</span>
+              <ShoppingBag className="w-4 h-4 text-[#C99A45]" />
+              <span>Khám Phá 57 Tác Phẩm</span>
             </a>
 
             <a
               href="#artisans"
-              className="inline-flex items-center gap-2 bg-[#1C1613] hover:bg-[#2C211A] text-amber-200 hover:text-white font-bold text-xs sm:text-sm px-5 py-3.5 rounded-xl border border-amber-900/40 transition hover:-translate-y-0.5"
+              className="inline-flex items-center gap-2 bg-[#FAF5EC]/95 hover:bg-white text-[#174C38] font-semibold text-xs sm:text-sm px-5 py-3.5 rounded-xl border border-[#C99A45]/40 transition hover:-translate-y-0.5 shadow-sm"
             >
-              <Users className="w-4 h-4 text-amber-300" />
-              <span>NGHỆ NHÂN BUÔN LÀNG</span>
+              <Users className="w-4 h-4 text-[#C99A45]" />
+              <span>Nghệ Nhân Buôn Làng</span>
             </a>
 
             <a
               href="#motifs"
-              className="inline-flex items-center gap-2 bg-[#1C1613] hover:bg-[#2C211A] text-stone-200 hover:text-white font-bold text-xs sm:text-sm px-5 py-3.5 rounded-xl border border-stone-800 transition hover:-translate-y-0.5"
+              className="inline-flex items-center gap-2 bg-[#FAF5EC]/95 hover:bg-white text-[#174C38] font-semibold text-xs sm:text-sm px-5 py-3.5 rounded-xl border border-[#C99A45]/40 transition hover:-translate-y-0.5 shadow-sm"
             >
-              <Grid className="w-4 h-4 text-amber-300" />
-              <span>NGÂN HÀNG HOA VĂN</span>
+              <Grid className="w-4 h-4 text-[#C99A45]" />
+              <span>Ngân Hàng Hoa Văn</span>
             </a>
 
             <a
               href="#traceability"
-              className="inline-flex items-center gap-2 bg-[#1C1613] hover:bg-[#2A201A] text-amber-300 hover:text-white font-bold text-xs sm:text-sm px-5 py-3.5 rounded-xl border border-amber-700/40 transition hover:-translate-y-0.5"
+              className="inline-flex items-center gap-2 bg-[#FAF5EC]/95 hover:bg-white text-[#174C38] font-semibold text-xs sm:text-sm px-5 py-3.5 rounded-xl border border-[#C99A45]/40 transition hover:-translate-y-0.5 shadow-sm"
             >
-              <QrCode className="w-4 h-4 text-amber-300" />
-              <span>TRA CỨU QR</span>
+              <QrCode className="w-4 h-4 text-[#C99A45]" />
+              <span>Tra Cứu QR</span>
             </a>
           </div>
 
@@ -739,9 +739,9 @@ export default function HomePage() {
             </div>
 
             <div className="innovation-card-box">
-              <div style={{ borderBottom: '1px solid #E5DACB', paddingBottom: '14px', marginBottom: '20px' }}>
-                <span style={{ fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', color: 'var(--color-forest-gold)' }}>Mô hình sinh kế bền vững</span>
-                <h3 style={{ fontSize: '1.35rem', fontWeight: 800, color: '#1F1D1B', marginTop: '4px' }}>
+              <div style={{ borderBottom: '1px solid #E8DFC8', paddingBottom: '14px', marginBottom: '20px' }}>
+                <span style={{ fontSize: '0.75rem', fontWeight: 600, textTransform: 'uppercase', color: 'var(--color-forest-gold, #C99A45)', letterSpacing: '0.5px' }}>Mô hình sinh kế bền vững</span>
+                <h3 style={{ fontSize: '1.25rem', fontWeight: 600, color: 'var(--color-forest-green, #174C38)', marginTop: '4px' }}>
                   Mô hình “Bảo Tồn — Kết Nối — Thí Điểm”
                 </h3>
               </div>
@@ -1091,16 +1091,16 @@ export default function HomePage() {
       <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-12 space-y-8">
         <div className="text-center max-w-3xl mx-auto space-y-3.5 mb-8">
           <span className="section-tag gold">
-            Con người & Bàn tay vàng
+            Làng Kép – Ia Mơ Nông
           </span>
           <h2 className="section-title text-center">
-            Nghệ Nhân Giữ Nghề Xã Ia Mơ Nông
+            Nghệ nhân dệt thổ cẩm
           </h2>
           <p className="section-desc text-center mx-auto">
-            Gặp gỡ 9 nghệ nhân dệt cửi hông tiêu biểu tại làng Kép và làng Phung, những người phụ nữ Jrai gìn giữ linh hồn thổ cẩm qua nhiều thế hệ.
+            Gìn giữ nghề truyền thống, lan tỏa giá trị thổ cẩm Jrai
           </p>
           <div className="flex items-center justify-center gap-3 pt-2">
-            <span className="text-xs font-bold text-amber-900 bg-amber-100/90 px-3.5 py-1.5 rounded-full border border-amber-300">
+            <span className="text-xs font-semibold text-[#174C38] bg-[#FAF5EC] px-3.5 py-1.5 rounded-full border border-[#E8DFC8]">
               09 / 09 nghệ nhân giữ nghề
             </span>
             <Link href="/artisans" className="btn btn-outline-dark btn-sm">
@@ -1130,7 +1130,7 @@ export default function HomePage() {
                 <div className="artisan-village">📍 {a.village}</div>
                 <p className="artisan-quote">&ldquo;{a.quote}&rdquo;</p>
                 <p style={{ fontSize: '0.85rem', color: '#5D554D', marginBottom: '14px' }}>
-                  <strong style={{ color: '#1F1D1B' }}>Chuyên môn:</strong> {a.specialty}
+                  <strong style={{ color: '#174C38' }}>Chuyên môn:</strong> {a.specialty}
                 </p>
                 <div style={{ marginTop: 'auto', display: 'flex', gap: '8px' }}>
                   <button
@@ -1141,7 +1141,7 @@ export default function HomePage() {
                     className="btn btn-sm btn-primary"
                     style={{ flex: 1, textAlign: 'center', justifyContent: 'center' }}
                   >
-                    Xem câu chuyện & tác phẩm
+                    Xem hồ sơ
                   </button>
                 </div>
               </div>
@@ -1384,27 +1384,24 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* C. 6 Weaving Stages with Actual Photos - Bố cục Lưới Đối Xứng Toàn Màn Hình Cân Đối */}
-        <section className="section journey-section-bg py-16 px-4 sm:px-6 lg:px-8 rounded-3xl w-full" id="journey">
+        {/* C. 6 Weaving Stages with Actual Photos - Modern Ethnic Boutique Format */}
+        <section className="section journey-section-bg py-16 px-4 sm:px-6 lg:px-8 rounded-3xl w-full border border-[#E8DFC8]" id="journey">
           <div className="w-full max-w-7xl 2xl:max-w-[1540px] mx-auto px-2 sm:px-4">
             <div className="text-center" style={{ maxWidth: '780px', margin: '0 auto 35px' }}>
               <span
-                className="section-tag inline-block mb-3 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider"
+                className="section-tag inline-block mb-3 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider"
                 style={{
-                  color: 'var(--color-forest-gold)',
-                  backgroundColor: 'rgba(229, 138, 31, 0.15)',
-                  borderColor: 'rgba(229, 138, 31, 0.35)',
+                  color: 'var(--color-forest-gold, #C99A45)',
+                  backgroundColor: 'rgba(201, 154, 69, 0.12)',
+                  borderColor: 'rgba(201, 154, 69, 0.3)',
                 }}
               >
                 Quy trình thủ công truyền thống
               </span>
-              <h3
-                className="section-title text-3xl sm:text-4xl font-serif font-black text-white mb-3"
-                style={{ textShadow: '0 2px 14px rgba(0, 0, 0, 0.8)' }}
-              >
+              <h3 className="section-title text-2xl sm:text-3xl lg:text-4xl font-serif font-semibold text-[#174C38] mb-3">
                 Hành Trình Dệt Nên Một Tác Phẩm Thổ Cẩm
               </h3>
-              <p className="section-desc text-sm sm:text-base text-stone-300" style={{ opacity: 0.95 }}>
+              <p className="section-desc text-sm sm:text-base text-[#4A453F]">
                 Mỗi tấm thổ cẩm Jrai là kết tinh của hàng chục giờ đếm từng sợi chỉ trên khung cửi hông, trải qua 6 công đoạn khắt khe từ cây bông rừng đến mác định danh số QR.
               </p>
             </div>
@@ -1415,23 +1412,22 @@ export default function HomePage() {
                 {WEAVING_STAGES_FULL.map((stage) => (
                   <div
                     key={stage.step}
-                    className="bg-[#241C18] rounded-2xl border border-amber-900/40 hover:border-[#EA8E23] transition-all duration-300 overflow-hidden shadow-xl flex flex-col justify-between hover:-translate-y-1.5 group"
+                    className="bg-[#FFFDF9] rounded-2xl border border-[#E8DFC8] hover:border-[#174C38] transition-all duration-300 overflow-hidden shadow-xs hover:shadow-lg flex flex-col justify-between hover:-translate-y-1.5 group"
                   >
                     {/* Ảnh thực tế công đoạn với tỷ lệ chuẩn & huy hiệu */}
-                    <div className="relative h-56 sm:h-64 overflow-hidden bg-stone-900">
+                    <div className="relative h-56 sm:h-64 overflow-hidden bg-[#FAF5EC]">
                       <img
                         src={stage.image}
                         alt={stage.title}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#241C18] via-transparent to-black/30" />
                       <div className="absolute top-3.5 left-3.5 z-10">
-                        <span className="bg-[#120F0D]/85 backdrop-blur-md text-[#F59E0B] border border-amber-500/40 text-[11px] sm:text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow">
+                        <span className="bg-[#174C38]/90 backdrop-blur-xs text-[#FAF5EC] border border-[#C99A45]/40 text-[11px] sm:text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider shadow-xs">
                           {stage.stage}
                         </span>
                       </div>
                       <div className="absolute top-3.5 right-3.5 z-10">
-                        <span className="bg-[#B9383A] text-white font-mono font-black text-xs px-2.5 py-1 rounded-lg shadow-md border border-amber-300/30">
+                        <span className="bg-[#A94335] text-white font-mono font-semibold text-xs px-2.5 py-1 rounded-lg shadow-xs border border-white/20">
                           {stage.step}
                         </span>
                       </div>
@@ -1440,34 +1436,34 @@ export default function HomePage() {
                     {/* Nội dung chi tiết */}
                     <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
                       <div className="space-y-2">
-                        <div className="text-xs font-bold uppercase tracking-wider text-[#EA8E23]">
+                        <div className="text-xs font-semibold uppercase tracking-wider text-[#C99A45]">
                           {stage.numLabel}
                         </div>
-                        <h4 className="font-serif font-black text-xl text-white group-hover:text-amber-200 transition-colors">
+                        <h4 className="font-serif font-semibold text-lg text-[#174C38] group-hover:text-[#C99A45] transition-colors">
                           {stage.title}
                         </h4>
-                        <div className="text-xs text-amber-200/80 italic font-medium">
+                        <div className="text-xs text-[#7A7265] italic font-medium">
                           {stage.subtitle}
                         </div>
-                        <div className="flex flex-wrap gap-1.5 pt-2">
+                        <div className="flex flex-wrap gap-1.5 pt-1.5">
                           {stage.pills.map((pill, pIdx) => (
                             <span
                               key={pIdx}
-                              className="text-[11px] font-medium px-2.5 py-1 rounded-full bg-[#181310] text-stone-300 border border-stone-800"
+                              className="text-[11px] font-medium px-2.5 py-1 rounded-full bg-[#FAF5EC] text-[#4A453F] border border-[#E8DFC8]"
                             >
                               {pill}
                             </span>
                           ))}
                         </div>
-                        <p className="text-sm text-stone-300/90 leading-relaxed pt-2">
+                        <p className="text-sm text-[#4A453F] leading-relaxed pt-1.5">
                           {stage.desc}
                         </p>
                       </div>
 
-                      <div className="pt-4 border-t border-stone-800/80">
+                      <div className="pt-4 border-t border-[#E8DFC8]">
                         <Link
                           href="/weaving-process"
-                          className="inline-flex items-center gap-2 text-xs font-bold text-amber-400 hover:text-amber-300 group/link transition-colors"
+                          className="inline-flex items-center gap-2 text-xs font-semibold text-[#174C38] hover:text-[#C99A45] group/link transition-colors"
                         >
                           <span>Xem chi tiết công đoạn</span>
                           <span className="group-hover/link:translate-x-1 transition-transform">➔</span>
@@ -1482,7 +1478,7 @@ export default function HomePage() {
               <div className="text-center mt-12">
                 <Link
                   href="/weaving-process"
-                  className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[#EA8E23] hover:bg-[#D97706] text-white font-bold text-sm sm:text-base shadow-xl hover:shadow-2xl transition-all transform hover:scale-[1.02]"
+                  className="inline-flex items-center gap-3 px-8 py-3.5 rounded-full bg-[#174C38] hover:bg-[#123829] text-white font-semibold text-sm sm:text-base shadow-sm hover:shadow-md transition-all transform hover:scale-[1.01]"
                 >
                   <span>Khám Phá Trọn Vẹn 6 Công Đoạn Dệt Cửi Hông</span>
                   <span>➔</span>
@@ -1492,23 +1488,23 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* D. Mentor & Founding Team ("The People Behind The Weave") - Tứ Quý Garden Card Format */}
-        <div className="team-section-container reveal-on-scroll" style={{ borderRadius: '16px', padding: '50px 24px 70px', margin: '20px 0' }}>
+        {/* D. Mentor & Founding Team ("The People Behind The Weave") - Modern Ethnic Boutique Format */}
+        <div className="team-section-container reveal-on-scroll" style={{ borderRadius: '16px', padding: '50px 24px 60px', margin: '20px 0' }}>
           <div className="text-center" style={{ maxWidth: '760px', margin: '0 auto 30px' }}>
-            <span className="section-tag" style={{ color: '#F59E0B', backgroundColor: 'rgba(229, 138, 31, 0.15)', borderColor: 'rgba(229, 138, 31, 0.35)' }}>
+            <span className="section-tag" style={{ color: '#C99A45', backgroundColor: 'rgba(201, 154, 69, 0.12)', borderColor: 'rgba(201, 154, 69, 0.3)' }}>
               ĐỘI NGŨ SÁNG LẬP & VẬN HÀNH DỰ ÁN
             </span>
-            <h2 className="section-title" style={{ color: '#FFFFFF' }}>
+            <h2 className="section-title" style={{ color: '#174C38' }}>
               The People Behind The Weave
             </h2>
-            <p className="section-desc" style={{ color: '#E2D9D0', margin: '0 auto 30px' }}>
+            <p className="section-desc" style={{ color: '#4A453F', margin: '0 auto 30px' }}>
               Những người gieo khát vọng số hóa và xây dựng cầu nối thương mại điện tử đưa thổ cẩm Jrai vươn xa.
             </p>
           </div>
 
           {/* Tiêu đề khối đội ngũ sáng lập */}
-          <div style={{ marginTop: '30px', marginBottom: '10px', textAlign: 'center' }}>
-            <span style={{ fontSize: '0.85rem', fontWeight: 800, color: '#FFA726', textTransform: 'uppercase', letterSpacing: '1.5px' }}>
+          <div style={{ marginTop: '25px', marginBottom: '10px', textAlign: 'center' }}>
+            <span style={{ fontSize: '0.82rem', fontWeight: 600, color: '#C99A45', textTransform: 'uppercase', letterSpacing: '1px' }}>
               BAN ĐIỀU HÀNH & PHÁT TRIỂN DỰ ÁN (5 THÀNH VIÊN)
             </span>
           </div>
@@ -1924,45 +1920,45 @@ export default function HomePage() {
       )}
 
       {/* ========================================================
-          MODAL: MOTIF DETAILS
+          MODAL: MOTIF DETAILS - MODERN ETHNIC BOUTIQUE
       ======================================================== */}
       {selectedMotif && (
-        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-[#1C1714] border border-amber-900/50 rounded-xl max-w-lg w-full p-6 sm:p-8 space-y-5 max-h-[90vh] overflow-y-auto relative animate-in fade-in zoom-in-95 duration-200 shadow-lg">
+        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4">
+          <div className="bg-[#FFFDF9] border border-[#E8DFC8] rounded-2xl max-w-lg w-full p-6 sm:p-8 space-y-5 max-h-[90vh] overflow-y-auto relative animate-in fade-in zoom-in-95 duration-200 shadow-xl">
             <button
               onClick={() => setSelectedMotif(null)}
-              className="absolute top-4 right-4 p-2 rounded-full bg-stone-900 hover:bg-stone-800 text-stone-400 hover:text-white"
+              className="absolute top-4 right-4 p-2 rounded-full bg-[#FAF5EC] hover:bg-[#E8DFC8] text-[#4A453F] transition cursor-pointer"
             >
               <X className="w-5 h-5" />
             </button>
 
-            <div className="aspect-[4/3] bg-stone-950 rounded-lg overflow-hidden p-4 flex items-center justify-center border border-stone-800">
+            <div className="aspect-[4/3] bg-[#FAF5EC] rounded-xl overflow-hidden p-6 flex items-center justify-center border border-[#E8DFC8]">
               <img src={selectedMotif.image_url} alt={selectedMotif.name} className="max-h-full object-contain" />
             </div>
 
             <div>
-              <span className="text-xs font-mono text-amber-400 uppercase font-bold">
+              <span className="text-xs font-mono text-[#C99A45] uppercase font-semibold">
                 {selectedMotif.motif_code} • {selectedMotif.theme_name}
               </span>
-              <h3 className="font-serif font-bold text-xl text-white mt-1">
+              <h3 className="font-serif font-semibold text-xl text-[#174C38] mt-1">
                 {selectedMotif.name}
               </h3>
             </div>
 
-            <div className="space-y-3 text-sm text-stone-300 leading-relaxed">
+            <div className="space-y-3 text-sm text-[#4A453F] leading-relaxed">
               <div>
-                <strong className="text-amber-400 block mb-1">Ý nghĩa biểu tượng:</strong>
+                <strong className="text-[#174C38] block mb-1 font-semibold">Ý nghĩa biểu tượng:</strong>
                 <p>{selectedMotif.meaning}</p>
               </div>
               {selectedMotif.philosophy && (
                 <div>
-                  <strong className="text-amber-400 block mb-1">Triết lý văn hóa Jrai:</strong>
+                  <strong className="text-[#174C38] block mb-1 font-semibold">Triết lý văn hóa Jrai:</strong>
                   <p>{selectedMotif.philosophy}</p>
                 </div>
               )}
               {selectedMotif.informant_name && (
-                <div className="p-3 bg-stone-900 rounded-lg text-xs sm:text-sm text-stone-400">
-                  <strong>Nguồn xác minh điền dã:</strong> {selectedMotif.informant_name} ({selectedMotif.verification_source})
+                <div className="p-3 bg-[#FAF5EC] rounded-xl border border-[#E8DFC8] text-xs sm:text-sm text-[#5D554D]">
+                  <strong className="text-[#174C38]">Nguồn xác minh điền dã:</strong> {selectedMotif.informant_name} ({selectedMotif.verification_source})
                 </div>
               )}
             </div>
@@ -1971,19 +1967,19 @@ export default function HomePage() {
       )}
 
       {/* ========================================================
-          MODAL: ARTISAN DETAILS
+          MODAL: ARTISAN DETAILS - MODERN ETHNIC BOUTIQUE
       ======================================================== */}
       {selectedArtisanModal && (
-        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-[#1C1714] border border-amber-900/50 rounded-xl max-w-lg w-full p-6 sm:p-8 space-y-5 max-h-[90vh] overflow-y-auto relative animate-in fade-in zoom-in-95 duration-200 shadow-lg">
+        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4">
+          <div className="bg-[#FFFDF9] border border-[#E8DFC8] rounded-2xl max-w-lg w-full p-6 sm:p-8 space-y-5 max-h-[90vh] overflow-y-auto relative animate-in fade-in zoom-in-95 duration-200 shadow-xl">
             <button
               onClick={() => setSelectedArtisanModal(null)}
-              className="absolute top-4 right-4 p-2 rounded-full bg-stone-900 hover:bg-stone-800 text-stone-400 hover:text-white"
+              className="absolute top-4 right-4 p-2 rounded-full bg-[#FAF5EC] hover:bg-[#E8DFC8] text-[#4A453F] transition cursor-pointer"
             >
               <X className="w-5 h-5" />
             </button>
 
-            <div className="aspect-[4/3] rounded-lg overflow-hidden border border-stone-800 bg-stone-950">
+            <div className="aspect-[4/3] rounded-xl overflow-hidden border border-[#E8DFC8] bg-[#FAF5EC]">
               <img
                 src={selectedArtisanModal.avatar || selectedArtisanModal.image_url}
                 alt={selectedArtisanModal.name}
@@ -1992,19 +1988,19 @@ export default function HomePage() {
             </div>
 
             <div>
-              <span className="text-xs font-mono text-amber-400 uppercase font-bold">
+              <span className="text-xs font-mono text-[#C99A45] uppercase font-semibold">
                 {selectedArtisanModal.experience} • {selectedArtisanModal.village}
               </span>
-              <h3 className="font-serif font-bold text-xl text-white mt-1">
+              <h3 className="font-serif font-semibold text-xl text-[#174C38] mt-1">
                 {selectedArtisanModal.name}
               </h3>
             </div>
 
-            <p className="text-sm text-amber-200 italic p-3 bg-stone-900 rounded-lg border border-stone-800">
+            <p className="text-sm text-[#174C38] italic p-3.5 bg-[#FAF5EC] rounded-xl border border-[#E8DFC8]">
               &ldquo;{selectedArtisanModal.quote}&rdquo;
             </p>
 
-            <p className="text-sm text-stone-300 leading-relaxed">
+            <p className="text-sm text-[#4A453F] leading-relaxed">
               {selectedArtisanModal.bio || `${selectedArtisanModal.name} là nghệ nhân kỳ cựu gìn giữ nghề dệt thổ cẩm cửi hông tại ${selectedArtisanModal.village}.`}
             </p>
           </div>
@@ -2012,43 +2008,43 @@ export default function HomePage() {
       )}
 
       {/* ========================================================
-          SLIDE-OVER CART DRAWER & INLINE CHECKOUT
+          SLIDE-OVER CART DRAWER & INLINE CHECKOUT - MODERN ETHNIC BOUTIQUE
       ======================================================== */}
       {cartOpen && (
-        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex justify-end">
-          <div className="bg-[#1C1714] w-full max-w-md h-full p-6 flex flex-col justify-between border-l border-amber-900/50 shadow-lg animate-in slide-in-from-right duration-300">
+        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex justify-end">
+          <div className="bg-[#FFFDF9] w-full max-w-md h-full p-6 flex flex-col justify-between border-l border-[#E8DFC8] shadow-2xl animate-in slide-in-from-right duration-300">
             <div className="space-y-4 flex-1 overflow-y-auto pr-1">
-              <div className="flex items-center justify-between border-b border-stone-800 pb-4">
+              <div className="flex items-center justify-between border-b border-[#E8DFC8] pb-4">
                 <div className="flex items-center gap-2">
-                  <ShoppingBag className="w-5 h-5 text-amber-400" />
-                  <h3 className="font-serif font-bold text-lg text-white">Giỏ Hàng Của Bạn</h3>
+                  <ShoppingBag className="w-5 h-5 text-[#174C38]" />
+                  <h3 className="font-serif font-semibold text-lg text-[#174C38]">Giỏ Hàng Của Bạn</h3>
                 </div>
                 <button
                   onClick={() => setCartOpen(false)}
-                  className="p-2 rounded-full bg-stone-900 text-stone-400 hover:text-white"
+                  className="p-2 rounded-full bg-[#FAF5EC] hover:bg-[#E8DFC8] text-[#4A453F] transition cursor-pointer"
                 >
                   <X className="w-4 h-4" />
                 </button>
               </div>
 
               {/* Free ship progress */}
-              <div className="p-3 bg-[#231C18] rounded-lg border border-amber-900/40 text-xs sm:text-sm">
+              <div className="p-3 bg-[#FAF5EC] rounded-xl border border-[#E8DFC8] text-xs sm:text-sm">
                 {isFreeShip ? (
-                  <span className="text-emerald-400 font-bold flex items-center gap-1.5">
-                    <CheckCircle2 className="w-4 h-4" />
+                  <span className="text-[#174C38] font-semibold flex items-center gap-1.5">
+                    <CheckCircle2 className="w-4 h-4 text-[#174C38]" />
                     Đơn hàng đủ điều kiện MIỄN PHÍ VẬN CHUYỂN TOÀN QUỐC!
                   </span>
                 ) : (
-                  <span className="text-stone-300">
-                    Mua thêm <strong>{(freeShipThreshold - cartTotal.subtotal).toLocaleString('vi-VN')}₫</strong> để được FreeShip!
+                  <span className="text-[#5D554D]">
+                    Mua thêm <strong className="text-[#A94335]">{(freeShipThreshold - cartTotal.subtotal).toLocaleString('vi-VN')}₫</strong> để được FreeShip!
                   </span>
                 )}
               </div>
 
               {/* Items List */}
               {cartItems.length === 0 ? (
-                <div className="py-12 text-center text-stone-400 text-sm space-y-3">
-                  <ShoppingBag className="w-10 h-10 text-stone-600 mx-auto" />
+                <div className="py-12 text-center text-[#8A7E72] text-sm space-y-3">
+                  <ShoppingBag className="w-10 h-10 text-[#C99A45] mx-auto opacity-60" />
                   <p>Giỏ hàng đang trống.</p>
                 </div>
               ) : (
@@ -2056,32 +2052,32 @@ export default function HomePage() {
                   {cartItems.map((item) => (
                     <div
                       key={item.productId}
-                      className="p-3 bg-[#231C18] rounded-lg border border-stone-800 flex items-center gap-3"
+                      className="p-3 bg-[#FAF5EC] rounded-xl border border-[#E8DFC8] flex items-center gap-3"
                     >
                       <img
                         src={item.product?.image_url || '/images/products/k001.jpg'}
                         alt={item.product?.name || 'Sản phẩm'}
-                        className="w-14 h-14 object-cover rounded-lg border border-stone-700 shrink-0"
+                        className="w-14 h-14 object-cover rounded-lg border border-[#E8DFC8] shrink-0"
                       />
                       <div className="flex-1 min-w-0">
-                        <h4 className="text-sm font-bold text-white truncate">{item.product?.name}</h4>
-                        <span className="text-xs font-mono text-amber-400">{item.product?.product_code}</span>
-                        <div className="text-sm font-bold text-amber-400 mt-1">
+                        <h4 className="text-sm font-semibold text-[#174C38] truncate">{item.product?.name}</h4>
+                        <span className="text-xs font-mono text-[#C99A45]">{item.product?.product_code}</span>
+                        <div className="text-sm font-semibold text-[#A94335] mt-0.5">
                           {((item.product?.price || 0) * item.quantity).toLocaleString('vi-VN')}₫
                         </div>
                       </div>
 
-                      <div className="flex items-center gap-1 bg-[#14110F] px-2 py-1 rounded-md border border-stone-800">
+                      <div className="flex items-center gap-1 bg-[#FFFDF9] px-2 py-1 rounded-md border border-[#E8DFC8]">
                         <button
                           onClick={() => updateCartQuantity(item.productId, item.quantity - 1)}
-                          className="text-stone-400 hover:text-white p-0.5"
+                          className="text-[#5D554D] hover:text-[#174C38] p-0.5 cursor-pointer"
                         >
                           <Minus className="w-3 h-3" />
                         </button>
-                        <span className="text-xs font-bold px-1.5 text-white">{item.quantity}</span>
+                        <span className="text-xs font-semibold px-1.5 text-[#1F1D1B]">{item.quantity}</span>
                         <button
                           onClick={() => updateCartQuantity(item.productId, item.quantity + 1)}
-                          className="text-stone-400 hover:text-white p-0.5"
+                          className="text-[#5D554D] hover:text-[#174C38] p-0.5 cursor-pointer"
                         >
                           <Plus className="w-3 h-3" />
                         </button>
@@ -2089,7 +2085,7 @@ export default function HomePage() {
 
                       <button
                         onClick={() => removeFromCart(item.productId)}
-                        className="text-stone-500 hover:text-red-400 p-1"
+                        className="text-[#8A7E72] hover:text-[#A94335] p-1 cursor-pointer"
                       >
                         <Trash2 className="w-3.5 h-3.5" />
                       </button>
@@ -2101,17 +2097,17 @@ export default function HomePage() {
 
             {/* Cart Footer */}
             {cartItems.length > 0 && (
-              <div className="pt-4 border-t border-stone-800 space-y-3">
-                <div className="flex justify-between items-center text-sm font-bold text-white">
+              <div className="pt-4 border-t border-[#E8DFC8] space-y-3">
+                <div className="flex justify-between items-center text-sm font-semibold text-[#174C38]">
                   <span>Tổng tiền thanh toán:</span>
-                  <span className="text-lg font-mono text-amber-400">{cartTotal.subtotal.toLocaleString('vi-VN')}₫</span>
+                  <span className="text-lg font-mono font-semibold text-[#A94335]">{cartTotal.subtotal.toLocaleString('vi-VN')}₫</span>
                 </div>
 
                 <button
                   onClick={handleProceedToCheckout}
-                  className="w-full py-3.5 rounded-lg bg-[#B9383A] hover:bg-[#A83232] text-white font-bold text-xs sm:text-sm shadow-sm flex items-center justify-center gap-2"
+                  className="w-full py-3.5 rounded-xl bg-[#174C38] hover:bg-[#123829] text-white font-semibold text-xs sm:text-sm shadow-sm flex items-center justify-center gap-2 cursor-pointer transition"
                 >
-                  <CreditCard className="w-4 h-4 text-amber-300" />
+                  <CreditCard className="w-4 h-4 text-[#C99A45]" />
                   <span>TIẾN HÀNH THANH TOÁN (3 BƯỚC)</span>
                 </button>
               </div>
@@ -2121,49 +2117,49 @@ export default function HomePage() {
       )}
 
       {/* ========================================================
-          MODAL: INLINE CHECKOUT & ORDER SUCCESS
+          MODAL: INLINE CHECKOUT & ORDER SUCCESS - MODERN ETHNIC BOUTIQUE
       ======================================================== */}
       {checkoutOpen && (
-        <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-[#1C1714] border border-amber-900/50 rounded-xl max-w-lg w-full p-6 sm:p-8 space-y-6 max-h-[90vh] overflow-y-auto relative animate-in fade-in zoom-in-95 duration-200 shadow-lg">
+        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4">
+          <div className="bg-[#FFFDF9] border border-[#E8DFC8] rounded-2xl max-w-lg w-full p-6 sm:p-8 space-y-6 max-h-[90vh] overflow-y-auto relative animate-in fade-in zoom-in-95 duration-200 shadow-2xl">
             <button
               onClick={() => {
                 setCheckoutOpen(false);
                 setOrderCreatedId(null);
               }}
-              className="absolute top-4 right-4 p-2 rounded-full bg-stone-900 hover:bg-stone-800 text-stone-400 hover:text-white"
+              className="absolute top-4 right-4 p-2 rounded-full bg-[#FAF5EC] hover:bg-[#E8DFC8] text-[#4A453F] transition cursor-pointer"
             >
               <X className="w-5 h-5" />
             </button>
 
             {orderCreatedId ? (
               <div className="text-center space-y-4 py-4">
-                <div className="w-16 h-16 rounded-full bg-emerald-950/80 border border-emerald-500 text-emerald-400 flex items-center justify-center mx-auto shadow-sm">
+                <div className="w-16 h-16 rounded-full bg-[#EAF3EE] border border-[#174C38]/30 text-[#174C38] flex items-center justify-center mx-auto shadow-xs">
                   <CheckCircle2 className="w-8 h-8" />
                 </div>
-                <h3 className="font-serif font-black text-2xl text-white">Đặt Hàng Thành Công!</h3>
-                <p className="text-sm text-stone-300">
-                  Mã đơn hàng của bạn là: <strong className="text-amber-400 font-mono text-base">{orderCreatedId}</strong>
+                <h3 className="font-serif font-semibold text-2xl text-[#174C38]">Đặt Hàng Thành Công!</h3>
+                <p className="text-sm text-[#4A453F]">
+                  Mã đơn hàng của bạn là: <strong className="text-[#C99A45] font-mono text-base">{orderCreatedId}</strong>
                 </p>
 
                 {paymentMethod === 'banking' && (
-                  <div className="p-4 bg-stone-900 rounded-lg border border-amber-900/40 space-y-3">
-                    <span className="text-xs sm:text-sm font-bold text-amber-400 block">Mã VietQR Chuyển Khoản Tự Động:</span>
+                  <div className="p-4 bg-[#FAF5EC] rounded-xl border border-[#E8DFC8] space-y-3">
+                    <span className="text-xs sm:text-sm font-semibold text-[#174C38] block">Mã VietQR Chuyển Khoản Tự Động:</span>
                     <img
                       src={`https://img.vietqr.io/image/970422-0383451929-compact2.png?amount=${cartTotal.subtotal}&addInfo=${encodeURIComponent(orderCreatedId)}&accountName=${encodeURIComponent('NGUYEN VAN THANG')}`}
                       alt="VietQR MB Bank"
-                      className="w-48 h-48 mx-auto rounded-lg border border-stone-700 shadow-sm"
+                      className="w-48 h-48 mx-auto rounded-xl border border-[#E8DFC8] shadow-xs"
                     />
-                    <div className="text-xs sm:text-sm text-stone-300 space-y-0.5">
-                      <p>Ngân hàng: <strong>MB Bank</strong></p>
-                      <p>Số tài khoản: <strong>0383451929</strong></p>
-                      <p>Chủ tài khoản: <strong>NGUYEN VAN THANG</strong></p>
-                      <p>Nội dung: <strong>{orderCreatedId}</strong></p>
+                    <div className="text-xs sm:text-sm text-[#4A453F] space-y-0.5 text-left">
+                      <p>Ngân hàng: <strong className="text-[#1F1D1B]">MB Bank</strong></p>
+                      <p>Số tài khoản: <strong className="text-[#1F1D1B]">0383451929</strong></p>
+                      <p>Chủ tài khoản: <strong className="text-[#1F1D1B]">NGUYEN VAN THANG</strong></p>
+                      <p>Nội dung: <strong className="text-[#174C38] font-mono">{orderCreatedId}</strong></p>
                     </div>
                   </div>
                 )}
 
-                <p className="text-xs sm:text-sm text-stone-400">
+                <p className="text-xs sm:text-sm text-[#5D554D]">
                   Cảm ơn bạn đã đồng hành bảo tồn nghề dệt thổ cẩm Jrai!
                 </p>
 
@@ -2172,24 +2168,24 @@ export default function HomePage() {
                     setCheckoutOpen(false);
                     setOrderCreatedId(null);
                   }}
-                  className="w-full py-3 rounded-lg bg-amber-800 hover:bg-amber-700 text-white font-bold text-sm"
+                  className="w-full py-3.5 rounded-xl bg-[#174C38] hover:bg-[#123829] text-white font-semibold text-sm shadow-sm transition cursor-pointer"
                 >
                   HOÀN TẤT & TIẾP TỤC KHÁM PHÁ
                 </button>
               </div>
             ) : (
               <form onSubmit={handleCheckoutSubmit} className="space-y-4">
-                <div className="border-b border-stone-800 pb-3">
-                  <h3 className="font-serif font-bold text-xl text-white">Thanh Toán Đơn Hàng</h3>
-                  <p className="text-xs sm:text-sm text-stone-400">
-                    Tổng giá trị đơn ({cartTotal.count} món): <strong className="text-amber-400 font-mono">{cartTotal.subtotal.toLocaleString('vi-VN')}₫</strong>
+                <div className="border-b border-[#E8DFC8] pb-3">
+                  <h3 className="font-serif font-semibold text-xl text-[#174C38]">Thanh Toán Đơn Hàng</h3>
+                  <p className="text-xs sm:text-sm text-[#5D554D]">
+                    Tổng giá trị đơn ({cartTotal.count} món): <strong className="text-[#A94335] font-mono font-semibold">{cartTotal.subtotal.toLocaleString('vi-VN')}₫</strong>
                   </p>
                 </div>
 
                 {customerUser && (
-                  <div className="bg-[#231C18] border border-amber-900/40 rounded-lg p-3 flex items-center justify-between text-xs sm:text-sm">
+                  <div className="bg-[#FAF5EC] border border-[#E8DFC8] rounded-xl p-3 flex items-center justify-between text-xs sm:text-sm">
                     <div className="flex items-center gap-2.5">
-                      <div className="w-8 h-8 rounded-full overflow-hidden border border-amber-500/50 bg-stone-900 shrink-0">
+                      <div className="w-8 h-8 rounded-full overflow-hidden border border-[#C99A45]/50 bg-white shrink-0">
                         <img
                           src={customerUser.avatar || '/images/team/MaiThiCamTu_user.png'}
                           alt={customerUser.name}
@@ -2197,13 +2193,13 @@ export default function HomePage() {
                         />
                       </div>
                       <div>
-                        <span className="font-bold text-white block">{customerUser.name}</span>
-                        <span className="text-xs text-amber-400">
+                        <span className="font-semibold text-[#174C38] block">{customerUser.name}</span>
+                        <span className="text-xs text-[#5D554D]">
                           {customerUser.provider ? `Đã xác thực qua ${customerUser.provider.toUpperCase()}` : customerUser.email}
                         </span>
                       </div>
                     </div>
-                    <span className="text-xs bg-emerald-950 text-emerald-300 font-bold px-2 py-0.5 rounded-full border border-emerald-800">
+                    <span className="text-xs bg-[#EAF3EE] text-[#174C38] font-semibold px-2 py-0.5 rounded-full border border-[#174C38]/20">
                       Đã đăng nhập
                     </span>
                   </div>
@@ -2211,68 +2207,68 @@ export default function HomePage() {
 
                 <div className="space-y-3 text-xs sm:text-sm">
                   <div>
-                    <label className="text-stone-300 font-bold block mb-1">Họ và tên người nhận *</label>
+                    <label className="text-[#1F1D1B] font-medium block mb-1">Họ và tên người nhận *</label>
                     <input
                       type="text"
                       required
                       placeholder="Ví dụ: Nguyễn Văn A"
                       value={customerName}
                       onChange={(e) => setCustomerName(e.target.value)}
-                      className="w-full bg-stone-900 border border-stone-800 rounded-lg px-3.5 py-2.5 text-white focus:outline-none focus:border-amber-500 text-sm"
+                      className="w-full bg-[#FAF5EC] border border-[#E8DFC8] rounded-xl px-3.5 py-2.5 text-[#1F1D1B] focus:outline-none focus:border-[#174C38] text-sm"
                     />
                   </div>
 
                   <div>
-                    <label className="text-stone-300 font-bold block mb-1">Số điện thoại *</label>
+                    <label className="text-[#1F1D1B] font-medium block mb-1">Số điện thoại *</label>
                     <input
                       type="tel"
                       required
                       placeholder="Ví dụ: 0987654321"
                       value={customerPhone}
                       onChange={(e) => setCustomerPhone(e.target.value)}
-                      className="w-full bg-stone-900 border border-stone-800 rounded-lg px-3.5 py-2.5 text-white focus:outline-none focus:border-amber-500 text-sm"
+                      className="w-full bg-[#FAF5EC] border border-[#E8DFC8] rounded-xl px-3.5 py-2.5 text-[#1F1D1B] focus:outline-none focus:border-[#174C38] text-sm"
                     />
                   </div>
 
                   <div>
-                    <label className="text-stone-300 font-bold block mb-1">Địa chỉ giao hàng chi tiết *</label>
+                    <label className="text-[#1F1D1B] font-medium block mb-1">Địa chỉ giao hàng chi tiết *</label>
                     <textarea
                       required
                       rows={2}
                       placeholder="Số nhà, đường, phường/xã, quận/huyện, tỉnh/thành..."
                       value={shippingAddress}
                       onChange={(e) => setShippingAddress(e.target.value)}
-                      className="w-full bg-stone-900 border border-stone-800 rounded-lg px-3.5 py-2.5 text-white focus:outline-none focus:border-amber-500 text-sm"
+                      className="w-full bg-[#FAF5EC] border border-[#E8DFC8] rounded-xl px-3.5 py-2.5 text-[#1F1D1B] focus:outline-none focus:border-[#174C38] text-sm"
                     />
                   </div>
 
                   <div>
-                    <label className="text-stone-300 font-bold block mb-1">Phương thức thanh toán</label>
+                    <label className="text-[#1F1D1B] font-medium block mb-1">Phương thức thanh toán</label>
                     <div className="grid grid-cols-2 gap-2">
                       <button
                         type="button"
                         onClick={() => setPaymentMethod('banking')}
-                        className={`p-3 rounded-lg border text-left transition ${
+                        className={`p-3 rounded-xl border text-left transition cursor-pointer ${
                           paymentMethod === 'banking'
-                            ? 'bg-amber-950/60 border-amber-500 text-white'
-                            : 'bg-stone-900 border-stone-800 text-stone-400'
+                            ? 'bg-[#EAF3EE] border-[#174C38] text-[#174C38]'
+                            : 'bg-[#FAF5EC] border-[#E8DFC8] text-[#5D554D]'
                         }`}
                       >
-                        <div className="font-bold text-amber-400 text-sm">VietQR Tự Động</div>
-                        <div className="text-xs text-stone-400 mt-0.5">Quét mã ngân hàng</div>
+                        <div className="font-semibold text-sm">VietQR Tự Động</div>
+                        <div className="text-xs text-[#7A7265] mt-0.5">Quét mã ngân hàng</div>
                       </button>
 
                       <button
                         type="button"
                         onClick={() => setPaymentMethod('cod')}
-                        className={`p-3 rounded-lg border text-left transition ${
+                        className={`p-3 rounded-xl border text-left transition cursor-pointer ${
                           paymentMethod === 'cod'
-                            ? 'bg-amber-950/60 border-amber-500 text-white'
-                            : 'bg-stone-900 border-stone-800 text-stone-400'
+                            ? 'bg-[#EAF3EE] border-[#174C38] text-[#174C38]'
+                            : 'bg-[#FAF5EC] border-[#E8DFC8] text-[#5D554D]'
                         }`}
                       >
-                        <div className="font-bold text-amber-400 text-sm">Thanh toán COD</div>
-                        <div className="text-xs text-stone-400 mt-0.5">Nhận hàng trả tiền</div>
+                        <div className="font-semibold text-sm">Thanh toán COD</div>
+                        <div className="text-xs text-[#7A7265] mt-0.5">Nhận hàng trả tiền</div>
                       </button>
                     </div>
                   </div>
@@ -2280,7 +2276,7 @@ export default function HomePage() {
 
                 <button
                   type="submit"
-                  className="w-full py-3.5 rounded-lg bg-[#B9383A] hover:bg-[#A83232] text-white font-bold text-sm shadow-sm transition"
+                  className="w-full py-3.5 rounded-xl bg-[#174C38] hover:bg-[#123829] text-white font-semibold text-sm shadow-sm transition cursor-pointer"
                 >
                   XÁC NHẬN ĐẶT HÀNG ({cartTotal.subtotal.toLocaleString('vi-VN')}₫)
                 </button>

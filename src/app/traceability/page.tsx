@@ -12,16 +12,10 @@ import {
   User,
   Layers,
   Sparkles,
-  Download,
-  Printer,
-  Copy,
-  Check,
   ArrowRight,
   Camera,
-  ExternalLink,
   CheckCircle2,
   AlertCircle,
-  HelpCircle,
 } from 'lucide-react';
 import { getProductById, getArtisanById, getMotifById, getProducts, getPublicDomain, syncWithServer } from '@/lib/data-store';
 import { Product, Artisan, Motif } from '@/types';
@@ -65,7 +59,6 @@ function TraceabilityContent() {
     }
   }, [initialCode]);
 
-  // Connect stream to video element when both are ready
   useEffect(() => {
     if (cameraActive && stream && videoRef.current) {
       videoRef.current.srcObject = stream;
@@ -75,7 +68,6 @@ function TraceabilityContent() {
     }
   }, [cameraActive, stream]);
 
-  // Cleanup stream on unmount
   useEffect(() => {
     return () => {
       if (stream) {
@@ -84,7 +76,6 @@ function TraceabilityContent() {
     };
   }, [stream]);
 
-  // QR Barcode Auto-detection loop
   useEffect(() => {
     if (!cameraActive || !stream) return;
 
@@ -98,25 +89,16 @@ function TraceabilityContent() {
               const barcodes = await detector.detect(videoRef.current);
               if (barcodes && barcodes.length > 0) {
                 const raw = barcodes[0].rawValue;
-                let parsed = raw;
+                let parsedCode = raw;
                 if (raw.includes('code=')) {
-                  parsed = raw.split('code=')[1].split('&')[0];
-                } else if (raw.includes('/product/')) {
-                  parsed = raw.split('/product/')[1].split('?')[0];
+                  parsedCode = raw.split('code=')[1].split('&')[0];
                 }
-                setScanSuccessCode(parsed);
-                setInputCode(parsed);
-                handleLookup(parsed);
-                if (typeof navigator !== 'undefined' && 'vibrate' in navigator) {
-                  navigator.vibrate(100);
-                }
-                setTimeout(() => {
-                  stopCamera();
-                }, 800);
+                simulateScan(parsedCode);
+                clearInterval(scanTimer);
               }
             } catch (_) {}
           }
-        }, 350);
+        }, 500);
       } catch (_) {}
     }
 
@@ -130,21 +112,29 @@ function TraceabilityContent() {
     if (!cleanCode) return;
 
     setQueriedCode(cleanCode);
-    const foundProduct = getProductById(cleanCode);
+    setNotFound(false);
 
-    if (foundProduct) {
-      setProduct(foundProduct);
-      setNotFound(false);
+    const allProds = getProducts(true);
+    let found = allProds.find(
+      (p) => p.product_code?.toLowerCase() === cleanCode.toLowerCase()
+    );
 
-      if (foundProduct.artisan_id) {
-        setArtisan(getArtisanById(foundProduct.artisan_id) || null);
+    if (!found) {
+      found = allProds.find((p) => p.id?.toLowerCase() === cleanCode.toLowerCase());
+    }
+
+    if (found) {
+      setProduct(found);
+      if (found.artisan_id) {
+        const a = getArtisanById(found.artisan_id);
+        setArtisan(a || null);
       } else {
         setArtisan(null);
       }
 
-      if (foundProduct.motif_id || (foundProduct.motif_ids && foundProduct.motif_ids.length > 0)) {
-        const mId = foundProduct.motif_id || foundProduct.motif_ids[0];
-        setMotif(getMotifById(mId) || null);
+      if (found.motif_ids && found.motif_ids.length > 0) {
+        const m = getMotifById(found.motif_ids[0]);
+        setMotif(m || null);
       } else {
         setMotif(null);
       }
@@ -161,7 +151,6 @@ function TraceabilityContent() {
     handleLookup(inputCode);
   };
 
-  // Robust Camera Scanner handler
   const startCamera = async () => {
     setCameraError(null);
     setScanSuccessCode(null);
@@ -220,415 +209,417 @@ function TraceabilityContent() {
     : '';
 
   return (
-    <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-8 lg:px-12 py-10 space-y-10">
-      {/* Hero Header - Centered Flex & Text */}
-      <div className="bg-[#F2ECE1] p-8 sm:p-14 rounded-xl border border-[#E5DACB] border-b-2 border-b-[#EA8E23] relative overflow-hidden shadow-sm flex flex-col items-center justify-center text-center header-banner-box">
-        <div className="max-w-3xl mx-auto space-y-4 relative z-10 flex flex-col items-center justify-center text-center w-full">
-          <span className="section-tag gold inline-flex items-center justify-center mx-auto">
-            <QrCode className="w-3.5 h-3.5 inline mr-1 text-[#EA8E23]" />
-            <span>MINH BẠCH NGUỒN GỐC SỐ HÓA • DIGITAL PASSPORT</span>
-          </span>
-
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-black text-[#1F1D1B] tracking-tight leading-tight text-center mx-auto">
-            TRUY XUẤT NGUỒN GỐC SẢN PHẨM
+    <div className="w-full bg-[#FAF5EC] min-h-screen py-10 lg:py-14">
+      <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-8 lg:px-12 space-y-8">
+        
+        {/* Header - Modern Ethnic Boutique */}
+        <div className="bg-[#FFFDF9] p-8 sm:p-12 rounded-2xl border border-[#E8DFC8] shadow-xs text-center max-w-4xl mx-auto space-y-3">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#FAF5EC] border border-[#E8DFC8] text-xs font-medium text-[#C99A45]">
+            <span>◇</span>
+            <span>Minh Bạch Nguồn Gốc Số Hóa</span>
+            <span>◇</span>
+          </div>
+          <h1 className="text-3xl sm:text-4xl font-semibold text-[#174C38] tracking-tight">
+            Tra cứu nguồn gốc sản phẩm
           </h1>
-
-          <div className="flex items-center justify-center gap-2 text-xs text-[#EA8E23] font-bold uppercase tracking-wider mx-auto">
-            <Sparkles className="w-3.5 h-3.5 text-[#EA8E23]" />
-            <span>100% Sản Phẩm Mang Mã Định Danh Số Hóa Độc Bản</span>
-            <Sparkles className="w-3.5 h-3.5 text-[#EA8E23]" />
-          </div>
-
-          <p className="text-[#5D554D] text-sm sm:text-base leading-relaxed max-w-2xl mx-auto text-center">
-            Mỗi sản phẩm thổ cẩm thủ công JRAI ƠI đều gắn liền với một nghệ nhân buôn làng. Quét mã QR bằng camera hoặc nhập mã trên tem để chứng thực giờ dệt, phôi sợi tự nhiên và thông điệp văn hóa mẫu hệ.
-          </p>
-        </div>
-      </div>
-
-      {/* SEARCH CARD */}
-      <div className="bg-white p-6 sm:p-8 rounded-xl border border-[#E5DACB] shadow-sm space-y-6">
-        <div className="text-center max-w-xl mx-auto space-y-1">
-          <h2 className="text-lg font-serif font-bold text-[#1F1D1B]">
-            Nhập mã tem sản phẩm hoặc quét mã QR
-          </h2>
-          <p className="text-xs text-[#5D554D]">
-            Mã in trên mác vải hoặc nhãn giấy sản phẩm (Định dạng: K001, B001, V001, hoặc JRAI-IMN-001...)
+          <p className="text-[#59524C] text-sm sm:text-base leading-relaxed max-w-xl mx-auto font-normal">
+            Mỗi sản phẩm thổ cẩm thủ công JRAI ƠI đều gắn liền với một nghệ nhân buôn làng. Quét mã QR hoặc nhập mã tem để chứng thực giờ dệt, phôi sợi tự nhiên và hoa văn bản địa.
           </p>
         </div>
 
-        {/* Search Input Bar */}
-        <form onSubmit={handleFormSubmit} className="max-w-2xl mx-auto flex flex-col sm:flex-row gap-3">
-          <div className="relative flex-1">
-            <Search className="w-4 h-4 absolute left-3.5 top-3.5 text-[#8A7E72]" />
-            <input
-              type="text"
-              value={inputCode}
-              onChange={(e) => setInputCode(e.target.value)}
-              placeholder="Nhập mã: V001, K001, B001, C001, VI001..."
-              className="w-full pl-10 pr-4 py-3 bg-[#FBF8F3] border border-[#E5DACB] rounded-xl text-sm text-[#1F1D1B] placeholder-[#8A7E72] focus:outline-none focus:border-[#C43B3D] focus:bg-white font-mono tracking-wider"
-            />
+        {/* 3 STEPS INSTRUCTION GUIDE */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
+          <div className="bg-[#FFFDF9] p-5 rounded-2xl border border-[#E8DFC8] space-y-1.5 shadow-xs">
+            <span className="text-xs font-medium text-[#C99A45] uppercase tracking-wider block">Bước 01</span>
+            <h3 className="font-semibold text-sm text-[#174C38]">Tìm mã trên tem sản phẩm</h3>
+            <p className="text-xs text-[#59524C] leading-relaxed">
+              Kiểm tra thẻ giấy hoặc mác vải đính kèm để lấy mã định danh (như K001, B001...).
+            </p>
+          </div>
+          <div className="bg-[#FFFDF9] p-5 rounded-2xl border border-[#E8DFC8] space-y-1.5 shadow-xs">
+            <span className="text-xs font-medium text-[#C99A45] uppercase tracking-wider block">Bước 02</span>
+            <h3 className="font-semibold text-sm text-[#174C38]">Quét QR hoặc nhập mã số</h3>
+            <p className="text-xs text-[#59524C] leading-relaxed">
+              Mở camera quét mã QR trực tiếp hoặc điền mã vào khung tìm kiếm bên dưới.
+            </p>
+          </div>
+          <div className="bg-[#FFFDF9] p-5 rounded-2xl border border-[#E8DFC8] space-y-1.5 shadow-xs">
+            <span className="text-xs font-medium text-[#C99A45] uppercase tracking-wider block">Bước 03</span>
+            <h3 className="font-semibold text-sm text-[#174C38]">Nhận hộ chiếu số di sản</h3>
+            <p className="text-xs text-[#59524C] leading-relaxed">
+              Xem hồ sơ nghệ nhân, thời gian dệt cửi hông, xuất xứ buôn làng và ý nghĩa hoa văn.
+            </p>
+          </div>
+        </div>
+
+        {/* SEARCH CARD */}
+        <div className="bg-[#FFFDF9] p-6 sm:p-8 rounded-2xl border border-[#E8DFC8] shadow-xs space-y-5 max-w-4xl mx-auto">
+          <div className="text-center space-y-1">
+            <h2 className="text-base sm:text-lg font-semibold text-[#174C38]">
+              Nhập mã tem sản phẩm hoặc quét mã QR
+            </h2>
+            <p className="text-xs text-[#59524C]">
+              Định dạng: K001, B001, V001, C001, VI001...
+            </p>
           </div>
 
-          <button
-            type="submit"
-            className="bg-[#C43B3D] hover:bg-[#8A2325] text-white text-xs font-bold px-7 py-3 rounded-xl shadow transition flex items-center justify-center gap-2 whitespace-nowrap"
-          >
-            <Search className="w-4 h-4" />
-            <span>TRA CỨU NGAY</span>
-          </button>
-
-          <button
-            type="button"
-            onClick={toggleCamera}
-            className="bg-[#F2ECE1] hover:bg-[#E5DACB] text-[#1F1D1B] text-xs font-bold px-4 py-3 rounded-xl border border-[#E5DACB] transition flex items-center justify-center gap-1.5"
-            title="Quét bằng camera điện thoại"
-          >
-            <Camera className="w-4 h-4 text-[#C43B3D]" />
-            <span className="hidden sm:inline">{cameraActive ? 'Tắt Camera' : 'Quét Camera'}</span>
-          </button>
-        </form>
-
-        {/* Camera Live Stream Drawer with Laser Scanner */}
-        {cameraActive && (
-          <div className="max-w-md mx-auto p-5 bg-stone-950 rounded-2xl border-2 border-amber-500/60 text-center space-y-4 shadow-sm relative">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <span className="w-3 h-3 rounded-full bg-red-500 animate-ping" />
-                <span className="text-xs font-bold text-amber-300 uppercase tracking-wider">Camera Quét Live</span>
-              </div>
-              <button
-                type="button"
-                onClick={stopCamera}
-                className="text-xs text-stone-400 hover:text-white bg-stone-900 px-2.5 py-1 rounded-lg border border-stone-800 transition"
-              >
-                Đóng &times;
-              </button>
-            </div>
-
-            <div className="aspect-square rounded-2xl overflow-hidden bg-black relative border border-amber-900/40 shadow-inner">
-              <video
-                ref={videoRef}
-                autoPlay
-                playsInline
-                muted
-                className="w-full h-full object-cover"
+          {/* Search Input Bar */}
+          <form onSubmit={handleFormSubmit} className="flex flex-col sm:flex-row gap-3">
+            <div className="relative flex-1">
+              <Search className="w-4 h-4 absolute left-3.5 top-3.5 text-[#8A7E72]" />
+              <input
+                type="text"
+                value={inputCode}
+                onChange={(e) => setInputCode(e.target.value)}
+                placeholder="Nhập mã: V001, K001, B001, C001, VI001..."
+                className="w-full pl-10 pr-4 py-2.5 bg-[#FAF5EC] border border-[#E8DFC8] rounded-xl text-xs sm:text-sm text-[#2D2926] placeholder-[#8A7E72] focus:outline-none focus:border-[#174C38] focus:bg-[#FFFDF9] font-mono"
               />
-
-              {/* Viewfinder Target Overlay */}
-              <div className="absolute inset-8 border-2 border-dashed border-amber-400/80 rounded-xl pointer-events-none flex items-center justify-center">
-                <div className="w-8 h-8 border-t-2 border-l-2 border-amber-300 absolute -top-1 -left-1" />
-                <div className="w-8 h-8 border-t-2 border-r-2 border-amber-300 absolute -top-1 -right-1" />
-                <div className="w-8 h-8 border-b-2 border-l-2 border-amber-300 absolute -bottom-1 -left-1" />
-                <div className="w-8 h-8 border-b-2 border-r-2 border-amber-300 absolute -bottom-1 -right-1" />
-              </div>
-
-              {/* Animated Laser Scanning Beam */}
-              <div className="absolute inset-x-4 top-0 h-1 bg-gradient-to-r from-transparent via-red-500 to-transparent shadow-[0_0_15px_#EF4444] animate-laser-scan pointer-events-none" />
-
-              {/* Scanning status pill */}
-              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-stone-900/90 backdrop-blur-sm text-amber-300 text-xs px-3.5 py-1 rounded-full border border-amber-500/40 pointer-events-none whitespace-nowrap shadow-lg">
-                Đang quét mã QR... Hướng camera vào tem
-              </div>
             </div>
 
-            {/* Quick Testing Triggers for Smooth Demo */}
-            <div className="space-y-1.5 pt-1 text-left bg-stone-900/60 p-3 rounded-xl border border-stone-800">
-              <p className="text-xs text-stone-400 font-medium">Bấm nhanh để quét thử mẫu:</p>
-              <div className="flex flex-wrap gap-1.5">
-                <button
-                  type="button"
-                  onClick={() => simulateScan('V001')}
-                  className="text-xs font-mono bg-[#8B2522] hover:bg-[#B9383A] text-amber-200 px-2.5 py-1 rounded-lg border border-amber-500/40 transition font-bold"
-                >
-                  ⚡ Quét V001 (Váy)
-                </button>
-                <button
-                  type="button"
-                  onClick={() => simulateScan('K001')}
-                  className="text-xs font-mono bg-stone-800 hover:bg-stone-700 text-stone-200 px-2.5 py-1 rounded-lg border border-stone-700 transition font-bold"
-                >
-                  ⚡ Quét K001 (Khăn)
-                </button>
-                <button
-                  type="button"
-                  onClick={() => simulateScan('C001')}
-                  className="text-xs font-mono bg-stone-800 hover:bg-stone-700 text-stone-200 px-2.5 py-1 rounded-lg border border-stone-700 transition font-bold"
-                >
-                  ⚡ Quét C001 (Túi)
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
+            <button
+              type="submit"
+              className="bg-[#174C38] hover:bg-[#0E3626] text-[#FFFDF9] text-xs sm:text-sm font-medium px-6 py-2.5 rounded-xl shadow-xs transition-all flex items-center justify-center gap-2 cursor-pointer"
+            >
+              <Search className="w-4 h-4 text-[#C99A45]" />
+              <span>Tra cứu ngay</span>
+            </button>
 
-        {/* Camera Error Message */}
-        {cameraError && (
-          <div className="max-w-md mx-auto p-4 bg-red-50 border border-red-200 rounded-2xl text-center space-y-2">
-            <p className="text-xs text-red-600 font-bold">{cameraError}</p>
-            <p className="text-xs text-[#5D554D]">Bạn có thể chọn nhanh các mã mẫu bên dưới để xem kết quả tức thì.</p>
-          </div>
-        )}
+            <button
+              type="button"
+              onClick={toggleCamera}
+              className="bg-[#FAF5EC] hover:bg-[#E8DFC8] text-[#174C38] text-xs sm:text-sm font-medium px-4 py-2.5 rounded-xl border border-[#E8DFC8] transition-all flex items-center justify-center gap-1.5 cursor-pointer"
+              title="Quét bằng camera"
+            >
+              <Camera className="w-4 h-4 text-[#174C38]" />
+              <span>{cameraActive ? 'Tắt camera' : 'Quét camera'}</span>
+            </button>
+          </form>
 
-        {/* Scan Success Notice */}
-        {scanSuccessCode && (
-          <div className="max-w-md mx-auto p-3 bg-emerald-50 border border-emerald-300 rounded-xl text-center text-xs text-emerald-700 font-bold flex items-center justify-center gap-2">
-            <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-            <span>Đã nhận diện mã QR thành công: {scanSuccessCode}</span>
-          </div>
-        )}
-
-        {/* Sample Code Pills */}
-        <div className="pt-2 border-t border-[#E5DACB] text-center space-y-2">
-          <span className="text-xs font-bold text-[#EA8E23] uppercase tracking-wider block">
-            Mã mẫu thử nghiệm:
-          </span>
-          <div className="flex flex-wrap justify-center gap-2">
-            {SAMPLE_CODES.map((s) => (
-              <button
-                key={s.code}
-                type="button"
-                onClick={() => {
-                  setInputCode(s.code);
-                  handleLookup(s.code);
-                }}
-                className={`text-xs px-3.5 py-1.5 rounded-full border transition font-mono ${
-                  queriedCode.toUpperCase() === s.code
-                    ? 'bg-[#C43B3D] text-white border-[#C43B3D] font-bold shadow-sm'
-                    : 'bg-[#FBF8F3] text-[#5D554D] hover:text-[#1F1D1B] hover:bg-[#F2ECE1] border-[#E5DACB]'
-                }`}
-              >
-                {s.label}
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* RESULT SECTION: DIGITAL PRODUCT PASSPORT */}
-      {notFound && (
-        <div className="bg-white p-12 rounded-xl border border-red-200 text-center space-y-4 shadow-sm">
-          <div className="w-14 h-14 rounded-full bg-red-50 border border-red-200 flex items-center justify-center mx-auto text-red-600">
-            <AlertCircle className="w-7 h-7" />
-          </div>
-          <h3 className="text-xl font-serif font-bold text-[#1F1D1B]">
-            Không tìm thấy dữ liệu cho mã &quot;{queriedCode}&quot;
-          </h3>
-          <p className="text-xs text-[#5D554D] max-w-md mx-auto">
-            Vui lòng kiểm tra lại mã số in trên tem nhãn hoặc chọn một trong các mã mẫu thử nghiệm (K001, B001, VI001, C001...) ở phía trên.
-          </p>
-        </div>
-      )}
-
-      {!product && !notFound && (
-        <div className="bg-white p-12 rounded-xl border border-[#E5DACB] text-center space-y-3 shadow-sm">
-          <div className="w-16 h-16 rounded-full bg-[#F2ECE1] border border-[#E5DACB] flex items-center justify-center mx-auto text-2xl shadow-inner">
-            📱
-          </div>
-          <h3 className="text-lg font-serif font-bold text-[#1F1D1B]">Chưa có mã tra cứu nào được chọn</h3>
-          <p className="text-xs text-[#5D554D] max-w-md mx-auto">
-            Nhập mã tem sản phẩm vào ô tìm kiếm ở trên hoặc bấm vào các nút <strong>Mã mẫu thử nghiệm</strong> để mở ra bản tường trình nguồn gốc số hóa của tác phẩm.
-          </p>
-        </div>
-      )}
-
-      {product && (
-        <div className="space-y-8 animate-in fade-in duration-300">
-          {/* Passport Banner Card */}
-          <div className="bg-white rounded-xl border border-[#E5DACB] p-6 sm:p-10 shadow-sm relative overflow-hidden">
-            {/* Top Seal */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#E5DACB] pb-6">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-2xl bg-[#C43B3D] text-white flex items-center justify-center font-serif font-black text-2xl shadow">
-                  J
+          {/* Camera Live Stream Drawer */}
+          {cameraActive && (
+            <div className="max-w-md mx-auto p-4 bg-[#174C38] rounded-2xl border border-[#C99A45] text-center space-y-3 shadow-md relative">
+              <div className="flex items-center justify-between text-xs text-[#FFFDF9]">
+                <div className="flex items-center gap-2">
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#A94335] animate-ping" />
+                  <span className="font-medium text-[#C99A45]">Camera đang mở</span>
                 </div>
-                <div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-xs font-mono font-bold text-[#EA8E23]">
-                      DIGITAL PRODUCT PASSPORT
-                    </span>
-                    <span className="text-xs bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full font-bold border border-emerald-300">
-                      ✓ ĐÃ XÁC THỰC NGUỒN GỐC
-                    </span>
+                <button
+                  type="button"
+                  onClick={stopCamera}
+                  className="text-xs text-[#E8DFC8] hover:text-[#FFFDF9] cursor-pointer"
+                >
+                  Đóng &times;
+                </button>
+              </div>
+
+              <div className="aspect-square rounded-xl overflow-hidden bg-black relative border border-[#C99A45]/40">
+                <video
+                  ref={videoRef}
+                  autoPlay
+                  playsInline
+                  muted
+                  className="w-full h-full object-cover"
+                />
+
+                <div className="absolute inset-8 border border-dashed border-[#C99A45]/80 rounded-xl pointer-events-none flex items-center justify-center">
+                  <div className="w-6 h-6 border-t-2 border-l-2 border-[#C99A45] absolute -top-1 -left-1" />
+                  <div className="w-6 h-6 border-t-2 border-r-2 border-[#C99A45] absolute -top-1 -right-1" />
+                  <div className="w-6 h-6 border-b-2 border-l-2 border-[#C99A45] absolute -bottom-1 -left-1" />
+                  <div className="w-6 h-6 border-b-2 border-r-2 border-[#C99A45] absolute -bottom-1 -right-1" />
+                </div>
+              </div>
+
+              <div className="space-y-1 text-left bg-[#0E3626] p-2.5 rounded-xl border border-[#C99A45]/30">
+                <p className="text-[11px] text-[#E8DFC8]">Bấm nhanh để quét thử mẫu:</p>
+                <div className="flex flex-wrap gap-1.5">
+                  <button
+                    type="button"
+                    onClick={() => simulateScan('V001')}
+                    className="text-[11px] font-mono bg-[#174C38] text-[#FFFDF9] px-2 py-0.5 rounded border border-[#C99A45]/40"
+                  >
+                    V001 (Váy)
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => simulateScan('K001')}
+                    className="text-[11px] font-mono bg-[#174C38] text-[#FFFDF9] px-2 py-0.5 rounded border border-[#C99A45]/40"
+                  >
+                    K001 (Khăn)
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => simulateScan('C001')}
+                    className="text-[11px] font-mono bg-[#174C38] text-[#FFFDF9] px-2 py-0.5 rounded border border-[#C99A45]/40"
+                  >
+                    C001 (Túi)
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Camera Error Message */}
+          {cameraError && (
+            <div className="p-3 bg-[#FAF5EC] border border-[#E8DFC8] rounded-xl text-center space-y-1">
+              <p className="text-xs text-[#A94335] font-medium">{cameraError}</p>
+            </div>
+          )}
+
+          {/* Scan Success Notice */}
+          {scanSuccessCode && (
+            <div className="p-2.5 bg-[#FAF5EC] border border-[#174C38]/40 rounded-xl text-center text-xs text-[#174C38] font-medium flex items-center justify-center gap-2">
+              <CheckCircle2 className="w-4 h-4 text-[#174C38]" />
+              <span>Đã nhận diện mã QR: {scanSuccessCode}</span>
+            </div>
+          )}
+
+          {/* Sample Code Pills */}
+          <div className="pt-2 border-t border-[#E8DFC8] text-center space-y-2">
+            <span className="text-[11px] font-medium text-[#C99A45] uppercase tracking-wider block">
+              Mã mẫu thử nghiệm:
+            </span>
+            <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2">
+              {SAMPLE_CODES.map((s) => (
+                <button
+                  key={s.code}
+                  type="button"
+                  onClick={() => {
+                    setInputCode(s.code);
+                    handleLookup(s.code);
+                  }}
+                  className={`text-xs px-3 py-1 rounded-full border transition-all font-mono cursor-pointer ${
+                    queriedCode.toUpperCase() === s.code
+                      ? 'bg-[#174C38] text-[#FFFDF9] border-[#174C38] font-medium shadow-xs'
+                      : 'bg-[#FAF5EC] text-[#59524C] hover:text-[#174C38] border-[#E8DFC8]'
+                  }`}
+                >
+                  {s.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* RESULT SECTION: DIGITAL PRODUCT PASSPORT */}
+        {notFound && (
+          <div className="bg-[#FFFDF9] p-8 sm:p-12 rounded-2xl border border-[#E8DFC8] text-center space-y-3 shadow-xs max-w-4xl mx-auto">
+            <div className="w-12 h-12 rounded-full bg-[#FAF5EC] border border-[#E8DFC8] flex items-center justify-center mx-auto text-[#A94335]">
+              <AlertCircle className="w-6 h-6" />
+            </div>
+            <h3 className="text-lg font-semibold text-[#174C38]">
+              Không tìm thấy dữ liệu cho mã &quot;{queriedCode}&quot;
+            </h3>
+            <p className="text-xs text-[#59524C] max-w-md mx-auto">
+              Vui lòng kiểm tra lại mã in trên tem nhãn hoặc chọn một trong các mã mẫu thử nghiệm (K001, B001, VI001, C001...) ở phía trên.
+            </p>
+          </div>
+        )}
+
+        {!product && !notFound && (
+          <div className="bg-[#FFFDF9] p-8 sm:p-12 rounded-2xl border border-[#E8DFC8] text-center space-y-3 shadow-xs max-w-4xl mx-auto">
+            <div className="w-14 h-14 rounded-full bg-[#FAF5EC] border border-[#E8DFC8] flex items-center justify-center mx-auto text-xl">
+              📱
+            </div>
+            <h3 className="text-base font-semibold text-[#174C38]">Chưa có mã tra cứu nào được chọn</h3>
+            <p className="text-xs text-[#59524C] max-w-md mx-auto">
+              Nhập mã tem sản phẩm vào ô tìm kiếm hoặc bấm vào các nút mã mẫu thử nghiệm để mở ra hộ chiếu số di sản của tác phẩm.
+            </p>
+          </div>
+        )}
+
+        {product && (
+          <div className="space-y-6 max-w-5xl mx-auto animate-in fade-in duration-300">
+            {/* Passport Banner Card */}
+            <div className="bg-[#FFFDF9] rounded-2xl border border-[#E8DFC8] p-6 sm:p-8 shadow-xs relative overflow-hidden space-y-6">
+              {/* Top Seal */}
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#E8DFC8] pb-5">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-[#174C38] text-[#FFFDF9] flex items-center justify-center font-semibold text-lg shadow-xs">
+                    J
                   </div>
-                  <h2 className="text-xl sm:text-2xl font-serif font-black text-[#1F1D1B] mt-0.5">
-                    HỘ CHIẾU SỐ DI SẢN THỔ CẨM JRAI
-                  </h2>
-                </div>
-              </div>
-
-              <div className="text-left sm:text-right">
-                <span className="text-xs text-[#8A7E72] block font-mono">MÃ ĐỊNH DANH ĐỘC BẢN:</span>
-                <span className="text-lg font-black text-[#C43B3D] font-mono tracking-wider">
-                  {product.product_code}
-                </span>
-              </div>
-            </div>
-
-            {/* Main Passport Content */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 pt-8">
-              {/* Image & Quick QR (4 Cols) */}
-              <div className="lg:col-span-4 space-y-4">
-                <div className="aspect-[4/3] rounded-2xl overflow-hidden bg-[#FBF8F3] border border-[#E5DACB] shadow-sm">
-                  <img
-                    src={product.image_url}
-                    alt={product.name}
-                    className="w-full h-full object-cover"
-                  />
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-[11px] font-mono text-[#C99A45] uppercase tracking-wider">
+                        HỘ CHIẾU SỐ DI SẢN THỔ CẨM
+                      </span>
+                      <span className="text-[10px] bg-[#FAF5EC] text-[#174C38] px-2 py-0.2 rounded-full font-medium border border-[#E8DFC8]">
+                        ✓ ĐÃ XÁC THỰC
+                      </span>
+                    </div>
+                    <h2 className="text-lg sm:text-xl font-semibold text-[#174C38]">
+                      {product.name}
+                    </h2>
+                  </div>
                 </div>
 
-                <div className="p-4 bg-[#FBF8F3] rounded-2xl border border-[#E5DACB] text-center space-y-2">
-                  <span className="text-xs text-[#EA8E23] uppercase font-bold tracking-wider block">
-                    Định danh số cho mác sản phẩm:
+                <div className="text-left sm:text-right">
+                  <span className="text-[11px] text-[#8A7E72] block font-mono">MÃ ĐỊNH DANH SỐ:</span>
+                  <span className="text-base sm:text-lg font-semibold text-[#174C38] font-mono tracking-wider">
+                    {product.product_code}
                   </span>
-                  <div className="flex justify-center">
+                </div>
+              </div>
+
+              {/* Main Content Grid */}
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                {/* Image & QR Column */}
+                <div className="lg:col-span-4 space-y-4">
+                  <div className="aspect-[4/3] rounded-2xl overflow-hidden bg-[#FAF5EC] border border-[#E8DFC8] shadow-xs">
                     <img
-                      src={`https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=${encodeURIComponent(
-                        productUrl
-                      )}`}
-                      alt="QR Traceability"
-                      className="w-32 h-32 rounded-xl border border-[#E5DACB] bg-white p-2 shadow-sm"
+                      src={product.image_url}
+                      alt={product.name}
+                      className="w-full h-full object-cover"
                     />
                   </div>
-                  <p className="text-xs text-[#5D554D] font-mono">{product.product_code}</p>
-                </div>
-              </div>
 
-              {/* Data Specifications (8 Cols) */}
-              <div className="lg:col-span-8 space-y-6">
-                <div>
-                  <span className="text-xs text-[#EA8E23] font-bold uppercase tracking-wider block">
-                    {product.category_name}
-                  </span>
-                  <h3 className="text-2xl font-serif font-black text-[#1F1D1B] mt-0.5">
-                    {product.name}
-                  </h3>
-                  <p className="text-xs text-[#5D554D] mt-2 leading-relaxed">
-                    {product.description}
-                  </p>
+                  <div className="p-4 bg-[#FAF5EC] rounded-2xl border border-[#E8DFC8] text-center space-y-2">
+                    <span className="text-[11px] text-[#C99A45] uppercase font-medium tracking-wider block">
+                      Mã QR định danh tem nhãn:
+                    </span>
+                    <div className="flex justify-center">
+                      <img
+                        src={`https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=${encodeURIComponent(
+                          productUrl
+                        )}`}
+                        alt="QR Traceability"
+                        className="w-28 h-28 rounded-xl border border-[#E8DFC8] bg-white p-2 shadow-xs"
+                      />
+                    </div>
+                    <p className="text-xs text-[#59524C] font-mono">{product.product_code}</p>
+                  </div>
                 </div>
 
                 {/* 4 Pillars of Traceability */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {/* Pillar 1: Maker */}
-                  <div className="p-4 bg-[#FBF8F3] rounded-2xl border border-[#E5DACB] space-y-2">
-                    <div className="flex items-center gap-2 text-xs font-bold text-[#EA8E23] uppercase">
-                      <User className="w-4 h-4" />
-                      <span>1. Nghệ nhân thực hiện</span>
-                    </div>
-                    <p className="text-sm font-bold text-[#1F1D1B]">
-                      {product.artisan_name || (artisan ? artisan.name : 'Nghệ nhân Làng Kép')}
-                    </p>
-                    <p className="text-xs text-[#5D554D]">
-                      {artisan?.experience || 'Hơn 30 năm tuổi nghề dệt cửi hông'}
-                    </p>
-                    {artisan && (
-                      <Link
-                        href={`/artisan/${artisan.id}`}
-                        className="text-xs text-[#C43B3D] hover:underline font-bold inline-block pt-1"
-                      >
-                        Xem hồ sơ nghệ nhân &rarr;
-                      </Link>
-                    )}
-                  </div>
-
-                  {/* Pillar 2: Village & Time */}
-                  <div className="p-4 bg-[#FBF8F3] rounded-2xl border border-[#E5DACB] space-y-2">
-                    <div className="flex items-center gap-2 text-xs font-bold text-[#EA8E23] uppercase">
-                      <MapPin className="w-4 h-4" />
-                      <span>2. Nguồn gốc địa bàn</span>
-                    </div>
-                    <p className="text-sm font-bold text-[#1F1D1B]">
-                      {product.location || 'Làng Kép, Xã Ia Mơ Nông, Chư Păh, Gia Lai'}
-                    </p>
-                    <p className="text-xs text-[#5D554D] flex items-center gap-1">
-                      <Clock className="w-3.5 h-3.5 text-[#EA8E23]" />
-                      <span>Thời gian hoàn thành: <strong>{product.production_time}</strong></span>
-                    </p>
-                  </div>
-
-                  {/* Pillar 3: Materials & Weaving */}
-                  <div className="p-4 bg-[#FBF8F3] rounded-2xl border border-[#E5DACB] space-y-2">
-                    <div className="flex items-center gap-2 text-xs font-bold text-[#EA8E23] uppercase">
-                      <Layers className="w-4 h-4" />
-                      <span>3. Chất liệu & Kỹ thuật</span>
-                    </div>
-                    <p className="text-xs text-[#5D554D]">
-                      <strong className="text-[#1F1D1B]">Chất liệu:</strong> {product.material}
-                    </p>
-                    <p className="text-xs text-[#5D554D]">
-                      <strong className="text-[#1F1D1B]">Kỹ thuật:</strong> Dệt cửi hông (backstrap loom), cài sợi nổi 3D Kơnech.
-                    </p>
-                  </div>
-
-                  {/* Pillar 4: Motif Symbolism */}
-                  <div className="p-4 bg-[#FBF8F3] rounded-2xl border border-[#E5DACB] space-y-2">
-                    <div className="flex items-center gap-2 text-xs font-bold text-[#EA8E23] uppercase">
-                      <Sparkles className="w-4 h-4" />
-                      <span>4. Ý nghĩa hoa văn</span>
-                    </div>
-                    <p className="text-xs text-[#1F1D1B] font-bold">
-                      {product.motif_name || (motif ? motif.name : 'Hoa văn hình học cổ di sản')}
-                    </p>
-                    <p className="text-xs text-[#5D554D] line-clamp-2">
-                      {motif?.meaning || 'Biểu trưng của sự hòa hợp cùng thiên nhiên và trật tự buôn làng.'}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Cultural Narrative Summary */}
-                <div className="p-5 bg-[#F2ECE1] rounded-2xl border border-[#E5DACB] space-y-2">
-                  <h4 className="text-xs font-bold text-[#EA8E23] uppercase tracking-wider">
-                    {product.story_title || 'Ý NGHĨA VĂN HÓA SẢN PHẨM'}
-                  </h4>
-                  <p className="text-xs text-[#5D554D] leading-relaxed italic">
-                    {product.story_lead || product.story.slice(0, 300) + '...'}
+                <div className="lg:col-span-8 space-y-5">
+                  <p className="text-xs sm:text-sm text-[#59524C] leading-relaxed font-normal">
+                    {product.description}
                   </p>
-                </div>
 
-                {/* Direct Action Link */}
-                <div className="flex flex-wrap items-center justify-between gap-4 pt-2">
-                  <Link
-                    href={`/product/${product.id}`}
-                    className="inline-flex items-center gap-2 bg-[#C43B3D] hover:bg-[#8A2325] text-white text-xs font-bold px-6 py-3 rounded-xl shadow transition"
-                  >
-                    <span>Xem trang bán hàng sản phẩm này</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                    {/* Pillar 1: Maker */}
+                    <div className="p-4 bg-[#FAF5EC] rounded-xl border border-[#E8DFC8] space-y-1.5">
+                      <div className="flex items-center gap-1.5 text-xs font-medium text-[#C99A45] uppercase">
+                        <User className="w-3.5 h-3.5" />
+                        <span>1. Nghệ nhân thực hiện</span>
+                      </div>
+                      <p className="text-sm font-semibold text-[#174C38]">
+                        {product.artisan_name || (artisan ? artisan.name : 'Nghệ nhân Làng Kép')}
+                      </p>
+                      <p className="text-xs text-[#59524C]">
+                        {artisan?.experience || 'Hơn 30 năm tuổi nghề dệt cửi hông'}
+                      </p>
+                      {artisan && (
+                        <Link
+                          href={`/artisan/${artisan.id}`}
+                          className="text-xs text-[#174C38] hover:text-[#C99A45] font-medium inline-block pt-0.5"
+                        >
+                          Xem hồ sơ nghệ nhân &rarr;
+                        </Link>
+                      )}
+                    </div>
 
-                  <div className="text-xs text-[#5D554D] flex items-center gap-1.5">
-                    <ShieldCheck className="w-4 h-4 text-emerald-600" />
-                    <span>Dữ liệu số hóa chính thức bởi Ban điều phối JRAI ƠI</span>
+                    {/* Pillar 2: Village & Time */}
+                    <div className="p-4 bg-[#FAF5EC] rounded-xl border border-[#E8DFC8] space-y-1.5">
+                      <div className="flex items-center gap-1.5 text-xs font-medium text-[#C99A45] uppercase">
+                        <MapPin className="w-3.5 h-3.5" />
+                        <span>2. Nguồn gốc địa bàn</span>
+                      </div>
+                      <p className="text-sm font-semibold text-[#174C38]">
+                        {product.location || 'Làng Kép, Ia Mơ Nông, Chư Păh, Gia Lai'}
+                      </p>
+                      <p className="text-xs text-[#59524C] flex items-center gap-1">
+                        <Clock className="w-3 h-3 text-[#C99A45]" />
+                        <span>Thời gian dệt: <strong>{product.production_time}</strong></span>
+                      </p>
+                    </div>
+
+                    {/* Pillar 3: Materials & Weaving */}
+                    <div className="p-4 bg-[#FAF5EC] rounded-xl border border-[#E8DFC8] space-y-1.5">
+                      <div className="flex items-center gap-1.5 text-xs font-medium text-[#C99A45] uppercase">
+                        <Layers className="w-3.5 h-3.5" />
+                        <span>3. Chất liệu & Kỹ thuật</span>
+                      </div>
+                      <p className="text-xs text-[#59524C]">
+                        <strong className="text-[#174C38] font-medium">Chất liệu:</strong> {product.material}
+                      </p>
+                      <p className="text-xs text-[#59524C]">
+                        <strong className="text-[#174C38] font-medium">Kỹ thuật:</strong> Dệt cửi hông (backstrap loom), cài hoa văn nổi 3D.
+                      </p>
+                    </div>
+
+                    {/* Pillar 4: Motif Symbolism */}
+                    <div className="p-4 bg-[#FAF5EC] rounded-xl border border-[#E8DFC8] space-y-1.5">
+                      <div className="flex items-center gap-1.5 text-xs font-medium text-[#C99A45] uppercase">
+                        <Sparkles className="w-3.5 h-3.5" />
+                        <span>4. Ý nghĩa hoa văn</span>
+                      </div>
+                      <p className="text-xs font-semibold text-[#174C38]">
+                        {product.motif_name || (motif ? motif.name : 'Hoa văn hình học cổ di sản')}
+                      </p>
+                      <p className="text-xs text-[#59524C] line-clamp-2">
+                        {motif?.meaning || 'Biểu trưng của sự hòa hợp cùng thiên nhiên và trật tự buôn làng.'}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Narrative Summary */}
+                  {product.story && (
+                    <div className="p-4 bg-[#FAF5EC] rounded-xl border border-[#E8DFC8] space-y-1">
+                      <h4 className="text-xs font-medium text-[#C99A45] uppercase tracking-wider">
+                        {product.story_title || 'Ý nghĩa văn hóa tác phẩm'}
+                      </h4>
+                      <p className="text-xs text-[#59524C] leading-relaxed italic">
+                        {product.story_lead || product.story.slice(0, 260) + '...'}
+                      </p>
+                    </div>
+                  )}
+
+                  {/* Actions */}
+                  <div className="flex flex-wrap items-center justify-between gap-3 pt-2">
+                    <Link
+                      href={`/product/${product.id}`}
+                      className="inline-flex items-center gap-2 bg-[#174C38] hover:bg-[#0E3626] text-[#FFFDF9] text-xs font-medium px-5 py-2.5 rounded-xl shadow-xs transition-all"
+                    >
+                      <span>Xem sản phẩm này</span>
+                      <ArrowRight className="w-3.5 h-3.5 text-[#C99A45]" />
+                    </Link>
+
+                    <div className="text-xs text-[#59524C] flex items-center gap-1.5">
+                      <ShieldCheck className="w-4 h-4 text-[#174C38]" />
+                      <span>Xác thực số hóa bởi HTX Dệt Ia Mơ Nông</span>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          {/* PRINT & DOWNLOAD QR TOOLS */}
-          <div className="bg-white p-8 rounded-xl border border-[#E5DACB] shadow-sm space-y-4">
-            <h3 className="text-lg font-serif font-bold text-[#1F1D1B]">
-              Công Cụ Tải & In Thẻ Tem Mã QR
-            </h3>
-            <p className="text-xs text-[#5D554D]">
-              Dành cho khách hàng hoặc Ban quản trị in tem nhãn gắn vào sản phẩm thực tế:
-            </p>
-            <QRCodeGenerator
-              productUrl={productUrl}
-              productName={product.name}
-              productCode={product.product_code}
-              category={product.category_name}
-              location={product.location}
-            />
+            {/* PRINT & DOWNLOAD QR TOOLS */}
+            <div className="bg-[#FFFDF9] p-6 sm:p-8 rounded-2xl border border-[#E8DFC8] shadow-xs space-y-3">
+              <h3 className="text-base sm:text-lg font-semibold text-[#174C38]">
+                Công cụ in thẻ tem mã QR
+              </h3>
+              <p className="text-xs text-[#59524C]">
+                Dành cho khách hàng hoặc Ban quản trị in tem nhãn gắn vào sản phẩm thực tế:
+              </p>
+              <QRCodeGenerator
+                productUrl={productUrl}
+                productName={product.name}
+                productCode={product.product_code}
+                category={product.category_name}
+                location={product.location}
+              />
+            </div>
           </div>
-        </div>
-      )}
+        )}
+
+      </div>
     </div>
   );
 }
 
 export default function TraceabilityPage() {
   return (
-    <React.Suspense fallback={<div className="min-h-screen bg-[#FBF8F3] py-20 text-center text-[#5D554D]">Đang tải hệ thống tra cứu nguồn gốc sản phẩm...</div>}>
+    <React.Suspense fallback={<div className="min-h-screen bg-[#FAF5EC] py-20 text-center text-[#59524C]">Đang tải hệ thống tra cứu nguồn gốc sản phẩm...</div>}>
       <TraceabilityContent />
     </React.Suspense>
   );
