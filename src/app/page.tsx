@@ -600,23 +600,35 @@ export default function HomePage() {
 
           {/* Main Title & Vibrant Highlight */}
           <div className="text-center space-y-2">
-            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-serif font-black text-[#FFFDF9] tracking-wider drop-shadow-[0_4px_20px_rgba(0,0,0,0.9)]">
+            <h1
+              className="text-5xl sm:text-6xl lg:text-8xl font-serif font-black tracking-wider bg-gradient-to-b from-[#FFFFFF] via-[#FFF5EA] to-[#F5C542] bg-clip-text !text-transparent filter drop-shadow-[0_6px_25px_rgba(0,0,0,0.95)] drop-shadow-[0_0_35px_rgba(245,197,66,0.55)] select-none"
+              style={{
+                WebkitTextFillColor: 'transparent',
+                backgroundImage: 'linear-gradient(to bottom, #FFFFFF 0%, #FFF5EA 45%, #F5C542 100%)',
+              }}
+            >
               JRAI ƠI
             </h1>
-            <div className="text-2xl sm:text-4xl lg:text-5xl font-serif font-bold tracking-tight bg-gradient-to-r from-[#FFF2C6] via-[#F5C542] to-[#E59E2B] bg-clip-text text-transparent filter drop-shadow-[0_4px_16px_rgba(0,0,0,0.85)] drop-shadow-[0_0_24px_rgba(245,197,66,0.5)]">
+            <div
+              className="text-2xl sm:text-4xl lg:text-5xl font-serif font-bold tracking-tight bg-gradient-to-r from-[#FFF5D0] via-[#F5C542] to-[#E59E2B] bg-clip-text !text-transparent filter drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)] drop-shadow-[0_0_28px_rgba(245,197,66,0.6)] select-none"
+              style={{
+                WebkitTextFillColor: 'transparent',
+                backgroundImage: 'linear-gradient(to right, #FFF5D0 0%, #F5C542 50%, #E59E2B 100%)',
+              }}
+            >
               Thổ Cẩm Bản Địa Tây Nguyên
             </div>
             
             {/* Elegant Golden Brocade Divider */}
             <div className="flex items-center justify-center gap-3 pt-2">
-              <span className="h-px w-12 sm:w-24 bg-gradient-to-r from-transparent via-[#F5C542] to-transparent"></span>
-              <span className="text-[#F5C542] text-xs">❖</span>
-              <span className="h-px w-12 sm:w-24 bg-gradient-to-r from-transparent via-[#F5C542] to-transparent"></span>
+              <span className="h-px w-16 sm:w-28 bg-gradient-to-r from-transparent via-[#F5C542] to-transparent"></span>
+              <span className="text-[#F5C542] text-sm font-bold">❖</span>
+              <span className="h-px w-16 sm:w-28 bg-gradient-to-r from-transparent via-[#F5C542] to-transparent"></span>
             </div>
           </div>
 
           {/* Description with High Contrast Glassmorphic Backdrop */}
-          <p className="text-stone-200 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto font-normal px-6 py-3.5 rounded-2xl bg-black/40 backdrop-blur-md border border-white/15 shadow-[0_8px_30px_rgba(0,0,0,0.5)]">
+          <p className="!text-[#FAF5EC] text-sm sm:text-base leading-relaxed max-w-2xl mx-auto font-normal px-6 py-4 rounded-2xl bg-[#14100E]/75 backdrop-blur-md border border-[#F5C542]/30 shadow-[0_8px_30px_rgba(0,0,0,0.6)]">
             Bảo tồn nguyên vẹn tri thức dệt cửi hông cổ truyền người Jrai tại buôn làng Ia Mơ Nông (Gia Lai). Mỗi tác phẩm dệt là một câu chuyện di sản, tích hợp mã số QR định danh minh bạch nghệ nhân và số giờ công dệt.
           </p>
 
@@ -624,34 +636,34 @@ export default function HomePage() {
           <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-4 pt-1">
             <a
               href="#products"
-              className="inline-flex items-center gap-2 bg-gradient-to-r from-[#174C38] via-[#1E5C44] to-[#174C38] hover:from-[#1E5C44] hover:to-[#174C38] text-[#FFFDF9] font-bold text-xs sm:text-sm px-6 py-3.5 rounded-full border border-[#F5C542]/70 shadow-[0_4px_22px_rgba(23,76,56,0.7)] hover:shadow-[0_6px_30px_rgba(245,197,66,0.6)] transition-all duration-300 hover:scale-105"
+              className="inline-flex items-center gap-2.5 bg-gradient-to-r from-[#174C38] via-[#23654D] to-[#174C38] hover:from-[#23654D] hover:to-[#174C38] !text-[#FFFDF9] font-bold text-xs sm:text-sm px-6 py-3.5 rounded-full border-2 border-[#F5C542] shadow-[0_4px_25px_rgba(245,197,66,0.45)] hover:shadow-[0_6px_35px_rgba(245,197,66,0.7)] transition-all duration-300 hover:scale-105"
             >
               <ShoppingBag className="w-4 h-4 text-[#F5C542]" />
-              <span>Khám Phá 57 Tác Phẩm</span>
+              <span className="!text-[#FFFDF9] font-bold">Khám Phá 57 Tác Phẩm</span>
             </a>
 
             <a
               href="#artisans"
-              className="inline-flex items-center gap-2 bg-[#FFFDF9]/95 hover:bg-white text-[#174C38] hover:text-[#0E3626] font-bold text-xs sm:text-sm px-5 py-3.5 rounded-full border border-[#E8DFC8] hover:border-[#F5C542] shadow-[0_4px_18px_rgba(0,0,0,0.3)] hover:shadow-[0_6px_25px_rgba(245,197,66,0.4)] transition-all duration-300 hover:scale-105"
+              className="inline-flex items-center gap-2.5 bg-gradient-to-r from-[#F5C542] via-[#E59E2B] to-[#F5C542] hover:from-[#FFF0B8] hover:to-[#F5C542] !text-[#0E3626] font-extrabold text-xs sm:text-sm px-5 py-3.5 rounded-full border border-[#FFF5EA] shadow-[0_4px_22px_rgba(245,197,66,0.45)] hover:shadow-[0_6px_30px_rgba(245,197,66,0.65)] transition-all duration-300 hover:scale-105"
             >
-              <Users className="w-4 h-4 text-[#C99A45]" />
-              <span>Nghệ Nhân Buôn Làng</span>
+              <Users className="w-4 h-4 !text-[#0E3626]" />
+              <span className="!text-[#0E3626] font-extrabold">Nghệ Nhân Buôn Làng</span>
             </a>
 
             <a
               href="#motifs"
-              className="inline-flex items-center gap-2 bg-[#FFFDF9]/95 hover:bg-white text-[#174C38] hover:text-[#0E3626] font-bold text-xs sm:text-sm px-5 py-3.5 rounded-full border border-[#E8DFC8] hover:border-[#F5C542] shadow-[0_4px_18px_rgba(0,0,0,0.3)] hover:shadow-[0_6px_25px_rgba(245,197,66,0.4)] transition-all duration-300 hover:scale-105"
+              className="inline-flex items-center gap-2.5 bg-[#174C38]/90 hover:bg-[#1E5C44] !text-[#FFFDF9] font-bold text-xs sm:text-sm px-5 py-3.5 rounded-full border border-[#F5C542]/70 hover:border-[#F5C542] shadow-[0_4px_20px_rgba(0,0,0,0.5)] hover:shadow-[0_6px_25px_rgba(245,197,66,0.4)] transition-all duration-300 hover:scale-105 backdrop-blur-md"
             >
-              <Grid className="w-4 h-4 text-[#C99A45]" />
-              <span>Ngân Hàng Hoa Văn</span>
+              <Grid className="w-4 h-4 text-[#F5C542]" />
+              <span className="!text-[#FFFDF9] font-bold">Ngân Hàng Hoa Văn</span>
             </a>
 
             <a
               href="#traceability"
-              className="inline-flex items-center gap-2 bg-[#FFFDF9]/95 hover:bg-white text-[#174C38] hover:text-[#0E3626] font-bold text-xs sm:text-sm px-5 py-3.5 rounded-full border border-[#E8DFC8] hover:border-[#F5C542] shadow-[0_4px_18px_rgba(0,0,0,0.3)] hover:shadow-[0_6px_25px_rgba(245,197,66,0.4)] transition-all duration-300 hover:scale-105"
+              className="inline-flex items-center gap-2.5 bg-[#231A14]/90 hover:bg-[#32251D] !text-[#FFFDF9] font-bold text-xs sm:text-sm px-5 py-3.5 rounded-full border border-[#F5C542]/70 hover:border-[#F5C542] shadow-[0_4px_20px_rgba(0,0,0,0.5)] hover:shadow-[0_6px_25px_rgba(245,197,66,0.4)] transition-all duration-300 hover:scale-105 backdrop-blur-md"
             >
-              <QrCode className="w-4 h-4 text-[#C99A45]" />
-              <span>Tra Cứu QR</span>
+              <QrCode className="w-4 h-4 text-[#F5C542]" />
+              <span className="!text-[#FFFDF9] font-bold">Tra Cứu QR</span>
             </a>
           </div>
 

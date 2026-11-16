@@ -72,7 +72,7 @@ export default function OrderSuccessPage() {
         aria-hidden="true"
       />
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 relative z-10">
+      <div className="w-full max-w-[1600px] xl:px-12 mx-auto px-4 sm:px-6 lg:px-12 space-y-8 relative z-10">
       {/* 3-Step Breadcrumb Progress Bar */}
       <div className="max-w-3xl mx-auto">
         <div className="flex items-center justify-between relative">
