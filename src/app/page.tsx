@@ -501,17 +501,17 @@ export default function HomePage() {
         </div>
       )}
 
-      {/* Floating Cart Button (Balanced Position above Chatbot) */}
+      {/* Floating Cart Button (Balanced Position above Chatbot) - Larger Icon */}
       <button
         onClick={() => setCartOpen(true)}
-        className="fixed bottom-22 sm:bottom-24 right-6 z-30 bg-[#B9383A] hover:bg-[#A83232] text-white px-4 py-3 rounded-full shadow-lg border border-amber-400/40 flex items-center gap-2.5 transition-all hover:scale-105 cursor-pointer"
-        title="Mở giỏ hàng"
+        className="fixed bottom-22 sm:bottom-24 right-6 z-30 bg-[#B9383A] hover:bg-[#A83232] text-white px-4 sm:px-5 py-3 sm:py-3.5 rounded-full shadow-xl border-2 border-amber-300/40 flex items-center gap-3 transition-all hover:scale-105 cursor-pointer"
+        title="Mở giỏ hàng JRAI ƠI"
       >
-        <ShoppingBag className="w-5 h-5 text-amber-300" />
-        <span className="text-xs font-bold font-mono bg-stone-900/80 px-2 py-0.5 rounded-full text-amber-400 border border-amber-500/30">
+        <ShoppingBag className="w-6 h-6 sm:w-7 sm:h-7 text-amber-300 shrink-0" />
+        <span className="text-xs sm:text-sm font-bold font-mono bg-stone-900/80 px-2.5 py-0.5 rounded-full text-amber-300 border border-amber-500/30">
           {cartTotal.count}
         </span>
-        <span className="text-xs font-bold hidden sm:inline">{cartTotal.subtotal.toLocaleString('vi-VN')}₫</span>
+        <span className="text-xs sm:text-sm font-bold hidden sm:inline">{cartTotal.subtotal.toLocaleString('vi-VN')}₫</span>
       </button>
 
       {/* ========================================================
@@ -1004,7 +1004,7 @@ export default function HomePage() {
                         onClick={(e) => handleAddToCart(p, e)}
                         className="btn btn-sm btn-primary flex-1 text-center justify-center font-bold flex items-center gap-1.5"
                       >
-                        <ShoppingBag className="w-3.5 h-3.5" />
+                        <ShoppingBag className="w-4.5 h-4.5" />
                         <span>Thêm giỏ</span>
                       </button>
                     </div>
@@ -1795,10 +1795,10 @@ export default function HomePage() {
 
                       <button
                         onClick={(e) => handleAddToCart(product, e)}
-                        className="px-4 py-2.5 rounded-xl bg-[#1E4D38] hover:bg-[#153828] text-white text-xs font-bold transition-all shadow-xs flex items-center gap-1.5 cursor-pointer select-none"
+                        className="px-4 py-2.5 rounded-xl bg-[#1E4D38] hover:bg-[#153828] text-white text-xs font-bold transition-all shadow-xs flex items-center gap-2 cursor-pointer select-none"
                         title="Thêm vào giỏ hàng"
                       >
-                        <ShoppingBag className="w-3.5 h-3.5" />
+                        <ShoppingBag className="w-4.5 h-4.5" />
                         <span>Thêm giỏ</span>
                       </button>
                     </div>
@@ -1886,7 +1886,7 @@ export default function HomePage() {
                   }}
                   className="flex-1 py-3 rounded-lg bg-[#C43B3D] hover:bg-[#8A2325] text-white font-bold text-xs sm:text-sm shadow-sm flex items-center justify-center gap-2"
                 >
-                  <ShoppingBag className="w-4 h-4" />
+                  <ShoppingBag className="w-5 h-5" />
                   <span>MUA NGAY / THÊM GIỎ HÀNG</span>
                 </button>
 

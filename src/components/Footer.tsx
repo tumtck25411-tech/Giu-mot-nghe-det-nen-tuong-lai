@@ -18,6 +18,13 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12">
           {/* Column 1: Slogan & Intro (4 Cols) */}
           <div className="lg:col-span-4 space-y-4">
+            <Link href="/" className="inline-block group mb-2" title="Trang chủ JRAI ƠI">
+              <img
+                src="/images/logo/logo-jrai-oi-white.png"
+                alt="JRAI ƠI — Đồ Thổ Cẩm Jrai"
+                className="h-14 sm:h-16 w-auto object-contain rounded-xl p-1.5 bg-white/95 shadow-md transition-transform duration-300 group-hover:scale-105"
+              />
+            </Link>
             <h3 className="font-serif font-black text-xl sm:text-2xl text-[#E58A1F] leading-snug">
               &ldquo;Thổ cẩm bản địa, dệt nên tương lai&rdquo;
             </h3>

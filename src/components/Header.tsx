@@ -153,29 +153,19 @@ export default function Header() {
     <>
       <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-[#E8E2D9] text-[#1F1D1B] shadow-[0_2px_12px_rgba(0,0,0,0.04)] transition-all overflow-x-clip">
         <div className="w-full max-w-[1720px] mx-auto px-3 sm:px-6 lg:px-8 xl:px-12">
-          <div className="flex items-center justify-between h-[72px]">
-            {/* LOGO THƯƠNG HIỆU JRAI ƠI Ở GÓC TRÁI MÀN HÌNH */}
-            <Link href="/" className="flex items-center gap-2.5 sm:gap-3 group shrink-0" title="Trang chủ JRAI ƠI">
-              {/* Emblem hoa văn hình thoi Jrai cách điệu cao cấp */}
-              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#1E4D38] p-1 shadow-sm group-hover:bg-[#143527] transition-all flex items-center justify-center shrink-0">
-                <svg viewBox="0 0 40 40" fill="none" className="w-5 h-5 sm:w-6 sm:h-6 text-[#FCD34D]">
-                  <polygon points="20,4 36,20 20,36 4,20" stroke="currentColor" strokeWidth="2.5" fill="none" />
-                  <polygon points="20,10 30,20 20,30 10,20" fill="#C43B3D" stroke="#EA8E23" strokeWidth="1.5" />
-                  <circle cx="20" cy="20" r="2.5" fill="#FFFFFF" />
-                  <line x1="20" y1="4" x2="20" y2="10" stroke="currentColor" strokeWidth="2" />
-                  <line x1="20" y1="30" x2="20" y2="36" stroke="currentColor" strokeWidth="2" />
-                  <line x1="4" y1="20" x2="10" y2="20" stroke="currentColor" strokeWidth="2" />
-                  <line x1="30" y1="20" x2="36" y2="20" stroke="currentColor" strokeWidth="2" />
-                </svg>
-              </div>
-              <div className="flex flex-col">
-                <span className="font-serif font-black text-lg sm:text-xl xl:text-2xl tracking-wider text-[#1E4D38] group-hover:text-[#143527] transition-colors leading-none">
-                  JRAI ƠI
-                </span>
-                <span className="text-[9px] xl:text-[10px] font-sans font-bold tracking-[0.18em] xl:tracking-[0.22em] text-[#6E4C38] uppercase mt-1 hidden sm:inline">
-                  THỔ CẨM BẢN ĐỊA TÂY NGUYÊN
-                </span>
-              </div>
+          <div className="flex items-center justify-between h-[74px] sm:h-[78px]">
+            {/* LOGO THƯƠNG HIỆU CHÍNH THỨC JRAI ƠI Ở GÓC TRÁI MÀN HÌNH */}
+            <Link
+              href="/"
+              className="flex items-center gap-2 group shrink-0 py-1"
+              title="JRAI ƠI — Đồ Thổ Cẩm Bản Địa Tây Nguyên"
+            >
+              <img
+                src="/images/logo/logo-jrai-oi.png"
+                alt="JRAI ƠI — Đồ Thổ Cẩm Jrai"
+                className="h-12 sm:h-14 lg:h-16 w-auto max-w-[170px] sm:max-w-[210px] lg:max-w-[250px] object-contain transition-transform duration-300 group-hover:scale-105"
+                loading="eager"
+              />
             </Link>
 
             {/* Desktop Navigation */}
@@ -319,16 +309,16 @@ export default function Header() {
                 )}
               </Link>
 
-              {/* Cart Button with Counter */}
+              {/* Cart Button with Counter - Enhanced Size per User Request */}
               <Link
                 href="/cart"
-                className="relative p-2 sm:p-2.5 px-2.5 sm:px-3 rounded-xl bg-[#1E4D38] hover:bg-[#143527] text-white transition shadow-sm flex items-center gap-1.5 group shrink-0 whitespace-nowrap"
-                title="Giỏ hàng JRAI ƠI"
+                className="relative p-2 sm:p-2.5 px-3 sm:px-3.5 rounded-xl bg-[#1E4D38] hover:bg-[#143527] text-white transition shadow-sm flex items-center gap-2 group shrink-0 whitespace-nowrap cursor-pointer"
+                title="Xem giỏ hàng JRAI ƠI"
               >
-                <ShoppingBag className="w-4 h-4 text-white group-hover:scale-105 transition-transform shrink-0" />
+                <ShoppingBag className="w-5 h-5 sm:w-6 sm:h-6 text-white group-hover:scale-110 transition-transform shrink-0" />
                 <span className="hidden 2xl:inline text-xs font-bold text-white whitespace-nowrap">Giỏ hàng</span>
                 {cartCount > 0 && (
-                  <span className="inline-flex items-center justify-center min-w-[18px] sm:min-w-[20px] h-4 sm:h-5 px-1 sm:px-1.5 text-[10px] sm:text-xs font-black rounded-full bg-[#C43B3D] text-white shadow-xs">
+                  <span className="inline-flex items-center justify-center min-w-[20px] sm:min-w-[22px] h-5 sm:h-5 px-1.5 text-[11px] sm:text-xs font-black rounded-full bg-[#C43B3D] text-white shadow-xs border border-white/20">
                     {cartCount}
                   </span>
                 )}
@@ -357,9 +347,9 @@ export default function Header() {
               <Link
                 href="/cart"
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-xs bg-[#1E4D38] text-white px-3 py-1.5 rounded-lg font-bold flex items-center gap-1.5"
+                className="text-xs bg-[#1E4D38] hover:bg-[#143527] text-white px-3.5 py-2 rounded-xl font-bold flex items-center gap-2 shadow-xs cursor-pointer"
               >
-                <ShoppingBag className="w-3.5 h-3.5" />
+                <ShoppingBag className="w-5 h-5 text-amber-300" />
                 <span>Giỏ: {cartCount}</span>
               </Link>
             </div>
