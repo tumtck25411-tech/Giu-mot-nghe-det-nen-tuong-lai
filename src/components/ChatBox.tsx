@@ -6,14 +6,8 @@ import {
   MessageSquare,
   X,
   Send,
-  Sparkles,
   ExternalLink,
-  Bot,
-  User,
-  ShoppingBag,
-  QrCode,
-  Tag,
-  Compass,
+  ChevronRight,
 } from 'lucide-react';
 
 interface ChatMessage {
@@ -30,7 +24,7 @@ const DEFAULT_SUGGESTIONS = [
   'Tra cứu mã định danh số QR là gì?',
   'Gợi ý quà tặng thổ cẩm ý nghĩa?',
   'Hướng dẫn đặt may theo yêu cầu?',
-  'Chính sách giao hàng & bảo hành?',
+  'Chính sách giao hàng & đổi trả?',
 ];
 
 function getBotResponse(input: string): { text: string; links?: { label: string; href: string }[] } {
@@ -39,7 +33,7 @@ function getBotResponse(input: string): { text: string; links?: { label: string;
   // 1. Hoa văn & ý nghĩa
   if (query.includes('hoa văn') || query.includes('ý nghĩa') || query.includes('klang liếp') || query.includes('den đông') || query.includes('dưng room') || query.includes('rúp') || query.includes('motif')) {
     return {
-      text: `Hoa văn thổ cẩm Jrai là ngôn ngữ biểu tượng truyền đời qua văn hóa mẫu hệ:\n\n• **Klang Liếp (Hình thoi):** Biểu tượng mắt rồng và lòng dũng cảm, che chở buôn làng và mang lại bình an.\n• **Den Đông (Đường zíc zắc):** Tái hiện dòng suối Ia Mơ Nông uốn lượn và triền núi Chư Păh.\n• **Dưng Room (Đường thẳng):** Tượng trưng cho sự ngay thẳng, kỷ cương và trật tự của cộng đồng Jrai.\n• **Rúp (Hình nhân / Đám trẻ / Muông thú):** Khắc họa đời sống lao động, mừng lúa mới và khát vọng tự do.`,
+      text: `Hoa văn thổ cẩm Jrai là ngôn ngữ biểu tượng truyền đời qua văn hóa mẫu hệ:\n\n• **Klang Liếp (Hình thoi):** Biểu tượng mắt rồng và lòng dũng cảm, che chở buôn làng và mang lại bình an cho chủ nhân.\n• **Den Đông (Đường zíc zắc):** Tái hiện dòng suối Ia Mơ Nông uốn lượn và triền núi Chư Păh hùng vĩ.\n• **Dưng Room (Đường thẳng):** Tượng trưng cho sự ngay thẳng, kỷ cương và trật tự của cộng đồng Jrai.\n• **Rúp (Hình nhân / Đám trẻ / Muông thú):** Khắc họa đời sống lao động, ngày mùa lúa mới và khát vọng tự do.`,
       links: [
         { label: 'Tra cứu 20 hoa văn di sản Jrai', href: '/motifs' },
         { label: 'Thử nghiệm AI Studio thiết kế hoa văn', href: '/#studio' },
@@ -50,7 +44,7 @@ function getBotResponse(input: string): { text: string; links?: { label: string;
   // 2. Quy trình dệt cửi hông
   if (query.includes('dệt') || query.includes('quy trình') || query.includes('cửi hông') || query.includes('kơpăh') || query.includes('nhuộm') || query.includes('chàm') || query.includes('khung')) {
     return {
-      text: `Nghệ thuật dệt cửi hông (Backstrap Loom) của người Jrai gồm 6 chặng hoàn toàn thủ công:\n\n1. **Thu hái bông Kơpăh tự nhiên:** Vào mùa khô tháng 11 - 12 tại bìa rừng Chư Păh.\n2. **Cán bông & kéo sợi mộc:** Tách hạt bằng trục cán gỗ, kéo sợi bằng xa quay tay.\n3. **Nhuộm thảo mộc 100% tự nhiên:** Lá chàm mun T'râm (màu đen chàm), vỏ cây Klét (đỏ đất bazan), củ Knung (vàng ấm).\n4. **Mắc khung cửi hông:** Dùng dây đai tựa vào lưng thợ dệt, tạo lực căng bằng chính cơ thể.\n5. **Dệt đếm sợi thủ công:** Tốn từ 40h đến 140h tập trung cao độ.\n6. **Khâu ráp & định danh số QR:** Gắn mã passport nguồn gốc trước khi đến tay bạn.`,
+      text: `Nghệ thuật dệt cửi hông (Backstrap Loom) của người Jrai gồm 6 chặng thủ công kỳ công:\n\n1. **Thu hái bông Kơpăh tự nhiên:** Vào mùa khô tháng 11 - 12 tại bìa rừng Chư Păh.\n2. **Cán bông & kéo sợi mộc:** Tách hạt bằng trục cán gỗ, kéo sợi bằng xa quay tay nhịp nhàng.\n3. **Nhuộm thảo mộc 100% tự nhiên:** Lá chàm mun T'râm (màu đen chàm), vỏ cây Klét (đỏ đất bazan), rễ Knung (vàng tươi).\n4. **Mắc khung cửi hông:** Dùng dây đai tựa vào lưng thợ dệt, tạo lực căng bằng chính cơ thể.\n5. **Dệt đếm sợi thủ công:** Tốn từ 40h đến 140h tập trung cao độ.\n6. **Khâu ráp & định danh số QR:** Gắn mã passport nguồn gốc trước khi đến tay bạn.`,
       links: [
         { label: 'Xem chi tiết 6 bước hành trình dệt', href: '/#journey' },
         { label: 'Gặp gỡ nghệ nhân làng Kép & làng Phung', href: '/artisans' },
@@ -61,7 +55,7 @@ function getBotResponse(input: string): { text: string; links?: { label: string;
   // 3. Mã định danh số QR
   if (query.includes('qr') || query.includes('định danh') || query.includes('tra cứu') || query.includes('passport') || query.includes('nguồn gốc')) {
     return {
-      text: `Mỗi sản phẩm JRAI ƠI xuất xưởng đều được cấp một **Mã định danh số QR độc bản** (như K001, C001, VI001, A001, V001, B001).\n\nKhi quét mã hoặc nhập mã vào hệ thống, bạn có thể kiểm chứng:\n• Tên và hình ảnh chân dung nghệ nhân dệt.\n• Làng dệt thực địa (Làng Kép hoặc Làng Phung, Xã Ia Mơ Nông, Gia Lai).\n• Số giờ dệt cửi hông thực tế (40h - 140h).\n• Loại hoa văn và thông điệp văn hóa mẫu hệ trao gửi.`,
+      text: `Mỗi sản phẩm JRAI ƠI xuất xưởng đều được cấp một **Mã định danh số QR độc bản** (ví dụ K001, C001, VI001, A001, V001, B001).\n\nKhi quét mã hoặc nhập mã vào hệ thống, bạn có thể kiểm chứng:\n• Tên và chân dung nghệ nhân dệt.\n• Làng dệt thực địa (Làng Kép hoặc Làng Phung, Xã Ia Mơ Nông, Gia Lai).\n• Số giờ dệt cửi hông thực tế (40h - 140h).\n• Loại hoa văn và thông điệp văn hóa mẫu hệ trao gửi.`,
       links: [
         { label: 'Trải nghiệm Cổng tra cứu QR Passport', href: '/traceability' },
       ],
@@ -120,6 +114,30 @@ function getBotResponse(input: string): { text: string; links?: { label: string;
   };
 }
 
+// Helper to render bold text nicely
+function renderFormattedMessage(text: string) {
+  const lines = text.split('\n');
+  return lines.map((line, lineIdx) => {
+    // Replace **bold** with <strong>
+    const parts = line.split(/(\*\*.*?\*\*)/g);
+    return (
+      <React.Fragment key={lineIdx}>
+        {parts.map((part, partIdx) => {
+          if (part.startsWith('**') && part.endsWith('**')) {
+            return (
+              <strong key={partIdx} className="font-bold text-[#1F1D1B]">
+                {part.slice(2, -2)}
+              </strong>
+            );
+          }
+          return part;
+        })}
+        {lineIdx < lines.length - 1 && <br />}
+      </React.Fragment>
+    );
+  });
+}
+
 export default function ChatBox() {
   const [isOpen, setIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState('');
@@ -128,7 +146,7 @@ export default function ChatBox() {
     {
       id: 'welcome-1',
       sender: 'bot',
-      text: 'Dạ xin chào! Mình là Trợ lý JRAI ƠI. Mình có thể giúp bạn tìm hiểu về các dòng thổ cẩm dệt cửi hông, tra cứu ý nghĩa hoa văn truyền thống, câu chuyện nghệ nhân, quy trình nhuộm thảo mộc và hỗ trợ đặt may theo yêu cầu!',
+      text: 'Dạ xin chào! Mình là Jrai Ơi Assistant. Mình có thể giúp bạn tìm hiểu về các dòng thổ cẩm dệt cửi hông, tra cứu ý nghĩa hoa văn truyền thống, câu chuyện nghệ nhân, quy trình nhuộm thảo mộc và hỗ trợ đặt may theo yêu cầu!',
       timestamp: 'Vừa xong',
     },
   ]);
@@ -189,15 +207,15 @@ export default function ChatBox() {
       {/* Floating Chat Trigger Button (Tu Quy Garden style with AI Badge) */}
       <button
         onClick={() => setIsOpen((prev) => !prev)}
-        className="fixed bottom-6 right-6 z-40 w-14 h-14 rounded-full bg-[#1E4D38] hover:bg-[#153828] text-white shadow-2xl flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 border-2 border-emerald-500/30 group"
+        className="fixed bottom-6 right-6 z-40 w-14 h-14 rounded-full bg-[#1E4D38] hover:bg-[#153828] text-white shadow-2xl flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 border-2 border-emerald-500/30 group cursor-pointer"
         aria-label="Mở Trợ lý ảo JRAI ƠI"
         title="Jrai Ơi Assistant - Trợ lý di sản"
       >
         {isOpen ? (
-          <X className="w-6 h-6 transition-transform group-hover:rotate-90" />
+          <X className="w-6 h-6 transition-transform group-hover:rotate-90 text-white" />
         ) : (
           <div className="relative flex items-center justify-center">
-            <MessageSquare className="w-6 h-6 fill-white/10" />
+            <MessageSquare className="w-6 h-6 text-white" />
             <span className="absolute -top-3.5 -right-3.5 bg-amber-400 text-stone-950 font-black text-[10px] tracking-wider px-1.5 py-0.5 rounded-full shadow-md border border-amber-300 animate-bounce">
               AI
             </span>
@@ -209,25 +227,25 @@ export default function ChatBox() {
       {isOpen && (
         <div
           className="fixed bottom-24 right-4 sm:right-6 z-50 w-[380px] max-w-[calc(100vw-32px)] h-[560px] max-h-[82vh] bg-white rounded-2xl shadow-2xl border border-[#E5DACB] flex flex-col overflow-hidden animate-in slide-in-from-bottom-5 fade-in duration-200"
-          style={{ boxShadow: '0 20px 40px -15px rgba(30, 77, 56, 0.35)' }}
+          style={{ boxShadow: '0 20px 40px -15px rgba(30, 77, 56, 0.4)' }}
         >
-          {/* Header (Matching screenshot: Green bar, status, temperature/location pill, close button) */}
+          {/* Header (Matching screenshot: Deep Green Bar, Leaf Avatar, Title, Active Dot, Weather Pill, Close Button) */}
           <div className="bg-[#1E4D38] text-white px-4 py-3.5 flex items-center justify-between border-b border-[#2D6A4F] relative shrink-0">
             <div className="flex items-center gap-3">
               {/* Avatar circle */}
-              <div className="w-9 h-9 rounded-full bg-[#2B664B] border border-amber-400/40 text-amber-300 flex items-center justify-center font-bold text-base shadow-inner">
+              <div className="w-10 h-10 rounded-full bg-[#2B664B] border border-amber-400/40 text-amber-300 flex items-center justify-center font-bold text-base shadow-inner">
                 <span>🌿</span>
               </div>
               <div>
-                <h3 className="text-sm font-bold font-serif tracking-wide text-white leading-tight">
+                <div style={{ color: '#FFFFFF' }} className="text-sm sm:text-base font-bold font-sans tracking-wide leading-tight">
                   Jrai Ơi Assistant
-                </h3>
-                <div className="flex items-center gap-2 mt-0.5">
-                  <span className="inline-flex items-center gap-1 text-[11px] text-emerald-200">
-                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                </div>
+                <div className="flex items-center gap-2 mt-1">
+                  <span className="inline-flex items-center gap-1.5 text-[11px] text-emerald-200 font-medium">
+                    <span className="w-2 h-2 rounded-full bg-[#4ADE80] animate-pulse"></span>
                     <span>Đang hoạt động</span>
                   </span>
-                  <span className="text-[10px] font-medium bg-[#143B2B] text-amber-200 px-2 py-0.5 rounded-full border border-amber-400/30">
+                  <span className="text-[10px] font-semibold bg-[#143B2B] text-amber-300 px-2 py-0.5 rounded-full border border-amber-400/30">
                     🌤️ 28°C Chư Păh
                   </span>
                 </div>
@@ -236,10 +254,10 @@ export default function ChatBox() {
 
             <button
               onClick={() => setIsOpen(false)}
-              className="p-1.5 rounded-full bg-white/10 hover:bg-white/20 text-white/90 hover:text-white transition cursor-pointer"
+              className="w-8 h-8 rounded-full bg-white/15 hover:bg-white/25 text-white flex items-center justify-center transition cursor-pointer"
               aria-label="Đóng chatbox"
             >
-              <X className="w-4 h-4" />
+              <X className="w-4 h-4 text-white" />
             </button>
           </div>
 
@@ -253,18 +271,18 @@ export default function ChatBox() {
                   className={`flex flex-col ${isBot ? 'items-start' : 'items-end'}`}
                 >
                   <div
-                    className={`max-w-[85%] rounded-2xl px-4 py-3 text-xs sm:text-sm leading-relaxed ${
+                    className={`max-w-[88%] rounded-2xl px-4 py-3 text-xs sm:text-sm leading-relaxed ${
                       isBot
-                        ? 'bg-white border border-[#E8E2D9] text-[#1F1D1B] rounded-tl-xs shadow-xs space-y-2.5'
+                        ? 'bg-white border border-[#E8E2D9] text-[#2C241E] rounded-tl-xs shadow-xs space-y-2.5'
                         : 'bg-[#1E4D38] text-white rounded-tr-xs shadow-xs'
                     }`}
                   >
-                    <div className="whitespace-pre-line">{m.text}</div>
+                    <div>{isBot ? renderFormattedMessage(m.text) : m.text}</div>
 
                     {/* Actionable links in bot answers */}
                     {m.links && m.links.length > 0 && (
-                      <div className="pt-2 border-t border-[#F2ECE1] space-y-1.5">
-                        <div className="text-[11px] font-bold text-[#8A7E72] uppercase tracking-wider">
+                      <div className="pt-2.5 border-t border-[#F2ECE1] space-y-1.5">
+                        <div className="text-[10px] font-bold text-[#8A7E72] uppercase tracking-wider">
                           Liên kết nhanh:
                         </div>
                         <div className="flex flex-col gap-1.5">
@@ -290,23 +308,21 @@ export default function ChatBox() {
               );
             })}
 
-            {/* Quick Suggestion Chips (Matches screenshot design) */}
+            {/* Quick Suggestion Chips (Matches reference image style) */}
             {messages.length === 1 && (
               <div className="pt-2 space-y-2">
                 <div className="text-[11px] font-bold text-[#5D554D] uppercase tracking-wider px-1">
-                  Câu hỏi thường gặp:
+                  Gợi ý câu hỏi:
                 </div>
                 <div className="flex flex-col gap-1.5">
                   {DEFAULT_SUGGESTIONS.map((item, idx) => (
                     <button
                       key={idx}
                       onClick={() => handleSendMessage(item)}
-                      className="text-left px-3.5 py-2 rounded-xl bg-white hover:bg-[#F2ECE1] text-[#1E4D38] hover:text-[#143527] text-xs font-semibold border border-[#E5DACB] hover:border-[#1E4D38]/40 transition shadow-2xs flex items-center justify-between group cursor-pointer"
+                      className="text-left px-3.5 py-2 rounded-full bg-[#F4F9F5] hover:bg-[#E8F3EC] text-[#1E4D38] hover:text-[#143527] text-xs font-semibold border border-[#CDE3D5] hover:border-[#1E4D38]/50 transition shadow-2xs flex items-center justify-between group cursor-pointer"
                     >
                       <span>{item}</span>
-                      <span className="text-[#8A7E72] group-hover:text-[#1E4D38] group-hover:translate-x-0.5 transition-transform text-xs">
-                        &rarr;
-                      </span>
+                      <ChevronRight className="w-3.5 h-3.5 text-[#1E4D38]/60 group-hover:text-[#1E4D38] group-hover:translate-x-0.5 transition-transform" />
                     </button>
                   ))}
                 </div>
@@ -337,7 +353,7 @@ export default function ChatBox() {
               onChange={(e) => setInputValue(e.target.value)}
               onKeyDown={handleKeyDown}
               placeholder="Nhập câu hỏi của bạn..."
-              className="flex-1 px-4 py-2.5 rounded-full bg-[#FAF8F5] border border-[#E5DACB] text-xs sm:text-sm text-[#1F1D1B] placeholder-[#8A7E72] focus:outline-none focus:border-[#1E4D38] focus:bg-white transition"
+              className="flex-1 px-4 py-2.5 rounded-full bg-[#F8F5EE] border border-[#E5DACB] text-xs sm:text-sm text-[#1F1D1B] placeholder-[#8A7E72] focus:outline-none focus:border-[#1E4D38] focus:bg-white transition"
             />
             <button
               onClick={() => handleSendMessage()}
@@ -345,7 +361,7 @@ export default function ChatBox() {
               className="w-10 h-10 rounded-full bg-[#1E4D38] hover:bg-[#153828] disabled:bg-stone-300 disabled:cursor-not-allowed text-white flex items-center justify-center transition shadow-xs cursor-pointer shrink-0"
               aria-label="Gửi tin nhắn"
             >
-              <Send className="w-4 h-4 ml-0.5" />
+              <Send className="w-4 h-4 ml-0.5 text-white" />
             </button>
           </div>
         </div>
