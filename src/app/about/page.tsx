@@ -22,13 +22,6 @@ import {
 
 const teamMembers = [
   {
-    name: 'Mai Thị Cẩm Tú',
-    role: 'Lead / Trưởng Nhóm Dự Án',
-    badge: 'LEAD',
-    image: '/images/team/MaiThiCamTu_brocade.png',
-    desc: 'Điều phối tổng thể, nghiên cứu mô hình kinh doanh xã hội & kết nối hợp tác buôn làng.',
-  },
-  {
     name: 'Huỳnh Diệp Cẩm Tú',
     role: 'Phụ Trách Pháp Lý & Đối Ngoại',
     badge: 'LEGAL',
@@ -41,6 +34,13 @@ const teamMembers = [
     badge: 'TOURISM',
     image: '/images/team/NguyenNgocNu_brocade.png',
     desc: 'Phụ trách trải nghiệm bản địa, kết nối làng du lịch cộng đồng Ia Mơ Nông & lan tỏa văn hóa thổ cẩm Jrai.',
+  },
+  {
+    name: 'Mai Thị Cẩm Tú',
+    role: 'Lead / Trưởng Nhóm Dự Án',
+    badge: 'LEAD',
+    image: '/images/team/MaiThiCamTu_brocade.png',
+    desc: 'Điều phối tổng thể, nghiên cứu mô hình kinh doanh xã hội & kết nối hợp tác buôn làng.',
   },
   {
     name: 'Đinh Sĩ Doãn Đăng',
@@ -329,20 +329,7 @@ export default function AboutPage() {
 
         {/* Lưới 5 thành viên sáng lập: Format Tứ Quý Garden Chuẩn Tone Nóng */}
         <div className="team-grid">
-          {/* 1. Mai Thị Cẩm Tú - Lead */}
-          <div className="team-card">
-            <div className="team-bg-shape"></div>
-            <div className="team-bg-text">LEAD</div>
-            <div className="team-portrait-wrapper">
-              <img src="/images/team/MaiThiCamTu_brocade.png" alt="Mai Thị Cẩm Tú" />
-            </div>
-            <div className="team-info-overlay">
-              <h4 className="team-name">Mai Thị Cẩm Tú</h4>
-              <p className="team-role">Lead / Trưởng Nhóm Dự Án</p>
-            </div>
-          </div>
-
-          {/* 2. Huỳnh Diệp Cẩm Tú - Legal & Partnership */}
+          {/* 1. Huỳnh Diệp Cẩm Tú - Legal & Partnership */}
           <div className="team-card">
             <div className="team-bg-shape"></div>
             <div className="team-bg-text">LEGAL</div>
@@ -355,7 +342,7 @@ export default function AboutPage() {
             </div>
           </div>
 
-          {/* 3. Nguyễn Ngọc Nữ - Tourism & Culture */}
+          {/* 2. Nguyễn Ngọc Nữ - Tourism & Culture */}
           <div className="team-card">
             <div className="team-bg-shape"></div>
             <div className="team-bg-text">TOURISM</div>
@@ -365,6 +352,19 @@ export default function AboutPage() {
             <div className="team-info-overlay">
               <h4 className="team-name">Nguyễn Ngọc Nữ</h4>
               <p className="team-role">Trưởng Ban Du Lịch Sinh Thái & Bản Địa</p>
+            </div>
+          </div>
+
+          {/* 3. Mai Thị Cẩm Tú - Lead (Ở chính giữa) */}
+          <div className="team-card">
+            <div className="team-bg-shape"></div>
+            <div className="team-bg-text">LEAD</div>
+            <div className="team-portrait-wrapper">
+              <img src="/images/team/MaiThiCamTu_brocade.png" alt="Mai Thị Cẩm Tú" />
+            </div>
+            <div className="team-info-overlay">
+              <h4 className="team-name">Mai Thị Cẩm Tú</h4>
+              <p className="team-role">Lead / Trưởng Nhóm Dự Án</p>
             </div>
           </div>
 
