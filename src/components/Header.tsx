@@ -12,16 +12,30 @@ import {
   QrCode,
   Sparkles,
   ChevronRight,
+  ChevronDown,
   ArrowRight,
   ShieldCheck,
 } from 'lucide-react';
 import { getCartTotal, getProducts, getArtisans, getMotifs, getCustomerSession } from '@/lib/data-store';
 import { Product, Artisan, Motif, CustomerUser } from '@/types';
 
+// SUB-CATEGORIES FOR "SẢN PHẨM" DROPDOWN
+const PRODUCT_CATEGORIES = [
+  { id: 'all', name: 'Tất cả sản phẩm', filterKey: 'all', count: 57, icon: '✦', desc: 'Trọn bộ 57 mẫu thổ cẩm độc bản' },
+  { id: 'crossbag', name: 'Túi đeo chéo', filterKey: 'crossbag', count: 9, icon: '👜', desc: 'Dệt cửi hông, quai sợi đôi bền chắc' },
+  { id: 'wallet', name: 'Ví cầm tay', filterKey: 'wallet', count: 7, icon: '👛', desc: 'Đựng điện thoại, thẻ, khóa kéo mộc' },
+  { id: 'shirt', name: 'Áo nam truyền thống', filterKey: 'shirt', count: 2, icon: '👔', desc: 'Áo cổ tròn xẻ ngực hoa văn bảo vệ' },
+  { id: 'dress', name: 'Váy nữ lễ hội', filterKey: 'dress', count: 2, icon: '👗', desc: 'Váy quấn nguyên khổ may đo theo eo' },
+  { id: 'scarf', name: 'Khăn quàng cổ', filterKey: 'scarf', count: 28, icon: '🧣', desc: 'Bông Kơpăh mềm mại viền tua rua' },
+  { id: 'tote', name: 'Túi tote thổ cẩm', filterKey: 'tote', count: 3, icon: '🛍️', desc: 'Sức chứa rộng rãi đựng vừa laptop' },
+  { id: 'apron', name: 'Tạp dề thổ cẩm', filterKey: 'apron', count: 5, icon: '🎽', desc: 'Chống bám bụi, túi ngực tiện dụng' },
+  { id: 'gourd', name: 'Bầu nước truyền thống', filterKey: 'gourd', count: 1, icon: '🏺', desc: 'Bầu rừng sáp ong quàng đai thổ cẩm' },
+];
+
 // NAV ITEMS INCLUDING NEW BESPOKE AI STUDIO FEATURE
 const NAV_ITEMS = [
   { label: 'TRANG CHỦ', href: '/' },
-  { label: 'SẢN PHẨM', href: '/products' },
+  { label: 'SẢN PHẨM', href: '/products', hasDropdown: true },
   { label: 'ĐẶT THEO YÊU CẦU', href: '/custom-order', badge: 'AI Studio' },
   { label: 'NGÂN HÀNG HOA VĂN', href: '/motifs', badge: 'Central' },
   { label: 'NGHỆ NHÂN', href: '/artisans' },
@@ -39,9 +53,30 @@ export default function Header() {
   const [matchingArtisans, setMatchingArtisans] = useState<Artisan[]>([]);
   const [matchingMotifs, setMatchingMotifs] = useState<Motif[]>([]);
 
+  // Product Dropdown Menu state
+  const [productDropdownOpen, setProductDropdownOpen] = useState(false);
+  const [mobileProductExpanded, setMobileProductExpanded] = useState(false);
+  const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const handleMouseEnterProduct = () => {
+    if (dropdownTimeoutRef.current) clearTimeout(dropdownTimeoutRef.current);
+    setProductDropdownOpen(true);
+  };
+
+  const handleMouseLeaveProduct = () => {
+    dropdownTimeoutRef.current = setTimeout(() => {
+      setProductDropdownOpen(false);
+    }, 220);
+  };
+
   const searchInputRef = useRef<HTMLInputElement>(null);
   const pathname = usePathname();
   const router = useRouter();
+
+  useEffect(() => {
+    setProductDropdownOpen(false);
+    setMobileMenuOpen(false);
+  }, [pathname]);
 
   // Update cart badge and customer session
   const updateHeaderState = () => {
@@ -162,13 +197,106 @@ export default function Header() {
               </div>
             </Link>
 
-            {/* Desktop Navigation - STRICTLY 6 ITEMS WITH Central BADGE */}
+            {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center gap-1">
               {NAV_ITEMS.map((item) => {
                 const isActive =
                   item.href === '/'
                     ? pathname === '/'
                     : pathname.startsWith(item.href);
+
+                // Menu "SẢN PHẨM" có menu sổ xuống (Dropdown Menu)
+                if (item.href === '/products') {
+                  return (
+                    <div
+                      key={item.href}
+                      className="relative"
+                      onMouseEnter={handleMouseEnterProduct}
+                      onMouseLeave={handleMouseLeaveProduct}
+                    >
+                      <Link
+                        href="/products"
+                        onClick={() => setProductDropdownOpen(false)}
+                        className={`px-3 py-2 rounded-lg text-[13px] font-bold tracking-wide transition-all inline-flex items-center gap-1.5 cursor-pointer ${
+                          isActive
+                            ? 'bg-[#B9383A] text-white shadow-md border border-[#E58A1F]/60'
+                            : 'text-stone-300 hover:text-[#F59E0B] hover:bg-[#2A201A]'
+                        }`}
+                      >
+                        <span>{item.label}</span>
+                        <ChevronDown
+                          className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                            productDropdownOpen ? 'rotate-180 text-amber-400' : 'text-stone-400'
+                          }`}
+                        />
+                      </Link>
+
+                      {/* DROPDOWN MENU SỔ XUỐNG CÁC PHÂN LOẠI SẢN PHẨM */}
+                      {productDropdownOpen && (
+                        <div
+                          className="absolute top-full left-0 mt-2 w-[450px] bg-[#1C1714] border-2 border-[#3D2C1F] rounded-2xl shadow-2xl p-3 z-50 animate-in fade-in slide-in-from-top-2 duration-200"
+                          onMouseEnter={handleMouseEnterProduct}
+                          onMouseLeave={handleMouseLeaveProduct}
+                        >
+                          {/* Header trong menu sổ xuống */}
+                          <div className="px-3 py-2 border-b border-[#3D2C1F] flex items-center justify-between">
+                            <span className="text-[11px] font-extrabold uppercase tracking-wider text-[#EA8E23] flex items-center gap-1.5">
+                              <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                              <span>DANH MỤC THỔ CẨM JRAI</span>
+                            </span>
+                            <Link
+                              href="/products"
+                              onClick={() => setProductDropdownOpen(false)}
+                              className="text-xs text-stone-400 hover:text-white flex items-center gap-1 font-bold"
+                            >
+                              Xem tất cả (57) <ArrowRight className="w-3 h-3" />
+                            </Link>
+                          </div>
+
+                          {/* Lưới 2 cột các sản phẩm sổ xuống: Túi, Ví, Áo, Khăn, Váy, v.v. */}
+                          <div className="grid grid-cols-2 gap-1.5 p-2">
+                            {PRODUCT_CATEGORIES.map((cat) => (
+                              <Link
+                                key={cat.id}
+                                href={cat.id === 'all' ? '/products' : `/products?category=${cat.filterKey}`}
+                                onClick={() => setProductDropdownOpen(false)}
+                                className="p-2.5 rounded-xl hover:bg-[#2A201A] group transition-all flex flex-col justify-between border border-transparent hover:border-[#EA8E23]/40"
+                              >
+                                <div className="flex items-center justify-between gap-1">
+                                  <span className="text-xs font-bold text-stone-200 group-hover:text-[#F59E0B] transition-colors truncate flex items-center gap-1.5">
+                                    <span className="text-sm">{cat.icon}</span>
+                                    <span>{cat.name}</span>
+                                  </span>
+                                  <span className="text-[10px] font-mono font-bold bg-[#261E1A] group-hover:bg-[#C43B3D] text-[#EA8E23] group-hover:text-white px-2 py-0.5 rounded-full shrink-0 border border-stone-800 transition-colors">
+                                    {cat.count}
+                                  </span>
+                                </div>
+                                <span className="text-[11px] text-stone-400 truncate mt-1">
+                                  {cat.desc}
+                                </span>
+                              </Link>
+                            ))}
+                          </div>
+
+                          {/* Footer chuyển sang đặt may riêng theo yêu cầu */}
+                          <div className="p-2.5 bg-[#231C18] rounded-xl border border-[#3D2C1F] mt-1 flex items-center justify-between text-xs">
+                            <span className="text-stone-300">
+                              Cần may đo riêng theo cỡ & màu sắc?
+                            </span>
+                            <Link
+                              href="/custom-order"
+                              onClick={() => setProductDropdownOpen(false)}
+                              className="text-[#EA8E23] font-bold hover:underline flex items-center gap-1"
+                            >
+                              Đặt may riêng &rarr;
+                            </Link>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  );
+                }
+
                 return (
                   <Link
                     key={item.href}
@@ -293,6 +421,68 @@ export default function Header() {
                   item.href === '/'
                     ? pathname === '/'
                     : pathname.startsWith(item.href);
+
+                // Menu "SẢN PHẨM" trên Mobile có mở rộng danh mục con
+                if (item.href === '/products') {
+                  return (
+                    <div key={item.href} className="space-y-1">
+                      <div
+                        className={`flex items-center justify-between px-4 py-3 rounded-xl text-sm font-bold tracking-wide transition-colors ${
+                          isActive
+                            ? 'bg-[#B9383A] text-white border border-[#E58A1F]/50'
+                            : 'text-stone-300 hover:bg-[#231C18] hover:text-amber-300'
+                        }`}
+                      >
+                        <Link
+                          href="/products"
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="flex-1"
+                        >
+                          {item.label}
+                        </Link>
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            setMobileProductExpanded(!mobileProductExpanded);
+                          }}
+                          className="p-1 text-stone-400 hover:text-white"
+                          aria-label="Mở rộng danh mục sản phẩm"
+                        >
+                          <ChevronDown
+                            className={`w-4 h-4 transition-transform duration-200 ${
+                              mobileProductExpanded ? 'rotate-180 text-amber-400' : ''
+                            }`}
+                          />
+                        </button>
+                      </div>
+
+                      {/* Danh mục con xổ xuống trên Mobile */}
+                      {mobileProductExpanded && (
+                        <div className="pl-3 pr-1 py-1 space-y-1 border-l-2 border-[#C43B3D]/50 ml-4 my-1">
+                          {PRODUCT_CATEGORIES.map((cat) => (
+                            <Link
+                              key={cat.id}
+                              href={cat.id === 'all' ? '/products' : `/products?category=${cat.filterKey}`}
+                              onClick={() => setMobileMenuOpen(false)}
+                              className="flex items-center justify-between px-3 py-2 rounded-lg text-xs font-semibold text-stone-300 hover:bg-[#2A201A] hover:text-[#EA8E23] transition-colors"
+                            >
+                              <span className="flex items-center gap-2">
+                                <span>{cat.icon}</span>
+                                <span>{cat.name}</span>
+                              </span>
+                              <span className="font-mono text-[10px] bg-[#231C18] px-2 py-0.5 rounded-full text-[#EA8E23] border border-stone-800">
+                                {cat.count}
+                              </span>
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  );
+                }
+
                 return (
                   <Link
                     key={item.href}

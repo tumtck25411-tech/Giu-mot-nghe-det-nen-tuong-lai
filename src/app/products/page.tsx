@@ -76,10 +76,9 @@ function ProductsContent() {
   }, []);
 
   useEffect(() => {
-    if (initialCategory) {
-      setSelectedCategory(initialCategory);
-    }
-  }, [initialCategory]);
+    const cat = searchParams.get('category') || 'all';
+    setSelectedCategory(cat);
+  }, [searchParams]);
 
   useEffect(() => {
     if (initialQuery) {
