@@ -95,6 +95,13 @@ const FOUNDING_TEAM = [
     image: '/images/team/DinhSiDoanDang_brocade.png',
     desc: 'Xây dựng chiến lược truyền thông thị giác, kể câu chuyện di sản qua lăng kính nhiếp ảnh và thương hiệu.',
   },
+  {
+    name: 'Phạm Nguyễn Thảo Nhi',
+    role: 'Phụ Trách Vận Hành & Khách Hàng',
+    badge: 'OPS',
+    image: '/images/team/PhamNguyenThaoNhi_brocade.png',
+    desc: 'Tối ưu hóa quy trình tiếp nhận đơn hàng may đo thủ công, điều phối chuỗi cung ứng sợi bông buôn làng và trải nghiệm khách hàng.',
+  },
 ];
 
 const WEAVING_STAGES_FULL = [
@@ -1463,11 +1470,11 @@ export default function HomePage() {
           {/* Tiêu đề khối sinh viên sáng lập */}
           <div style={{ marginTop: '30px', marginBottom: '10px', textAlign: 'center' }}>
             <span style={{ fontSize: '0.85rem', fontWeight: 800, color: '#FFA726', textTransform: 'uppercase', letterSpacing: '1.5px' }}>
-              BAN ĐIỀU HÀNH & PHÁT TRIỂN DỰ ÁN (4 THÀNH VIÊN)
+              BAN ĐIỀU HÀNH & PHÁT TRIỂN DỰ ÁN (5 THÀNH VIÊN)
             </span>
           </div>
 
-          {/* Lưới 4 thành viên sáng lập: Format Tứ Quý Garden Trang Phục Thổ Cẩm */}
+          {/* Lưới 5 thành viên sáng lập: Format Tứ Quý Garden Trang Phục Thổ Cẩm */}
           <div className="team-grid">
             {/* 1. Mai Thị Cẩm Tú - Lead */}
             <div className="team-card">
@@ -1518,6 +1525,19 @@ export default function HomePage() {
               <div className="team-info-overlay">
                 <h4 className="team-name">Đinh Sĩ Doãn Đăng</h4>
                 <p className="team-role">Phụ Trách Truyền Thông & Hình Ảnh</p>
+              </div>
+            </div>
+
+            {/* 5. Phạm Nguyễn Thảo Nhi - Operations & Customer */}
+            <div className="team-card">
+              <div className="team-bg-shape"></div>
+              <div className="team-bg-text">OPS</div>
+              <div className="team-portrait-wrapper">
+                <img src="/images/team/PhamNguyenThaoNhi_brocade.png" alt="Phạm Nguyễn Thảo Nhi" />
+              </div>
+              <div className="team-info-overlay">
+                <h4 className="team-name">Phạm Nguyễn Thảo Nhi</h4>
+                <p className="team-role">Phụ Trách Vận Hành & Khách Hàng</p>
               </div>
             </div>
           </div>

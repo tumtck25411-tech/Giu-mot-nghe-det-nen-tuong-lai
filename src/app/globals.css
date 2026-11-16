@@ -1097,8 +1097,8 @@ main {
 
 .team-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  column-gap: 28px;
+  grid-template-columns: repeat(5, 1fr);
+  column-gap: 20px;
   row-gap: 120px;
   margin-top: 50px;
   padding-top: 70px; /* Chừa không gian cho ảnh người nhô cao lên trên card */
@@ -2034,11 +2034,15 @@ main {
 /* ==========================================================================
    RESPONSIVE
    ========================================================================== */
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
   .team-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    row-gap: 120px;
   }
+}
+
+@media (max-width: 1024px) {
   .footer-top {
     grid-template-columns: 1fr 1fr;
     gap: 40px;
