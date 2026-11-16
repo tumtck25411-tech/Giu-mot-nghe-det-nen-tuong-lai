@@ -169,32 +169,27 @@ const WEAVING_STAGES_FULL = [
   },
 ];
 
-// 5 Hero Background Slides inherited directly from detnentuonglai.vercel.app
+// 4 Curated Hero Background Slides with Authentic High-Resolution Photography
 const HERO_SLIDES = [
   {
-    image: '/images/background/image4.jpg',
-    caption: '✦ Không gian dệt cửi hông trong nhà dài Jrai',
-    alt: 'Dệt cửi hông truyền thống trong nhà sàn Jrai',
+    image: '/images/background/hero_jrai_stilt_house_weaving.jpg',
+    caption: '✦ Không gian dệt cửi hông & kéo sợi bông bên hiên nhà sàn Jrai',
+    alt: 'Các nghệ nhân Jrai dệt thổ cẩm và quay sợi bông bên hiên nhà sàn truyền thống',
   },
   {
-    image: '/images/background/image3.jpg',
-    caption: '✦ Nghệ nhân dệt bên dàn chiêng di sản',
-    alt: 'Các nghệ nhân nữ Jrai dệt thổ cẩm bên dàn cồng chiêng',
+    image: '/images/background/hero_bonfire_xoang_festival.jpg',
+    caption: '✦ Đêm hội lửa thiêng buôn làng & vũ điệu Xoang quanh cây Nêu di sản',
+    alt: 'Đêm hội lửa thiêng Tây Nguyên và điệu múa Xoang truyền thống quanh cây Nêu',
   },
   {
-    image: '/images/background/image_1.jpg',
-    caption: '✦ Bếp lửa nhà sàn truyền thống Ia Mơ Nông',
-    alt: 'Không gian bếp lửa nhà sàn Jrai',
-  },
-  {
-    image: '/images/banners/hero_stilt_house_weaving.jpg',
-    caption: '✦ Nghề dệt mẫu hệ lưu truyền qua nhiều thế hệ',
-    alt: 'Nghệ nhân dệt bên hiên nhà sàn',
+    image: '/images/background/hero_sacred_fire_gong_heritage.jpg',
+    caption: '✦ Lửa thiêng Tây Nguyên & nhịp cồng chiêng di sản đại ngàn',
+    alt: 'Lửa thiêng đại ngàn và không gian văn hóa cồng chiêng Tây Nguyên',
   },
   {
     image: '/images/background/image6.jpg',
-    caption: '✦ Đội ngũ JRAI ƠI thực địa tại buôn làng Ia Mơ Nông, Gia Lai',
-    alt: 'Khảo sát thực tế kỹ thuật cửi hông tại làng nghề',
+    caption: '✦ Đội ngũ JRAI ƠI thực địa gìn giữ nghề dệt tại buôn làng Ia Mơ Nông, Gia Lai',
+    alt: 'Đội ngũ JRAI ƠI khảo sát thực tế và làm việc cùng các nghệ nhân buôn làng',
   },
 ];
 
@@ -535,9 +530,9 @@ export default function HomePage() {
           </div>
         ))}
 
-        {/* Ambient Overlays to Guarantee Text Legibility Across Whole Width */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#120F0D] via-[#120F0D]/75 to-black/40" />
-        <div className="absolute inset-0 bg-[#120F0D]/45 backdrop-blur-[0.5px]" />
+        {/* Ambient Overlays: Bright, Clear & Warm Atmospheric Depth */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#120F0D] via-[#120F0D]/45 to-black/25" />
+        <div className="absolute inset-0 bg-black/15" />
 
         {/* Hero Slider Caption Badge */}
         <div className="absolute bottom-6 right-6 z-20 hidden md:block">

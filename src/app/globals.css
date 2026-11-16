@@ -1101,8 +1101,8 @@ main {
    ========================================================================== */
 .team-section-container {
   background: 
-    linear-gradient(to bottom, rgba(20, 16, 14, 0.88) 0%, rgba(32, 24, 20, 0.82) 50%, rgba(20, 16, 14, 0.92) 100%),
-    url('/images/background/image3.jpg') center/cover no-repeat fixed;
+    linear-gradient(to bottom, rgba(20, 16, 14, 0.86) 0%, rgba(32, 24, 20, 0.78) 50%, rgba(20, 16, 14, 0.90) 100%),
+    url('/images/background/hero_bonfire_xoang_festival.jpg') center/cover no-repeat fixed;
   padding: 85px 0 95px;
   border-top: 1px solid var(--color-cotton-border);
 }
@@ -1268,8 +1268,8 @@ main {
 .journey-section-bg {
   position: relative;
   background: 
-    linear-gradient(to bottom, rgba(22, 18, 16, 0.95) 0%, rgba(26, 21, 18, 0.91) 50%, rgba(22, 18, 16, 0.96) 100%),
-    url('/images/background/image4.jpg') center/cover no-repeat fixed !important;
+    linear-gradient(to bottom, rgba(22, 18, 16, 0.93) 0%, rgba(26, 21, 18, 0.88) 50%, rgba(22, 18, 16, 0.94) 100%),
+    url('/images/background/hero_jrai_stilt_house_weaving.jpg') center/cover no-repeat fixed !important;
 }
 
 .journey-section-bg .section-tag {
