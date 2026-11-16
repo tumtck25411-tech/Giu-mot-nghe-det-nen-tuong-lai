@@ -104,10 +104,15 @@ h1, h2, h3, h4, h5, h6 {
 .hero-section h1, .hero-section h2, .hero-section h3, .hero-section h4, .hero-section h5, .hero-section h6,
 .team-section-container h2, .team-section-container h3, .team-section-container h4,
 .journey-section-bg h1, .journey-section-bg h2, .journey-section-bg h3, .journey-section-bg h4,
-.main-footer h1, .main-footer h2, .main-footer h3,
+.main-footer h1, .main-footer h2, .main-footer h3, .main-footer h4, .main-footer h5, .main-footer h6,
+footer h1, footer h2, footer h3, footer h4, footer h5, footer h6,
 .top-bar, .main-header,
 .dark-section h1, .dark-section h2, .dark-section h3, .dark-section h4 {
   color: #FFFFFF !important;
+}
+
+.main-footer h3, footer h3 {
+  color: #E58A1F !important;
 }
 
 img {
