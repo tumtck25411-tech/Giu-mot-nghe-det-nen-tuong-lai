@@ -345,11 +345,15 @@ export default function CheckoutPage() {
             {/* Header: Biểu tượng JRAI ƠI + Tiêu đề + Họa tiết thổ cẩm */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-[#E5DACB]/80">
               <div className="flex items-center gap-3">
-                <div className="h-11 px-2.5 py-1 rounded-xl bg-white flex items-center justify-center shadow-xs shrink-0 border border-[#E5DACB]">
+                <div
+                  className="px-2 py-1 rounded-xl bg-white flex items-center justify-center shadow-xs shrink-0 border border-[#E5DACB]"
+                  style={{ height: '42px', minWidth: '42px', width: 'auto' }}
+                >
                   <img
                     src="/images/logo/logo-jrai-oi-transparent.png"
                     alt="JRAI ƠI"
-                    className="h-8 w-auto object-contain"
+                    className="object-contain"
+                    style={{ height: '28px', maxHeight: '28px', width: 'auto', maxWidth: '70px', display: 'block' }}
                   />
                 </div>
                 <div>
