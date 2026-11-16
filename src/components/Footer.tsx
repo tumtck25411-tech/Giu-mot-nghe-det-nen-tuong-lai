@@ -17,20 +17,51 @@ export default function Footer() {
       <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-12 py-14 sm:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12">
           {/* Column 1: Slogan & Intro (4 Cols) */}
-          <div className="lg:col-span-4 space-y-4">
-            <Link href="/" className="inline-block group mb-2" title="Trang chủ JRAI ƠI">
+          <div className="lg:col-span-4 space-y-3.5">
+            <Link href="/" className="inline-block group mb-1 focus:outline-none" title="Trang chủ JRAI ƠI">
               <img
-                src="/images/logo/logo-jrai-oi-white.png"
+                src="/images/logo/logo-jrai-oi-footer.png"
                 alt="JRAI ƠI — Đồ Thổ Cẩm Jrai"
-                className="h-8 sm:h-9 w-auto object-contain rounded-lg p-1 bg-white/95 shadow-md transition-transform duration-300 group-hover:scale-105"
+                className="h-[40px] sm:h-[44px] w-auto object-contain transition-transform duration-200 group-hover:scale-105"
+                style={{ height: '42px', maxHeight: '44px', width: 'auto' }}
               />
             </Link>
-            <h3 className="font-serif font-black text-xl sm:text-2xl text-[#E58A1F] leading-snug">
+            <h3 className="font-bold text-base sm:text-lg text-[#E58A1F] leading-snug">
               &ldquo;Thổ cẩm bản địa, dệt nên tương lai&rdquo;
             </h3>
-            <p className="text-sm text-[#A8B2A9] leading-relaxed max-w-sm">
+            <p className="text-xs sm:text-sm text-[#A8B2A9] leading-relaxed max-w-sm">
               JRAI ƠI cam kết bảo tồn nguyên vẹn kỹ thuật dệt cửi hông cổ truyền, kết hợp công nghệ số hóa QR để tạo sinh kế bền vững cho đồng bào buôn làng Tây Nguyên.
             </p>
+            {/* Social media icons (Facebook, Instagram, Zalo) giống phong cách Tứ Quý Garden */}
+            <div className="flex items-center gap-2.5 pt-1">
+              <a
+                href="https://facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-8 h-8 rounded-full bg-white/10 hover:bg-[#1877F2] text-[#D1CCC4] hover:text-white flex items-center justify-center transition-all duration-200 text-xs font-bold shadow-xs hover:scale-110"
+                title="Facebook"
+              >
+                f
+              </a>
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-8 h-8 rounded-full bg-white/10 hover:bg-[#E4405F] text-[#D1CCC4] hover:text-white flex items-center justify-center transition-all duration-200 text-xs shadow-xs hover:scale-110"
+                title="Instagram"
+              >
+                📷
+              </a>
+              <a
+                href="https://zalo.me"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-8 h-8 rounded-full bg-white/10 hover:bg-[#0068FF] text-[#D1CCC4] hover:text-white flex items-center justify-center transition-all duration-200 text-xs font-bold shadow-xs hover:scale-110"
+                title="Zalo"
+              >
+                Z
+              </a>
+            </div>
           </div>
 
           {/* Column 2: Danh mục (3 Cols) */}
@@ -134,6 +165,24 @@ export default function Footer() {
                   Address: Xã Ia Mơ Nông, Huyện Chư Păh, Gia Lai
                 </span>
               </div>
+            </div>
+
+            {/* Đăng ký nhận ưu đãi (Subscribe to promotions) chuẩn phong cách Tứ Quý Garden */}
+            <div className="pt-2">
+              <p className="text-xs text-[#A8B2A9] mb-1.5 font-medium">Đăng ký nhận ưu đãi:</p>
+              <form onSubmit={(e) => { e.preventDefault(); alert('Cảm ơn bạn đã đăng ký nhận bản tin!'); }} className="flex items-center gap-1.5">
+                <input
+                  type="email"
+                  placeholder="Email..."
+                  className="bg-white/10 border border-white/20 rounded-lg px-3 py-1.5 text-xs text-white placeholder-stone-400 focus:outline-none focus:border-[#22C55E] flex-1 max-w-[200px]"
+                />
+                <button
+                  type="submit"
+                  className="bg-[#22C55E] hover:bg-[#16A34A] text-white text-xs font-bold px-3.5 py-1.5 rounded-lg transition-colors cursor-pointer"
+                >
+                  Ok
+                </button>
+              </form>
             </div>
           </div>
         </div>
