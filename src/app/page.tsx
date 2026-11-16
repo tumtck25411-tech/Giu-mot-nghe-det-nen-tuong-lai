@@ -650,7 +650,7 @@ export default function HomePage() {
       ======================================================== */}
       <section className="section section-watermark-hearth reveal-on-scroll">
         <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-12">
-          <div className="innovation-grid">
+          <div className="innovation-grid w-full">
             <div className="space-y-6">
               <span className="section-tag">
                 <Sparkles className="w-4 h-4" />
@@ -977,7 +977,7 @@ export default function HomePage() {
             </div>
           </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
           {motifs.map((m) => (
             <div
               key={m.id}
