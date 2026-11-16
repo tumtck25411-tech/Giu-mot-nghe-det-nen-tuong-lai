@@ -123,7 +123,7 @@ const weavingStages = [
 
 export default function AboutPage() {
   return (
-    <div className="w-full max-w-[1680px] mx-auto px-4 sm:px-8 lg:px-12 py-10 space-y-20">
+    <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-12 py-10 space-y-20">
       {/* 1. HERO BANNER: KẾ THỪA CÂU CHUYỆN KHỞI NGUỒN - Centered Flex & Text */}
       <section className="bg-[#F2ECE1] p-8 sm:p-14 rounded-xl border border-[#E5DACB] border-b-2 border-b-[#EA8E23] relative overflow-hidden shadow-sm flex flex-col items-center justify-center text-center header-banner-box">
         <div className="max-w-3xl mx-auto space-y-5 relative z-10 flex flex-col items-center justify-center text-center w-full">
@@ -209,96 +209,99 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 3. HÀNH TRÌNH 6 BƯỚC DỆT NÊN MỘT TÁC PHẨM THỔ CẨM - Centered 3-Column Grid */}
-      <section className="journey-section-bg py-14 sm:py-16 px-6 sm:px-10 lg:px-12 rounded-2xl w-full max-w-[1400px] mx-auto shadow-md" id="journey">
-        <div className="w-full">
-          <div className="text-center max-w-2xl mx-auto mb-12 space-y-3">
+      {/* 3. HÀNH TRÌNH 6 BƯỚC DỆT NÊN MỘT TÁC PHẨM THỔ CẨM - Winding Trail Kế Thừa Giữ Một Nghề */}
+      <section className="section journey-section-bg py-16 px-4 sm:px-6 lg:px-8 rounded-3xl w-full" id="journey">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center" style={{ maxWidth: '720px', margin: '0 auto 35px' }}>
             <span
-              className="section-tag inline-block px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider"
+              className="section-tag inline-block mb-3 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider"
               style={{
-                color: '#FBBF24',
-                backgroundColor: 'rgba(245, 158, 11, 0.15)',
-                borderColor: 'rgba(245, 158, 11, 0.35)',
+                color: 'var(--color-forest-gold)',
+                backgroundColor: 'rgba(229, 138, 31, 0.15)',
+                borderColor: 'rgba(229, 138, 31, 0.35)',
               }}
             >
               Quy trình thủ công truyền thống
             </span>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-black text-white leading-tight">
+            <h2
+              className="section-title text-3xl sm:text-4xl font-serif font-black text-white mb-3"
+              style={{ textShadow: '0 2px 14px rgba(0, 0, 0, 0.8)' }}
+            >
               Hành Trình Dệt Nên Một Tác Phẩm Thổ Cẩm
             </h2>
-            <p className="text-sm sm:text-base text-[#D1CCC4] leading-relaxed">
+            <p className="section-desc text-sm sm:text-base text-stone-300" style={{ opacity: 0.95 }}>
               Mỗi tấm thổ cẩm Jrai là kết tinh của hàng chục giờ đếm từng sợi chỉ trên khung cửi hông, trải qua 6 công đoạn khắt khe từ cây bông rừng đến mác định danh số QR.
             </p>
           </div>
 
-          {/* 6 Stages Grid - 3 cols Desktop, 2 cols Tablet, 1 col Mobile - Perfectly Centered */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 sm:gap-8">
-            {weavingStages.map((stage) => (
-              <div
-                key={stage.step}
-                className="bg-[#241C17] border border-[#5A3E2D]/60 hover:border-[#FBBF24]/80 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col justify-between hover:-translate-y-1"
-              >
-                <div>
-                  {/* Stage Thumbnail */}
-                  <div className="relative aspect-[16/10] overflow-hidden bg-[#1A1412]">
-                    <img
-                      src={stage.image}
-                      alt={stage.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      loading="lazy"
-                    />
-                    <div className="absolute top-3 left-3 bg-[#13100E]/85 backdrop-blur-sm text-[#FCD34D] text-[11px] font-bold px-3 py-1 rounded-full border border-amber-500/40 uppercase tracking-wider">
-                      {stage.stage}
+          {/* KHUNG HÀNH TRÌNH ĐƯỜNG CONG TÂY NGUYÊN (WINDING S-CURVE JOURNEY) */}
+          <div className="journey-winding-wrapper">
+            {/* Đường cong SVG nối các mốc */}
+            <svg
+              className="journey-winding-svg"
+              viewBox="0 0 1000 1750"
+              preserveAspectRatio="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <defs>
+                <linearGradient id="trailGradientAbout" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="#9E2A2B" />
+                  <stop offset="50%" stopColor="#D97706" />
+                  <stop offset="100%" stopColor="#9E2A2B" />
+                </linearGradient>
+              </defs>
+              <path
+                d="M 500,70 
+                   C 420,170 580,260 500,360 
+                   C 420,460 580,550 500,650 
+                   C 420,750 580,840 500,940 
+                   C 420,1040 580,1130 500,1230 
+                   C 420,1330 580,1430 500,1530
+                   L 500,1650"
+                fill="none"
+                stroke="url(#trailGradientAbout)"
+                strokeWidth="4"
+                strokeDasharray="10 8"
+                strokeLinecap="round"
+              />
+            </svg>
+
+            {weavingStages.map((stage, index) => {
+              const isEven = index % 2 === 0;
+              const stepClass = isEven ? 'journey-trail-step step-left' : 'journey-trail-step step-right';
+
+              return (
+                <div key={stage.step} className={stepClass}>
+                  <div className="journey-trail-content">
+                    <div className="journey-trail-thumb">
+                      <img src={stage.image} alt={stage.title} />
+                      <span className="journey-milestone-tag">{stage.stage}</span>
                     </div>
-                    <div className="absolute bottom-3 right-3 w-8 h-8 rounded-full bg-[#1E4D38] border border-[#22C55E]/50 text-white font-mono text-xs font-bold flex items-center justify-center shadow-md">
-                      {stage.step}
+                    <div className="journey-trail-body">
+                      <div className="journey-watermark-num">{stage.step}</div>
+                      <div className="journey-trail-num">{stage.numLabel}</div>
+                      <h3 className="journey-trail-title">{stage.title}</h3>
+                      <div className="journey-trail-subtitle">{stage.subtitle}</div>
+                      <div className="journey-specs-pills">
+                        {stage.pills.map((pill, pIdx) => (
+                          <span key={pIdx} className="journey-spec-pill">
+                            {pill}
+                          </span>
+                        ))}
+                      </div>
+                      <p className="journey-trail-text">{stage.desc}</p>
+                      <Link href="/weaving-process" className="journey-trail-link">
+                        Xem chi tiết công đoạn ➔
+                      </Link>
                     </div>
                   </div>
-
-                  {/* Stage Body */}
-                  <div className="p-5 sm:p-6 space-y-3">
-                    <div>
-                      <span className="text-[11px] font-mono font-bold text-[#E58A1F] uppercase tracking-wider block">
-                        {stage.numLabel}
-                      </span>
-                      <h3 className="font-serif font-bold text-lg text-white group-hover:text-[#FCD34D] transition-colors mt-0.5 leading-snug">
-                        {stage.title}
-                      </h3>
-                      <p className="text-xs text-[#A89F95] mt-1">
-                        {stage.subtitle}
-                      </p>
-                    </div>
-
-                    {/* Pills */}
-                    <div className="flex flex-wrap gap-1.5 pt-1">
-                      {stage.pills.map((pill, pIdx) => (
-                        <span
-                          key={pIdx}
-                          className="text-[11px] px-2.5 py-0.5 rounded-full bg-[#1A1412] text-[#D1CCC4] border border-[#3E2B1F]"
-                        >
-                          {pill}
-                        </span>
-                      ))}
-                    </div>
-
-                    <p className="text-xs text-[#C4BCB3] leading-relaxed pt-1">
-                      {stage.desc}
-                    </p>
+                  <div className="journey-trail-center">
+                    <div className="journey-pin-node">{stage.step}</div>
                   </div>
+                  <div className="journey-trail-spacer" />
                 </div>
-
-                {/* Stage Link */}
-                <div className="p-4 sm:p-5 pt-0">
-                  <Link
-                    href="/weaving-process"
-                    className="text-xs font-bold text-[#FBBF24] hover:text-white flex items-center gap-1.5 transition-colors"
-                  >
-                    <span>Xem chi tiết công đoạn</span>
-                    <span>➔</span>
-                  </Link>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>

@@ -42,7 +42,7 @@ export default function RootLayout({
       </head>
       <body className="lang-vi min-h-screen flex flex-col antialiased selection:bg-[#B9383A] selection:text-white">
         <Header />
-        <main className="w-full flex-1 flex flex-col items-center">{children}</main>
+        <main className="w-full flex-1 flex flex-col">{children}</main>
         <Footer />
       </body>
     </html>

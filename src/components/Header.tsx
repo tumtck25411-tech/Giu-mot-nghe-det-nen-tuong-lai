@@ -179,7 +179,7 @@ export default function Header() {
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
+            <nav className="hidden lg:flex items-center gap-0.5 xl:gap-1.5 shrink-0">
               {NAV_ITEMS.map((item) => {
                 const isActive =
                   item.href === '/'
@@ -191,14 +191,14 @@ export default function Header() {
                   return (
                     <div
                       key={item.href}
-                      className="relative"
+                      className="relative shrink-0"
                       onMouseEnter={handleMouseEnterProduct}
                       onMouseLeave={handleMouseLeaveProduct}
                     >
                       <Link
                         href="/products"
                         onClick={() => setProductDropdownOpen(false)}
-                        className={`px-3.5 py-2 rounded-lg text-[13px] font-bold tracking-wide transition-all inline-flex items-center gap-1.5 cursor-pointer ${
+                        className={`px-2.5 xl:px-3 py-1.5 xl:py-2 rounded-lg text-xs xl:text-[13px] font-bold tracking-wide transition-all inline-flex items-center gap-1 cursor-pointer whitespace-nowrap ${
                           isActive
                             ? 'text-[#1E4D38] bg-[#F3EFEA] font-extrabold border border-[#E8E2D9]'
                             : 'text-[#3E3834] hover:text-[#1E4D38] hover:bg-[#FAF8F5]'
@@ -206,7 +206,7 @@ export default function Header() {
                       >
                         <span>{item.label}</span>
                         <ChevronDown
-                          className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                          className={`w-3.5 h-3.5 transition-transform duration-200 shrink-0 ${
                             productDropdownOpen ? 'rotate-180 text-[#1E4D38]' : 'text-stone-400'
                           }`}
                         />
@@ -275,7 +275,7 @@ export default function Header() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`px-3.5 py-2 rounded-lg text-[13px] font-bold tracking-wide transition-all inline-flex items-center ${
+                    className={`px-2 xl:px-2.5 py-1.5 xl:py-2 rounded-lg text-xs xl:text-[13px] font-bold tracking-wide transition-all inline-flex items-center whitespace-nowrap shrink-0 ${
                       isActive
                         ? 'text-[#1E4D38] bg-[#F3EFEA] font-extrabold border border-[#E8E2D9]'
                         : 'text-[#3E3834] hover:text-[#1E4D38] hover:bg-[#FAF8F5]'
@@ -288,22 +288,22 @@ export default function Header() {
             </nav>
 
             {/* Header Right Actions: Search, Account, Cart */}
-            <div className="flex items-center gap-2 sm:gap-3">
+            <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
               {/* Search Trigger Button */}
               <button
                 onClick={() => setSearchOpen(true)}
-                className="p-2 sm:p-2.5 rounded-xl bg-[#FAF8F5] text-[#3E3834] hover:text-[#1E4D38] hover:bg-[#F3EFEA] border border-[#E8E2D9] transition shadow-xs flex items-center gap-1.5 cursor-pointer"
+                className="p-2 sm:p-2.5 rounded-xl bg-[#FAF8F5] text-[#3E3834] hover:text-[#1E4D38] hover:bg-[#F3EFEA] border border-[#E8E2D9] transition shadow-xs flex items-center gap-1.5 cursor-pointer shrink-0"
                 title="Tìm kiếm sản phẩm"
                 aria-label="Tìm kiếm sản phẩm"
               >
-                <Search className="w-4 h-4 text-[#1E4D38]" />
-                <span className="hidden md:inline text-xs font-semibold text-[#59524C]">Tìm kiếm...</span>
+                <Search className="w-4 h-4 text-[#1E4D38] shrink-0" />
+                <span className="hidden xl:inline text-xs font-semibold text-[#59524C] whitespace-nowrap">Tìm kiếm...</span>
               </button>
 
               {/* Account Button */}
               <Link
                 href="/account"
-                className="p-2 sm:p-2.5 rounded-xl bg-[#FAF8F5] text-[#3E3834] hover:text-[#1E4D38] hover:bg-[#F3EFEA] border border-[#E8E2D9] transition shadow-xs flex items-center gap-2"
+                className="p-2 sm:p-2.5 rounded-xl bg-[#FAF8F5] text-[#3E3834] hover:text-[#1E4D38] hover:bg-[#F3EFEA] border border-[#E8E2D9] transition shadow-xs flex items-center gap-2 shrink-0"
                 title={customer ? `Tài khoản: ${customer.name}` : 'Tài khoản khách hàng'}
               >
                 {customer?.avatar ? (
@@ -313,9 +313,9 @@ export default function Header() {
                     className="w-5 h-5 rounded-full object-cover border border-[#1E4D38] shrink-0"
                   />
                 ) : (
-                  <User className="w-4 h-4 text-[#1E4D38]" />
+                  <User className="w-4 h-4 text-[#1E4D38] shrink-0" />
                 )}
-                <span className="hidden xl:inline text-xs font-semibold text-[#59524C]">
+                <span className="hidden 2xl:inline text-xs font-semibold text-[#59524C] whitespace-nowrap">
                   {customer ? customer.name.split(' ').slice(-1)[0] : 'Tài khoản'}
                 </span>
               </Link>
@@ -323,11 +323,11 @@ export default function Header() {
               {/* Cart Button with Counter */}
               <Link
                 href="/cart"
-                className="relative p-2.5 px-3.5 rounded-xl bg-[#1E4D38] hover:bg-[#143527] text-white transition shadow-sm flex items-center gap-2 group"
+                className="relative p-2 sm:p-2.5 px-3 sm:px-3.5 rounded-xl bg-[#1E4D38] hover:bg-[#143527] text-white transition shadow-sm flex items-center gap-1.5 sm:gap-2 group shrink-0 whitespace-nowrap"
                 title="Giỏ hàng JRAI ƠI"
               >
-                <ShoppingBag className="w-4 h-4 text-white group-hover:scale-105 transition-transform" />
-                <span className="hidden sm:inline text-xs font-bold text-white">Giỏ hàng</span>
+                <ShoppingBag className="w-4 h-4 text-white group-hover:scale-105 transition-transform shrink-0" />
+                <span className="hidden sm:inline text-xs font-bold text-white whitespace-nowrap">Giỏ hàng</span>
                 {cartCount > 0 && (
                   <span className="inline-flex items-center justify-center min-w-[20px] h-5 px-1.5 text-xs font-black rounded-full bg-[#C43B3D] text-white shadow-xs">
                     {cartCount}
@@ -338,8 +338,8 @@ export default function Header() {
               {/* Mobile Hamburger Toggle */}
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="lg:hidden p-2.5 rounded-xl bg-[#FAF8F5] text-[#1E4D38] hover:bg-[#F3EFEA] border border-[#E8E2D9] transition cursor-pointer"
-                aria-label="Mở menu"
+                className="p-2 rounded-xl text-[#3E3834] hover:text-[#1E4D38] hover:bg-[#FAF8F5] lg:hidden transition border border-[#E8E2D9] cursor-pointer shrink-0"
+                aria-label={mobileMenuOpen ? 'Đóng menu' : 'Mở menu'}
               >
                 {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
               </button>

@@ -55,7 +55,7 @@
   --font-sans: 'Montserrat', 'Roboto', system-ui, -apple-system, sans-serif;
   
   /* Container & Shadows - Rộng thoáng chuẩn Desktop 1920px & 1440px */
-  --container-max: 1680px;
+  --container-max: 1720px;
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 14px;
@@ -142,11 +142,11 @@ body.lang-en .lang-vi { display: none !important; }
 div.container,
 section.container {
   width: 100% !important;
-  max-width: var(--container-max) !important;
+  max-width: var(--container-max, 1720px) !important;
   margin-left: auto !important;
   margin-right: auto !important;
-  padding-left: clamp(16px, 3.5vw, 48px) !important;
-  padding-right: clamp(16px, 3.5vw, 48px) !important;
+  padding-left: clamp(16px, 3vw, 48px) !important;
+  padding-right: clamp(16px, 3vw, 48px) !important;
 }
 
 /* Đảm bảo toàn bộ layout full màn hình và căn giữa chuẩn mực */
@@ -161,7 +161,7 @@ main {
   max-width: 100% !important;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
 }
 
 /* Hiệu ứng tia quét laser camera QR */
