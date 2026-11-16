@@ -17,6 +17,7 @@ import {
   Phone,
   Mail,
   MapPin,
+  Building,
   FileText,
 } from 'lucide-react';
 import {
@@ -28,22 +29,56 @@ import {
 import { CartItem, Order, Promotion } from '@/types';
 import CustomerAuthModal from '@/components/CustomerAuthModal';
 
+const PROVINCES_LIST = [
+  'Gia Lai',
+  'TP. Hồ Chí Minh',
+  'Hà Nội',
+  'Đà Nẵng',
+  'Đắk Lắk',
+  'Kon Tum',
+  'Lâm Đồng',
+  'Đắk Nông',
+  'Bình Định',
+  'Khánh Hòa',
+  'Cần Thơ',
+  'Hải Phòng',
+  'Bà Rịa - Vũng Tàu',
+  'Bình Dương',
+  'Đồng Nai',
+  'Quảng Nam',
+  'Thừa Thiên Huế',
+  'Tiền Giang',
+  'An Giang',
+  'Bến Tre',
+  'Bình Thuận',
+  'Cà Mau',
+  'Kiên Giang',
+  'Nghệ An',
+  'Quảng Ninh',
+  'Thanh Hóa',
+  'Bắc Giang',
+  'Bắc Ninh',
+];
+
 export default function CheckoutPage() {
   const router = useRouter();
   const [cart, setCart] = useState<CartItem[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [authModalOpen, setAuthModalOpen] = useState(false);
 
-  // Form Fields
+  // Form Fields - Khởi tạo rỗng, không tự động điền thông tin cá nhân mẫu
   const [customerName, setCustomerName] = useState('');
   const [customerPhone, setCustomerPhone] = useState('');
   const [customerEmail, setCustomerEmail] = useState('');
   const [shippingAddress, setShippingAddress] = useState('');
-  const [province, setProvince] = useState('Hồ Chí Minh');
-  const [district, setDistrict] = useState('Quận 1');
-  const [ward, setWard] = useState('Phường Bến Nghé');
+  const [province, setProvince] = useState('');
+  const [district, setDistrict] = useState('');
+  const [ward, setWard] = useState('');
   const [orderNotes, setOrderNotes] = useState('');
   const [paymentMethod, setPaymentMethod] = useState<'cod' | 'banking'>('cod');
+
+  // Validation Errors
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   // Coupon
   const [couponCode, setCouponCode] = useState('');
@@ -60,15 +95,25 @@ export default function CheckoutPage() {
 
     const session = getCustomerSession();
     if (session) {
-      setCustomerName(session.name || '');
-      setCustomerPhone(session.phone || '');
-      setCustomerEmail(session.email || '');
-      if (session.address) setShippingAddress(session.address);
-    } else {
-      setAuthModalOpen(true);
+      // Chỉ điền nếu tài khoản người dùng thực sự có tên riêng và không phải tên mẫu mặc định
+      if (session.name && session.name !== 'Mai Thị Cẩm Tú') {
+        setCustomerName(session.name);
+      }
+      if (session.phone && session.phone !== '0383451929') {
+        setCustomerPhone(session.phone);
+      }
+      if (
+        session.email &&
+        !session.email.includes('social.jraioi.vn') &&
+        session.email !== 'camtu.jrai@gmail.com'
+      ) {
+        setCustomerEmail(session.email);
+      }
+      if (session.address) {
+        setShippingAddress(session.address);
+      }
     }
   }, [router]);
-
 
   const subtotal = cart.reduce(
     (acc, item) => acc + (item.product?.price || 0) * item.quantity,
@@ -93,11 +138,117 @@ export default function CheckoutPage() {
     }
   };
 
+  const validateField = (field: string) => {
+    const newErrors = { ...errors };
+
+    if (field === 'customerName') {
+      if (!customerName.trim()) {
+        newErrors.customerName = 'Vui lòng nhập họ và tên người nhận.';
+      } else {
+        delete newErrors.customerName;
+      }
+    }
+
+    if (field === 'customerPhone') {
+      const phoneClean = customerPhone.replace(/\s+/g, '');
+      if (!phoneClean) {
+        newErrors.customerPhone = 'Vui lòng nhập số điện thoại liên hệ.';
+      } else if (!/(0[3|5|7|8|9])+([0-9]{8})\b/.test(phoneClean)) {
+        newErrors.customerPhone = 'Số điện thoại không hợp lệ (cần 10 chữ số, bắt đầu bằng 03, 05, 07, 08, 09).';
+      } else {
+        delete newErrors.customerPhone;
+      }
+    }
+
+    if (field === 'customerEmail') {
+      if (customerEmail.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(customerEmail.trim())) {
+        newErrors.customerEmail = 'Định dạng email chưa hợp lệ.';
+      } else {
+        delete newErrors.customerEmail;
+      }
+    }
+
+    if (field === 'shippingAddress') {
+      if (!shippingAddress.trim()) {
+        newErrors.shippingAddress = 'Vui lòng nhập số nhà, tên đường hoặc thôn/buôn.';
+      } else {
+        delete newErrors.shippingAddress;
+      }
+    }
+
+    if (field === 'province') {
+      if (!province.trim()) {
+        newErrors.province = 'Vui lòng chọn hoặc nhập Tỉnh / Thành phố.';
+      } else {
+        delete newErrors.province;
+      }
+    }
+
+    if (field === 'district') {
+      if (!district.trim()) {
+        newErrors.district = 'Vui lòng nhập Quận / Huyện.';
+      } else {
+        delete newErrors.district;
+      }
+    }
+
+    if (field === 'ward') {
+      if (!ward.trim()) {
+        newErrors.ward = 'Vui lòng nhập Phường / Xã.';
+      } else {
+        delete newErrors.ward;
+      }
+    }
+
+    setErrors(newErrors);
+  };
+
+  const validateAll = () => {
+    const newErrors: Record<string, string> = {};
+
+    if (!customerName.trim()) {
+      newErrors.customerName = 'Vui lòng nhập họ và tên người nhận.';
+    }
+
+    const phoneClean = customerPhone.replace(/\s+/g, '');
+    if (!phoneClean) {
+      newErrors.customerPhone = 'Vui lòng nhập số điện thoại liên hệ.';
+    } else if (!/(0[3|5|7|8|9])+([0-9]{8})\b/.test(phoneClean)) {
+      newErrors.customerPhone = 'Số điện thoại không hợp lệ (cần 10 chữ số).';
+    }
+
+    if (customerEmail.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(customerEmail.trim())) {
+      newErrors.customerEmail = 'Định dạng email chưa hợp lệ.';
+    }
+
+    if (!shippingAddress.trim()) {
+      newErrors.shippingAddress = 'Vui lòng nhập số nhà, tên đường hoặc thôn/buôn.';
+    }
+
+    if (!province.trim()) {
+      newErrors.province = 'Vui lòng chọn hoặc nhập Tỉnh / Thành phố.';
+    }
+
+    if (!district.trim()) {
+      newErrors.district = 'Vui lòng nhập Quận / Huyện.';
+    }
+
+    if (!ward.trim()) {
+      newErrors.ward = 'Vui lòng nhập Phường / Xã.';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleSubmitOrder = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!customerName.trim() || !customerPhone.trim() || !shippingAddress.trim()) {
-      alert('Vui lòng điền đầy đủ Họ tên, Số điện thoại và Địa chỉ nhận hàng.');
+    if (!validateAll()) {
+      const cardEl = document.getElementById('recipient-info-card');
+      if (cardEl) {
+        cardEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
       return;
     }
 
@@ -118,9 +269,9 @@ export default function CheckoutPage() {
       customerPhone: customerPhone.trim(),
       customerEmail: customerEmail.trim(),
       shippingAddress: shippingAddress.trim(),
-      province,
-      district,
-      ward,
+      province: province.trim(),
+      district: district.trim(),
+      ward: ward.trim(),
       orderNotes: orderNotes.trim(),
       paymentMethod,
       paymentStatus: 'pending',
@@ -184,117 +335,305 @@ export default function CheckoutPage() {
       <form onSubmit={handleSubmitOrder} className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Left Form: Shipping Details & Payment Selection (7 Cols) */}
         <div className="lg:col-span-7 space-y-6">
-          {/* Customer Info Card */}
-          <div className="bg-white p-6 sm:p-8 rounded-xl border border-[#E5DACB] shadow-sm space-y-4">
-            <h2 className="text-base font-serif font-bold text-[#1F1D1B] flex items-center gap-2 border-b border-[#E5DACB] pb-3">
-              <User className="w-4 h-4 text-[#EA8E23]" />
-              <span>1. Thông Tin Người Nhận Hàng</span>
-            </h2>
+          {/* ============================================================== */}
+          {/* PHIẾU 1: THÔNG TIN NGƯỜI NHẬN - PHONG CÁCH BOUTIQUE TÂY NGUYÊN */}
+          {/* ============================================================== */}
+          <div
+            id="recipient-info-card"
+            className="bg-[#FAF5EC] p-6 sm:p-8 rounded-2xl border border-[#E5DACB] shadow-[0_4px_24px_rgba(23,76,56,0.05)] space-y-5 relative overflow-hidden transition-all duration-300"
+          >
+            {/* Header: Biểu tượng JRAI ƠI + Tiêu đề + Họa tiết thổ cẩm */}
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-[#E5DACB]/80">
+              <div className="flex items-center gap-3">
+                <div className="w-11 h-11 rounded-xl bg-[#174C38] flex items-center justify-center shadow-xs shrink-0 border border-[#C99A45]/40">
+                  <img
+                    src="/images/logo/logo-jrai-oi-footer.png"
+                    alt="JRAI ƠI"
+                    className="w-8 h-8 object-contain brightness-0 invert"
+                  />
+                </div>
+                <div>
+                  <h2 className="text-lg sm:text-xl font-serif font-black text-[#174C38] tracking-tight">
+                    Thông tin người nhận
+                  </h2>
+                  <p className="text-xs text-[#96704B] font-medium mt-0.5">
+                    Hãy để Jrai Ơi biết nơi gửi món quà thổ cẩm đến bạn nhé!
+                  </p>
+                </div>
+              </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {/* Họa tiết hình thoi thổ cẩm trang trí góc phải header */}
+              <div className="hidden sm:flex items-center gap-1.5 text-[#C99A45] select-none" aria-hidden="true">
+                <span className="text-[10px]">◇</span>
+                <span className="text-xs font-bold text-[#174C38]">◈</span>
+                <span className="text-[10px]">◇</span>
+              </div>
+            </div>
+
+            {/* Các trường nhập liệu */}
+            <div className="space-y-4">
+              {/* Hàng 1: Họ tên (bắt buộc) & Số điện thoại (bắt buộc) */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {/* Họ và tên */}
+                <div>
+                  <label className="text-xs text-[#3D2E24] font-bold block mb-1.5">
+                    Họ và tên người nhận <span className="text-[#C99A45] font-black">*</span>
+                  </label>
+                  <div className="relative">
+                    <User className="w-4 h-4 text-[#96704B] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                    <input
+                      type="text"
+                      placeholder="Ví dụ: Nguyễn Thị Mai"
+                      value={customerName}
+                      onChange={(e) => {
+                        setCustomerName(e.target.value);
+                        if (errors.customerName) setErrors((prev) => ({ ...prev, customerName: '' }));
+                      }}
+                      onBlur={() => validateField('customerName')}
+                      className={`w-full bg-white border rounded-xl pl-10 pr-4 py-2.5 sm:py-3 text-xs text-[#1F1D1B] placeholder-[#A39686] transition-all duration-200 focus:outline-none focus:bg-white ${
+                        errors.customerName
+                          ? 'border-[#B9383A] ring-1 ring-[#B9383A]/20'
+                          : 'border-[#E2D8C7] focus:border-[#174C38] focus:ring-2 focus:ring-[#174C38]/10'
+                      }`}
+                    />
+                  </div>
+                  {errors.customerName && (
+                    <p className="text-[11px] text-[#B9383A] font-medium flex items-center gap-1 mt-1">
+                      <AlertCircle className="w-3 h-3 shrink-0" />
+                      <span>{errors.customerName}</span>
+                    </p>
+                  )}
+                </div>
+
+                {/* Số điện thoại */}
+                <div>
+                  <label className="text-xs text-[#3D2E24] font-bold block mb-1.5">
+                    Số điện thoại <span className="text-[#C99A45] font-black">*</span>
+                  </label>
+                  <div className="relative">
+                    <Phone className="w-4 h-4 text-[#96704B] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                    <input
+                      type="tel"
+                      placeholder="Ví dụ: 0912 345 678"
+                      value={customerPhone}
+                      onChange={(e) => {
+                        setCustomerPhone(e.target.value);
+                        if (errors.customerPhone) setErrors((prev) => ({ ...prev, customerPhone: '' }));
+                      }}
+                      onBlur={() => validateField('customerPhone')}
+                      className={`w-full bg-white border rounded-xl pl-10 pr-4 py-2.5 sm:py-3 text-xs text-[#1F1D1B] placeholder-[#A39686] font-mono transition-all duration-200 focus:outline-none focus:bg-white ${
+                        errors.customerPhone
+                          ? 'border-[#B9383A] ring-1 ring-[#B9383A]/20'
+                          : 'border-[#E2D8C7] focus:border-[#174C38] focus:ring-2 focus:ring-[#174C38]/10'
+                      }`}
+                    />
+                  </div>
+                  {errors.customerPhone && (
+                    <p className="text-[11px] text-[#B9383A] font-medium flex items-center gap-1 mt-1">
+                      <AlertCircle className="w-3 h-3 shrink-0" />
+                      <span>{errors.customerPhone}</span>
+                    </p>
+                  )}
+                </div>
+              </div>
+
+              {/* Hàng 2: Email nhận thông báo đơn hàng (không bắt buộc) */}
               <div>
-                <label className="text-xs text-[#5D554D] font-bold block mb-1">
-                  Họ và tên <span className="text-red-500">*</span>
+                <label className="text-xs text-[#3D2E24] font-bold block mb-1.5">
+                  Email nhận thông báo đơn hàng{' '}
+                  <span className="text-xs font-normal text-[#96704B]">(Không bắt buộc)</span>
                 </label>
-                <input
-                  type="text"
-                  required
-                  placeholder="Ví dụ: Nguyễn Văn A"
-                  value={customerName}
-                  onChange={(e) => setCustomerName(e.target.value)}
-                  className="w-full bg-[#FBF8F3] border border-[#E5DACB] rounded-xl px-4 py-2.5 text-xs text-[#1F1D1B] placeholder-[#8A7E72] focus:outline-none focus:border-[#C43B3D] focus:bg-white"
-                />
+                <div className="relative">
+                  <Mail className="w-4 h-4 text-[#96704B] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                  <input
+                    type="email"
+                    placeholder="Ví dụ: mai.nguyen@gmail.com"
+                    value={customerEmail}
+                    onChange={(e) => {
+                      setCustomerEmail(e.target.value);
+                      if (errors.customerEmail) setErrors((prev) => ({ ...prev, customerEmail: '' }));
+                    }}
+                    onBlur={() => validateField('customerEmail')}
+                    className={`w-full bg-white border rounded-xl pl-10 pr-4 py-2.5 sm:py-3 text-xs text-[#1F1D1B] placeholder-[#A39686] transition-all duration-200 focus:outline-none focus:bg-white ${
+                      errors.customerEmail
+                        ? 'border-[#B9383A] ring-1 ring-[#B9383A]/20'
+                        : 'border-[#E2D8C7] focus:border-[#174C38] focus:ring-2 focus:ring-[#174C38]/10'
+                    }`}
+                  />
+                </div>
+                {errors.customerEmail ? (
+                  <p className="text-[11px] text-[#B9383A] font-medium flex items-center gap-1 mt-1">
+                    <AlertCircle className="w-3 h-3 shrink-0" />
+                    <span>{errors.customerEmail}</span>
+                  </p>
+                ) : (
+                  <p className="text-[11px] text-[#96704B] mt-1">
+                    Nhận hóa đơn điện tử & mã tra cứu hành trình dệt cửi Ia Mơ Nông.
+                  </p>
+                )}
               </div>
 
+              {/* Hàng 3: Địa chỉ nhận hàng (bắt buộc) */}
               <div>
-                <label className="text-xs text-[#5D554D] font-bold block mb-1">
-                  Số điện thoại <span className="text-red-500">*</span>
+                <label className="text-xs text-[#3D2E24] font-bold block mb-1.5">
+                  Địa chỉ nhận hàng (Số nhà, tên đường) <span className="text-[#C99A45] font-black">*</span>
                 </label>
-                <input
-                  type="tel"
-                  required
-                  placeholder="Ví dụ: 0912345678"
-                  value={customerPhone}
-                  onChange={(e) => setCustomerPhone(e.target.value)}
-                  className="w-full bg-[#FBF8F3] border border-[#E5DACB] rounded-xl px-4 py-2.5 text-xs text-[#1F1D1B] placeholder-[#8A7E72] focus:outline-none focus:border-[#C43B3D] focus:bg-white font-mono"
-                />
+                <div className="relative">
+                  <MapPin className="w-4 h-4 text-[#96704B] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                  <input
+                    type="text"
+                    placeholder="Ví dụ: 128 Nguyễn Thị Minh Khai (hoặc Làng Kép, Buôn Alơ)..."
+                    value={shippingAddress}
+                    onChange={(e) => {
+                      setShippingAddress(e.target.value);
+                      if (errors.shippingAddress) setErrors((prev) => ({ ...prev, shippingAddress: '' }));
+                    }}
+                    onBlur={() => validateField('shippingAddress')}
+                    className={`w-full bg-white border rounded-xl pl-10 pr-4 py-2.5 sm:py-3 text-xs text-[#1F1D1B] placeholder-[#A39686] transition-all duration-200 focus:outline-none focus:bg-white ${
+                      errors.shippingAddress
+                        ? 'border-[#B9383A] ring-1 ring-[#B9383A]/20'
+                        : 'border-[#E2D8C7] focus:border-[#174C38] focus:ring-2 focus:ring-[#174C38]/10'
+                    }`}
+                  />
+                </div>
+                {errors.shippingAddress && (
+                  <p className="text-[11px] text-[#B9383A] font-medium flex items-center gap-1 mt-1">
+                    <AlertCircle className="w-3 h-3 shrink-0" />
+                    <span>{errors.shippingAddress}</span>
+                  </p>
+                )}
               </div>
-            </div>
 
-            <div>
-              <label className="text-xs text-[#5D554D] font-bold block mb-1">
-                Email nhận thông báo đơn hàng
-              </label>
-              <input
-                type="email"
-                placeholder="example@gmail.com"
-                value={customerEmail}
-                onChange={(e) => setCustomerEmail(e.target.value)}
-                className="w-full bg-[#FBF8F3] border border-[#E5DACB] rounded-xl px-4 py-2.5 text-xs text-[#1F1D1B] placeholder-[#8A7E72] focus:outline-none focus:border-[#C43B3D] focus:bg-white"
-              />
-            </div>
+              {/* Hàng 4: Tỉnh / Thành phố, Quận / Huyện, Phường / Xã */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                {/* Tỉnh / Thành phố */}
+                <div>
+                  <label className="text-xs text-[#3D2E24] font-bold block mb-1.5">
+                    Tỉnh / Thành phố <span className="text-[#C99A45] font-black">*</span>
+                  </label>
+                  <div className="relative">
+                    <input
+                      type="text"
+                      list="provinces-list"
+                      placeholder="Chọn hoặc nhập..."
+                      value={province}
+                      onChange={(e) => {
+                        setProvince(e.target.value);
+                        if (errors.province) setErrors((prev) => ({ ...prev, province: '' }));
+                      }}
+                      onBlur={() => validateField('province')}
+                      className={`w-full bg-white border rounded-xl px-3.5 py-2.5 sm:py-3 text-xs text-[#1F1D1B] placeholder-[#A39686] transition-all duration-200 focus:outline-none focus:bg-white ${
+                        errors.province
+                          ? 'border-[#B9383A] ring-1 ring-[#B9383A]/20'
+                          : 'border-[#E2D8C7] focus:border-[#174C38] focus:ring-2 focus:ring-[#174C38]/10'
+                      }`}
+                    />
+                    <datalist id="provinces-list">
+                      {PROVINCES_LIST.map((p) => (
+                        <option key={p} value={p} />
+                      ))}
+                    </datalist>
+                  </div>
+                  {errors.province && (
+                    <p className="text-[11px] text-[#B9383A] font-medium mt-1">
+                      {errors.province}
+                    </p>
+                  )}
+                </div>
 
-            <div>
-              <label className="text-xs text-[#5D554D] font-bold block mb-1">
-                Địa chỉ nhận hàng (Số nhà, tên đường) <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                required
-                placeholder="Ví dụ: 128 Nguyễn Thị Minh Khai"
-                value={shippingAddress}
-                onChange={(e) => setShippingAddress(e.target.value)}
-                className="w-full bg-[#FBF8F3] border border-[#E5DACB] rounded-xl px-4 py-2.5 text-xs text-[#1F1D1B] placeholder-[#8A7E72] focus:outline-none focus:border-[#C43B3D] focus:bg-white"
-              />
-            </div>
+                {/* Quận / Huyện */}
+                <div>
+                  <label className="text-xs text-[#3D2E24] font-bold block mb-1.5">
+                    Quận / Huyện <span className="text-[#C99A45] font-black">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Ví dụ: Huyện Chư Păh..."
+                    value={district}
+                    onChange={(e) => {
+                      setDistrict(e.target.value);
+                      if (errors.district) setErrors((prev) => ({ ...prev, district: '' }));
+                    }}
+                    onBlur={() => validateField('district')}
+                    className={`w-full bg-white border rounded-xl px-3.5 py-2.5 sm:py-3 text-xs text-[#1F1D1B] placeholder-[#A39686] transition-all duration-200 focus:outline-none focus:bg-white ${
+                      errors.district
+                        ? 'border-[#B9383A] ring-1 ring-[#B9383A]/20'
+                        : 'border-[#E2D8C7] focus:border-[#174C38] focus:ring-2 focus:ring-[#174C38]/10'
+                    }`}
+                  />
+                  {errors.district && (
+                    <p className="text-[11px] text-[#B9383A] font-medium mt-1">
+                      {errors.district}
+                    </p>
+                  )}
+                </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                {/* Phường / Xã */}
+                <div>
+                  <label className="text-xs text-[#3D2E24] font-bold block mb-1.5">
+                    Phường / Xã <span className="text-[#C99A45] font-black">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Ví dụ: Xã Ia Mơ Nông..."
+                    value={ward}
+                    onChange={(e) => {
+                      setWard(e.target.value);
+                      if (errors.ward) setErrors((prev) => ({ ...prev, ward: '' }));
+                    }}
+                    onBlur={() => validateField('ward')}
+                    className={`w-full bg-white border rounded-xl px-3.5 py-2.5 sm:py-3 text-xs text-[#1F1D1B] placeholder-[#A39686] transition-all duration-200 focus:outline-none focus:bg-white ${
+                      errors.ward
+                        ? 'border-[#B9383A] ring-1 ring-[#B9383A]/20'
+                        : 'border-[#E2D8C7] focus:border-[#174C38] focus:ring-2 focus:ring-[#174C38]/10'
+                    }`}
+                  />
+                  {errors.ward && (
+                    <p className="text-[11px] text-[#B9383A] font-medium mt-1">
+                      {errors.ward}
+                    </p>
+                  )}
+                </div>
+              </div>
+
+              {/* Hàng 5: Ghi chú đơn hàng (không bắt buộc) */}
               <div>
-                <label className="text-xs text-[#5D554D] font-bold block mb-1">Tỉnh / Thành phố</label>
-                <input
-                  type="text"
-                  value={province}
-                  onChange={(e) => setProvince(e.target.value)}
-                  className="w-full bg-[#FBF8F3] border border-[#E5DACB] rounded-xl px-3 py-2 text-xs text-[#1F1D1B] focus:outline-none focus:border-[#C43B3D] focus:bg-white"
-                />
-              </div>
-
-              <div>
-                <label className="text-xs text-[#5D554D] font-bold block mb-1">Quận / Huyện</label>
-                <input
-                  type="text"
-                  value={district}
-                  onChange={(e) => setDistrict(e.target.value)}
-                  className="w-full bg-[#FBF8F3] border border-[#E5DACB] rounded-xl px-3 py-2 text-xs text-[#1F1D1B] focus:outline-none focus:border-[#C43B3D] focus:bg-white"
-                />
-              </div>
-
-              <div>
-                <label className="text-xs text-[#5D554D] font-bold block mb-1">Phường / Xã</label>
-                <input
-                  type="text"
-                  value={ward}
-                  onChange={(e) => setWard(e.target.value)}
-                  className="w-full bg-[#FBF8F3] border border-[#E5DACB] rounded-xl px-3 py-2 text-xs text-[#1F1D1B] focus:outline-none focus:border-[#C43B3D] focus:bg-white"
-                />
+                <label className="text-xs text-[#3D2E24] font-bold block mb-1.5">
+                  Ghi chú đơn hàng{' '}
+                  <span className="text-xs font-normal text-[#96704B]">(Không bắt buộc)</span>
+                </label>
+                <div className="relative">
+                  <FileText className="w-4 h-4 text-[#96704B] absolute left-3.5 top-3.5 pointer-events-none" />
+                  <textarea
+                    rows={3}
+                    placeholder="Ghi chú thêm về thời gian nhận, bọc gói quà thủ công, thông điệp kèm theo..."
+                    value={orderNotes}
+                    onChange={(e) => setOrderNotes(e.target.value)}
+                    className="w-full bg-white border border-[#E2D8C7] rounded-xl pl-10 pr-4 py-2.5 sm:py-3 text-xs text-[#1F1D1B] placeholder-[#A39686] transition-all duration-200 focus:outline-none focus:border-[#174C38] focus:ring-2 focus:ring-[#174C38]/10 focus:bg-white"
+                  />
+                </div>
               </div>
             </div>
 
-            <div>
-              <label className="text-xs text-[#5D554D] font-bold block mb-1">
-                Ghi chú đơn hàng (Thời gian nhận, đóng gói quà tặng...)
-              </label>
-              <textarea
-                rows={2}
-                placeholder="Ghi chú thêm cho người bán hoặc bưu tá..."
-                value={orderNotes}
-                onChange={(e) => setOrderNotes(e.target.value)}
-                className="w-full bg-[#FBF8F3] border border-[#E5DACB] rounded-xl p-3 text-xs text-[#1F1D1B] placeholder-[#8A7E72] focus:outline-none focus:border-[#C43B3D] focus:bg-white"
-              />
+            {/* Footer của phiếu: Lời tri ân + Họa tiết hình thoi thổ cẩm hai bên */}
+            <div className="pt-4 border-t border-[#E5DACB]/80 flex flex-col sm:flex-row items-center justify-center gap-2 text-center text-xs text-[#96704B]">
+              <div className="flex items-center gap-1.5 text-[#C99A45] select-none" aria-hidden="true">
+                <span className="text-[10px]">◇</span>
+                <span className="text-xs font-bold text-[#174C38]">◈</span>
+                <span className="text-[10px]">◇</span>
+              </div>
+              <p className="font-serif italic font-medium text-[#7D5B3A]">
+                Cảm ơn bạn đã lựa chọn và đồng hành cùng những nghệ nhân Jrai.
+              </p>
+              <div className="flex items-center gap-1.5 text-[#C99A45] select-none" aria-hidden="true">
+                <span className="text-[10px]">◇</span>
+                <span className="text-xs font-bold text-[#174C38]">◈</span>
+                <span className="text-[10px]">◇</span>
+              </div>
             </div>
           </div>
 
-          {/* Payment Method Card */}
+          {/* Payment Method Card - Giữ nguyên toàn bộ logic & giao diện */}
           <div className="bg-white p-6 sm:p-8 rounded-xl border border-[#E5DACB] shadow-sm space-y-4">
             <h2 className="text-base font-serif font-bold text-[#1F1D1B] flex items-center gap-2 border-b border-[#E5DACB] pb-3">
               <CreditCard className="w-4 h-4 text-[#EA8E23]" />
@@ -368,7 +707,7 @@ export default function CheckoutPage() {
           </div>
         </div>
 
-        {/* Right Summary Column (5 Cols) */}
+        {/* Right Summary Column (5 Cols) - Giữ nguyên toàn bộ logic & giao diện */}
         <div className="lg:col-span-5 space-y-6">
           <div className="bg-white p-6 sm:p-8 rounded-xl border border-[#E5DACB] shadow-sm space-y-4">
             <h3 className="font-serif font-bold text-base text-[#1F1D1B] border-b border-[#E5DACB] pb-3 flex items-center justify-between">
@@ -464,9 +803,15 @@ export default function CheckoutPage() {
         isOpen={authModalOpen}
         onClose={() => setAuthModalOpen(false)}
         onSuccess={(user) => {
-          setCustomerName(user.name || '');
-          setCustomerPhone(user.phone || '');
-          setCustomerEmail(user.email || '');
+          if (user.name && user.name !== 'Mai Thị Cẩm Tú') setCustomerName(user.name);
+          if (user.phone && user.phone !== '0383451929') setCustomerPhone(user.phone);
+          if (
+            user.email &&
+            !user.email.includes('social.jraioi.vn') &&
+            user.email !== 'camtu.jrai@gmail.com'
+          ) {
+            setCustomerEmail(user.email);
+          }
           setAuthModalOpen(false);
         }}
         title="Đăng Nhập Để Tiếp Tục Đặt Hàng"
@@ -475,4 +820,3 @@ export default function CheckoutPage() {
     </div>
   );
 }
-
