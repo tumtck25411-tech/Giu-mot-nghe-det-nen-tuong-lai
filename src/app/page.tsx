@@ -537,13 +537,21 @@ export default function HomePage() {
         ))}
 
         {/* Ambient Overlays: Bright, Clear & Warm Atmospheric Depth */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#120F0D] via-[#120F0D]/45 to-black/25" />
-        <div className="absolute inset-0 bg-black/15" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#100D0B] via-[#100D0B]/40 to-black/20" />
+        <div className="absolute inset-0 bg-black/10" />
+
+        {/* Radiant Central Glow for High-Impact Vibrant Depth */}
+        <div className="absolute inset-0 pointer-events-none z-10 flex items-center justify-center">
+          <div
+            className="w-[600px] sm:w-[900px] lg:w-[1100px] h-[450px] bg-gradient-radial from-[#C99A45]/25 via-[#174C38]/20 to-transparent rounded-full blur-3xl opacity-80 animate-pulse"
+            style={{ animationDuration: '6s' }}
+          />
+        </div>
 
         {/* Hero Slider Caption Badge */}
         <div className="absolute bottom-6 right-6 z-20 hidden md:block">
-          <div className="bg-[#1A1412]/85 backdrop-blur-md border border-amber-600/40 text-amber-200 text-xs px-4 py-2 rounded-full shadow-md font-medium flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+          <div className="bg-[#1A1412]/90 backdrop-blur-md border border-[#F5C542]/50 text-amber-200 text-xs px-4 py-2 rounded-full shadow-lg font-medium flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-[#F5C542] animate-pulse" />
             <span>{HERO_SLIDES[currentHeroSlide].caption}</span>
           </div>
         </div>
@@ -553,18 +561,18 @@ export default function HomePage() {
           <button
             onClick={prevHeroSlide}
             aria-label="Slide trước"
-            className="w-9 h-9 rounded-full bg-[#181310]/80 hover:bg-[#8B2522] text-white border border-amber-500/40 flex items-center justify-center transition shadow-md text-lg"
+            className="w-9 h-9 rounded-full bg-[#181310]/85 hover:bg-[#174C38] text-white border border-[#F5C542]/40 flex items-center justify-center transition shadow-md text-lg cursor-pointer"
           >
             ‹
           </button>
-          <div className="flex items-center gap-1.5 px-3 py-1.5 bg-[#181310]/80 rounded-full border border-stone-800">
+          <div className="flex items-center gap-1.5 px-3 py-1.5 bg-[#181310]/85 rounded-full border border-stone-800">
             {HERO_SLIDES.map((_, i) => (
               <button
                 key={i}
                 onClick={() => setCurrentHeroSlide(i)}
                 aria-label={`Slide ${i + 1}`}
-                className={`h-2 rounded-full transition-all ${
-                  i === currentHeroSlide ? 'w-6 bg-amber-400' : 'w-2 bg-stone-500 hover:bg-stone-300'
+                className={`h-2 rounded-full transition-all cursor-pointer ${
+                  i === currentHeroSlide ? 'w-6 bg-[#F5C542]' : 'w-2 bg-stone-500 hover:bg-stone-300'
                 }`}
               />
             ))}
@@ -572,44 +580,59 @@ export default function HomePage() {
           <button
             onClick={nextHeroSlide}
             aria-label="Slide tiếp theo"
-            className="w-9 h-9 rounded-full bg-[#181310]/80 hover:bg-[#8B2522] text-white border border-amber-500/40 flex items-center justify-center transition shadow-md text-lg"
+            className="w-9 h-9 rounded-full bg-[#181310]/85 hover:bg-[#174C38] text-white border border-[#F5C542]/40 flex items-center justify-center transition shadow-md text-lg cursor-pointer"
           >
             ›
           </button>
         </div>
 
-        {/* Hero Content with Authentic Typography and Animated Counter */}
-        <div className="w-full max-w-[1600px] xl:px-12 mx-auto px-4 sm:px-6 lg:px-12 hero-content animate-fade-in-up z-20 flex flex-col items-center justify-center text-center">
-          <div className="hero-tagline">
-            <span>DI SẢN THỔ CẨM DỆT CỬI HÔNG • IA MƠ NÔNG, GIA LAI</span>
+        {/* Hero Content with Radiant Vibrant Typography & Interactive CTAs */}
+        <div className="w-full max-w-[1600px] xl:px-12 mx-auto px-4 sm:px-6 lg:px-12 z-20 flex flex-col items-center justify-center text-center py-20 lg:py-24 space-y-6">
+          
+          {/* Top Heritage Badge: Glowing Diamond Pill */}
+          <div className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full bg-gradient-to-r from-[#174C38]/95 via-[#1E5C44]/95 to-[#174C38]/95 border border-[#F5C542]/70 shadow-[0_0_25px_rgba(201,154,69,0.35)] backdrop-blur-md animate-pulse">
+            <span className="text-[#F5C542] text-xs">❖</span>
+            <span className="text-[#FFFDF9] text-xs sm:text-[13px] font-bold tracking-[1.5px] uppercase">
+              Di Sản Thổ Cẩm Dệt Cửi Hông • Ia Mơ Nông, Gia Lai
+            </span>
+            <span className="text-[#F5C542] text-xs">❖</span>
           </div>
 
-          <div className="text-center" style={{ marginBottom: '16px' }}>
-            <h1 className="hero-title">
-              JRAI ƠI <br />
-              <span className="hero-title-highlight">
-                Thổ Cẩm Bản Địa Tây Nguyên
-              </span>
+          {/* Main Title & Vibrant Highlight */}
+          <div className="text-center space-y-2">
+            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-serif font-black text-[#FFFDF9] tracking-wider drop-shadow-[0_4px_20px_rgba(0,0,0,0.9)]">
+              JRAI ƠI
             </h1>
+            <div className="text-2xl sm:text-4xl lg:text-5xl font-serif font-bold tracking-tight bg-gradient-to-r from-[#FFF2C6] via-[#F5C542] to-[#E59E2B] bg-clip-text text-transparent filter drop-shadow-[0_4px_16px_rgba(0,0,0,0.85)] drop-shadow-[0_0_24px_rgba(245,197,66,0.5)]">
+              Thổ Cẩm Bản Địa Tây Nguyên
+            </div>
+            
+            {/* Elegant Golden Brocade Divider */}
+            <div className="flex items-center justify-center gap-3 pt-2">
+              <span className="h-px w-12 sm:w-24 bg-gradient-to-r from-transparent via-[#F5C542] to-transparent"></span>
+              <span className="text-[#F5C542] text-xs">❖</span>
+              <span className="h-px w-12 sm:w-24 bg-gradient-to-r from-transparent via-[#F5C542] to-transparent"></span>
+            </div>
           </div>
 
-          <p className="hero-desc">
+          {/* Description with High Contrast Glassmorphic Backdrop */}
+          <p className="text-stone-200 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto font-normal px-6 py-3.5 rounded-2xl bg-black/40 backdrop-blur-md border border-white/15 shadow-[0_8px_30px_rgba(0,0,0,0.5)]">
             Bảo tồn nguyên vẹn tri thức dệt cửi hông cổ truyền người Jrai tại buôn làng Ia Mơ Nông (Gia Lai). Mỗi tác phẩm dệt là một câu chuyện di sản, tích hợp mã số QR định danh minh bạch nghệ nhân và số giờ công dệt.
           </p>
 
-          {/* Quick Action CTAs */}
-          <div className="hero-actions">
+          {/* Quick Action CTAs: High-End Boutique Buttons with Vibrant Hover Glow */}
+          <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-4 pt-1">
             <a
               href="#products"
-              className="inline-flex items-center gap-2 bg-[#174C38] hover:bg-[#123829] text-white font-semibold text-xs sm:text-sm px-6 py-3.5 rounded-xl shadow-sm transition hover:-translate-y-0.5"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-[#174C38] via-[#1E5C44] to-[#174C38] hover:from-[#1E5C44] hover:to-[#174C38] text-[#FFFDF9] font-bold text-xs sm:text-sm px-6 py-3.5 rounded-full border border-[#F5C542]/70 shadow-[0_4px_22px_rgba(23,76,56,0.7)] hover:shadow-[0_6px_30px_rgba(245,197,66,0.6)] transition-all duration-300 hover:scale-105"
             >
-              <ShoppingBag className="w-4 h-4 text-[#C99A45]" />
+              <ShoppingBag className="w-4 h-4 text-[#F5C542]" />
               <span>Khám Phá 57 Tác Phẩm</span>
             </a>
 
             <a
               href="#artisans"
-              className="inline-flex items-center gap-2 bg-[#FAF5EC]/95 hover:bg-white text-[#174C38] font-semibold text-xs sm:text-sm px-5 py-3.5 rounded-xl border border-[#C99A45]/40 transition hover:-translate-y-0.5 shadow-sm"
+              className="inline-flex items-center gap-2 bg-[#FFFDF9]/95 hover:bg-white text-[#174C38] hover:text-[#0E3626] font-bold text-xs sm:text-sm px-5 py-3.5 rounded-full border border-[#E8DFC8] hover:border-[#F5C542] shadow-[0_4px_18px_rgba(0,0,0,0.3)] hover:shadow-[0_6px_25px_rgba(245,197,66,0.4)] transition-all duration-300 hover:scale-105"
             >
               <Users className="w-4 h-4 text-[#C99A45]" />
               <span>Nghệ Nhân Buôn Làng</span>
@@ -617,7 +640,7 @@ export default function HomePage() {
 
             <a
               href="#motifs"
-              className="inline-flex items-center gap-2 bg-[#FAF5EC]/95 hover:bg-white text-[#174C38] font-semibold text-xs sm:text-sm px-5 py-3.5 rounded-xl border border-[#C99A45]/40 transition hover:-translate-y-0.5 shadow-sm"
+              className="inline-flex items-center gap-2 bg-[#FFFDF9]/95 hover:bg-white text-[#174C38] hover:text-[#0E3626] font-bold text-xs sm:text-sm px-5 py-3.5 rounded-full border border-[#E8DFC8] hover:border-[#F5C542] shadow-[0_4px_18px_rgba(0,0,0,0.3)] hover:shadow-[0_6px_25px_rgba(245,197,66,0.4)] transition-all duration-300 hover:scale-105"
             >
               <Grid className="w-4 h-4 text-[#C99A45]" />
               <span>Ngân Hàng Hoa Văn</span>
@@ -625,30 +648,49 @@ export default function HomePage() {
 
             <a
               href="#traceability"
-              className="inline-flex items-center gap-2 bg-[#FAF5EC]/95 hover:bg-white text-[#174C38] font-semibold text-xs sm:text-sm px-5 py-3.5 rounded-xl border border-[#C99A45]/40 transition hover:-translate-y-0.5 shadow-sm"
+              className="inline-flex items-center gap-2 bg-[#FFFDF9]/95 hover:bg-white text-[#174C38] hover:text-[#0E3626] font-bold text-xs sm:text-sm px-5 py-3.5 rounded-full border border-[#E8DFC8] hover:border-[#F5C542] shadow-[0_4px_18px_rgba(0,0,0,0.3)] hover:shadow-[0_6px_25px_rgba(245,197,66,0.4)] transition-all duration-300 hover:scale-105"
             >
               <QrCode className="w-4 h-4 text-[#C99A45]" />
               <span>Tra Cứu QR</span>
             </a>
           </div>
 
-          {/* Heritage Stats Grid with Live Animated Counters */}
-          <div className="hero-stats-grid">
-            <div className="hero-stat-item">
-              <span className="hero-stat-num">{stat1}%</span>
-              <span className="hero-stat-label">Định danh QR độc bản</span>
+          {/* Heritage Stats Grid with Glassmorphic Glowing Cards */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-5 w-full max-w-4xl mx-auto pt-6 border-t border-[#F5C542]/30">
+            <div className="bg-[#171310]/75 backdrop-blur-md p-4 sm:p-5 rounded-2xl border border-[#F5C542]/30 hover:border-[#F5C542] transition-all duration-300 hover:-translate-y-1 shadow-[0_4px_20px_rgba(0,0,0,0.4)] group">
+              <span className="block text-2xl sm:text-3xl lg:text-4xl font-extrabold font-serif bg-gradient-to-r from-[#FFF0BD] via-[#F5C542] to-[#E59E2B] bg-clip-text text-transparent drop-shadow-[0_2px_8px_rgba(245,197,66,0.4)]">
+                {stat1}%
+              </span>
+              <span className="block text-xs sm:text-[13px] text-stone-300 group-hover:text-white font-medium mt-1">
+                Định danh QR độc bản
+              </span>
             </div>
-            <div className="hero-stat-item">
-              <span className="hero-stat-num">{stat2}+ H</span>
-              <span className="hero-stat-label">Giờ dệt tay mỗi tác phẩm</span>
+
+            <div className="bg-[#171310]/75 backdrop-blur-md p-4 sm:p-5 rounded-2xl border border-[#F5C542]/30 hover:border-[#F5C542] transition-all duration-300 hover:-translate-y-1 shadow-[0_4px_20px_rgba(0,0,0,0.4)] group">
+              <span className="block text-2xl sm:text-3xl lg:text-4xl font-extrabold font-serif bg-gradient-to-r from-[#FFF0BD] via-[#F5C542] to-[#E59E2B] bg-clip-text text-transparent drop-shadow-[0_2px_8px_rgba(245,197,66,0.4)]">
+                {stat2}+ H
+              </span>
+              <span className="block text-xs sm:text-[13px] text-stone-300 group-hover:text-white font-medium mt-1">
+                Giờ dệt tay mỗi tác phẩm
+              </span>
             </div>
-            <div className="hero-stat-item">
-              <span className="hero-stat-num">{stat3}+</span>
-              <span className="hero-stat-label">Nghệ nhân Ia Mơ Nông</span>
+
+            <div className="bg-[#171310]/75 backdrop-blur-md p-4 sm:p-5 rounded-2xl border border-[#F5C542]/30 hover:border-[#F5C542] transition-all duration-300 hover:-translate-y-1 shadow-[0_4px_20px_rgba(0,0,0,0.4)] group">
+              <span className="block text-2xl sm:text-3xl lg:text-4xl font-extrabold font-serif bg-gradient-to-r from-[#FFF0BD] via-[#F5C542] to-[#E59E2B] bg-clip-text text-transparent drop-shadow-[0_2px_8px_rgba(245,197,66,0.4)]">
+                {stat3}+
+              </span>
+              <span className="block text-xs sm:text-[13px] text-stone-300 group-hover:text-white font-medium mt-1">
+                Nghệ nhân Ia Mơ Nông
+              </span>
             </div>
-            <div className="hero-stat-item">
-              <span className="hero-stat-num">{stat4}%</span>
-              <span className="hero-stat-label">Doanh thu tới tay người dệt</span>
+
+            <div className="bg-[#171310]/75 backdrop-blur-md p-4 sm:p-5 rounded-2xl border border-[#F5C542]/30 hover:border-[#F5C542] transition-all duration-300 hover:-translate-y-1 shadow-[0_4px_20px_rgba(0,0,0,0.4)] group">
+              <span className="block text-2xl sm:text-3xl lg:text-4xl font-extrabold font-serif bg-gradient-to-r from-[#FFF0BD] via-[#F5C542] to-[#E59E2B] bg-clip-text text-transparent drop-shadow-[0_2px_8px_rgba(245,197,66,0.4)]">
+                {stat4}%
+              </span>
+              <span className="block text-xs sm:text-[13px] text-stone-300 group-hover:text-white font-medium mt-1">
+                Doanh thu tới tay người dệt
+              </span>
             </div>
           </div>
         </div>
