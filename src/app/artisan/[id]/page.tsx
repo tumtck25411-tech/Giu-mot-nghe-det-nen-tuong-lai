@@ -73,7 +73,14 @@ export default function ArtisanDetailPage() {
   }
 
   return (
-    <div className="w-full bg-[#FAF5EC] min-h-screen py-8 lg:py-12">
+    <div
+      className="w-full min-h-screen py-8 lg:py-12 relative"
+      style={{
+        backgroundColor: '#FAF7F2',
+        backgroundImage: "url('/images/custom/texture_paper_cotton.jpg')",
+        backgroundRepeat: 'repeat',
+      }}
+    >
       <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-8 lg:px-12 space-y-8">
         
         {/* Breadcrumb */}
@@ -89,35 +96,44 @@ export default function ArtisanDetailPage() {
           <span className="text-[#174C38] font-medium">{artisan.name}</span>
         </nav>
 
-        {/* ARTISAN PROFILE HEADER - Modern Ethnic Boutique */}
-        <div className="bg-[#FFFDF9] rounded-2xl p-6 sm:p-10 border border-[#E8DFC8] shadow-xs grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        {/* ARTISAN PROFILE HEADER - Modern Ethnic Boutique Demo Format */}
+        <div className="bg-[#FFFFFF] rounded-2xl p-6 sm:p-10 border border-[#EAE3D2] shadow-sm grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-4">
-            <div className="aspect-[4/3] sm:aspect-square rounded-2xl overflow-hidden bg-[#FAF5EC] border border-[#E8DFC8] shadow-xs relative">
+            <div className="aspect-[4/3] sm:aspect-square rounded-2xl overflow-hidden bg-[#FAF5EC] border border-[#EAE3D2] shadow-xs relative">
               <img
                 src={artisan.avatar || artisan.image_url}
                 alt={artisan.name}
                 className="w-full h-full object-cover object-top"
               />
+              <div className="absolute top-3.5 left-3.5 z-10">
+                <div className="artisan-badge-pill">
+                  <span>★</span>
+                  <span>{artisan.experience_years ? `${artisan.experience_years} năm tuổi nghề` : artisan.experience}</span>
+                </div>
+              </div>
             </div>
           </div>
 
           <div className="lg:col-span-8 space-y-4">
-            <div className="inline-flex items-center gap-2 bg-[#FAF5EC] border border-[#E8DFC8] text-[#C99A45] text-xs font-medium px-3.5 py-1 rounded-full">
-              <Award className="w-3.5 h-3.5" />
+            <div className="inline-flex items-center gap-2 bg-[#F4EDE1] border border-[#D4C4A8] text-[#174C38] text-xs font-semibold px-4 py-1 rounded-full">
+              <Award className="w-3.5 h-3.5 text-[#C97A3E]" />
               <span>{artisan.experience} {artisan.age ? `• ${artisan.age} tuổi` : ''}</span>
             </div>
 
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-[#174C38] tracking-tight">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#174C38] tracking-tight">
               {artisan.name}
             </h1>
 
             <div className="flex items-center gap-2 text-xs sm:text-sm text-[#59524C]">
-              <MapPin className="w-4 h-4 text-[#C99A45] shrink-0" />
+              <MapPin className="w-4 h-4 text-[#174C38] shrink-0" />
               <span>{artisan.village || artisan.location}</span>
             </div>
 
             {artisan.quote && (
-              <div className="p-4 bg-[#FAF5EC] rounded-xl border border-[#E8DFC8] text-xs sm:text-sm text-[#4A4540] italic leading-relaxed">
+              <div className="artisan-quote-accent bg-[#FAF7F2] p-4 rounded-xl">
+                &ldquo;{artisan.quote}&rdquo;
+              </div>
+            )}
                 &ldquo;{artisan.quote}&rdquo;
               </div>
             )}

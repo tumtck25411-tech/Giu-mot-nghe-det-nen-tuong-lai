@@ -172,6 +172,11 @@ const WEAVING_STAGES_FULL = [
 // 4 Curated Hero Background Slides with Authentic High-Resolution Photography
 const HERO_SLIDES = [
   {
+    image: '/images/custom/tay_nguyen_misty_mountain.jpg',
+    caption: '✦ Sương sớm đại ngàn Chư Păh & thung lũng dệt thổ cẩm Ia Mơ Nông, Gia Lai',
+    alt: 'Khung cảnh thiên nhiên sương mờ đại ngàn Chư Păh, Gia Lai',
+  },
+  {
     image: '/images/background/hero_jrai_stilt_house_weaving.jpg',
     caption: '✦ Không gian dệt cửi hông & kéo sợi bông bên hiên nhà sàn Jrai',
     alt: 'Các nghệ nhân Jrai dệt thổ cẩm và quay sợi bông bên hiên nhà sàn truyền thống',
@@ -1085,69 +1090,131 @@ export default function HomePage() {
     </section>
 
     {/* ========================================================
-        4. MỤC 4: NGHỆ NHÂN (#artisans) - ĐẦY ĐỦ 9 NGHỆ NHÂN
+        4. MỤC 4: NGHỆ NHÂN (#artisans) - MODERN ETHNIC BOUTIQUE DEMO FORMAT
     ======================================================== */}
-    <section className="section section-watermark-gathering reveal-on-scroll" id="artisans" style={{ scrollMarginTop: '80px' }}>
-      <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-12 space-y-8">
-        <div className="text-center max-w-3xl mx-auto space-y-3.5 mb-8">
-          <span className="section-tag gold">
-            Làng Kép – Ia Mơ Nông
-          </span>
-          <h2 className="section-title text-center">
-            Nghệ nhân dệt thổ cẩm
+    <section className="section relative overflow-hidden py-14 lg:py-20" id="artisans" style={{ scrollMarginTop: '80px', backgroundColor: '#FAF7F2', backgroundImage: "url('/images/custom/texture_paper_cotton.jpg')" }}>
+      {/* Decorative Brocade Diamond Watermarks on Top Corners */}
+      <div
+        className="absolute top-0 left-0 w-44 h-44 pointer-events-none opacity-10 bg-contain bg-no-repeat"
+        style={{ backgroundImage: "url('/images/custom/brocade_diamond_pattern.jpg')" }}
+        aria-hidden="true"
+      />
+      <div
+        className="absolute top-0 right-0 w-44 h-44 pointer-events-none opacity-10 bg-contain bg-no-repeat"
+        style={{ backgroundImage: "url('/images/custom/brocade_diamond_pattern.jpg')" }}
+        aria-hidden="true"
+      />
+
+      <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-12 relative z-10 space-y-10">
+        {/* Header Format Chuẩn Demo Hình 5 */}
+        <div className="text-center max-w-3xl mx-auto space-y-3.5">
+          <h2 className="text-3xl sm:text-4xl lg:text-[40px] font-bold text-[#174C38] tracking-tight">
+            Nghệ nhân Dệt Thổ Cẩm
           </h2>
-          <p className="section-desc text-center mx-auto">
+
+          <div className="flex justify-center">
+            <div className="subtitle-pill-brocade shadow-2xs">
+              <span className="text-[#C97A3E] text-xs">❖</span>
+              <span>Làng Kép — Ia Mơ Nông</span>
+              <span className="text-[#C97A3E] text-xs">❖</span>
+            </div>
+          </div>
+
+          <p className="text-[#4A453F] text-sm sm:text-base italic max-w-xl mx-auto font-normal pt-1">
             Gìn giữ nghề truyền thống, lan tỏa giá trị thổ cẩm Jrai
           </p>
-          <div className="flex items-center justify-center gap-3 pt-2">
-            <span className="text-xs font-semibold text-[#174C38] bg-[#FAF5EC] px-3.5 py-1.5 rounded-full border border-[#E8DFC8]">
-              09 / 09 nghệ nhân giữ nghề
-            </span>
-            <Link href="/artisans" className="btn btn-outline-dark btn-sm">
-              Xem toàn bộ nghệ nhân &rarr;
-            </Link>
-          </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {artisans.map((a) => (
+        {/* 3 Featured Artisan Cards Chuẩn Format Demo Hình 5 */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
+          {artisans.slice(0, 3).map((a) => (
             <div
               key={a.id}
-              className="artisan-card cursor-pointer group"
+              className="artisan-demo-card group cursor-pointer"
               onClick={() => setSelectedArtisanModal(a)}
             >
-              <div className="artisan-img-wrap">
-                <img
-                  src={a.avatar}
-                  alt={a.name}
-                  loading="lazy"
-                  className="group-hover:scale-105 transition-transform"
-                />
-                <span className="artisan-exp-badge">{a.experience_years} Năm Giữ Nghề</span>
-              </div>
-              <div className="artisan-body">
-                <h3 className="artisan-name">{a.name}</h3>
-                <div className="artisan-village">📍 {a.village}</div>
-                <p className="artisan-quote">&ldquo;{a.quote}&rdquo;</p>
-                <p style={{ fontSize: '0.85rem', color: '#5D554D', marginBottom: '14px' }}>
-                  <strong style={{ color: '#174C38' }}>Chuyên môn:</strong> {a.specialty}
-                </p>
-                <div style={{ marginTop: 'auto', display: 'flex', gap: '8px' }}>
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setSelectedArtisanModal(a);
-                    }}
-                    className="btn btn-sm btn-primary"
-                    style={{ flex: 1, textAlign: 'center', justifyContent: 'center' }}
-                  >
-                    Xem hồ sơ
-                  </button>
+              <div>
+                {/* Photo with top-left badge and floating name pill */}
+                <div className="relative aspect-[16/11] sm:aspect-[4/3] w-full overflow-hidden bg-[#FAF5EC]">
+                  <img
+                    src={a.avatar || a.image_url}
+                    alt={a.name}
+                    loading="lazy"
+                    className="w-full h-full object-cover group-hover:scale-104 transition-transform duration-500"
+                  />
+
+                  {/* Top-left: Star badge "★ X năm tuổi nghề" */}
+                  <div className="absolute top-3.5 left-3.5 z-10">
+                    <div className="artisan-badge-pill">
+                      <Star className="w-3.5 h-3.5 fill-white text-white" />
+                      <span>{a.experience_years ? `${a.experience_years} năm tuổi nghề` : a.experience}</span>
+                    </div>
+                  </div>
+
+                  {/* Floating Name Pill overlapping bottom edge of image */}
+                  <div className="absolute -bottom-4 left-4 z-10">
+                    <div className="artisan-name-pill">
+                      <User className="w-3.5 h-3.5 text-white" />
+                      <span>{a.name}</span>
+                    </div>
+                  </div>
                 </div>
+
+                {/* Card Body */}
+                <div className="pt-7 px-5 pb-4 space-y-3">
+                  {/* Location Row with Map Pin */}
+                  <div className="flex items-center gap-2 text-xs sm:text-[13px] text-[#5D554D]">
+                    <MapPin className="w-4 h-4 text-[#174C38] shrink-0" />
+                    <span className="truncate">{a.village || a.location}</span>
+                  </div>
+
+                  {/* Quote with Orange/Terracotta Left Border */}
+                  <div className="artisan-quote-accent">
+                    &ldquo;{a.quote}&rdquo;
+                  </div>
+                </div>
+              </div>
+
+              {/* Centered Outline Pill Button: Xem hồ sơ */}
+              <div className="px-5 pb-5 pt-1 text-center">
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setSelectedArtisanModal(a);
+                  }}
+                  className="btn-artisan-outline w-full sm:w-auto"
+                >
+                  <span>Xem hồ sơ</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </button>
               </div>
             </div>
           ))}
         </div>
+
+        {/* Section Bottom Button flanked by Diamond Motifs */}
+        <div className="flex items-center justify-center gap-3 sm:gap-5 pt-4">
+          <span className="text-[#C97A3E] text-base select-none">❖</span>
+          <span className="h-px w-10 sm:w-24 bg-[#D4C4A8]"></span>
+          <Link
+            href="/artisans"
+            className="inline-flex items-center gap-2 px-7 sm:px-9 py-3 rounded-full bg-[#174C38] hover:bg-[#0E3626] text-white font-semibold text-sm shadow-md transition transform hover:scale-[1.02] cursor-pointer"
+          >
+            <span>Khám phá thêm 6 nghệ nhân khác</span>
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+          <span className="h-px w-10 sm:w-24 bg-[#D4C4A8]"></span>
+          <span className="text-[#C97A3E] text-base select-none">❖</span>
+        </div>
+
+        {/* Bottom Panoramic Landscape Strip (Hình 2 Núi Rừng Sương Mờ) */}
+        <div
+          className="w-full h-24 sm:h-32 bg-bottom bg-cover bg-no-repeat mt-6 rounded-2xl overflow-hidden opacity-90 border border-[#EAE3D2] shadow-2xs"
+          style={{
+            backgroundImage: "url('/images/custom/tay_nguyen_misty_mountain.jpg')",
+          }}
+          title="Toàn cảnh sương sớm thung lũng dệt thổ cẩm Ia Mơ Nông, Gia Lai"
+        />
       </div>
     </section>
 
